@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       	       	http://www.springframework.org/schema/context 
+	 http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:property-placeholder location="classpath:db.properties" />
+	<context:annotation-config />
+	<context:component-scan base-package="Final.Controller"/>
+	<context:component-scan base-package="Final.Model"/>
+	<context:component-scan base-package="Final.View"/>
+	<context:component-scan base-package="Final.Dao"/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql/*.xml" />
+	</bean>
+	
+	<!-- DAO 주입 -->
+	<bean id="fileLoadDao" class="Final.Dao.FileLoadDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="memberDao" class="Final.Dao.MemberDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="zipcodeDao" class="Final.Dao.ZipcodeDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+	</bean>
+
+
+	<!-- 파일전송시 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+
+	<bean id="viewResolver1" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+ 
+</beans>  
