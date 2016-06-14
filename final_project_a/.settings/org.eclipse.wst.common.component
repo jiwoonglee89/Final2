@@ -92,7 +92,7 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/wonmo/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/wonmo/Documents/workspace-sts-3.7.3.RELEASE/final_project_a/libs/ojdbc6.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/wonmo/git/Final2/final_project_a/libs/ojdbc6.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 	</wb-module>

@@ -162,7 +162,7 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/wonmo/Documents/workspace-sts-3.7.3.RELEASE/final_project_a/libs/ojdbc6.jar" exported="true">
+	<classpathentry kind="lib" path="C:/Users/wonmo/git/Final2/final_project_a/libs/ojdbc6.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>

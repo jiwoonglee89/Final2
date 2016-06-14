@@ -201,8 +201,6 @@ public class MemberController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
 		Date today = sdf.parse(request.getParameter("birth"));
 		
-		
-		
 		return "joinPage/join";
 	}
 }
