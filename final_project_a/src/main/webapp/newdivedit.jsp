@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -13,8 +13,9 @@
 		});
 	}); */
 </script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="<c:url value='resources/jquery.tablesorter.min.js'/>"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src='<c:url value="resources/jquery.tablesorter.min.js" />'></script>
 <style type="text/css">
 #address {
 	text-transform: uppercase;
@@ -59,7 +60,6 @@ tr, td {
 }
 </style>
 <script>
-	
 	function key_event() {
 		//엔터
 		if (event.keyCode == 13) {
@@ -144,7 +144,7 @@ tr, td {
 
 	function CreateTable() {
 		/* 		table 태그 생성 */
-		var tag = '<table  cellpadding="0" cellspacing="0" class="view" id="viewtable">'
+		var tag = '<table  cellpadding="0" cellspacing="0" class="view" id="viewtable" >'
 		/* 		맨 위에줄 ABCD...제목 */
 		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
@@ -155,10 +155,12 @@ tr, td {
 		for (var a = 0; a < th.length; a++) {
 			tag += '<th id=th'+th[a]+'>' + th[a] + '</th>'
 		}
+		tag+='</thead>'
 		/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
+		tag+='<tbody>'
 		for (var j = 1; j < 100; j++) {
 
-			tag += '<tbody><tr id='+j+' class="divrow">'
+			tag += '<tr id='+j+' class="divrow">'
 			/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
 			for (var i = 0; i < th.length; i++) {
 				tag += '<td   class="celltd" id=td'+th[i]+j+'><div   contentEditable="false" id='
@@ -166,27 +168,25 @@ tr, td {
 						+ j
 						+ ' onkeyDown="key_event()" class="divcoll" ></div></td>'
 			}
-			tag += '</tr></tbody>'
+			tag += '</tr>'
 		}
+		tag +='</tbody>'
 
 		tag += '</table>';
 
 		var divTable = document.getElementById("createTable");
 		divTable.innerHTML = tag;
 
-	};
-	
-	function sort(){
-		$('#viewtable').tablesorter({ sortList: [ [0,0] ] });
-	};
+	}
 
 	$(document).ready(function() {
 		CreateTable();
-		
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
-		$("table").tablesorter({widthFixed: true, widgets: ['zebra']}) 
+		$("table").tablesorter(
+				
+		);
 
 	});
 
