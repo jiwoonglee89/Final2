@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
 <title>아이디 비밀번호 찾기</title>
+<style>
+#find { min-height: 800px; }
+.title_find { margin: 0 auto; margin: 11px; font-size: 28px; color: #4C4C4C; }
+#find_id_result { min-height: 600px; margin: 0 auto; margin-top: 250px;}
+</style>
 <script>
 $(function(){
    open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
@@ -64,7 +69,7 @@ $(function(){
 	<table width="300" border="1" cellspacing="0" cellpadding="3" align="center">
 	<tr>
 		<td colspan="2" height="39" align="center" bgcolor="">
-		<font size="+1"><b>아이디 찾기 </b></font><br><font color="black" align="right" size="-1"></font>
+		<font size="+1"><b>아이디 찾기 </b></font><br><font color="black" align="center" size="-1"></font>
 		</td>
 	</tr>
 	<tr>
