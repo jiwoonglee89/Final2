@@ -20,32 +20,32 @@
 			<tr>
 				<td width="200">*아이디</td>
 				<td width="400">
-					<input type="text" name="id" maxlength="30" size="35" readonly="readonly" value="${id}">
+					<div>${id}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">*비밀번호</td>
 				<td width="400">
-					<input type="password" name="password" maxlength="20" size="25" readonly="readonly" value="${password}">
+					<div>${password}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">*이름</td>
 				<td width="400">
-					<input type="text" name="name" maxlength="50" size="15" readonly="readonly" value="${name}">
+					<div>${name}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">*생년월일</td>
 				<td width="200">
-					<input type="date" name="birth" readonly="readonly" value="${birth}">
+					<div>${birth}</div>
 				</td>
 			</tr>
 			<tr>
 			<!-- 전화번호 유효성 검사 재프로그래밍할것 -->
 				<td width="200">*전화번호</td>
 				<td width="400">
-					<input type="text" name="phone" maxlength="11" size="20" readonly="readonly" value="${phone}""> 
+					<div>${phone}</div>
 				</td>
 			</tr>
 			<tr>
@@ -72,8 +72,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
-					<input type="submit"name="confirm" value="등 록"> 
-					 <input type="button" value="가입 안함" onclick="javascript:window.location=''">
+					<input type="submit"name="confirm" value="수 정"> 
+					 <input type="button" value="수정 취소" onclick="javascript:window.location='loginForm.do'">
 				</td>
 			</tr>
 		</table>

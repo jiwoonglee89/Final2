@@ -194,4 +194,15 @@ public class MemberController {
 		model.addAttribute("check",check);
 		return "joinPage/zipCheck";
 	}
+	//마이페이지로 이동할때 해당 아이디값을 모두 가져와 보내는 코드
+	@RequestMapping(value="/myPage", method=RequestMethod.GET)
+	public String moveMyPage(HttpServletRequest request,Model model)
+	{
+		String id = request.getParameter("id");
+		MemberInfo member = null;
+		member = memberDao.getMember(id);
+		model.addAttribute("listM", member);
+		System.out.println("해당 ID의 정보 : : :"+member);
+		return "Mypage/myPage";
+	}
 }

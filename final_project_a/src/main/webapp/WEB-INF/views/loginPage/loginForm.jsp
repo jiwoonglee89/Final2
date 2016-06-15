@@ -51,7 +51,7 @@ function openConfirmid() {
 								<form method="post" action="logout.do">
 									<input type="submit" value="로그아웃">
 								</form>
-								<form method="post" action="list.do">
+								<form method="post" action="myPage.do">
 									<input type="submit" value="나의 정보">
 								</form>
 							</td>
