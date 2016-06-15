@@ -19,20 +19,19 @@
 					<tr>
 				<td width="200">*아이디</td>
 			<td width="400">
-		<input type="text" name="id" maxlength="30" size="35" style="ime-mode:inactive" onblur="id_nohan(this.form)" readonly="true">
-	<input type="hidden" name="confirm_ok"  value="no">
+		<input type="text" name="id" maxlength="30" size="35" style="ime-mode:inactive" onblur="id_nohan(this.form)" readonly="readonly">
 </td>
 	</tr>
 		<tr>
 			<td width="200">*비밀번호</td>
 				<td width="400">
-					<input type="password" name="password1" maxlength="20" size="25">
+					<input type="password" name="password1" maxlength="20" size="25" value="">
 						</td>
 					</tr>
 				<tr>
 			<td width="200">*비밀번호 확인</td>
 		<td width="400">
-	<input type="password" name="password2" maxlength="20" size="25">
+	<input type="password" name="password2" maxlength="20" size="25" value="">
 </td>
 	</tr>
 		<tr>
