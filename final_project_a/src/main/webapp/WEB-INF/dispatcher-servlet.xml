@@ -37,6 +37,9 @@
 	<bean id="zipcodeDao" class="Final.Dao.ZipcodeDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
 	</bean>
+	<bean id="boardDao"	class="Final.Dao.BoardDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 
 	<!-- 파일전송시 -->
