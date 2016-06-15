@@ -194,13 +194,4 @@ public class MemberController {
 		model.addAttribute("check",check);
 		return "joinPage/zipCheck";
 	}
-	@RequestMapping("/test.do")
-	public String CheckTime(Model model, HttpServletRequest request) throws ParseException
-	{
-	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-		Date today = sdf.parse(request.getParameter("birth"));
-		
-		return "joinPage/join";
-	}
 }

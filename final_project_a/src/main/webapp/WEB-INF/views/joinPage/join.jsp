@@ -47,7 +47,6 @@
 				<td width="200">*생년월일</td>
 				<td width="200">
 					<input type="date" name="birth">
-					<input type="button" name="checktim" onClick="javascript:; window.location='test.do?birth='+document.joinF.birth.value" value="joda Test">
 				</td>
 			</tr>
 			<tr>
