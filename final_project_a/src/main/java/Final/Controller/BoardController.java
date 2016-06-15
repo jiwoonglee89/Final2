@@ -3,6 +3,7 @@ package Final.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import Final.Dao.BoardDao;
 import Final.Dao.FileLoadDao;
@@ -35,4 +36,11 @@ public class BoardController {
 	public BoardInfo boardInfo() {
 		return new BoardInfo();
 	}
+	
+	@RequestMapping("/list.do")
+	public String moveBoard()
+	{
+		return "BoardPage/list";
+	}
 }
+
