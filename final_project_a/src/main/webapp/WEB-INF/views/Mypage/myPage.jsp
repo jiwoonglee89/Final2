@@ -9,12 +9,12 @@
 <title>MyPage</title>
 </head>
 <body>
-	<form name="mypageF" action=".do" method="post" onSubmit="">
+	<form name="mypageF" action="modifyForm.do" method="post">
 		
 		<table width="600" border="1" cellspacing="0" cellpadding="3" align="center">
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor="">
-				<font size="+1"><b>${name}님의 회원정보</b></font>
+				<font size="+1"><b>${listM.name}님의 회원정보</b></font>
 				</td>
 			</tr>
 			<tr>
@@ -26,48 +26,39 @@
 			<tr>
 				<td width="200">*비밀번호</td>
 				<td width="400">
-					<div>${password}</div>
+					<div>${listM.password}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">*이름</td>
 				<td width="400">
-					<div>${name}</div>
+					<div>${listM.name}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">*생년월일</td>
 				<td width="200">
-					<div>${birth}</div>
+					<div>${listM.birth}</div>
 				</td>
 			</tr>
 			<tr>
 			<!-- 전화번호 유효성 검사 재프로그래밍할것 -->
 				<td width="200">*전화번호</td>
 				<td width="400">
-					<div>${phone}</div>
+					<div>${listM.phone}</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">이메일</td>
 				<td width="400">
-					<input type="text" name="emailID" size="15"  maxlength="25" readonly="readonly" value="${emailID}">@
-					<input type="text" name="emailAddress" size="10" >
-					<select name=email  onchange="email_change(this.form)" >
-							<option value="" selected="selected">이메일주소 선택</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="yahoo.com">yahoo.com</option>
-							<option value="1">직접입력</option>
-					</select>
+					<div>${listM.email}</div>
 				</td>
+				
 			</tr>
 			<tr>
 				<td width="200">*우편 번호</td>
 				<td>
-					<input type="text" name="zipcode" size="10" readonly="readonly" value="${zipcode}">
-					<input type="text" name="address" size="50" readonly="readonly" value="${address}">.
+					<div>${listM.zipcode} ${listM.address}</div>
 				</td>
 			</tr>
 			<tr>

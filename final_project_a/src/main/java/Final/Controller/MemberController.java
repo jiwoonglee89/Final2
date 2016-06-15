@@ -85,28 +85,82 @@ public class MemberController {
 	{
 		return "joinPage/join";
 	}
+	
+	/*@RequestMapping("/checkmail.do")
+	public String checkM(HttpServletRequest reqeust)
+	{
+		//이메일 재설정 코드
+				String emailID = reqeust.getParameter("emailID");
+				String email = reqeust.getParameter("email");
+				System.out.println("변수 emailID의 값은 : : : "+ emailID);
+				System.out.println("변수 emailAddress의 값은 : : : "+ email);
+
+				if(email.equals("1"))
+				{
+					String email1 = reqeust.getParameter("emailID")+"@"+reqeust.getParameter("emailAddres");
+					email = email1;
+					
+					 System.out.println("emailAddress : : : "+ email1 );
+				}
+				else
+				{
+					String email2 = reqeust.getParameter("emailID")+"@"+reqeust.getParameter("email");
+					email = email2;
+					
+					 System.out.println("email2: : :"+email2);
+				}
+				return "joinPage/join";
+	}*/
 	//회원가입 후 메인으로 이동
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public String join(@ModelAttribute("memberInfo") MemberInfo memberInfo, HttpServletRequest request)throws ParseException
 	{
-		System.out.println("확인용");
-		System.out.println(memberInfo.getBirth());
+	
+		System.out.println("컨트롤러 정상 실행중...");
+		//생년월일 포멧 설정
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
 		Date birth = sdf.parse(request.getParameter("birth"));
+	
+		String emailID = request.getParameter("emailID");
+		String email = request.getParameter("email");
+		System.out.println("변수 emailID의 값은 : : : "+ emailID);
+		System.out.println("변수 emailAddress의 값은 : : : "+ email);
+
+		if(email.equals("1"))
+		{
+			String email1 = request.getParameter("emailID")+"@"+request.getParameter("emailAddres");
+			email = email1;
+			
+			 System.out.println("emailAddress : : : "+ email1 );
+			 System.out.println("저장될 email 주소 : : : "+ email );
+		}
+		else
+		{
+			String email2 = request.getParameter("emailID")+"@"+request.getParameter("email");
+			email = email2;
+			
+			 System.out.println("email2: : :"+email2);
+			 System.out.println("저장될 email 주소 : : : "+ email );
+		}
+		
 		Map map=new HashMap();
 		map.put("id", memberInfo.getId());
 		map.put("password", memberInfo.getPassword());
 		map.put("name", memberInfo.getName());
 		map.put("birth", birth);
 		map.put("phone", memberInfo.getPhone());
-		map.put("email", memberInfo.getEmail());
+		map.put("email", email);
 		map.put("zipcode", memberInfo.getZipcode());
 		map.put("address", memberInfo.getAddress());
+		
+		//데이터 삽입을 확인하기 위한 변수 선언
 		int success=0;
 		success=memberDao.insert(map);
+		//데이터 삽입 성공여부를 확인하기위해 출력
 		System.out.println(success);
 		
 		return "loginPage/loginForm";
+
 	}
 	//아이디와비밀번호 찾는 화면으로 이동
 	@RequestMapping("/idpwSearchNew.do")
@@ -195,14 +249,24 @@ public class MemberController {
 		return "joinPage/zipCheck";
 	}
 	//마이페이지로 이동할때 해당 아이디값을 모두 가져와 보내는 코드
-	@RequestMapping(value="/myPage", method=RequestMethod.GET)
-	public String moveMyPage(HttpServletRequest request,Model model)
+	@RequestMapping(value="/myPage.do", method=RequestMethod.GET)
+	public String moveMyPage(HttpServletRequest request,Model model) throws ParseException
 	{
-		String id = request.getParameter("id");
+		//세션에 저장된 ID값 가져오기.
+		HttpSession session=request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		//세션에서 가져온 아이디값으로 해당 정보 불러오기.
 		MemberInfo member = null;
 		member = memberDao.getMember(id);
+	
+		member.setBirth(member.getBirth().substring(0,10));
+		//System.out.println("현재 Birth 값은 : : :"+i);
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date birth = sdf.parse(request.getParameter("birth"));*/
+		
 		model.addAttribute("listM", member);
-		System.out.println("해당 ID의 정보 : : :"+member);
+		
 		return "Mypage/myPage";
 	}
 }

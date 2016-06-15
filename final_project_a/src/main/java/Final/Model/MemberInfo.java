@@ -8,12 +8,6 @@ public class MemberInfo {
 	private String name;
 	/*private Date birth;*/
 	private String birth;
-	public String getBirth() {
-		return birth;
-	}
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
 	private String phone;
 	private String email;
 	private int zipcode;
@@ -43,6 +37,12 @@ public class MemberInfo {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}*/
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public String getPhone() {
 		return phone;
 	}

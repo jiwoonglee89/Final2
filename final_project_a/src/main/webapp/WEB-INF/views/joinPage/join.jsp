@@ -10,8 +10,7 @@
 <title>Web Cell Join Page</title>
 </head>
 <body onload="disable()">
-	<form name="joinF" action="join.do" method="post" onSubmit="return check()">
-		
+	  <form name="joinF" action="join.do" method="post" onSubmit="return check()">
 		<table width="600" border="1" cellspacing="0" cellpadding="3" align="center">
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor="">
@@ -85,7 +84,6 @@
 				<td colspan="2" align="center" bgcolor="">
 					<input type="submit"name="confirm" value="등 록"> 
 					<input type="reset"name="reset" value="다시 입력">
-					<!-- 이동위치 재설정 -->
 					 <input type="button" value="가입 안함" onclick="javascript:window.location='loginForm.do'">
 				</td>
 			</tr>

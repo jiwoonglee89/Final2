@@ -45,13 +45,20 @@ function check() {
 	}
 	//전화번호 부분 수정
 	
-
-
 	if (!document.joinF.zipcode.value && !document.joinF.address.value) {
 		alert("주소를 전부 입력해주세요.");
 		return false;
 	}
-
+	
+/*	var f = document.joinF;
+	alert("checkmail실행중");
+	alert("ID값:"+f.emailID.value);
+	alert("Address:"+f.emailAddress.value);
+	var e = f.emailID.value;
+	var a = f.emailAddress.value;
+	var email=e+'@'+a;
+	alert("저장될 이메일값은"+email+"입니다."); */
+	
 	return true;
 }
 
@@ -105,7 +112,7 @@ function disable() {
 //이메일 직접입력
 function email_change(e) {
 	/*
-	 * select : email textBox: emailAddress
+	 * select : email | textBox: emailAddress
 	 */
 	var s = e.email;
 	var tb = e.emailAddress;
