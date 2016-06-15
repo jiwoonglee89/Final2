@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+
+<%@ page isELIgnored="false" %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<script>
-	// html dom 이 다 로딩된 후 실행된다.
-	$(document).ready(function() {
-		$(".menu>a").click(function() {
-			$(this).next("ul").toggleClass("hide");
-		});
-	});
-</script>
-<script type="text/javascript" src='<c:url value="resource/jquery.tablesorter.min.js" />'></script>
+
+<script type="text/javascript" src="js/jquery.battatech.excelexport.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <style type="text/css">
 #address {
@@ -58,7 +54,27 @@ tr, td {
 }
 </style>
 <script>
-	function key_event() {
+
+ 
+   function submit1(){
+	
+ 		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+					"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
+	
+	for (var j = 1; j < 100; j++) {
+			for (var i = 1; i < th.length; i++) {
+			var kkkiii= $('#'+th[i]+j).text();
+				$('#in'+th[i]+j).val(kkkiii);
+			}
+				
+	}
+	   
+		$('#formtable').submit(); 
+	   
+   }
+
+function key_event() {
 		//엔터
 		if (event.keyCode == 13) {
 			event.preventDefault();
@@ -140,6 +156,27 @@ tr, td {
 			}
 	};
 
+	function CreateForm(){
+		
+		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+					"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
+		
+		var tag = '<form id="formtable"  action="save.do" method="post">'
+		
+		for (var j = 1; j < 100; j++) {
+				for (var i = 1; i < th.length; i++) {
+				tag += '<input type="hidden" id=in'+th[i]+j+' name='+th[i]+j+' />'
+			}
+			}
+		tag+='</form>'
+	
+		var divForm1 = document.getElementById("divForm");
+		divForm1.innerHTML = tag;
+
+		}
+	
+		
 	function CreateTable() {
 		/* 		table 태그 생성 */
 		var tag = '<table  cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">'
@@ -176,11 +213,14 @@ tr, td {
 
 	$(document).ready(function() {
 		CreateTable();
-		for (var z = 1; z < 100; z++) {
+		CreateForm();
+		
+/* 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
-		$('#viewtable').tablesorter();
-
+		 */
+		
+	
 	});
 
 	$(function() {
@@ -232,10 +272,8 @@ tr, td {
 </script>
 </head>
 <body>
-	<form>
-		<input type="submit" value="함수">
-	</form>
-	<br>
+
+	
 	<div id="formulaBar">
 		<div class="left" style='float: left'>
 			<input type="text" id="address">
@@ -243,7 +281,12 @@ tr, td {
 		<div class="center" style='float: left'>수식</div>
 		<div class="right" style='float: left'></div>
 	</div>
+	
 	<div id="createTable"></div>
+	<div id="divForm" class="divForm"></div>
+	<input type="button" onclick="submit1()" value="저장"/>
+	
+
 
 </body>
 </html>
