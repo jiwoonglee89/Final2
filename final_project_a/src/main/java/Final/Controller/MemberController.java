@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,38 +86,10 @@ public class MemberController {
 	{
 		return "joinPage/join";
 	}
-	
-	/*@RequestMapping("/checkmail.do")
-	public String checkM(HttpServletRequest reqeust)
-	{
-		//이메일 재설정 코드
-				String emailID = reqeust.getParameter("emailID");
-				String email = reqeust.getParameter("email");
-				System.out.println("변수 emailID의 값은 : : : "+ emailID);
-				System.out.println("변수 emailAddress의 값은 : : : "+ email);
-
-				if(email.equals("1"))
-				{
-					String email1 = reqeust.getParameter("emailID")+"@"+reqeust.getParameter("emailAddres");
-					email = email1;
-					
-					 System.out.println("emailAddress : : : "+ email1 );
-				}
-				else
-				{
-					String email2 = reqeust.getParameter("emailID")+"@"+reqeust.getParameter("email");
-					email = email2;
-					
-					 System.out.println("email2: : :"+email2);
-				}
-				return "joinPage/join";
-	}*/
 	//회원가입 후 메인으로 이동
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public String join(@ModelAttribute("memberInfo") MemberInfo memberInfo, HttpServletRequest request)throws ParseException
 	{
-	
-		System.out.println("컨트롤러 정상 실행중...");
 		//생년월일 포멧 설정
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
 		Date birth = sdf.parse(request.getParameter("birth"));
@@ -191,15 +164,19 @@ public class MemberController {
 	}
 	//회원 정보 수정 화면 이동
 	@RequestMapping("/modifyForm.do")
-	public ModelAndView modifyForm(HttpServletRequest request) {
+	public ModelAndView modifyForm(HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 
-		ModelAndView mav = new ModelAndView("modifyForm");
+		ModelAndView mav = new ModelAndView("Mypage/modifyForm");
 		MemberInfo member = memberDao.modifyForm(id);
-
+		String mail_array[] = member.getEmail().split("@");
+		request.setAttribute("emailID", mail_array[0]);
+		request.setAttribute("emailAddress", mail_array[1]);
 		mav.addObject("memberInfo", member);
-
+		//생일 불러오기 나중에 확인할것
+		System.out.println("생일 확인 : : :"+member.getBirth());
+		
 		return mav;
 	}
 	//회원 정보 수정 완료후 마이페이지 이동
@@ -269,4 +246,11 @@ public class MemberController {
 		
 		return "Mypage/myPage";
 	}
+/*	//수정 화면으로 이동
+	@RequestMapping("/memberModify.do")
+	public String moveModify(HttpServletRequest request)
+	{
+		
+		return "Mypage/memberModify";
+	}*/
 }

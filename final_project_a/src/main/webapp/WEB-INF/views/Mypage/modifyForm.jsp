@@ -7,10 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
+<script>
+function disable()
+{
+
+}
+</script>
 <title>회원정보 수정</title>
 </head>
 <body onload="disable()">
-	<form name="modiftForm" action="modifyForm.do" method="post" onSubmit="return check()">
+	<form name="modiftForm" action="" method="post" onSubmit="return check()">
 		<table width="600" border="1" cellspacing="0" cellpadding="3" align="center">
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor="">
@@ -19,41 +25,33 @@
 					<tr>
 				<td width="200">*아이디</td>
 			<td width="400">
-		<input type="text" name="id" maxlength="30" size="35" style="ime-mode:inactive" onblur="id_nohan(this.form)" readonly="readonly">
+		<input type="text" name="id" maxlength="30" size="35" readonly="readonly" value="${memberInfo.id}" >
 </td>
 	</tr>
 		<tr>
 			<td width="200">*비밀번호</td>
 				<td width="400">
-					<input type="password" name="password1" maxlength="20" size="25" value="">
+					<input type="password" name="password1" maxlength="20" size="25" value="${memberInfo.password}">
 						</td>
 					</tr>
 				<tr>
 			<td width="200">*비밀번호 확인</td>
 		<td width="400">
-	<input type="password" name="password2" maxlength="20" size="25" value="">
+	<input type="password" name="password2" maxlength="20" size="25">
 </td>
 	</tr>
 		<tr>
 			<td width="200">*이름</td>
 				<td width="400">
-					<input type="text" name="name" maxlength="50" size="15" onblur="id_noNumber(this.form)" value="${memberInfo.name}" readonly="true">
-						</td>
-					</tr>
-				<tr>
-			<td width="200">*생년월일</td>
-		<td width="200">
-	<select name="birthY">
-<option value=""></option>
-	</select>
-		<select name="birthM">
-			<option value=""></option>
-				</select>
-					<select name="birthD">
-						<option value=""></option>
-					</select>
+					<input type="text" name="name" maxlength="50" size="15" onblur="id_noNumber(this.form)" value="${memberInfo.name}" >
 				</td>
-			</tr>
+		</tr>
+		<tr>
+			<td width="200">*생년월일</td>
+			<td width="200">
+				<input type="date" name="birth" value="${memberInfo.birth}">			
+			</td>
+		</tr>
 		<tr>
 	<td width="200">*전화번호</td> <!-- 전화번호 유효성 검사 재프로그래밍할것 -->
 <td width="400">
@@ -63,8 +61,8 @@
 				<tr>
 					<td width="200">이메일</td>
 						<td width="400">
-					<input type="text" name="emailID" size="15"  maxlength="25" value="${memberInfo.email}">@
-				<input type="text" name="emailAddress" size="10" >
+					<input type="text" name="emailID" size="15"  maxlength="25" value="${emailID}">@
+				<input type="text" name="emailAddress" size="10" value="${emailAddress}">
 			<select name=email  onchange="email_change(this.form)" >
 		<option value="" selected="selected">이메일주소 선택</option>
 	<option value="naver.com">naver.com</option>
@@ -85,7 +83,7 @@
 		</tr>
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
-					<input type="submit"name="confirm" value="정보수정"> <!-- 이동위치 재설정 -->
+					<input type="submit"name="confirm" value="정보수정">
 						<input type="button" value="취소" onclick="javascript:window.location='/final_project/login/loginForm.do'">
 					</td>
 				</tr>
