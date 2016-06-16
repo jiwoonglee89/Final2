@@ -63,8 +63,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
-					<input type="submit"name="confirm" value="수 정"> 
-					 <input type="button" value="수정 취소" onclick="javascript:window.location='loginForm.do'">
+					<input type="submit"name="confirm" value="정보 수정하기"> 
+					 <input type="button" value="돌아가기" onclick="javascript:window.location='loginForm.do'">
 				</td>
 			</tr>
 		</table>

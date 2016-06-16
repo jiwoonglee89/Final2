@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,14 +180,49 @@ public class MemberController {
 	}
 	//회원 정보 수정 완료후 마이페이지 이동
 	@RequestMapping("/modify.do")
-	public String modify(@ModelAttribute("memberInfo") MemberInfo memberInfo) {
+	public String modify(@ModelAttribute("memberInfo") MemberInfo memberInfo,HttpServletRequest request,Model model)throws ParseException
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date birth = sdf.parse(request.getParameter("birth"));
+	
+		String emailID = request.getParameter("emailID");
+		String email = request.getParameter("email");
+		String emailAddres = request.getParameter("emailAddres");
 
-		int success = memberDao.modify(memberInfo);
-
-		if (success > 0) {
-			return "board";
+		if(email.equals("1"))
+		{
+			String email1 = emailID+"@"+emailAddres;
+			email = email1;
+			//System.out.println("저장될 값:::"+email);
 		}
-		return "login";
+		else
+		{
+			String email2 = emailID+"@"+email;
+			email = email2;
+			//System.out.println("저장될 값:::"+email);
+		}
+		
+		Map map=new HashMap();
+		map.put("id", memberInfo.getId());
+		map.put("password", memberInfo.getPassword());
+		map.put("name", memberInfo.getName());
+		map.put("birth", memberInfo.getBirth());
+		map.put("phone", memberInfo.getPhone());
+		map.put("email", email);
+		map.put("zipcode", memberInfo.getZipcode());
+		map.put("address", memberInfo.getAddress());
+		
+		int success = memberDao.modifyM(map);
+		
+		if (success>0)
+		{
+			String id = memberInfo.getId();
+			MemberInfo member = memberDao.getMember(id);
+			member.setBirth(member.getBirth().substring(0,10));
+			model.addAttribute("listM", member);
+			return "Mypage/myPage";
+		}
+		return "Mypage/modifyForm";
 	}
 	//회원 탈퇴
 	@RequestMapping("/delete.do")
@@ -238,19 +272,9 @@ public class MemberController {
 		member = memberDao.getMember(id);
 	
 		member.setBirth(member.getBirth().substring(0,10));
-		//System.out.println("현재 Birth 값은 : : :"+i);
-		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-		Date birth = sdf.parse(request.getParameter("birth"));*/
 		
 		model.addAttribute("listM", member);
 		
 		return "Mypage/myPage";
 	}
-/*	//수정 화면으로 이동
-	@RequestMapping("/memberModify.do")
-	public String moveModify(HttpServletRequest request)
-	{
-		
-		return "Mypage/memberModify";
-	}*/
 }

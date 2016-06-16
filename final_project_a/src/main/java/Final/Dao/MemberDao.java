@@ -17,6 +17,9 @@ public class MemberDao extends SqlSessionDaoSupport{
 
 	public int modify(MemberInfo memberInfo) {
 		return getSqlSession().update("member.modify",memberInfo);
+	}	
+	public int modifyM(Map map) {
+		return getSqlSession().update("member.modify",map);
 	}
 public String idSearch(MemberInfo memberInfo) {
 		

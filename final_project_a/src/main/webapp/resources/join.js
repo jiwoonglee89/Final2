@@ -1,9 +1,11 @@
 //회원정보 입력란 체크
 function check() {
+	
 	if (! document.joinF.id.value) {
 		alert("ID를 입력하세요");
 		return false;
-	} else if (document.joinF.confirm_ok.value == "no")
+	} 
+	else if (document.joinF.confirm_ok.value == "no")
 	{
 		alert("ID중복체크를 해주세요.");
 		return false;
@@ -49,16 +51,6 @@ function check() {
 		alert("주소를 전부 입력해주세요.");
 		return false;
 	}
-	
-/*	var f = document.joinF;
-	alert("checkmail실행중");
-	alert("ID값:"+f.emailID.value);
-	alert("Address:"+f.emailAddress.value);
-	var e = f.emailID.value;
-	var a = f.emailAddress.value;
-	var email=e+'@'+a;
-	alert("저장될 이메일값은"+email+"입니다."); */
-	
 	return true;
 }
 
