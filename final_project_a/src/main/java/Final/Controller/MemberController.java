@@ -90,12 +90,10 @@ public class MemberController {
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public String join(@ModelAttribute("memberInfo") MemberInfo memberInfo, HttpServletRequest request)
 	{
-
+		//이메일주소 종류("선택입력","직접입력")의 따라 이메일 재구성
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
-		System.out.println("변수 emailID의 값은 : : : "+ emailID);
-		System.out.println("변수 emailAddress의 값은 : : : "+ email);
-		//이메일주소 종류("선택입력","직접입력")의 따라 이메일 재구성
+
 		if(email.equals("1"))
 		{
 			String email1 = request.getParameter("emailID")+"@"+request.getParameter("emailAddres");
@@ -112,7 +110,15 @@ public class MemberController {
 			 System.out.println("email2: : :"+email2);
 			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
+		//생년월일 재구성
+		String year = request.getParameter("birthY");
+		String month = request.getParameter("birthM");
+		String day = request.getParameter("birthD");
+		String birth = year+"-"+month+"-"+day;
+		System.out.println(birth);
 		
+		memberInfo.setBirth(birth);
+		memberInfo.setEmail(email);
 		
 		//데이터 삽입을 확인하기 위한 변수 선언
 		int success=0;

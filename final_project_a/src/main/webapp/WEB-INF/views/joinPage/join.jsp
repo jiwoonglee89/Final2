@@ -1,7 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
@@ -50,11 +50,9 @@
 					<select name="birthY">
 					<jsp:useBean id="YEAR" class="java.util.Date" />
 					<fmt:formatDate value="${YEAR}" pattern="yyyy" var="current_year"/>
-					<c:if test="">
 						<c:forEach var="year" begin="1900" end="${current_year}" step="1">
 							<option value="${year}">${year}</option>
 						</c:forEach>
-					</c:if>
 					</select>
 					<select name="birthM">
 						<c:forEach var="month" begin="1" end="12" step="1">
