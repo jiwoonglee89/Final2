@@ -14,36 +14,33 @@ public class MemberDao extends SqlSessionDaoSupport{
 	public MemberInfo getMember(String id){
 		return getSqlSession().selectOne("member.one", id);
 	}
-
+	//회원정보 수정
 	public int modify(MemberInfo memberInfo) {
 		return getSqlSession().update("member.modify",memberInfo);
-	}	
-	public int modifyM(Map map) {
-		return getSqlSession().update("member.modify",map);
 	}
-public String idSearch(MemberInfo memberInfo) {
-		
+	public String idSearch(MemberInfo memberInfo) {
+
 		return getSqlSession().selectOne("member.idSearch", memberInfo);
 	}
-	
+
 	public String pwSearch (MemberInfo memberInfo) {
-		
+
 		return getSqlSession().selectOne("member.pwSearch", memberInfo);
 	}
-	
+
 	public String loginSuccess(MemberInfo memberInfo) {
 		String password = null;
-		
+
 		password = getSqlSession().selectOne("member.loginSucess", memberInfo);
-		
+
 		return password;
 	}
-	public int insert(Map map)
+	public int insert(MemberInfo memberInfo)
 	{
-		return getSqlSession().insert("member.insert", map);
+		return getSqlSession().insert("member.insert", memberInfo);
 	}
-public MemberInfo modifyForm(String id){
-		
+	public MemberInfo modifyForm(String id){
+
 		return getSqlSession().selectOne("member.modifyForm",id);
 	}
 

@@ -1,5 +1,6 @@
 package Final.Model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class MemberInfo {
@@ -31,20 +32,16 @@ public class MemberInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	/*public Date getBirth() {
-		return birth;
+	
+	public String getPhone() {
+		return phone;
 	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}*/
+
 	public String getBirth() {
 		return birth;
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
-	}
-	public String getPhone() {
-		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;

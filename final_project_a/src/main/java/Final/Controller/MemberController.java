@@ -1,8 +1,9 @@
 package Final.Controller;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -87,17 +88,14 @@ public class MemberController {
 	}
 	//회원가입 후 메인으로 이동
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
-	public String join(@ModelAttribute("memberInfo") MemberInfo memberInfo, HttpServletRequest request)throws ParseException
+	public String join(@ModelAttribute("memberInfo") MemberInfo memberInfo, HttpServletRequest request)
 	{
-		//생년월일 포멧 설정
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-		Date birth = sdf.parse(request.getParameter("birth"));
-	
+
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
 		System.out.println("변수 emailID의 값은 : : : "+ emailID);
 		System.out.println("변수 emailAddress의 값은 : : : "+ email);
-
+		//이메일주소 종류("선택입력","직접입력")의 따라 이메일 재구성
 		if(email.equals("1"))
 		{
 			String email1 = request.getParameter("emailID")+"@"+request.getParameter("emailAddres");
@@ -115,19 +113,10 @@ public class MemberController {
 			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
 		
-		Map map=new HashMap();
-		map.put("id", memberInfo.getId());
-		map.put("password", memberInfo.getPassword());
-		map.put("name", memberInfo.getName());
-		map.put("birth", birth);
-		map.put("phone", memberInfo.getPhone());
-		map.put("email", email);
-		map.put("zipcode", memberInfo.getZipcode());
-		map.put("address", memberInfo.getAddress());
 		
 		//데이터 삽입을 확인하기 위한 변수 선언
 		int success=0;
-		success=memberDao.insert(map);
+		success=memberDao.insert(memberInfo);
 		//데이터 삽입 성공여부를 확인하기위해 출력
 		System.out.println(success);
 		
@@ -180,11 +169,9 @@ public class MemberController {
 	}
 	//회원 정보 수정 완료후 마이페이지 이동
 	@RequestMapping("/modify.do")
-	public String modify(@ModelAttribute("memberInfo") MemberInfo memberInfo,HttpServletRequest request,Model model)throws ParseException
+	public String modify(@ModelAttribute("memberInfo") MemberInfo memberInfo,HttpServletRequest request,Model model)
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-		Date birth = sdf.parse(request.getParameter("birth"));
-	
+
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
 		String emailAddres = request.getParameter("emailAddres");
@@ -202,23 +189,12 @@ public class MemberController {
 			//System.out.println("저장될 값:::"+email);
 		}
 		
-		Map map=new HashMap();
-		map.put("id", memberInfo.getId());
-		map.put("password", memberInfo.getPassword());
-		map.put("name", memberInfo.getName());
-		map.put("birth", memberInfo.getBirth());
-		map.put("phone", memberInfo.getPhone());
-		map.put("email", email);
-		map.put("zipcode", memberInfo.getZipcode());
-		map.put("address", memberInfo.getAddress());
-		
-		int success = memberDao.modifyM(map);
+		int success = memberDao.modify(memberInfo);
 		
 		if (success>0)
 		{
 			String id = memberInfo.getId();
 			MemberInfo member = memberDao.getMember(id);
-			member.setBirth(member.getBirth().substring(0,10));
 			model.addAttribute("listM", member);
 			return "Mypage/myPage";
 		}
