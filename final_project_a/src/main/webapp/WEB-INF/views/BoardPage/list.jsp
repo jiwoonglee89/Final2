@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html> <%-- <script src="<c:url value="resources/images/join.js" />"> --%>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>My Excel List</title>
 </head>
 <body bgcolor="${bodyback_c}" align="center">
-	<b>글목록(전체 글:${count})</b>
+	<b>글목록(전체 글:${count})</b> 
 	<table width="700" align="center">
 		<tr>
 			<td align="right" bgcolor="${value_c}">
@@ -69,8 +70,8 @@
 		<c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
 		<c:set var="pageBlock" value="${10}" />
 
-		<fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
-
+		<fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true"/>
+ 
 		<c:set var="startPage" value="${result * 10 + 1}" />
 		<c:set var="endPage" value="${startPage + pageBlock-1}" />
 		<c:if test="${endPage > pageCount}">

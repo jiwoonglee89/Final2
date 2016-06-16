@@ -1,21 +1,22 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <title>Insert title here</title>
 <script>
-	// html dom 이 다 로딩된 후 실행된다.
-	/* $(document).ready(function() {
+	/* // html dom 이 다 로딩된 후 실행된다.
+	$(document).ready(function() {
 		$(".menu>a").click(function() {
 			$(this).next("ul").toggleClass("hide");
 		});
 	}); */
-</script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src='<c:url value="resources/jquery.tablesorter.min.js" />'></script>
+</script><!-- 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script type="text/javascript" src="<c:url value="resources/jquery-1.3.2.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="resources/jquery.tablesorter.min.js"/>"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <style type="text/css">
 #address {
 	text-transform: uppercase;
@@ -144,7 +145,7 @@ tr, td {
 
 	function CreateTable() {
 		/* 		table 태그 생성 */
-		var tag = '<table  cellpadding="0" cellspacing="0" class="view" id="viewtable" >'
+		var tag = '<table  cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">'
 		/* 		맨 위에줄 ABCD...제목 */
 		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
@@ -155,11 +156,10 @@ tr, td {
 		for (var a = 0; a < th.length; a++) {
 			tag += '<th id=th'+th[a]+'>' + th[a] + '</th>'
 		}
-		tag+='</thead>'
+		tag += '</thead>'
+		tag += '<tbody>'
 		/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
-		tag+='<tbody>'
 		for (var j = 1; j < 100; j++) {
-
 			tag += '<tr id='+j+' class="divrow">'
 			/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
 			for (var i = 0; i < th.length; i++) {
@@ -170,7 +170,7 @@ tr, td {
 			}
 			tag += '</tr>'
 		}
-		tag +='</tbody>'
+		tag += '</tbody>'
 
 		tag += '</table>';
 
@@ -178,15 +178,74 @@ tr, td {
 		divTable.innerHTML = tag;
 
 	}
+	/* thead 생성 */
+	function createThead(){
+		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+					"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
+		
+		var tag = "";
+			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
+			for (var a = 0; a < th.length; a++) {
+				tag += '<th id=th'+th[a]+'>' + th[a] + '</th>';
+			}
+			
+			
+			var Thead = document.getElementById("createThead");
+			Thead.innerHTML = tag;
+		
+	}
+	/* tbody생성 */
+	function createTbody(){
+		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+					"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
+		var tag ="";
+		
+			/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
+			for (var j = 1; j <= 100; j++) {
+				tag += '<tr id='+j+' class="divrow">'
+				/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
+				for (var i = 0; i < th.length; i++) {
+					tag += '<td   class="celltd" id=td'+th[i]+j+'><div   contentEditable="false" id='
+							+ th[i]
+							+ j
+							+ ' onkeyDown="key_event()" class="divcoll" ></div></td>'
+				}
+				tag += '</tr>'
+			}
+			
+			
+			var Tbody = document.getElementById("createTbody");
+			Tbody.innerHTML = tag;
+	}
+	
 
 	$(document).ready(function() {
-		CreateTable();
+		/* head body 생성 */
+		createThead();
+		createTbody();
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
-		$("table").tablesorter(
-				
-		);
+		/*  $('#viewtable').DataTable(); */
+		/* $('#viewtable').tablesorter({
+			theme:'blue',
+			sortList: [[1, 0]],
+			 textExtraction: {
+				$('td').find('div').text();
+			 }
+		}); */
+		/* 헤더고정 */
+		var jbOffset = $( '.jbMenu' ).offset();
+        $( window ).scroll( function() {
+          if ( $( document ).scrollTop() > jbOffset.top ) {
+            $( '.jbMenu' ).addClass( 'jbFixed' );
+          }
+          else {
+            $( '.jbMenu' ).removeClass( 'jbFixed' );
+          }
+        });
 
 	});
 
@@ -236,21 +295,38 @@ tr, td {
 		});
 
 	});
+	function a(){
+		var A1 = $('#A1').text();
+		alert(A1);
+	}
 </script>
+<link rel="stylesheet" href=<c:url value="resources/style.css"/> type="text/css" media="print, projection, screen" />
 </head>
 <body>
-	<form>
-		<input type="submit" value="함수">
-	</form>
+	
+	`<!-- 테이블 재설정 -->
 	<br>
-	<div id="formulaBar">
+	<div id="formulaBar" class="jbMenu" style="padding-left:0px;">
+		<div class="top" style='float: left'>
+		<form >
+			<input type="submit" value="함수">
+			<input type="button" onclick="a()" value="ghkr"/>
+		</form>
+		</div><br/><br/>
 		<div class="left" style='float: left'>
 			<input type="text" id="address">
 		</div>
 		<div class="center" style='float: left'>수식</div>
 		<div class="right" style='float: left'></div>
 	</div>
-	<div id="createTable"></div>
+	<div class="jbContent">
+	<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">
+		<thead id="createThead">
+		</thead>
+		<tbody id="createTbody">
+		</tbody>
+	</table>
+	</div>
 
 </body>
 </html>
