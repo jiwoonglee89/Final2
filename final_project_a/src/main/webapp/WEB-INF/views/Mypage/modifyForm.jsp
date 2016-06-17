@@ -8,43 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
-<script>
-/* function check_birth(f)
-{
-	var l = f.birthY.options.length;
-	var l1 = f.birthM.options.length;
-	var l2 = f.birthD.options.length;
-	 
-	for(var i=1;i<=l;i++)
-		{
-			//alert(${birthY});
-			if(f.birthY.options[i].value==${birthY})
-			{
-				f.birthY.options[i].setAttribute("selected","selected");
-				break;
-			}
-		}
-	for(var i=1;i<=l1;i++)
-	{
-		//alert(${birthM});
-		if(f.birthM.options[i].value==${birthM})
-		{
-			f.birthM.options[i].setAttribute("selected","selected");
-			break;
-		}
-	}
-	for(var i=1;i<=l2;i++)
-	{
-		//alert(${birthD});
-		if(f.birthD.options[i].value==${birthD})
-		{
-			f.birthD.options[i].setAttribute("selected","selected");
-			break;
-		}
-	}
-}
- */
-</script>
 <title>회원정보 수정</title>
 </head>
 <body onload="disable(${birthY},${birthM},${birthD})">
@@ -59,7 +22,6 @@
 				<td width="200">*아이디</td>
 				<td width="400">
 					<input type="text" name="id" maxlength="30"size="35" readonly="readonly" value="${memberInfo.id}">
-					<input type="button" value="TESTING" onclick="check_birth(this.form)">
 				</td>
 			</tr>
 			<tr>

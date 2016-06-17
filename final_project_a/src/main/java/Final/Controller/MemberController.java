@@ -184,11 +184,11 @@ public class MemberController {
 		//이메일 재설정
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
-		String emailAddres = request.getParameter("emailAddres");
+		String emailAddress = request.getParameter("emailAddress");
 
 		if(email.equals("1"))
 		{
-			String email1 = emailID+"@"+emailAddres;
+			String email1 = emailID+"@"+emailAddress;
 			email = email1;
 			//System.out.println("저장될 값:::"+email);
 		}
@@ -204,6 +204,10 @@ public class MemberController {
 		String month = request.getParameter("birthM");
 		String day = request.getParameter("birthD");
 		String birth = year+"-"+month+"-"+day;
+		
+		//수정된 생년월일, 메일 저장
+		memberInfo.setBirth(birth);
+		memberInfo.setEmail(email);
 		
 		int success = memberDao.modify(memberInfo);
 		
