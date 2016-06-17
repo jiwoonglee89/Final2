@@ -86,21 +86,24 @@ public class MemberController {
 		//이메일주소 종류("선택입력","직접입력")의 따라 이메일 재구성
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
-
+		String emailAddress = request.getParameter("emailAddress");
+		
+		//직접 입력을 선택한경우
 		if(email.equals("1"))
 		{
-			String email1 = request.getParameter("emailID")+"@"+request.getParameter("emailAddres");
+			String email1 = emailID+"@"+emailAddress;
 			email = email1;
 			
-			 System.out.println("emailAddress : : : "+ email1 );
+			 System.out.println("emil에 대입될 값 : : : "+ email1 );
 			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
+		//select option에서 체크한경우
 		else
 		{
-			String email2 = request.getParameter("emailID")+"@"+request.getParameter("email");
+			String email2 = emailID+"@"+email;
 			email = email2;
 			
-			 System.out.println("email2: : :"+email2);
+			 System.out.println("emil에 대입될 값: : :"+email2);
 			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
 		//생년월일 재구성
@@ -151,18 +154,22 @@ public class MemberController {
 	}
 	//회원 정보 수정 화면 이동
 	@RequestMapping("/modifyForm.do")
-	public ModelAndView modifyForm(HttpServletRequest request,Model model) {
+	public ModelAndView modifyForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-
+		String id = (String)session.getAttribute("id");
+		//System.out.println("세션에 저장된 ID값: : :"+id);
 		ModelAndView mav = new ModelAndView("Mypage/modifyForm");
 		MemberInfo member = memberDao.modifyForm(id);
+		
 		String mail_array[] = member.getEmail().split("@");
 		request.setAttribute("emailID", mail_array[0]);
 		request.setAttribute("emailAddress", mail_array[1]);
+		
+		//String birth=member.getBirth().substring(0, 10);
+		//System.out.println("자르고 난후 생일 값"+birth);
+		//request.setAttribute("birth", birth);
 		mav.addObject("memberInfo", member);
-		//생일 불러오기 나중에 확인할것
-		System.out.println("생일 확인 : : :"+member.getBirth());
+
 		
 		return mav;
 	}
