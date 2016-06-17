@@ -9,5 +9,7 @@
 <a href="loginFrom.do">new</a>
 <br>
 <a href="modifyForm.do">modify</a>
+<br>
+<a href="list.do">board</a>
 </body>
 </html>
