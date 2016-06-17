@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
+<script>
+	function check_birth()
+	{
+		var Y = document.joinF.birthY.value;
+		alert(Y);
+	}
+</script>
 <title>회원정보 수정</title>
 </head>
 <body onload="disable()">
@@ -40,8 +48,26 @@
 			</tr>
 			<tr>
 				<td width="200">*생년월일</td>
-				<td width="200"><input type="date" name="birth"
-					value="${memberInfo.birth}"></td>
+				<td width="200">
+					
+					<select name="birthY">
+					<jsp:useBean id="YEAR" class="java.util.Date" />
+					<fmt:formatDate value="${YEAR}" pattern="yyyy" var="current_year"/>
+						<c:forEach var="year" begin="1900" end="${current_year}" step="1">
+							<option value="${year}">${year}</option>
+						</c:forEach>
+					</select>
+					<select name="birthM">
+						<c:forEach var="month" begin="1" end="12" step="1">
+							<option value="${month}">${month}</option>
+						</c:forEach>
+					</select>
+					<select name="birthD">
+						<c:forEach var="day" begin="1" end="31" step="1">
+							<option value="${day}">${day}</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td width="200">*전화번호</td>

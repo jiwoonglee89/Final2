@@ -1,13 +1,6 @@
 package Final.Controller;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -177,7 +170,7 @@ public class MemberController {
 	@RequestMapping("/modify.do")
 	public String modify(@ModelAttribute("memberInfo") MemberInfo memberInfo,HttpServletRequest request,Model model)
 	{
-
+		//이메일 재설정
 		String emailID = request.getParameter("emailID");
 		String email = request.getParameter("email");
 		String emailAddres = request.getParameter("emailAddres");
@@ -194,6 +187,11 @@ public class MemberController {
 			email = email2;
 			//System.out.println("저장될 값:::"+email);
 		}
+		//생년월일 재설정
+		String year = request.getParameter("birthY");
+		String month = request.getParameter("birthM");
+		String day = request.getParameter("birthD");
+		String birth = year+"-"+month+"-"+day;
 		
 		int success = memberDao.modify(memberInfo);
 		
@@ -243,7 +241,7 @@ public class MemberController {
 	}
 	//마이페이지로 이동할때 해당 아이디값을 모두 가져와 보내는 코드
 	@RequestMapping(value="/myPage.do", method=RequestMethod.GET)
-	public String moveMyPage(HttpServletRequest request,Model model) throws ParseException
+	public String moveMyPage(HttpServletRequest request,Model model)
 	{
 		//세션에 저장된 ID값 가져오기.
 		HttpSession session=request.getSession();
@@ -252,9 +250,7 @@ public class MemberController {
 		//세션에서 가져온 아이디값으로 해당 정보 불러오기.
 		MemberInfo member = null;
 		member = memberDao.getMember(id);
-	
-		member.setBirth(member.getBirth().substring(0,10));
-		
+			
 		model.addAttribute("listM", member);
 		
 		return "Mypage/myPage";
