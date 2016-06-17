@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from file_data where title=#{title}
 	</delete>
 	<insert parameterType="Final.Model.FileInfo" id="write">
- insert into member (id, title, modify_date, path) values(#{id}, #{title}, #{modify_date}, #{path})
+ insert into member (id, title, modify_date, path) values(#{id}, #{title}, sysdate, #{path})
  </insert>
  <select resultType="Final.Model.FileInfo" parameterType="String" id="file_list">
  select * from file_data where id=#{id} </select>
@@ -23,6 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  select * form file_data where file_number = #{file_number} 
  </select>
  <update parameterType="Final.Model.MemberInfo" id="updatePro">
-	update member set id=#{id}, title=#{title}, modify_date=#{modify_date}, path=#{path}
+	update member set id=#{id}, title=#{title}, modify_date=sysdate, path=#{path}
 	</update>
 </mapper>
