@@ -9,15 +9,28 @@
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
 <script>
-	function check_birth()
-	{
-		var Y = document.joinF.birthY.value;
-		alert(Y);
-	}
+function check_birth(f)
+{
+	//alert("memberInfo 가져오기 :::"+${birthY});
+	//alert("value가져오기:::"+f.id.value);
+	//현재 JSP의 Select값(DBx)
+	//f.birthY.value = ${birthY}
+	//가져온 select값(DBO)
+	//alert(${birthY});
+	var l = f.birthY.options.length;
+	for(var i;i<l;i++)
+		{
+			f.birthY.option[i].value=${birthY};
+			f.birthY.option[i].selected = true;
+			break;
+		}
+}
+
 </script>
 <title>회원정보 수정</title>
 </head>
 <body onload="disable()">
+${birthY},${birthM},${birthD}
 	<form name="joinF" action="modify.do" method="post" onSubmit="return check()">
 		<table width="600" border="1" cellspacing="0" cellpadding="3" align="center">
 			<tr>
@@ -27,8 +40,10 @@
 			</tr>
 			<tr>
 				<td width="200">*아이디</td>
-				<td width="400"><input type="text" name="id" maxlength="30"
-					size="35" readonly="readonly" value="${memberInfo.id}"></td>
+				<td width="400">
+					<input type="text" name="id" maxlength="30"size="35" readonly="readonly" value="${memberInfo.id}">
+					<input type="button" value="TESTING" onclick="check_birth(this.form)">
+				</td>
 			</tr>
 			<tr>
 				<td width="200">*비밀번호</td>
@@ -79,10 +94,10 @@
 			</tr>
 			<tr>
 				<td width="200">이메일</td>
-				<td width="400"><input type="text" name="emailID" size="15"
-					maxlength="25" value="${emailID}">@ <input type="text"
-					name="emailAddress" size="10" value="${emailAddress}"> <select
-					name=email onchange="email_change(this.form)">
+				<td width="400">
+				<input type="text" name="emailID" size="15" maxlength="25" value="${emailID}">@ 
+				<input type="text" name="emailAddress" size="10" value="${emailAddress}"> 
+				<select name="email" onchange="email_change(this.form)">
 						<option value="" selected="selected">이메일주소 선택</option>
 						<option value="naver.com">naver.com</option>
 						<option value="daum.net">daum.net</option>

@@ -96,8 +96,10 @@ function openConfirmid(ID) {
 }
 
 //회원가입 페이지 처음 로드시 email 텍스트박스 사용불가 코드
-function disable() {
-	document.joinF.emailAddress.disabled = true;
+function disable() 
+{
+	var f = document.joinF;
+	f.emailAddress.disabled = true;
 	return;
 }
 

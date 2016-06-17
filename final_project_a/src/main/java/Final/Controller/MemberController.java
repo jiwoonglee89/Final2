@@ -160,14 +160,18 @@ public class MemberController {
 		//System.out.println("세션에 저장된 ID값: : :"+id);
 		ModelAndView mav = new ModelAndView("Mypage/modifyForm");
 		MemberInfo member = memberDao.modifyForm(id);
-		
+
+		//메일값 잘라넣기
 		String mail_array[] = member.getEmail().split("@");
 		request.setAttribute("emailID", mail_array[0]);
 		request.setAttribute("emailAddress", mail_array[1]);
 		
-		//String birth=member.getBirth().substring(0, 10);
-		//System.out.println("자르고 난후 생일 값"+birth);
-		//request.setAttribute("birth", birth);
+		//생일값 잘라넣기
+		String birth_array[] = member.getBirth().split("-");	
+		request.setAttribute("birthY", birth_array[0]);
+		request.setAttribute("birthM", birth_array[1]);
+		request.setAttribute("birthD", birth_array[2]);
+
 		mav.addObject("memberInfo", member);
 
 		
@@ -194,6 +198,7 @@ public class MemberController {
 			email = email2;
 			//System.out.println("저장될 값:::"+email);
 		}
+
 		//생년월일 재설정
 		String year = request.getParameter("birthY");
 		String month = request.getParameter("birthM");
