@@ -1,6 +1,6 @@
 //회원정보 입력란 체크
 function check() {
-	
+
 	if (! document.joinF.id.value) {
 		alert("ID를 입력하세요");
 		return false;
@@ -21,24 +21,24 @@ function check() {
 		alert("비밀번호를 동일하게 입력하세요");
 		return false;
 	}
-	
+
 	if (!document.joinF.name.value) {
 		alert("사용자 이름을 입력하세요");
 		return false;
 	}
-	
+
 	if (!document.joinF.birth.value)
-		{
-			alert("생년월일을 입력해주세요.");
-			return false;
-		}
-	
+	{
+		alert("생년월일을 입력해주세요.");
+		return false;
+	}
+
 	/*전화번호 부분 수정*/
 	if (!document.joinF.phone.value) {
 		alert("전화번호를 입력해주세요.");
 		return false;
 	}
-		
+
 	var checkN = document.joinF.phone.value.length>8 && document.joinF.phone.value.length<12; 
 	if (!checkN)
 	{
@@ -46,7 +46,7 @@ function check() {
 		return false;
 	}
 	//전화번호 부분 수정
-	
+
 	if (!document.joinF.zipcode.value && !document.joinF.address.value) {
 		alert("주소를 전부 입력해주세요.");
 		return false;
@@ -69,7 +69,7 @@ function id_nohan(v) {
 function id_noNumber(v)
 {
 	var hangle = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
-	
+
 	if (!hangle.test(v.name.value)) {
 		alert("한글만 사용하세요.");
 		v.name.value = "";
@@ -96,10 +96,54 @@ function openConfirmid(ID) {
 }
 
 //회원가입 페이지 처음 로드시 email 텍스트박스 사용불가 코드
-function disable() 
+function disable(a,b,c) 
 {
+	//check된거 닫아놓기
 	var f = document.joinF;
 	f.emailAddress.disabled = true;
+	//생일 자동체크
+	var l = f.birthY.options.length;
+	var l1 = f.birthM.options.length;
+	var l2 = f.birthD.options.length;
+	
+	for(var i=1;i<=l;i++)
+	{
+		if(f.birthY.options[i].value==a)
+		{
+			f.birthY.options[i].setAttribute("selected","selected");
+			break;
+		}
+	}
+	for(var i=1;i<=l1;i++)
+	{
+
+		if(f.birthM.options[i].value==b)
+		{
+			f.birthM.options[i].setAttribute("selected","selected");
+			break;
+		}
+	}
+	for(var i=1;i<=l2;i++)
+	{
+
+		if(f.birthD.options[i].value==c)
+		{
+			f.birthD.options[i].setAttribute("selected","selected");
+			break;
+		}
+	}
+/*	//메일 자동체크
+	var m = f.email.options.length;
+	
+	for(var i=1;i<=d;i++)
+		{
+		if(f.email.options[i].value==d)
+			{
+				f.email.options[i].setAttribute("selected","selected");
+				break
+			}
+		}*/
+
 	return;
 }
 

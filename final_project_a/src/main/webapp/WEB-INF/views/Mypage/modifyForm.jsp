@@ -9,18 +9,8 @@
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
 <script>
-function check_birth(f)
+/* function check_birth(f)
 {
-	/* 
-	alert("memberInfo 가져오기 :::"+${birthY});
-	alert("value가져오기:::"+f.id.value);
-	현재 JSP의 Select값(DBx)
-	f.birthY.value = ${birthY}
-	가져온 select값(DBO)
-	alert(${birthY});
-	birthY의 1번째 값을 출력한다.
-	alert(f.birthY.options[1].value);
-	 */
 	var l = f.birthY.options.length;
 	var l1 = f.birthM.options.length;
 	var l2 = f.birthD.options.length;
@@ -53,12 +43,11 @@ function check_birth(f)
 		}
 	}
 }
-
+ */
 </script>
 <title>회원정보 수정</title>
 </head>
-<body onload="disable()">
-${birthY},${birthM},${birthD}
+<body onload="disable(${birthY},${birthM},${birthD})">
 	<form name="joinF" action="modify.do" method="post" onSubmit="return check()">
 		<table width="600" border="1" cellspacing="0" cellpadding="3" align="center">
 			<tr>
