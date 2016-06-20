@@ -1,8 +1,15 @@
 package Final.Dao;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-public class BoardDao extends SqlSessionDaoSupport
-{
+import Final.Model.FileInfo;
+
+public class BoardDao extends SqlSessionDaoSupport{
+	
+	public List<FileInfo> fileload(String id){
+		return getSqlSession().selectList("fileload", id);
+	}
 	
 }
