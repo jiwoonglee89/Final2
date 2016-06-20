@@ -47,10 +47,7 @@ public class MemberController {
 	
 	//로그인 화면 이동(id 존재여부에따라 view 나뉨)
 	@RequestMapping("/loginForm.do")
-	public String login(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		model.addAttribute("id", id);
+	public String login() {
 
 		return "loginPage/loginForm";
 	}
