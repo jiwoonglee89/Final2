@@ -7,8 +7,8 @@ function passCheck()
 		}
 	else
 		{
-		alert("성공");
-		
+		return true;
+		self.close();
 		}
-	return true;	  
+	  
 }

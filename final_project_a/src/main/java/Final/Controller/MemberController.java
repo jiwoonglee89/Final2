@@ -234,9 +234,11 @@ public class MemberController {
 	{
 		HttpSession session=request.getSession();
 		String password = request.getParameter("password");
-		
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
+		System.out.println(password);
 		Map map = new HashMap();
-		map.put("id", (String)session.getAttribute("id"));
+		map.put("id", id);
 		map.put("password", password);
 		member.delete(map);
 		
