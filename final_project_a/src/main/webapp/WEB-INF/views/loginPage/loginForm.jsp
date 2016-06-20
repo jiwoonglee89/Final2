@@ -131,10 +131,17 @@ function openConfirmid() {
 <c:if test="${id != null }">
 				<table width="260" cellpadding="0" cellspacing="0" align="center" border="1">
 						<tr>
-							<td rowspan="3" align="center">${id}님이<br> 방문하셨습니다
+							<td colspan="2" align="center">${id}님이<br> 방문하셨습니다<br>
 								<form method="post" action="logout.do">
 									<input type="submit" value="로그아웃">
 								</form>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="button" value="게시글 이동(임시)" onClick="window.location.href='board.do'">
+							</td>							
+							<td>
 								<form action="myPage.do">
 									<input type="submit" value="나의 정보">
 								</form>
