@@ -1,6 +1,6 @@
 package Final.Model;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class FileInfo {
 	private int file_number;

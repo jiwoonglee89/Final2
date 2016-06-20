@@ -31,10 +31,8 @@ public class BoardController {
 		String id=(String)session.getAttribute("id");
 		List<FileInfo> files=null;
 		if(boardDao.fileload(id).size()!=0){
-			System.out.println("테스트1");
 			files=boardDao.fileload(id);
 		}
-		System.out.println("테스트2");
 		return new ModelAndView("BoardPage/list", "files", files);
 	}
 	@RequestMapping("/file_delete.do")
