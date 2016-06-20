@@ -36,7 +36,7 @@ public class BoardController {
 		return new ModelAndView("BoardPage/list", "files", files);
 	}
 	@RequestMapping("/file_delete.do")
-	public String file_delete(HttpServletRequest request){
+	public ModelAndView file_delete(HttpServletRequest request){
 		Map map=new HashMap();
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
@@ -44,11 +44,8 @@ public class BoardController {
 		map.put("id", id);
 		map.put("num", file_num);
 		int success=boardDao.deletefile(map);
-		if(success>0){
-			return "list";
-		}else{
-			return "fail";
-		}
+		return new ModelAndView("BoardPage/result", "success", success);
+
 	}
 
 	

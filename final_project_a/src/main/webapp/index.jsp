@@ -8,4 +8,4 @@
 <c:redirect url="/loginForm.do"/>
 
 </body>
-</html>
+</html>	

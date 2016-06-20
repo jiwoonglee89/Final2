@@ -13,9 +13,9 @@
 <c:if test="${files!=null}">
 <c:forEach var="file" items="${files}">
 ${file.id}
-<a href="<c:url value='excel.do/num=${file.file_number}'/>">${file.title}</a>
+<a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a>
 ${file.modify_date}
-<a href="<c:url value='file_delete.do/num=${file.file_number}'/>">삭제</a>
+<a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a>
 </c:forEach>
 </c:if>
 </body>
