@@ -64,7 +64,7 @@
 <script src="<c:url value="resources/delete.js" />"></script>
 </head>
 <body>
-<form name="deleteForm" action="MemberDelete.do" onSubmit="return deletePro()">
+<form name="deleteForm" action="MemberDelete.do" method="post" onSubmit="return passCheck()">
 <table border="1" width="400">
 <th id="title" colspan="2">회원 탈퇴 화면</th>
 <tr>
