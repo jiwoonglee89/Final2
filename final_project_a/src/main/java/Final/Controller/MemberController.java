@@ -1,6 +1,8 @@
 package Final.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -220,16 +222,23 @@ public class MemberController {
 		}
 		return "Mypage/modifyForm";
 	}
-	//È¸¿ø Å»Åð
-	@RequestMapping("/delete.do")
-	public String delete(String title) {
-		int success = fileLoadDao.delete(title);
-
-		if (success > 0) {
-			return "board";
-		}
-
+	//È¸¿ø Å»ÅðÈ­¸éÀ¸·Î ÀÌµ¿
+	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.GET)
+	public String moveDelete() 
+	{
 		return "";
+	}
+	//È¸¿øÅ»Åð
+	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.POST)
+	public String memberDelete(MemberInfo memberInfo,MemberDao member,HttpServletRequest request) 
+	{
+		HttpSession session=request.getSession();
+		String password = request.getParameter("password");
+		Map map = new HashMap();
+		map.put("id", (String)session.getAttribute("id"));
+		map.put("password", password);
+		member.delete(map);
+		return "loginPage/loginForm";
 	}
 	//·Î±×¾Æ¿ô
 	@RequestMapping("/logout.do")

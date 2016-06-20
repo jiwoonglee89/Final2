@@ -24,4 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="Final.Model.MemberInfo">
 		insert into member(id, password, name, birth, phone, email, zipcode, address) values(#{id}, #{password}, #{name}, #{birth}, #{phone}, #{email}, #{zipcode}, #{address})
 	</insert>
+	<delete id="delete" parameterType="Map">
+		delete * from member where id=#{id} and password=#{password}
+	</delete>
 </mapper>
