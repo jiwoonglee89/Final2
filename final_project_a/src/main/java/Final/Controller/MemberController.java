@@ -226,7 +226,7 @@ public class MemberController {
 	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.GET)
 	public String moveDelete() 
 	{
-		return "";
+		return "Mypage/MemberDelete";
 	}
 	//È¸¿øÅ»Åð
 	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.POST)
@@ -234,10 +234,12 @@ public class MemberController {
 	{
 		HttpSession session=request.getSession();
 		String password = request.getParameter("password");
+		
 		Map map = new HashMap();
 		map.put("id", (String)session.getAttribute("id"));
 		map.put("password", password);
 		member.delete(map);
+		
 		return "loginPage/loginForm";
 	}
 	//·Î±×¾Æ¿ô

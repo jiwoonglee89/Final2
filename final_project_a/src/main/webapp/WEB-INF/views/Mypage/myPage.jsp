@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage</title>
+<script>
+function Mdelete()
+{
+	url = "MemberDelete.do";
+	window.open(url,"get","toolbar=no ,width=500 ,height=300,directories=no,status=yes,scrollbars=yes,menubar=no");
+}
+</script>
 </head>
 <body>
 	<form name="mypageF" action="modifyForm.do" method="post">
@@ -63,8 +70,9 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
+					<input type="button" value="회원 탈퇴" onclick="Mdelete()">
 					<input type="submit"name="confirm" value="정보 수정하기"> 
-					 <input type="button" value="돌아가기" onclick="javascript:window.location='loginForm.do'">
+					<input type="button" value="돌아가기" onclick="javascript:window.location='loginForm.do'">
 				</td>
 			</tr>
 		</table>
