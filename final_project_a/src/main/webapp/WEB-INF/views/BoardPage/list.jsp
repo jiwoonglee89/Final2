@@ -7,10 +7,16 @@
 <title>My Excel List</title>
 </head>
 <body>
-<c:forEach var="files" items="${files}">
-<a href="<c:url value='excel.do/num=${files.number}'/>">${files.title}</a>
-${files.modify_date}
-<a href="<c:url value='file_delete.do/num=${files.number}'/>">삭제</a>
+<c:if test="${files==null}">
+아직 아무 파일도 없으시네요?
+</c:if>
+<c:if test="${files!=null}">
+<c:forEach var="file" items="${files}">
+${file.id}
+<a href="<c:url value='excel.do/num=${file.number}'/>">${file.title}</a>
+${file.modify_date}
+<a href="<c:url value='file_delete.do/num=${file.number}'/>">삭제</a>
 </c:forEach>
+</c:if>
 </body>
 </html>

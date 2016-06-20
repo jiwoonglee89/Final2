@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="fileload" parameterType="String" resultType="Final.Model.FileInfo">
 		select * from file_data where id=#{id}
 	</select>
+	<delete id="filedelete" parameterType="HashMap">
+		delete from file_data where id=${id} AND file_number=${num}
+	</delete>
 </mapper>

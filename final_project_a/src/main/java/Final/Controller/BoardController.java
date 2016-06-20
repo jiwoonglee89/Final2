@@ -2,7 +2,11 @@ package Final.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +29,28 @@ public class BoardController {
 	public ModelAndView board_view(HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		List<FileInfo> files=boardDao.fileload(id);
-		return new ModelAndView("list", "files", files);
+		List<FileInfo> files=null;
+		if(boardDao.fileload(id).size()!=0){
+			System.out.println("테스트1");
+			files=boardDao.fileload(id);
+		}
+		System.out.println("테스트2");
+		return new ModelAndView("BoardPage/list", "files", files);
+	}
+	@RequestMapping("/file_delete.do")
+	public String file_delete(HttpServletRequest request){
+		Map map=new HashMap();
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		int file_num=Integer.parseInt(request.getParameter("num"));
+		map.put("id", id);
+		map.put("num", file_num);
+		int success=boardDao.deletefile(map);
+		if(success>0){
+			return "list";
+		}else{
+			return "fail";
+		}
 	}
 
 	
