@@ -55,19 +55,22 @@ public class MemberController {
 	}
 	//로그인 하기
 	@RequestMapping("/login.do")
-	public String loginPro(Model model,HttpServletRequest request)
+	public String loginPro(HttpServletRequest request)
 	{
 		String id = request.getParameter("id");
 		String pass = request.getParameter("password");
+		HttpSession session = request.getSession();
 		
 		MemberInfo memberInfo = memberDao.getMember(id);
-		if (memberInfo !=null) 
-		{
+		if (memberInfo !=null){
 			if(memberInfo.getPassword().equals(pass))
 			{
-				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
+			}else{
+				request.setAttribute("fail", "fail");
 			}
+		}else{
+			request.setAttribute("fail", "fail");
 		}
 		return "loginPage/loginForm";
 	}

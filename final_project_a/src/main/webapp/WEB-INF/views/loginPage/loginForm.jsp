@@ -121,6 +121,11 @@ function openConfirmid() {
 <br><br>
 <br><br>
 <div id="Web_Cell" >Web Cell</div>
+<c:if test='${fail=="fail"}'>
+<script>
+	alert("아이디 혹은 패스워드가 다릅니다.");
+</script>
+</c:if>
 <c:if test="${id == null}">
 	<form method="post" action="login.do" name="loginFrom">
 	<center>
