@@ -1,4 +1,6 @@
 package Final.Dao;
+import java.util.Map;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import Final.Model.MemberInfo;
@@ -41,6 +43,11 @@ public class MemberDao extends SqlSessionDaoSupport{
 	public MemberInfo modifyForm(String id){
 
 		return getSqlSession().selectOne("member.modifyForm",id);
+	}
+	//È¸¿ø Å»Åð
+	public int delete(Map map)
+	{
+		return getSqlSession().delete("member.delete",map);
 	}
 
 }
