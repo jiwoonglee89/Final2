@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="Tiles/excel_layout" template="/WEB-INF/views/Tiles/excel_layout.jsp">
+		<put-attribute name="title" value="test" type="java.lang.String" cascade="true"/>
+		<put-attribute name="header" value="/WEB-INF/views/Tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/Tiles/body.jsp"/>
+	</definition>
+
+	<!-- <definition name="Form" extends="base_layout">
+		<put-attribute name="title" value="테스트" />
+		
+	</definition> -->
+
+	 <!-- <definition name="loginSuccess" extends="base_layout">
+		<put-attribute name="title" value="로그인 성공" />
+		<put-attribute name="body"
+			value="/WEB-INF/viewtiles/loginSuccess.jsp" />
+	</definition>
+
+	<definition name="registMemberForm" extends="base_layout">
+		<put-attribute name="title" value="회원 가입" />
+		<put-attribute name="body"
+			value="/WEB-INF/viewtiles/registMemberForm.jsp" />
+	</definition>
+
+	<definition name="registMember" extends="base_layout">
+		<put-attribute name="title" value="회원 가입 완료" />
+		<put-attribute name="body"
+			value="/WEB-INF/viewtiles/registMember.jsp" />
+	</definition>  -->
+
+</tiles-definitions>

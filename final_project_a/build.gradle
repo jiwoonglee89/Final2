@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+	compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.5'
 	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
 	compile group: 'org.apache.poi', name: 'poi', version: '3.13'
 	compile files('libs/ojdbc6.jar')

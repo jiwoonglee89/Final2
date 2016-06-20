@@ -8,6 +8,6 @@
 <%-- <c:redirect url="/newExcel.do"/> --%> 
 <a href="existExcel.do">existExcel.do</a>
 <a href="readTxt.do">readTxt.do</a>
+<a href="tiles.do">tiles.do</a>
 </body>
-
 </html>
