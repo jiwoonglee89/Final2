@@ -7,8 +7,7 @@
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <style>
 .button {
-   font-family: 'Poiret One', cursive;
-   border: 1px solid #111014;
+   border: 0px solid #ffffff;
    background: #ffffff;
    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
    background: -webkit-linear-gradient(top, #ffffff, #ffffff);
@@ -16,50 +15,49 @@
    background: -ms-linear-gradient(top, #ffffff, #ffffff);
    background: -o-linear-gradient(top, #ffffff, #ffffff);
    background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
-   padding: 6.5px 13px;
+   padding: 6px 12px;
    -webkit-border-radius: 0px;
    -moz-border-radius: 0px;
    border-radius: 0px;
    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #373b3d 0 1px 0;
-   color: #000000;
-   font-size: 13px;
+   text-shadow: #ffffff 0 1px 0;
+   color: #050505;
+   font-size: 11px;
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
    }
 .button:hover {
-  font-family: 'Poiret One', cursive;
-   border: 1px solid #ffffff;
-   text-shadow: #1e4158 0 1px 0;
-   background: #808080;
-   background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#808080));
-   background: -webkit-linear-gradient(top, #f5f5f5, #808080);
-   background: -moz-linear-gradient(top, #f5f5f5, #808080);
-   background: -ms-linear-gradient(top, #f5f5f5, #808080);
-   background: -o-linear-gradient(top, #f5f5f5, #808080);
-   background-image: -ms-linear-gradient(top, #f5f5f5 0%, #808080 100%);
-   color: #fff;
+   border: 0px solid #ffffff;
+   text-shadow: #ffffff 0 1px 0;
+   background: #878487;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#878487));
+   background: -webkit-linear-gradient(top, #ffffff, #878487);
+   background: -moz-linear-gradient(top, #ffffff, #878487);
+   background: -ms-linear-gradient(top, #ffffff, #878487);
+   background: -o-linear-gradient(top, #ffffff, #878487);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #878487 100%);
+   color: #ffffff;
    }
 .button:active {
-  font-family: 'Poiret One', cursive;
-   text-shadow: #051017 0 1px 0;
-   border: 1px solid #ebf1f5;
+   text-shadow: #050505 0 1px 0;
+   border: 0px solid #050505;
    background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#808080));
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#878487));
    background: -webkit-linear-gradient(top, #000000, #000000);
    background: -moz-linear-gradient(top, #000000, #000000);
    background: -ms-linear-gradient(top, #000000, #000000);
    background: -o-linear-gradient(top, #000000, #000000);
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #ffffff;
+   color: #fff;
    }
+
 div.tb {height:50px; text-align:center; border:0px; #000000; padding-top:15px;}
 span{height:50px; text-align:center; border-left:solid 1px #000000; padding-top:15px;}
 #Web_Cell{
-height:170px; 
+height:130px; 
 text-align:center; 
 padding-top:30px;
 font-weight:bold;
@@ -81,6 +79,28 @@ font-weight:bold;
 .button{
 
 }
+.loginPro_div {
+	position:absolute;
+	border:1px;
+	top:200px;
+	left:520px;
+	font-weight:bold;
+	font-size:19px;
+	font-shadow:1px 1px 3px #666666;
+}
+.logout_button{
+	position:absolute;
+	border:1px;
+	top:200px;
+	left:850px;
+}
+.mypage_button{
+	position:absolute;
+	border:1px;
+	top:200px;
+	left:930px;
+}
+
 </style>
 <script>
 function openConfirmid() {
@@ -131,19 +151,19 @@ function openConfirmid() {
 <c:if test="${id != null }">
 				<table width="260" cellpadding="0" cellspacing="0" align="center" border="1">
 						<tr>
-							<td colspan="2" align="center">${id}님이<br> 방문하셨습니다<br>
+						<div colspan="2" class="loginPro_div" id="login_Id">${id}님의 엑셀<br></div>
 								<form method="post" action="logout.do">
-									<input type="submit" value="로그아웃">
+									<input type="submit" value="로그아웃" class="logout_button">
 								</form>
-							</td>
 						</tr>
+						</table>
 						<tr>
 							<td>
-								<input type="button" value="게시글 이동(임시)" onClick="window.location.href='board.do'">
+								<input type="button" value="게시글 이동(임시)" onClick="javascript:window.location='board.do'">
 							</td>							
 							<td>
 								<form action="myPage.do">
-									<input type="submit" value="나의 정보">
+									<input type="submit" value="나의 정보" class="mypage_button">
 								</form>
 							</td>
 						</tr>

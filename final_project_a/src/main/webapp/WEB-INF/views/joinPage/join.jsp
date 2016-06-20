@@ -100,7 +100,7 @@ font-family: 'Poiret One', cursive;
 		<table width="600" border="0" cellspacing="0" cellpadding="3" align="center">
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor="">
-				<font size="+1"><b>Web Cell Regist</b></font></td>
+				<font size="+1"><b class="Web">Web Cell Regist</b></font></td>
 			</tr>
 			</table>
 		<br>
@@ -112,7 +112,7 @@ font-family: 'Poiret One', cursive;
 				<tr>
 				<td width="200" align="center" class="font_i">*Id</td>
 				<td width="400">
-					<input type="text" name="id" maxlength="20" size="25" style="ime-mode:inactive" onblur="id_nohan(this.form)">
+					<input type="text" name="id" maxlength="20" size="25" style="ime-mode:inactive" onblur="id_nohan(this.form)" border="1px">
 					<input type="button" class="button" name="confirm_id" value="ID Check" OnClick="openConfirmid()">
 					<input type="hidden" name="confirm_ok"  value="no">
 				</td>
@@ -184,10 +184,11 @@ font-family: 'Poiret One', cursive;
 				<td width="200" align="center" class="font_i">*Zip code</td>
 				<td>
 					<input type="text" name="zipcode" size="10" readonly placeholder="우편번호를 검색.">
-					<input type="button" class="button" value="우편번호찾기" onClick="zipCheck()">
+					<input type="button" class="button" value="ZipCheck" onClick="zipCheck()">
 					<input type="text" name="address" size="50" placeholder="나머지 주소를 적어 주세요">.
 				</td>
 			</tr>
+			<table id="btn_table">
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
 					<input type="submit"name="confirm" class="button" value="Enrollment"> 
