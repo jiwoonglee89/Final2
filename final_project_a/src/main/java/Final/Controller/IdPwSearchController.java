@@ -27,31 +27,36 @@ import Final.Model.MemberInfo;
 		this.memberDao=memberDao;
 		
 	}
-	
+	//비밀번호를 찾는경우
 	@RequestMapping("/pwSearch.do")
-	public String action1(MemberInfo memberInfo, Model model){
+	public String action1(MemberInfo memberInfo, Model model, HttpServletRequest request){
 		
-		System.out.println(memberInfo.getPassword());
-		String pw = memberDao.pwSearch(memberInfo);
+		String id = request.getParameter("id");
+		String phone = request.getParameter("phone");
+		String birth = request.getParameter("birth");
+		
+		String password = memberDao.pwSearch(memberInfo);
 
-		if(pw==null){
-			String message="비밀번호를 확인해 주세요.";
+		if(password==null){
+			String message="일치하는 회원정보가 없습니다.";
 			model.addAttribute("message",message);
 		}else {
 			String message = null;
 			model.addAttribute("message", message);
-			model.addAttribute("pw", pw);
+			model.addAttribute("password", password);
+			System.out.println(password);
 		}
 	
 		return "/loginPage/pwSearch";
 	}
-	
+	//아이디를 찾는경우
 	@RequestMapping("/idSearch.do")
-	public String requestPro11(HttpServletRequest request,HttpServletResponse response, MemberInfo memberInfo, Model model){
+	public String requestPro11(HttpServletRequest request,MemberInfo memberInfo, Model model){
 		
-		System.out.println(memberInfo.getName());
-		String id = memberDao.idSearch(memberInfo);
-	
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		
+		String id=memberDao.idSearch(memberInfo);
 		
 		if(id==null){
 			String message="일치하는 아이디가 없습니다.";

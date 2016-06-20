@@ -1,12 +1,8 @@
 package Final.Dao;
-
-import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import Final.Model.MemberInfo;
-import Final.Model.Zipcode;
+
 
 public class MemberDao extends SqlSessionDaoSupport{
 
@@ -18,16 +14,17 @@ public class MemberDao extends SqlSessionDaoSupport{
 	public int modify(MemberInfo memberInfo) {
 		return getSqlSession().update("member.modify",memberInfo);
 	}
+	//아이디 검색
 	public String idSearch(MemberInfo memberInfo) {
 
 		return getSqlSession().selectOne("member.idSearch", memberInfo);
 	}
-
+	//비밀번호 검색
 	public String pwSearch (MemberInfo memberInfo) {
 
 		return getSqlSession().selectOne("member.pwSearch", memberInfo);
 	}
-
+	//로그인 판단여부
 	public String loginSuccess(MemberInfo memberInfo) {
 		String password = null;
 
@@ -35,10 +32,12 @@ public class MemberDao extends SqlSessionDaoSupport{
 
 		return password;
 	}
+	//회원 가입
 	public int insert(MemberInfo memberInfo)
 	{
 		return getSqlSession().insert("member.insert", memberInfo);
 	}
+	//회원 정보 수정
 	public MemberInfo modifyForm(String id){
 
 		return getSqlSession().selectOne("member.modifyForm",id);

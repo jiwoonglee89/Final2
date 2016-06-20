@@ -24,8 +24,8 @@ font-size:15px;
 <form>
 <c:if test="${message==null}">
 	<div id="find_id_result">
-		<div style=text-align:center class="size_long"><h1 class="title_find">아이디 찾기</h1></div>
-			<div style=text-align:center class="size_long"><h2 class="title_find">아이디는 ${id} 입니다</h2></div>
+		<div style=text-align:center class="size_long"><h1 class="title_find"><아이디 찾기></h1></div>
+			<div style=text-align:center class="size_long"><h2 class="title_find">아이디는 "${id}" 입니다</h2></div>
 		<div ></div>		
 				</div>
 			</c:if>
