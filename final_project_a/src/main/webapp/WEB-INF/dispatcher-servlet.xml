@@ -47,7 +47,22 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
 
+ 	
+		 
 	<bean id="viewResolver1" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	
+	
+	<bean id="tilesviewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="0"/>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tilesdef/tilesdef.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="viewResolver2"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

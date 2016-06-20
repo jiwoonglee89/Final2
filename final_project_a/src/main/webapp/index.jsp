@@ -11,5 +11,5 @@
 <a href="modifyForm.do">modify</a>
 <br>
 <a href="list.do">board</a>
-</body>
+</body> 
 </html>

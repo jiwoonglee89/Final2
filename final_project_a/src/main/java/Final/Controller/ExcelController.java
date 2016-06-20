@@ -38,6 +38,11 @@ public class ExcelController {
 	public String form() {
 		return "NewFile";
 	}
+	
+	@RequestMapping("/tiles.do")
+	public String tiles(){
+		return "Tiles/excel_layout";
+	}
 
 	/*
 	 * @RequestMapping("/existExcel.do") public ModelAndView existExcel(String

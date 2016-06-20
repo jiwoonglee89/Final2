@@ -195,6 +195,24 @@ tr, td {
 			Thead.innerHTML = tag;
 		
 	}
+	
+	function createHideThead(){
+		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+					"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
+		
+		var tag = "";
+			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
+			for (var a = 0; a < th.length; a++) {
+				tag += '<th id=th'+th[a]+'>' + th[a] + '</th>';
+			}
+			
+			
+			var Thead = document.getElementById("createHideThead");
+			Thead.innerHTML = tag;
+		
+	}
+	
 	/* tbody생성 */
 	function createTbody(){
 		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
