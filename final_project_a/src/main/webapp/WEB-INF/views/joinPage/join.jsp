@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="resources/join.js" />"></script>
 <title>Web Cell Join Page</title>
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>

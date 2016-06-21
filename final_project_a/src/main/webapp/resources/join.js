@@ -90,43 +90,50 @@ function openConfirmid(ID) {
 		url = "confirmId.do?id=" + document.joinF.id.value;
 
 		// 새로운 윈도우를 엽니다.
-		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
+		var  screenW=screen.availWidth;
+		var  screenH=screen.availHeight;
+		var popW = 300;
+		var popH = 170;
+		var l=(screenW-popW) / 2 ;
+		var t=(screenH-popH) / 2 ;
+
+		open(url,"confirm","toolbar=no,location=no,width="+popW+",height="+popH+",top="+t+",left="+l+",status=no,menubar=no,scrollbars=no,resizable=no");
 
 	}
 }
 
 //회원가입 페이지 처음 로드시 email 텍스트박스 사용불가 코드
-function disable(a,b,c) 
+function disable(y,m,d) 
 {
 	//check된거 닫아놓기
 	var f = document.joinF;
 	f.emailAddress.disabled = true;
 	//생일 자동체크
-	var l = f.birthY.options.length;
-	var l1 = f.birthM.options.length;
-	var l2 = f.birthD.options.length;
+	var year = f.birthY.options.length;
+	var month = f.birthM.options.length;
+	var day = f.birthD.options.length;
 	
-	for(var i=1;i<=l;i++)
+	for(var i=1;i<=year;i++)
 	{
-		if(f.birthY.options[i].value==a)
+		if(f.birthY.options[i].value==y)
 		{
 			f.birthY.options[i].setAttribute("selected","selected");
 			break;
 		}
 	}
-	for(var i=1;i<=l1;i++)
+	for(var i=1;i<=month;i++)
 	{
 
-		if(f.birthM.options[i].value==b)
+		if(f.birthM.options[i].value==m)
 		{
 			f.birthM.options[i].setAttribute("selected","selected");
 			break;
 		}
 	}
-	for(var i=1;i<=l2;i++)
+	for(var i=1;i<=day;i++)
 	{
 
-		if(f.birthD.options[i].value==c)
+		if(f.birthD.options[i].value==d)
 		{
 			f.birthD.options[i].setAttribute("selected","selected");
 			break;
@@ -135,16 +142,16 @@ function disable(a,b,c)
 /*	//메일 자동체크
 	var m = f.email.options.length;
 	
-	for(var i=1;i<=d;i++)
+	for(var i=1;i<=m;i++)
 		{
-		if(f.email.options[i].value==d)
+		if(f.email.options[i].value==emailA)
 			{
 				f.email.options[i].setAttribute("selected","selected");
-				break
+				break;
 			}
 		}*/
 
-	return;
+	return true;
 }
 
 //이메일 직접입력
@@ -187,8 +194,18 @@ function onlyNumber2(loc) {
 		loc.focus();
 	}
 }
-//우편번호 검색을 위한 코드
-function zipCheck() {
+//우편번호 검색화면 띄우기
+function zipCheck() 
+{
+	var  screenW=screen.availWidth;
+	var  screenH=screen.availHeight;
+	var popW = 500;
+	var popH = 200;
+	var l=(screenW-popW) / 2 ;
+	var t=(screenH-popH) / 2 ;
+	
 	url = "zipCheck.do?check=y";
-	window.open(url,"get","toolbar=no ,width=500 ,height=300,directories=no,status=yes,scrollbars=yes,menubar=no");
+	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
+	
+
 }

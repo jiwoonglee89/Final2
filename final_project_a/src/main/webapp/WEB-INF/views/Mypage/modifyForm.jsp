@@ -9,6 +9,18 @@
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
 <title>회원정보 수정</title>
+<style>
+ #notice
+{
+	color: red;
+	text-align: right;
+}
+#title
+{
+	color: red;
+	text-align: center;
+}
+</style>
 </head>
 <body onload="disable(${birthY},${birthM},${birthD})">
 	<form name="joinF" action="modify.do" method="post" onSubmit="return check()">
@@ -16,7 +28,8 @@
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor=""><font
 					size="+1"><b>Web cell 정보수정</b></font><br>
-				<font color="red" align="right" size="-1">[*표시는 필수 입력 사항입니다.]</font></td>
+				<div id="title"><sub>[*표시는 필수 입력 사항입니다.]</sub></div>
+				</td>
 			</tr>
 			<tr>
 				<td width="200">*아이디</td>
@@ -83,7 +96,9 @@
 						<option value="gmail.com">gmail.com</option>
 						<option value="yahoo.com">yahoo.com</option>
 						<option value="1">직접입력</option>
-				</select></td>
+				</select><br>
+				<div id="notice"><sub>※이메일 주소를 다시 선택해 주세요.</sub></div>
+				</td>
 			</tr>
 			<tr>
 				<td width="200">*우편 번호</td>
