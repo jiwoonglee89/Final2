@@ -10,6 +10,10 @@
 <script src='<c:url value="resources/jquery.fixheadertable.min.js"/>'></script>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href=<c:url value='resources/style.css'/> type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href=<c:url value='resources/base.css'/>	type="text/css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <style type="text/css">
 #address {
@@ -334,17 +338,15 @@ tr, td {
 
 	});
 </script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href=<c:url value='resources/style.css'/> type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href=<c:url value='resources/base.css'/>	type="text/css" />
+
 </head>
 <body>
 
 	<div class="header"></div>
 	<div class="jbContent" >
 		<table cellpadding="0" cellspacing="0" class="view" id="viewtable">
-			<thead id="createThead"></thead>
+			<thead id="createThead">
+			</thead>
 			<tbody id="createTbody">
 			</tbody>
 		</table>
