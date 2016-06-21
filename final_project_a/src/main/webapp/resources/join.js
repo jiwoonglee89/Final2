@@ -103,37 +103,37 @@ function openConfirmid(ID) {
 }
 
 //회원가입 페이지 처음 로드시 email 텍스트박스 사용불가 코드
-function disable(a,b,c) 
+function disable(y,m,d) 
 {
 	//check된거 닫아놓기
 	var f = document.joinF;
 	f.emailAddress.disabled = true;
 	//생일 자동체크
-	var l = f.birthY.options.length;
-	var l1 = f.birthM.options.length;
-	var l2 = f.birthD.options.length;
+	var year = f.birthY.options.length;
+	var month = f.birthM.options.length;
+	var day = f.birthD.options.length;
 	
-	for(var i=1;i<=l;i++)
+	for(var i=1;i<=year;i++)
 	{
-		if(f.birthY.options[i].value==a)
+		if(f.birthY.options[i].value==y)
 		{
 			f.birthY.options[i].setAttribute("selected","selected");
 			break;
 		}
 	}
-	for(var i=1;i<=l1;i++)
+	for(var i=1;i<=month;i++)
 	{
 
-		if(f.birthM.options[i].value==b)
+		if(f.birthM.options[i].value==m)
 		{
 			f.birthM.options[i].setAttribute("selected","selected");
 			break;
 		}
 	}
-	for(var i=1;i<=l2;i++)
+	for(var i=1;i<=day;i++)
 	{
 
-		if(f.birthD.options[i].value==c)
+		if(f.birthD.options[i].value==d)
 		{
 			f.birthD.options[i].setAttribute("selected","selected");
 			break;
@@ -142,16 +142,16 @@ function disable(a,b,c)
 /*	//메일 자동체크
 	var m = f.email.options.length;
 	
-	for(var i=1;i<=d;i++)
+	for(var i=1;i<=m;i++)
 		{
-		if(f.email.options[i].value==d)
+		if(f.email.options[i].value==emailA)
 			{
 				f.email.options[i].setAttribute("selected","selected");
-				break
+				break;
 			}
 		}*/
 
-	return;
+	return true;
 }
 
 //이메일 직접입력
