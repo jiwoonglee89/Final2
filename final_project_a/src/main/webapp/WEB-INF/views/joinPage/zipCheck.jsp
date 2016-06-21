@@ -9,7 +9,7 @@
 <title>우편번호 검색</title>
 <script src="<c:url value="resources/zipcheck.js" />"></script>
 </head>
-<body>
+<body onload="resizeWind(this)">
 <center>
 <b>우편번호 찾기</b>
 <form name="zipForm" method="post" action="zipCheck.do">

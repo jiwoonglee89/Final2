@@ -90,7 +90,14 @@ function openConfirmid(ID) {
 		url = "confirmId.do?id=" + document.joinF.id.value;
 
 		// 새로운 윈도우를 엽니다.
-		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
+		var  screenW=screen.availWidth;
+		var  screenH=screen.availHeight;
+		var popW = 300;
+		var popH = 170;
+		var l=(screenW-popW) / 2 ;
+		var t=(screenH-popH) / 2 ;
+
+		open(url,"confirm","toolbar=no,location=no,width="+popW+",height="+popH+",top="+t+",left="+l+",status=no,menubar=no,scrollbars=no,resizable=no");
 
 	}
 }
@@ -187,8 +194,18 @@ function onlyNumber2(loc) {
 		loc.focus();
 	}
 }
-//우편번호 검색을 위한 코드
-function zipCheck() {
+//우편번호 검색화면 띄우기
+function zipCheck() 
+{
+	var  screenW=screen.availWidth;
+	var  screenH=screen.availHeight;
+	var popW = 500;
+	var popH = 200;
+	var l=(screenW-popW) / 2 ;
+	var t=(screenH-popH) / 2 ;
+	
 	url = "zipCheck.do?check=y";
-	window.open(url,"get","toolbar=no ,width=500 ,height=300,directories=no,status=yes,scrollbars=yes,menubar=no");
+	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
+	
+
 }

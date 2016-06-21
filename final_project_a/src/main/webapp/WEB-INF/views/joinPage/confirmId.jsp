@@ -7,7 +7,6 @@
 <head>
 <title>ID 중복 확인</title>
 <script>
- 
 function setId()
 {
 	//opener:새로운 창을 연다.
@@ -16,8 +15,14 @@ function setId()
 	opener.document.joinF.confirm_ok.value="yes";
 	self.close();
 } 
- 
- </script>
+</script>
+<style>
+body
+{
+	text-align: center;
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
@@ -45,7 +50,7 @@ function setId()
 			<tr bgcolor="">
 				<td align="center">
 					<p>입력하신ID ${param.id}는 사용하실 수 있는 ID입니다.</p> 
-					<input type="button" value="닫기"  onClick="setId()"> 
+					<input type="button" value="닫기"  onclick="setId()"> 
 				</td>
 			</tr>
 		</table>
