@@ -10,6 +10,10 @@
 <script src='<c:url value="resources/jquery.fixheadertable.min.js"/>'></script>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href=<c:url value='resources/style.css'/> type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href=<c:url value='resources/base.css'/>	type="text/css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <style type="text/css">
 #address {
@@ -19,7 +23,7 @@
 .divcoll {
 	overflow: hidden;
 	height: 20px;
-	width: 90px;
+	/* width: 90px; */
 	/* position:absolute;   */
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -54,10 +58,14 @@ tr, td {
 	width: 90px;
 	height: 22px;
 }
-#viewtable thead.Fixed
-{
-    position: absolute;
-}
+
+#viewtable table{border-collapse: collapse;width: 100%;}
+#viewtable thead{float: left; width: 2000px;}
+#viewtable thead th{width: 90px;}
+#viewtable tbody{overflow-y: auto; overflow-x: hidden; float: left; width: 2017px;height: 750px;  }
+#viewtable tbody tr{display: table; width: 2000px;}
+#viewtable tbody td{width: 90px;}
+#viewtable colgroup col{width:200;}
 </style>
 <script>
 	function submit1() {
@@ -76,6 +84,12 @@ tr, td {
 
 		if (event.keyCode == 13 && a.search("=") != -1) {
 			event.preventDefault();
+			 //함수식 추가
+		  	 var tselect_Id = $('.textselect').attr('id');
+			 	
+			   var exp_Id = "exp"+tselect_Id;
+			
+			   $('#'+exp_Id).text(a);
 			$('#formula').val(a);
 			var b = $('#formula').val();
 			var c = b.indexOf("(") + 1;
@@ -142,6 +156,7 @@ tr, td {
 
 	}
 
+	
 	function key_event() {
 
 		submit2();
@@ -205,6 +220,30 @@ tr, td {
 			$('#address').val(stringid.substring(2, 6));
 		}
 	};
+	
+	//함수식 저장
+	function expressionDiv(){
+	
+		
+		var tag ="";
+		
+		/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
+		for (var j = 1; j <= 100; j++) {
+			for (var i = 0; i < th.length; i++) {
+				tag += '<span id=exp'
+						+ th[i]
+						+ j
+						+ '  class="exp_divcoll" ></span>'
+			}
+		}
+		
+		
+		var expression = document.getElementById("expression_Div");
+		expression.innerHTML = tag;
+		
+		
+		
+	}
 	//저장 폼 생성
 	function createForm() {
 
@@ -229,10 +268,10 @@ tr, td {
 				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
 				"X", "Y", "Z" ];
 
-		var tag = "";
+		var tag = ""
 		/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
 		for (var a = 0; a < th.length; a++) {
-			tag += '<th id=th'+th[a]+'>' + th[a] + '</th>';
+			tag += '<td id=th'+th[a]+'>' + th[a] + '</td>'
 		}
 
 		var Thead = document.getElementById("createThead");
@@ -268,19 +307,22 @@ tr, td {
 		createThead();
 		createTbody();
 		createForm();
+		expressionDiv()
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
 		/* 헤더고정 */
-		var jbOffset = $('.jbMenu').offset();
+		 var jbOffset = $('.jbMenu').offset();
 		$(window).scroll(function() {
-			if ($(document).scrollTop() > jbOffset.top) {
+			if ($(document).scrollLeft() > jbOffset.left) {
 				$('.jbMenu').addClass('jbFixed');
+				$('.jbContent').addClass('jbMove');
 			} else {
 				$('.jbMenu').removeClass('jbFixed');
+				$('.jbContent').removeClass('jbMove');
 			}
-		});
-		
+		}); 
+		/* 
 		var table = $("#viewtable");
 
 	    $(window).scroll(function() {
@@ -292,8 +334,26 @@ tr, td {
 	        else {
 	            $("thead", table).removeClass("Fixed");
 	        }
-	    });
+	    }); */
 	});
+	function one_click(divId){
+		if( $('.textselect' ).text().search('=')!=-1 ){  
+		
+			if(divId != $('.textselect').attr('id')){
+			
+				var tselect_Id = $('.textselect').attr('id');
+				
+				var tx = $('.textselect').text();
+			
+		$('.textselect').text(tx+divId); 
+		 		
+
+				
+			}
+		}
+		
+		
+	}
 	$(function() {
 
 		$('td', this).click(function() {
@@ -302,8 +362,24 @@ tr, td {
 			var tdid = $(this).attr('id');
 			$('#address').val(tdid.substring(2, 5));
 			var div = $('.tdselect > div').text();
-			$('#formula').val(div);
+			var divId = $("#"+tdid+">div").attr('id');
+			
+			one_click(divId);
+			$('#formula').val(divVal);
 
+			if($('#'+divId).attr('contentEditable') == "true"){
+
+				if($('#exp'+divId).text() !=""){
+					var expression = $('#exp'+divId).text();
+					$('#formula').val(expression);
+					
+				} 
+ 				if($('#exp'+divId).text() == ""){
+					var textselect1 = $('.textselect').text();
+					$('#formula').val(textselect1);
+				}
+			}	
+			
 		});
 
 		$('.tdselect').keydown(function(e) {
@@ -333,23 +409,34 @@ tr, td {
 		});
 
 	});
+	
+	function createCol(){
+		tag ="<col width='*'/>";
+		for(var i=0; i<26; i++){
+			tag += "<col width='90'/>"
+		}
+		var col = document.getElementById("createCol");
+		col.innerHTML = tag;
+		
+	}
 </script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href=<c:url value='resources/style.css'/> type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href=<c:url value='resources/base.css'/>	type="text/css" />
+
 </head>
 <body>
 
-	<div class="header"></div>
 	<div class="jbContent" >
+		<div>
 		<table cellpadding="0" cellspacing="0" class="view" id="viewtable">
-			<thead id="createThead"></thead>
+		<colgroup id="createCol">
+		</colgroup>
+			<thead id="createThead">
+			</thead>
 			<tbody id="createTbody">
 			</tbody>
 		</table>
+		</div>
 	</div>
 	<div id="divForm"></div>
-
+<span id="expression_Div" class="expression_class_Div"></span>
 </body>
 </html>
