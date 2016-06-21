@@ -5,7 +5,7 @@
 <link rel="stylesheet" href='<c:url value="resources/style.css"/>' type="text/css" media="print, projection, screen" />
 </head>
 <body>
-	<div id="formulaBar" class="jbMenu" style="padding-left:0px;">
+	<div id="formulaBar" class="jbMenu" style="padding-left:0px; background: #CDCDCD;">
 		<div class="top" style='float: left'>
 		<form >
 			<input type="submit" value="함수">

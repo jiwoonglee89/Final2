@@ -5,9 +5,10 @@
 <head>
 <title> <tiles:getAsString name="title" /> </title>
 </head>
-<body>
+<body  style="overflow-y:hidden;">
+
 <tiles:insertAttribute name="header"/>
-<hr/>
+
 <tiles:insertAttribute name="body" />
 </body>
 </html>
