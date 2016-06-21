@@ -72,7 +72,7 @@ public class MemberController {
 		}else{
 			request.setAttribute("fail", "fail");
 		}
-		return "loginPage/loginForm";
+		return "BoardPage/list";
 	}
 
 	//회원가입 화면으로 이동 
