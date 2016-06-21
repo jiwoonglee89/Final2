@@ -17,14 +17,16 @@ function setId()
 } 
 </script>
 <style>
-body
+#id_text
 {
-	text-align: center;
-	vertical-align: middle;
+	position:absolute;
+	top:30px;
+/* 	text-align: center;
+	vertical-align: middle; */
 }
 </style>
 </head>
-<body>
+<body id="id_text"; >
 
 	<c:if test="${check==0 }">
 		<table width="270" border="0" cellspacing="0" cellpadding="5">
