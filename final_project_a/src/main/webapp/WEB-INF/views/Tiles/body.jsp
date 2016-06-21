@@ -54,6 +54,10 @@ tr, td {
 	width: 90px;
 	height: 22px;
 }
+#viewtable thead.Fixed
+{
+    position: absolute;
+}
 </style>
 <script>
 	function submit1() {
@@ -276,6 +280,19 @@ tr, td {
 				$('.jbMenu').removeClass('jbFixed');
 			}
 		});
+		
+		var table = $("#viewtable");
+
+	    $(window).scroll(function() {
+	        var windowTop = $(window).scrollTop();
+
+	        if (windowTop > table.offset().top) {
+	            $("thead", table).addClass("Fixed").css("top", windowTop);
+	        }
+	        else {
+	            $("thead", table).removeClass("Fixed");
+	        }
+	    });
 	});
 	$(function() {
 
