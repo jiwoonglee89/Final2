@@ -7,7 +7,8 @@
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <style>
 .button {
-   border: 0px solid #ffffff;
+   font-family: 'Poiret One', cursive;
+   border: 1px solid #111014;
    background: #ffffff;
    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
    background: -webkit-linear-gradient(top, #ffffff, #ffffff);
@@ -15,49 +16,63 @@
    background: -ms-linear-gradient(top, #ffffff, #ffffff);
    background: -o-linear-gradient(top, #ffffff, #ffffff);
    background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
-   padding: 6px 12px;
+   padding: 6.5px 13px;
    -webkit-border-radius: 0px;
    -moz-border-radius: 0px;
    border-radius: 0px;
    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #ffffff 0 1px 0;
-   color: #050505;
-   font-size: 11px;
+   text-shadow: #373b3d 0 1px 0;
+   color: #000000;
+   font-size: 13px;
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
    }
 .button:hover {
-   border: 0px solid #ffffff;
-   text-shadow: #ffffff 0 1px 0;
-   background: #878487;
-   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#878487));
-   background: -webkit-linear-gradient(top, #ffffff, #878487);
-   background: -moz-linear-gradient(top, #ffffff, #878487);
-   background: -ms-linear-gradient(top, #ffffff, #878487);
-   background: -o-linear-gradient(top, #ffffff, #878487);
-   background-image: -ms-linear-gradient(top, #ffffff 0%, #878487 100%);
-   color: #ffffff;
+  font-family: 'Poiret One', cursive;
+   border: 1px solid #ffffff;
+   text-shadow: #1e4158 0 1px 0;
+   background: #808080;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#808080));
+   background: -webkit-linear-gradient(top, #f5f5f5, #808080);
+   background: -moz-linear-gradient(top, #f5f5f5, #808080);
+   background: -ms-linear-gradient(top, #f5f5f5, #808080);
+   background: -o-linear-gradient(top, #f5f5f5, #808080);
+   background-image: -ms-linear-gradient(top, #f5f5f5 0%, #808080 100%);
+   color: #fff;
    }
 .button:active {
-   text-shadow: #050505 0 1px 0;
-   border: 0px solid #050505;
+  font-family: 'Poiret One', cursive;
+   text-shadow: #051017 0 1px 0;
+   border: 1px solid #ebf1f5;
    background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#878487));
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#808080));
    background: -webkit-linear-gradient(top, #000000, #000000);
    background: -moz-linear-gradient(top, #000000, #000000);
    background: -ms-linear-gradient(top, #000000, #000000);
    background: -o-linear-gradient(top, #000000, #000000);
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #fff;
+   color: #ffffff;
    }
-
 div.tb {height:50px; text-align:center; border:0px; #000000; padding-top:15px;}
 span{height:50px; text-align:center; border-left:solid 1px #000000; padding-top:15px;}
 #Web_Cell{
 height:130px; 
+text-align:center; 
+padding-top:30px;
+font-weight:bold;
+font-size:80px;
+text-shadow:1px 1px 3px #666666;
+padding:10px 10px 10px;
+font-family: 'Poiret One', cursive;
+}
+#Web_Cell2{
+position:absolute;
+top:30px;
+left:530px;
+height:80px; 
 text-align:center; 
 padding-top:30px;
 font-weight:bold;
@@ -76,19 +91,43 @@ width:100px;
 .i{
 font-weight:bold;
 }
-.button{
+/* #loginPro_div{
+	/* position:inherit;
+	top:0px; 
+	border-width:1px;
+	border:1px;
+	border-spacing:50px;
+	border-width:100px;
+} */
+
+
+#login_id {
+	position:absolute;
+	border:0px;
+	top:150px;
+	left:400px;
+	font-weight:bold;
 
 }
-.loginPro_div {
+#logout_button{
+	position:absolute;
+	border:0px;
+	top:150px;
+	left:900px;
+}
+
+#mypage_button{
 	position:absolute;
 	border:1px;
-	top:200px;
-	left:520px;
-	font-weight:bold;
-	font-size:19px;
-	font-shadow:1px 1px 3px #666666;
+	top:150px;
+	left:1000px;
 }
-.logout_button{
+#list{
+position:absolute;
+top : 400px;
+}
+
+/* .logout_button{
 	position:absolute;
 	border:1px;
 	top:200px;
@@ -99,7 +138,7 @@ font-weight:bold;
 	border:1px;
 	top:200px;
 	left:930px;
-}
+} */
 
 </style>
 <script>

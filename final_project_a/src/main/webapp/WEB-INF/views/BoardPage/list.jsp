@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<Style>
+	body{
+	font-size:17px;
+	text-shadow:1px 1px 3px #666666;
+	font-family: 'Poiret One', cursive;
+}
+</Style>
 <title>My Excel List</title>
 </head>
 <body>
