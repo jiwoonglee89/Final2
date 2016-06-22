@@ -68,9 +68,11 @@ public class MemberController {
 				session.setAttribute("id", id);
 			}else{
 				request.setAttribute("fail", "fail");
+				return "loginPage/loginForm";
 			}
 		}else{
 			request.setAttribute("fail", "fail");
+			return "loginPage/loginForm";
 		}
 		return "loginPage/loginPro";
 	}

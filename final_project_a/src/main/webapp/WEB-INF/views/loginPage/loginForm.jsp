@@ -148,12 +148,15 @@ function foundIDPASS()
 </head>
 <body align="center">
 <br><br>
+<hr>
 <br><br>
+
 <div id="Web_Cell" >Web Cell</div>
 <c:if test='${fail=="fail"}'>
 <script>
 	alert("아이디 혹은 패스워드가 다릅니다.");
 </script>
+
 </c:if>
 <c:if test="${id == null}">
 	<form method="post" action="login.do" name="loginFrom">
@@ -181,7 +184,7 @@ function foundIDPASS()
 	
 	</form>
 </c:if>
-
+<hr>
 <c:if test="${id != null }">
 				<table width="260" cellpadding="0" cellspacing="0" align="center" border="1">
 						<tr>

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage</title>
+<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <script>
 function Mdelete()
 {
@@ -14,6 +15,55 @@ function Mdelete()
 	window.open(url,"get","toolbar=no ,width=500 ,height=300,directories=no,status=yes,scrollbars=yes,menubar=no");
 }
 </script>
+<style>
+.button {
+   border: 1px solid #000000;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 2.5px 5px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #000000 0 1px 0;
+   color: #121212;
+   font-size: 9px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 1px solid #000000;
+   text-shadow: #d4d4d4 0 1px 0;
+   background: #979899;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fcfeff), to(#979899));
+   background: -webkit-linear-gradient(top, #fcfeff, #979899);
+   background: -moz-linear-gradient(top, #fcfeff, #979899);
+   background: -ms-linear-gradient(top, #fcfeff, #979899);
+   background: -o-linear-gradient(top, #fcfeff, #979899);
+   background-image: -ms-linear-gradient(top, #fcfeff 0%, #979899 100%);
+   color: #ffffff;
+   }
+.button:active {
+   text-shadow: #ffffff 0 1px 0;
+   border: 1px solid #445761;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#979899));
+   background: -webkit-linear-gradient(top, #030303, #000000);
+   background: -moz-linear-gradient(top, #030303, #000000);
+   background: -ms-linear-gradient(top, #030303, #000000);
+   background: -o-linear-gradient(top, #030303, #000000);
+   background-image: -ms-linear-gradient(top, #030303 0%, #000000 100%);
+   color: #fff;
+   }
+</style>
 </head>
 <body>
 	<form name="mypageF" action="modifyForm.do" method="post">
