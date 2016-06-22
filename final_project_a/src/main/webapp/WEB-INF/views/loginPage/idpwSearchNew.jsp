@@ -7,10 +7,66 @@
 <meta charset="UTF-8">
 <script src="<c:url value="resources/join.js" />"></script>
 <title>아이디 비밀번호 찾기</title>
+<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <style>
+.button {
+   border: 1px solid #000000;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 2.5px 5px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #000000 0 1px 0;
+   color: #121212;
+   font-size: 9px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 1px solid #000000;
+   text-shadow: #d4d4d4 0 1px 0;
+   background: #979899;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fcfeff), to(#979899));
+   background: -webkit-linear-gradient(top, #fcfeff, #979899);
+   background: -moz-linear-gradient(top, #fcfeff, #979899);
+   background: -ms-linear-gradient(top, #fcfeff, #979899);
+   background: -o-linear-gradient(top, #fcfeff, #979899);
+   background-image: -ms-linear-gradient(top, #fcfeff 0%, #979899 100%);
+   color: #ffffff;
+   }
+.button:active {
+   text-shadow: #ffffff 0 1px 0;
+   border: 1px solid #445761;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#979899));
+   background: -webkit-linear-gradient(top, #030303, #000000);
+   background: -moz-linear-gradient(top, #030303, #000000);
+   background: -ms-linear-gradient(top, #030303, #000000);
+   background: -o-linear-gradient(top, #030303, #000000);
+   background-image: -ms-linear-gradient(top, #030303 0%, #000000 100%);
+   color: #fff;
+   }
+   
 #find { min-height: 800px; }
 .title_find { margin: 0 auto; margin: 11px; font-size: 28px; color: #4C4C4C; }
 #find_id_result { min-height: 600px; margin: 0 auto; margin-top: 250px;}
+#search_id {
+	font-width:bold;
+	font-family:'Poiret One', cursive;
+}
+#search_pw{
+	font-family: 'Poiret One', cursive;s
+}
 </style>
 <script>
 $(function(){
@@ -68,7 +124,7 @@ $(function(){
 	<form  name="idSearch" id="idSearch" action="idSearch.do">
 	<table width="300" border="1" cellspacing="0" cellpadding="3" align="center">
 	<tr>
-		<td colspan="2" height="39" align="center" bgcolor="">
+		<td id="search_id" colspan="2" height="39" align="center" bgcolor="">
 		<font size="+1"><b>아이디 찾기 </b></font><br><font color="black" align="center" size="-1"></font>
 		</td>
 	</tr>
@@ -77,7 +133,7 @@ $(function(){
 					<div id="find_id"></div>
 					<div class="size_long" id="divname"><input type="text" class="text_login" id="name" name="name" maxlength="12" placeholder="이름"></div>
 					<div class="size_long" id="divphone"><input type="text" class="text_login" id="phone" name="phone" maxlength="12" placeholder="핸드폰번호(01012345678)"></div>
-					<input id="submit_find_id" class="btn_long" type="submit" name="confirm_id" value="아이디 확인">
+					<input id="submit_find_id" class="button" type="submit" name="confirm_id" value="아이디 확인">
 				</td>
 			</tr>
 		</table>
@@ -85,7 +141,7 @@ $(function(){
 	<form action="pwSearch.do" name="pwSearch" id="pwSearch">
 		<table width="300" border="1" cellspacing="0" cellpadding="3" align="center">
 		<tr>
-			<td colspan="2" height="39" align="center" bgcolor="">
+			<td id="search_pw" colspan="2" height="39" align="center" bgcolor="">
 			<font size="+1"><b>비밀번호 찾기</b></font><br><font color="black" align="right" size="-1"></font>
 			</td>
 		</tr>
@@ -95,7 +151,7 @@ $(function(){
 				<div class="size_long" id="divid"><input type="text" class="text_login" id="id" name="id" maxlength="12" placeholder="아이디"></div>
 				<div class="size_long" id="divphone"><input type="text" class="text_login" id="phone" name="phone" maxlength="12" placeholder="핸드폰 번호(01012345678)"></div>
 				<div class="size_long" id="divbirth"><input type="text" class="text_login" id="birth" name="birth" maxlength="12" placeholder="생년월일"></div>
-				<input id="submit_find_password" class="btn_long" type="submit" name="confirm_password" value="비밀번호 확인">
+				<input id="submit_find_password" class="button" type="submit" name="confirm_password" value="비밀번호 확인">
 			
 			</td>
 			</tr>
