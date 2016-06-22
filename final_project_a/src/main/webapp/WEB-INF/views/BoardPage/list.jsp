@@ -118,8 +118,9 @@ hr {border-bottom:1px solid; border-top:0px; border-left:0px; border-right:0px; 
 	font-family: 'Poiret One', cursive;
 }
 #file_update{
-height : auto;
+	height : auto;
 }
+
 
 a{
 
@@ -155,8 +156,8 @@ a{
 	<c:if test="${files!=null}">
 		<div id="wrap">
 		<c:forEach var="file" items="${files}" >
-			<div id="file_update" style="padding:10px; width:900px;margin-left:50px;">
-				<a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a>
+			<div id="file_update" style="padding:10px; width:900px; margin-left:50px;">
+			<a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a>
 				${file.modify_date}
 				<a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a>
 			</div>
