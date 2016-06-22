@@ -127,31 +127,21 @@ position:absolute;
 top : 400px;
 }
 
-/* .logout_button{
-	position:absolute;
-	border:1px;
-	top:200px;
-	left:850px;
-}
-.mypage_button{
-	position:absolute;
-	border:1px;
-	top:200px;
-	left:930px;
-} */
-
 </style>
 <script>
-function openConfirmid() {
-	// 아이디를 입력했는지 검사
-	 {
-		// url과 사용자 입력 id를 조합합니다.
-		url = "idpwSearchNew.do";
+function foundIDPASS() 
+{
+	var  screenW=screen.availWidth;
+	var  screenH=screen.availHeight;
+	var popW = 500;
+	var popH = 200;
+	var l=(screenW-popW) / 2 ;
+	var t=(screenH-popH) / 2 ;	
+	
+	url = "idpwSearchNew.do";
 
-		// 새로운 윈도우를 엽니다.
-		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
-
-	}
+	// 새로운 윈도우를 엽니다.
+	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
 }
 </script>
 <title>로그인</title>
@@ -186,7 +176,7 @@ function openConfirmid() {
 		<div id="idpw"><input class="button" type="submit" value="login">
 		<input class="button" type="button" value="regist" onclick="javascript:window.location='join.do'">
 	</div><br>
-	<div id="idpws"><input width="1" class="button" type="button" value="Id·Pw Search" onclick='openConfirmid()'></div>
+	<div id="idpws"><input width="1" class="button" type="button" value="Id·Pw Search" onclick='foundIDPASS()'></div>
 
 	
 	</form>
