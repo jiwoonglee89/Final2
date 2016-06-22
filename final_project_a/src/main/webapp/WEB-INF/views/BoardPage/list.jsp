@@ -88,30 +88,25 @@ hr {border-bottom:1px solid; border-top:0px; border-left:0px; border-right:0px; 
 	left:1230px;
 } 
 
-
- #list{
-position:absolute;
-top : 400px;
-}  
-
 #Nofile {
 	position:absolute;
-	top:150px;
-	left:600px;
+	top:50%;
+	left:40%;
 	font-size:17px;
 	font-family:'Poiret One', cursive;
+	text-align: center;
+	vertical-align: middle;
 }
 #text_box{
 	position:absolute;
 	top:125px;
-	left:260px;
+	left:160px;
 	border:1px solid;
 	font-famliy:'Poiret One', cursive;
 	font-size:17px;
 	padding:30px;
 	margin-right:30px;
-	border:5px;
-	font-family: 'Poiret One', cursive;
+	text-align: center;
 }
 
 #wrap{
@@ -134,55 +129,39 @@ a{
 <title>My Excel List</title>
 </head>
 <body>
-<c:if test="${id != null }">
-				<font id="id_font">${id}님의 엑셀</font>
-				<table width="260" cellpadding="0" cellspacing="0" align="center">
-						<tr>
-						
-								<form method="post" action="logout.do">
-									<input type="submit" value="Logout" id="logout_button" class="button">
-								</form>
-							<td>
-								<form action="myPage.do">
-									<input type="submit" value="Modify" id="mypage_button" class="button">
-								</form>
-							</td>
-						</tr>
-						</table>
-						<hr id="border_bottom1">
-						<table id="list">
-						<!-- <tr>
-							<td>
-								<input type="button" value="게시글 이동(임시)" onClick="javascript:window.location='list.do'">
-							</td>							
-						
-						</tr> -->
-					</table>
-				</td>
-				</c:if>
-<table>
-<center>
-<div id="text_box" style="border:1px solid; padding:10px; width:900px; word-spacing:250px;">Title Modify-date Delete</div>
-</center>
-<c:if test="${files==null}" >
-<h2 id="Nofile"><br><br><br><br><br><br><br><br><br><br><br><br>아직 아무 파일도 없으시네요?</h2>
-</c:if>
+	<c:if test="${id != null }">
+	<font id="id_font">${id}님의 엑셀</font>
+	<form method="post" action="logout.do">
+	<table width="260" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td>
+				<input type="submit" value="Logout" id="logout_button" class="button">
+			</td>
+			<td>
+					<input type="button" value="Modify" id="mypage_button" class="button" onclick="javascript:window.location='myPage.do'">
+			</td>
+		</tr>
+	</table>
+	</form>
+	<hr id="border_bottom1">
+	</c:if>
+	
+	 
+	<div id="text_box" style="border:1px solid; padding:10px; width:900px; word-spacing:250px;">Title Modify-date Delete</div>
+	<c:if test="${files==null}" >
+		<h2 id="Nofile">아직 아무 파일도 없으시네요?</h2>
+	</c:if>
 
-<c:if test="${files!=null}">
-<div id="wrap">
-<c:forEach var="file" items="${files}" >
-
-<div id="file_update" style="padding:10px; width:900px;">
-<%-- ${file.id} --%>
-
-<a href="<c:url value='excel.do?num=${file.file_number}'/>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${file.title}</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${file.modify_date}
-<a href="<c:url value='file_delete.do?num=${file.file_number}'/>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;삭제</a>
-</div>
-
-</c:forEach>
-</div>
-</c:if>
-
+	<c:if test="${files!=null}">
+		<div id="wrap">
+		<c:forEach var="file" items="${files}" >
+			<div id="file_update" style="padding:10px; width:900px;margin-left:50px;">
+				<a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a>
+				${file.modify_date}
+				<a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a>
+			</div>
+		</c:forEach>
+		</div>
+	</c:if>
 </body>
 </html>
