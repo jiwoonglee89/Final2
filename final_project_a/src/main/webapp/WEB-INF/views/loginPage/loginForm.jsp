@@ -193,7 +193,7 @@ function foundIDPASS()
 						</table>
 						<tr>
 							<td>
-								<input type="button" value="게시글 이동(임시)" onClick="javascript:window.location='board.do'">
+								<input type="button" value="게시글 이동(임시)" onClick="javascript:window.location='list.do'">
 							</td>							
 							<td>
 								<form action="myPage.do">

@@ -111,7 +111,7 @@
 			<tr>
 				<td colspan="2" align="center" bgcolor="">
 				<input type="submit" name="confirm" value="정보수정"> 
-				<input type="button" value="수정 취소" onclick="javascript:window.location='loginForm.do'">
+				<input type="button" value="수정 취소" onclick="javascript:window.location='board.do'">
 				</td>
 			</tr>
 		</table>

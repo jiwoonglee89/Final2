@@ -72,7 +72,7 @@ function Mdelete()
 				<td colspan="2" align="center" bgcolor="">
 					<input type="button" value="회원 탈퇴" onclick="Mdelete()">
 					<input type="submit"name="confirm" value="정보 수정하기"> 
-					<input type="button" value="돌아가기" onclick="javascript:window.location='loginForm.do'">
+					<input type="button" value="돌아가기" onclick="javascript:window.location='board.do'">
 				</td>
 			</tr>
 		</table>

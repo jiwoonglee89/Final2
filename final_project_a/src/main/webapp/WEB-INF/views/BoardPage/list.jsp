@@ -4,8 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="<c:url value="resources/image/*" />"></script>
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <Style>
+/* 브라우저 기본값 초기화(Reset) */
+body
+{
+	padding: 0px;
+	margin: 0px;
+}
+ /* 버튼 css설정 */
 .button {
    border: 1px solid #000000;
    background: #ffffff;
@@ -15,51 +23,50 @@
    background: -ms-linear-gradient(top, #ffffff, #ffffff);
    background: -o-linear-gradient(top, #ffffff, #ffffff);
    background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
-   padding: 2.5px 5px;
+   padding: 8px 16px;
    -webkit-border-radius: 0px;
    -moz-border-radius: 0px;
    border-radius: 0px;
    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #000000 0 1px 0;
-   color: #121212;
-   font-size: 9px;
+   text-shadow: #f5f5f5 0 1px 0;
+   color: #000000;
+   font-size: 12px;
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
    }
 .button:hover {
    border: 1px solid #000000;
-   text-shadow: #d4d4d4 0 1px 0;
-   background: #979899;
-   background: -webkit-gradient(linear, left top, left bottom, from(#fcfeff), to(#979899));
-   background: -webkit-linear-gradient(top, #fcfeff, #979899);
-   background: -moz-linear-gradient(top, #fcfeff, #979899);
-   background: -ms-linear-gradient(top, #fcfeff, #979899);
-   background: -o-linear-gradient(top, #fcfeff, #979899);
-   background-image: -ms-linear-gradient(top, #fcfeff 0%, #979899 100%);
-   color: #ffffff; 
-   }
-.button:active {
    text-shadow: #ffffff 0 1px 0;
-   border: 1px solid #445761;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#979899));
-   background: -webkit-linear-gradient(top, #030303, #000000);
-   background: -moz-linear-gradient(top, #030303, #000000);
-   background: -ms-linear-gradient(top, #030303, #000000);
-   background: -o-linear-gradient(top, #030303, #000000);
-   background-image: -ms-linear-gradient(top, #030303 0%, #000000 100%);
+   background: #afb3b5;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#afb3b5));
+   background: -webkit-linear-gradient(top, #ffffff, #afb3b5);
+   background: -moz-linear-gradient(top, #ffffff, #afb3b5);
+   background: -ms-linear-gradient(top, #ffffff, #afb3b5);
+   background: -o-linear-gradient(top, #ffffff, #afb3b5);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #afb3b5 100%);
    color: #fff;
    }
+.button:active {
+   text-shadow: #000000 0 1px 0;
+   border: 1px solid #000000;
+   background: #030303;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#afb3b5));
+   background: -webkit-linear-gradient(top, #000000, #030303);
+   background: -moz-linear-gradient(top, #000000, #030303);
+   background: -ms-linear-gradient(top, #000000, #030303);
+   background: -o-linear-gradient(top, #000000, #030303);
+   background-image: -ms-linear-gradient(top, #000000 0%, #030303 100%);
+   color: #fff;
+   }
+   
+/* 상단 밑줄 */ 
+/* #border_bottom1 {border-bottom:1px solid; border-top:10%; border-left:0px; border-right:0px; height:50px;} */
+#border_bottom1 {border: 1px solid; height:80px; width:1280px;}
 
-hr {border-bottom:1px solid; border-top:0px; border-left:0px; border-right:0px; height:50px;}
-#Nofile{
-	position : absolute;
-	top :400px;
-	font-size:17px;
-}
+/* 사용자 표시 */
 #id_font{
 	position : absolute;
 	top :1px;
@@ -67,102 +74,115 @@ hr {border-bottom:1px solid; border-top:0px; border-left:0px; border-right:0px; 
 	font-size:48px;
 	font-family: 'Poiret One', cursive;
 	font-weight:bold;
-}
-	#login_Id {
-	position:absolute;
-	border:0px;
-	top:1px;
-	left:10px;
-	font-weight:bold;
-	font-size:48px;
-}
-#logout_button{
-	position:absolute;
-	top:25px;
-	left:1160px;
+	float: left;
 }
 
-#mypage_button{
+/* Mypage 및 logout Button Group*/
+#button_group
+{
+	top:10%;
+	/* border: 1px; */
+	margin-left: 80%;
+	margin-right: 20%;
+}
+
+/* 로그아웃 div */
+#logout
+{
 	position:absolute;
-	top:25px;
-	left:1230px;
-} 
+	top:2%;
+	left:75%;
+	float: left;
+}
 
-#Nofile {
+/* 정보 수정 div */
+#modify
+{
 	position:absolute;
-	top:50%;
-	left:40%;
-	font-size:17px;
-	font-family:'Poiret One', cursive;
-	text-align: center;
-	vertical-align: middle;
-}
-#text_box{
-	position:absolute;
-	top:125px;
-	left:160px;
-	border:1px solid;
-	font-famliy:'Poiret One', cursive;
-	font-size:17px;
-	padding:30px;
-	margin-right:30px;
-	text-align: center;
+	top:2%;
+	left:81%;
+	float: right;
 }
 
-#wrap{
-	position:absolute;
-	top:200px;
-	left:260px;
-	border:1px solid black;
-	height: 400px;
-	font-family: 'Poiret One', cursive;
+/* 하이퍼링크 */ 
+a{text-decoration : none;}
+
+/* 테이블 디자인 */
+#table_bottom
+{
+ 	position: absolute;
+	width: 80%;
+	text-align: center; 
+	border-collapse: collapse;
+	margin-left: auto;
+    margin-right: auto;
+    
 }
-#file_update{
-	height : auto;
+th, td
+{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding: 10px;
+}
+#table_div
+{
+	margin-top: 2%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#slide_bar
+{
+	position: absolute;
+	top: 86%;
+	left: 93%;
+	
 }
 
-
-a{
-
- text-decoration : none;
-}
 </Style>
 <title>My Excel List</title>
 </head>
 <body>
+	<!-- 파일이 없는 경우 -->
 	<c:if test="${id != null }">
-	<font id="id_font">${id}님의 엑셀</font>
+	<div id="id_font">${id}님의 엑셀</div>
+	<div id="button_group">
 	<form method="post" action="logout.do">
-	<table width="260" cellpadding="0" cellspacing="0" align="center">
-		<tr>
-			<td>
-				<input type="submit" value="Logout" id="logout_button" class="button">
-			</td>
-			<td>
-					<input type="button" value="Modify" id="mypage_button" class="button" onclick="javascript:window.location='myPage.do'">
-			</td>
-		</tr>
-	</table>
-	</form>
-	<hr id="border_bottom1">
-	</c:if>
-	
-	 
-	<div id="text_box" style="border:1px solid; padding:10px; width:900px; word-spacing:250px;">Title Modify-date Delete</div>
-	<c:if test="${files==null}" >
-		<h2 id="Nofile">아직 아무 파일도 없으시네요?</h2>
-	</c:if>
-
-	<c:if test="${files!=null}">
-		<div id="wrap">
-		<c:forEach var="file" items="${files}" >
-			<div id="file_update" style="padding:10px; width:900px; margin-left:50px;">
-			<a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a>
-				${file.modify_date}
-				<a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a>
-			</div>
-		</c:forEach>
+		<div id="logout">
+			<input type="submit" value="Logout" id="logout_button" class="button">
 		</div>
+		<div id="modify">
+			<input type="button" value="Modify" id="mypage_button" class="button" onclick="javascript:window.location='myPage.do'">
+		</div>
+	</form>
+	</div>
+	<div id="border_bottom1"></div>
 	</c:if>
+	<div id="table_div">
+	 <table id="table_bottom">
+	 	<tr>
+	 		<th>Title</th>
+	 		<th>Modify-date</th>
+	 		<th>Delete</th>
+	 	</tr>
+	<c:if test="${files==null}" >
+	 	<tr>
+	 		<td colspan="3">아직 아무 파일도 없으시네요?</td>
+	 	</tr>
+	</c:if>
+	<!-- 파일이 있는 경우 -->
+	<c:if test="${files!=null}">
+	<c:forEach var="file" items="${files}" >
+		<tr>
+			<td><a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a></td>
+			<td>${file.modify_date}</td>
+			<td><a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a></td>
+		<tr>
+	</c:forEach>					
+	</c:if>		 	
+	 </table>
+	</div>
+	<div id="slide_bar">
+		<a href=".do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
+	</div>
 </body>
 </html>
