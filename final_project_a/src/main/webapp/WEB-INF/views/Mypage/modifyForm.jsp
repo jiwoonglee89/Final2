@@ -105,29 +105,29 @@
 			<div id="title"><sub>[*표시는 필수 입력 사항입니다.]</sub></div>
 			<table id="modify_text" style="border-style:dotted; border-color:gray;" height="400" width="600"  cellspacing="0" cellpadding="3" align="center">
 			<tr>
-				<td width="200" align="center">*아이디</td>
+				<td width="200" align="center">*Id</td>
 				<td width="400">
 					<input type="text" name="id" maxlength="30"size="35" readonly="readonly" value="${memberInfo.id}">
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*비밀번호</td>
+				<td width="200" align="center">*Password</td>
 				<td width="400"><input type="password" name="password"
 					maxlength="20" size="25"></td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*비밀번호 확인</td>
+				<td width="200" align="center">*Password Check</td>
 				<td width="400"><input type="password" name="password2"
 					maxlength="20" size="25"></td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*이름</td>
+				<td width="200" align="center">*Name</td>
 				<td width="400"><input type="text" name="name" maxlength="50"
 					size="15" onblur="id_noNumber(this.form)"
 					value="${memberInfo.name}"></td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*생년월일</td>
+				<td width="200" align="center">*Birth</td>
 				<td width="200">
 					
 					<select name="birthY">
@@ -150,7 +150,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*전화번호</td>
+				<td width="200" align="center">*Phone</td>
 				<!-- 전화번호 유효성 검사 재프로그래밍할것 -->
 				<td width="400"><input type="text" name="Phone"
 					placeholder="-는 제외하고 입력해주세요." maxlength="11" size="20"
@@ -158,7 +158,7 @@
 					value="${memberInfo.phone}"></td>
 			</tr>
 			<tr>
-				<td width="200" align="center">이메일</td>
+				<td width="200" align="center">Email</td>
 				<td width="400">
 				<input type="text" name="emailID" size="15" maxlength="25" value="${emailID}">@ 
 				<input type="text" name="emailAddress" size="10" value="${emailAddress}"> 
@@ -174,7 +174,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*우편 번호</td>
+				<td width="200" align="center">*Zipcode</td>
 				<td><input type="text" name="zipcode" size="10" readonly
 					placeholder="우편번호를 검색." value="${memberInfo.zipcode}">
 					<input class="button" type="button" value="우편번호찾기" onClick="zipCheck()">

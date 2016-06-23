@@ -125,45 +125,45 @@ function Mdelete()
 			
 		<table class="myPage_text" style="border-style:dotted; border-color:gray;" height="400" width="600" cellspacing="1" cellpadding="2">
 			<tr>
-				<td width="200" align="center">*아이디</td>
+				<td width="200" align="center">*Id</td>
 				<td width="400">
 					<div align="center">${id}</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*비밀번호</td>
+				<td width="200" align="center">*Password</td>
 				<td width="400">
 					<div align="center">${listM.password}</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*이름</td>
+				<td width="200" align="center">*Name</td>
 				<td width="400">
 					<div align="center">${listM.name}</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">*생년월일</td>
+				<td width="200" align="center">*Birth</td>
 				<td width="200">
 					<div align="center">${listM.birth}</div>
 				</td>
 			</tr>
 			<tr>
 			<!-- 전화번호 유효성 검사 재프로그래밍할것 -->
-				<td width="200" align="center">*전화번호</td>
+				<td width="200" align="center">*Phone</td>
 				<td width="400">
 					<div align="center">${listM.phone}</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">이메일</td>
+				<td width="200" align="center">Email</td>
 				<td width="400">
 					<div align="center">${listM.email}</div>
 				</td>
 				
 			</tr>
 			<tr>
-				<td width="200" align="center">*우편 번호</td>
+				<td width="200" align="center">*Zipcode</td>
 				<td>
 					<div align="center">${listM.zipcode} ${listM.address}</div>
 				</td>
