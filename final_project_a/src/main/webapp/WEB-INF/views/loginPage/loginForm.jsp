@@ -153,7 +153,6 @@ function foundIDPASS()
 </c:if>
 
 <!-- 로그인이 되지 않은 경우 -->
-<c:if test="${id == null}">
 <form method="post" action="login.do" name="loginFrom">
 <div id="Div_middle">
 	<table>
@@ -179,6 +178,5 @@ function foundIDPASS()
 		</div>
 	</div>
 </form>
-</c:if>
 </body>
 </html>

@@ -182,7 +182,7 @@ th, td
 	 </table>
 	</div>
 	<div id="slide_bar">
-		<a href=".do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
+		<a href="newdivedit.do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
 	</div>
 </body>
 </html>
