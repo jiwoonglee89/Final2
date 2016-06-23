@@ -419,6 +419,19 @@ tr, td {
 		col.innerHTML = tag;
 		
 	}
+	
+	function insertData(){
+		var str=""
+		for(var i=0; i<=${rows}; i++){
+			for(var j=0; j<=${cells}; j++){
+				char c = j;
+				str += c+""+i;
+				var data = ${map.str};
+				
+				$('.'+str).val(data);
+			}
+		}
+	} 
 </script>
 
 </head>

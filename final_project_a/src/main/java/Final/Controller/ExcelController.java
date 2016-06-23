@@ -141,7 +141,7 @@ public class ExcelController {
 
 			}
 		}
-		return "test";
+		return "Tiles/excel_layout";
 	}
 
 	// ªË¡¶ §§§§

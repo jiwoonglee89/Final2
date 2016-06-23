@@ -11,6 +11,9 @@
 			<input type="submit" value="함수">
 			</form>
 		<input type="button" onclick="submit1()" value="저장"/>
+		<form action="existExcel.do">
+		<input type="submit" onsubmit="insertData()" value="불러오기"/>
+		</form>
 		</div><br/><br/>
 		<div class="left" style='float: left'>
 			<input type="text" id="address">
