@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +18,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,6 +42,12 @@ public class ExcelController {
 	public String tiles(){
 		return "Tiles/excel_layout";
 	}
+	
+	@RequestMapping("/save.do")
+	public ModelAndView save(HttpServletRequest request){
+		;
+		return new ModelAndView("downView","request",request);
+	}
 
 	/*
 	 * @RequestMapping("/existExcel.do") public ModelAndView existExcel(String
@@ -61,10 +66,10 @@ public class ExcelController {
 		Map map = new HashMap();
 		Workbook workbook = null;
 
-		File file = new File("C:/Users/wonmo/Desktop/123.xls");
+		File file = new File("C:/Users/user2/Downloads/Formulas.xlsx");
 		FileInputStream fis = new FileInputStream(file);
-		System.out.println("파일형식::::" + file.getName().endsWith("xls"));
-		if (file.getName().endsWith("xls")) {
+		System.out.println("파일형식::::" + file.getName().endsWith(".xls"));
+		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
 		} else {
 			workbook = new XSSFWorkbook(fis);
@@ -79,6 +84,8 @@ public class ExcelController {
 		int rows = sheet.getPhysicalNumberOfRows();
 		int colNum = 0;
 
+		System.out.println("rows:::"+rows);
+		
 		for (rowindex = 0; rowindex < rows; rowindex++) {
 			Row row = sheet.getRow(rowindex);
 
@@ -86,7 +93,9 @@ public class ExcelController {
 
 			if (row != null) {
 				int cells = row.getPhysicalNumberOfCells();
-				for (columnindex = 0; columnindex <= cells; columnindex++) {
+				System.out.println("cells:::"+cells);
+				
+				for (columnindex = 0; columnindex <= cells+1; columnindex++) {
 					Cell cell = row.getCell(columnindex);
 
 					char rowrowrow = (char) (65 + columnindex);
@@ -103,7 +112,7 @@ public class ExcelController {
 						// 타입별로 내용 읽기
 						switch (cell.getCellType()) {
 						case Cell.CELL_TYPE_FORMULA:
-							value = cell.getCellFormula();
+							value = "="+cell.getCellFormula();
 							break;
 						case Cell.CELL_TYPE_NUMERIC:
 							value = cell.getNumericCellValue() + "";
@@ -123,6 +132,8 @@ public class ExcelController {
 					System.out.println("cellName:::" + cellName);
 					map.put(cellName, value);
 					request.setAttribute("map", map);
+					request.setAttribute("rows", rows);
+					request.setAttribute("cells", cells);
 
 					System.out.println("셀 내용 :" + value);
 					// cell 은 값
