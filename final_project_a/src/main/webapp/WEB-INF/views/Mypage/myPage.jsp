@@ -64,47 +64,40 @@ function Mdelete()
    color: #ffffff;
    }
 	
-#myPage_border
-{
-	border: 1px solid; height:80px; width:1400px;
+	#myPage_border
+	{
+	border: 1px solid;
+	height:80px;
+	width:1400px;
 	font-family:'Poiret One', cursive;
-}
-#myPage_maintext{
-	
+	}
+	#myPage_maintext
+	{
 	position:absolute;
 	top:34px;
 	left:30px;
-}
-	
-	
+	}
 	.myPage_text
-{	
-	
+	{	
 	position:absolute;
 	top:120px;
 	left:400px;
 	font-family:'Poiret One', cursive; 
-}
-
-/* 	#myPage_button
-{
-	position:absolute;
-	top:400px;
-	left:180px;
-} */
-	#button1{
+	}
+	#button1
+	{
 		position:absolute;
 		top:5%;
 		left:88%;
 	}
-	
-	#button2{
+	#button2
+	{
 		position:absolute;
 		top:115%;
 		left:125%;
 	}
-	
-	#button3{
+	#button3
+	{
 		position:absolute;
 		top:115%;
 		left:152%;

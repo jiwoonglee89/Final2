@@ -58,36 +58,38 @@
    color: #fff;
    }
    
- #notice
-{
+	#notice
+	{
 	color: red;
 	text-align: right;
-}
-#title
-{
+	}
+	#title
+	{
 	position:absolute;
 	top:19%;
 	left:40%;
 	color: red;
 	text-align: center;
-}
-
-#modify_border
-{
-	border: 1px solid; height:80px; width:1400px;
+	}
+	#modify_border
+	{
+	border:1px solid;
+	height:80px;
+	width:1400px;
 	font-family:'Poiret One', cursive;
-}
-#modify_maintext{
-	
+	}
+	#modify_maintext
+	{
 	position:absolute;
 	top:34px;
 	left:30px;
-}
-#modify_text{
+	}
+	#modify_text
+	{
 	position:absolute;
 	top:30%;
 	left:26%;
-}
+	}
 </style>
 </head>
 <body onload="disable(${birthY},${birthM},${birthD})">

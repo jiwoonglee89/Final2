@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title>회원 탈퇴 페이지</title>
 <style>
-#title
-{
-	text-align: center;
-}
 .button {
    font-family: 'Poiret One', cursive;
    border: 1px solid #111014;
@@ -61,20 +57,43 @@
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #ffffff;
    }
+   #member_Delete
+   {
+		position:absolute;
+		top:89px;
+		left:84px;
+		text-align: center;
+		border: 1px solid; height:30px; width:400px;
+		font-family:'Poiret One', cursive;
+   }
+   #button
+   {
+   	position:absolute;
+   	top:180px;
+   	left:240px;
+   }
+   #password
+   {
+   	position:absolute;
+   	top:130px;
+   	left:120px;
+   }
 
 </style>
 <script src="<c:url value="resources/delete.js" />"></script>
 </head>
 <body>
 <form name="deleteForm" action="MemberDelete.do" method="post" onSubmit="return passCheck()">
-<table border="1" width="400">
-<th id="title" colspan="2">회원 탈퇴 화면</th>
+<table id="member_Delete" style="border-style:dotted;" border="0" width="400">
+<th colspan="2">회원 탈퇴 화면</th>
+</table>
+<table id="password">
 <tr>
 	<td>비밀번호</td>
 	<td><input type="password" name="password" size="40" maxlength="40"></td>
 </tr>
 </table>
-<table border="1" width="400">
+<table id="button" border="0">
 <tr>
 	<div colspan="2">
 		<td colspan="2">
