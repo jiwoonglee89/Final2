@@ -95,6 +95,7 @@ public class ExcelController {
 				int cells = row.getPhysicalNumberOfCells();
 				System.out.println("cells:::"+cells);
 				
+				
 				for (columnindex = 0; columnindex <= cells+1; columnindex++) {
 					Cell cell = row.getCell(columnindex);
 
@@ -132,15 +133,16 @@ public class ExcelController {
 					System.out.println("cellName:::" + cellName);
 					map.put(cellName, value);
 					request.setAttribute("map", map);
-					request.setAttribute("rows", rows);
-					request.setAttribute("cells", cells);
+					request.setAttribute("rows", new Integer(rows));
+					
 
 					System.out.println("¼¿ ³»¿ë :" + value);
 					// cell Àº °ª
 				}
-
+				
 			}
 		}
+		request.setAttribute("cells", new Integer(colNum));
 		return "Tiles/excel_layout";
 	}
 

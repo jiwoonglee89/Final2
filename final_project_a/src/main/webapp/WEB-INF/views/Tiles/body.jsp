@@ -6,15 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title>Insert title here</title>
-<script src='<c:url value="resources/formula.js"/>'></script>
-<script src='<c:url value="resources/jquery.fixheadertable.min.js"/>'></script>
+<script src='<c:url value="/resources/formula.js"/>'></script>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href=<c:url value='resources/style.css'/> type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href=<c:url value='resources/base.css'/>	type="text/css" />
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+<link rel="stylesheet" href="<c:url value='/resources/style.css'/>" type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style type="text/css">
 #address {
 	text-transform: uppercase;
@@ -59,7 +55,7 @@ tr, td {
 	height: 22px;
 }
 
-#viewtable table{border-collapse: collapse;width: 100%;}
+#viewtable table{border-collapse: collapse; width: 100%;}
 #viewtable thead{float: left; width: 2000px;}
 #viewtable thead th{width: 90px;}
 #viewtable tbody{overflow-y: auto; overflow-x: hidden; float: left; width: 2017px;height: 750px;  }
@@ -76,7 +72,6 @@ tr, td {
 				$('#in' + th[i] + j).val(kkkiii);
 			}
 		}
-
 		$('#formtable').submit();
 	}
 	function submit2() {
@@ -336,6 +331,7 @@ tr, td {
 	        }
 	    }); */
 	});
+	
 	function one_click(divId){
 		if( $('.textselect' ).text().search('=')!=-1 ){  
 		
@@ -365,7 +361,7 @@ tr, td {
 			var divId = $("#"+tdid+">div").attr('id');
 			
 			one_click(divId);
-			$('#formula').val(divVal);
+			//$('#formula').val(divVal);
 
 			if($('#'+divId).attr('contentEditable') == "true"){
 
@@ -421,15 +417,20 @@ tr, td {
 	}
 	
 	function insertData(){
-		var str=""
+		if(${map!=null}){
+		var th = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+					"X", "Y", "Z" ];
 		for(var i=0; i<=${rows}; i++){
 			for(var j=0; j<=${cells}; j++){
-				char c = j;
-				str += c+""+i;
-				var data = ${map.str};
+				var c = th[j]+"";
+				var str = c+""+i;
 				
-				$('.'+str).val(data);
+				var data = ${map.A1};
+				
+				$('#A1').val("data");
 			}
+		  } 
 		}
 	} 
 </script>
