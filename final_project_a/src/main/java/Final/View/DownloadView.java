@@ -27,20 +27,22 @@ public class DownloadView extends AbstractXlsView{
 		
 		HttpServletRequest request = (HttpServletRequest) model.get("request");
 		String value = null;
+		int rowNum = 1;
 		for (int i = 0; i < 100; i++) {
 			for (int j = 0; j < 26; j++) {
 				
 				char c = (char)j;
 				String str = ""+c+i;
 				value = request.getParameter(str);
-				createPageRankRow(sheet,value,j);
+				createRow_insertValue(sheet,value,j, rowNum);
 			}
+			rowNum += rowNum;
 		}
 	}
 
-	private void createPageRankRow(Sheet sheet, String value,int j) {
+	private void createRow_insertValue(Sheet sheet, String value,int j, int rowNum) {
 		//열을 만들어준다
-		Row firstRow = sheet.createRow(j);
+		Row firstRow = sheet.createRow(rowNum);
 		Cell cell = firstRow.createCell(j);
 		//각 셀에 값입력
 		cell.setCellValue(value);
