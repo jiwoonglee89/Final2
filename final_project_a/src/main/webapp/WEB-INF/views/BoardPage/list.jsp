@@ -64,8 +64,12 @@ body
    
 /* 상단 밑줄 */ 
 /* #border_bottom1 {border-bottom:1px solid; border-top:10%; border-left:0px; border-right:0px; height:50px;} */
-#border_bottom1 {border: 1px solid; height:80px; width:1280px;}
-
+#border_bottom1
+	{
+	border: 1px solid;
+	height:80px;
+	width:1450px;
+	}
 /* 사용자 표시 */
 #id_font{
 	position : absolute;
@@ -155,7 +159,7 @@ th, td
 		</div>
 	</form>
 	</div>
-	<div id="border_bottom1"></div>
+	<div id="border_bottom1" align="center"></div>
 	</c:if>
 	<div id="table_div">
 	 <table id="table_bottom">
@@ -182,7 +186,7 @@ th, td
 	 </table>
 	</div>
 	<div id="slide_bar">
-		<a href=".do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
+		<a href="newdivedit.do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
 	</div>
 </body>
 </html>

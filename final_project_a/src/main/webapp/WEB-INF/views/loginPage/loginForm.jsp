@@ -6,6 +6,7 @@
 <head>
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <style>
+/* 버튼 css 시작*/
 .button {
    font-family: 'Poiret One', cursive;
    border: 1px solid #111014;
@@ -56,9 +57,16 @@
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #ffffff;
    }
+/* 버튼 css 종료*/   
+ 
+ 
 div.tb {height:50px; text-align:center; border:0px; #000000; padding-top:15px;}
-span{height:50px; text-align:center; border-left:solid 1px #000000; padding-top:15px;}
-#Web_Cell{
+
+/* span{height:50px; text-align:center; border-left:solid 1px #000000; padding-top:15px;} */
+
+/* 제목부분 div설정 */
+#Div_Top
+{
 height:130px; 
 text-align:center; 
 padding-top:30px;
@@ -67,67 +75,52 @@ font-size:80px;
 text-shadow:1px 1px 3px #666666;
 padding:10px 10px 10px;
 font-family: 'Poiret One', cursive;
+margin-top: 10%;
 }
-#Web_Cell2{
-position:absolute;
-top:30px;
-left:530px;
-height:80px; 
-text-align:center; 
-padding-top:30px;
-font-weight:bold;
-font-size:80px;
-text-shadow:1px 1px 3px #666666;
-padding:10px 10px 10px;
-font-family: 'Poiret One', cursive;
+
+#Div_middle
+{
+	margin-top: 2%;
+	margin-bottom: 3%;
+	margin-left:40%;
+	margin-right:auto;
+	height:auto;
+	width:auto;
 }
+#Div_Bottom{}
+
+#Div_Bottom_1
+{
+	margin: 1%; 
+}
+#Div_Bottom_2
+{
+
+}
+
 body{
 font-family: 'Poiret One', cursive;
+vertical-align: middle;
+text-align: center;
+margin: 0px;
+padding: 0px;
 }
 
-td{
-width:100px;
-}
-.i{
-font-weight:bold;
-}
-/* #loginPro_div{
-	/* position:inherit;
-	top:0px; 
-	border-width:1px;
-	border:1px;
-	border-spacing:50px;
-	border-width:100px;
-} */
-
-
-#login_id {
-	position:absolute;
-	border:0px;
-	top:150px;
-	left:400px;
-	font-weight:bold;
-
-}
-#logout_button{
-	position:absolute;
-	border:0px;
-	top:150px;
-	left:900px;
+table
+{
+	cellpadding:0; 
+	cellspacing:0; 
+	text-align: center; 
+	border: solid;
+	
 }
 
-#mypage_button{
-	position:absolute;
-	border:1px;
-	top:150px;
-	left:1000px;
-}
-#list{
-position:absolute;
-top : 400px;
-}
+td{width:100px;text-align: center;}
+#table_td_label{font-weight:bold;}
+.table_td_label_ID{letter-spacing: 15px;}
 
 </style>
+
 <script>
 function foundIDPASS() 
 {
@@ -144,68 +137,46 @@ function foundIDPASS()
 	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
 }
 </script>
+
 <title>로그인</title>
 </head>
-<body align="center">
-<br><br>
-<hr>
-<br><br>
 
-<div id="Web_Cell" >Web Cell</div>
+<body>
+
+<div id="Div_Top" >Web Cell</div>
+
+<!-- 없는 아이디/비밀번호 입력시 팝업창 -->
 <c:if test='${fail=="fail"}'>
-<script>
-	alert("아이디 혹은 패스워드가 다릅니다.");
-</script>
-
+	<script>
+		alert("아이디 혹은 패스워드가 다릅니다.");
+	</script>
 </c:if>
-<c:if test="${id == null}">
-	<form method="post" action="login.do" name="loginFrom">
-	<center>
-	<table width="auto" cellpadding="0" cellspacing="0" align="center" border="0">
-	<tr>
-		<td align="center" class="i">I &nbsp &nbsp D</td>
-		<td align="center"><input type="text" class="text_login" name="id" placeholder="아이디" required placeholder="ID 입력"></td>
-	</tr>
-	<tr>
-		<td align="center" class="i">PASSWORD</td>
-		<td><input type="password" class="text_login" name="password" placeholder="비밀번호" required placeholder="Password 입력"></td>
-	</tr>
+
+<!-- 로그인이 되지 않은 경우 -->
+<form method="post" action="login.do" name="loginFrom">
+<div id="Div_middle">
+	<table>
+		<tr>
+			<td id="table_td_label" class="table_td_label_ID">ID</td>
+			<td><input type="text" class="text_login" name="id" placeholder="아이디" required placeholder="ID 입력"></td>
+		</tr>
+		<tr>
+			<td id="table_td_label">PASSWORD</td>
+			<td><input type="password" class="text_login" name="password" placeholder="비밀번호" required placeholder="Password 입력"></td>
+		</tr>
 	</table>
-	</center>
-<br>
-<br>
-<br>
-	
-		<div id="idpw"><input class="button" type="submit" value="login">
-		<input class="button" type="button" value="regist" onclick="javascript:window.location='join.do'">
-	</div><br>
-	<div id="idpws"><input width="1" class="button" type="button" value="Id·Pw Search" onclick='foundIDPASS()'></div>
+</div>
 
-	
-	</form>
-</c:if>
-<hr>
-<c:if test="${id != null }">
-				<table width="260" cellpadding="0" cellspacing="0" align="center" border="1">
-						<tr>
-						<div colspan="2" class="loginPro_div" id="login_Id">${id}님의 엑셀<br></div>
-								<form method="post" action="logout.do">
-									<input type="submit" value="로그아웃" class="logout_button">
-								</form>
-						</tr>
-						</table>
-						<tr>
-							<td>
-								<input type="button" value="게시글 이동(임시)" onClick="javascript:window.location='list.do'">
-							</td>							
-							<td>
-								<form action="myPage.do">
-									<input type="submit" value="나의 정보" class="mypage_button">
-								</form>
-							</td>
-						</tr>
-					</table>
-				</td>
-</c:if>
+
+	<div id="Div_Bottom">
+		<div id="Div_Bottom_1">
+			<input class="button" type="submit" value="login">
+			<input class="button" type="button" value="Join" onclick="javascript:window.location='join.do'">
+		</div>
+		<div id="Div_Bottom_2">
+			<input width="1" class="button" type="button" value="Id·Pw Search" onclick='foundIDPASS()'>
+		</div>
+	</div>
+</form>
 </body>
 </html>

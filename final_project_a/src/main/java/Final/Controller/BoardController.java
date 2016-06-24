@@ -47,6 +47,12 @@ public class BoardController {
 		return new ModelAndView("BoardPage/result", "success", success);
 
 	}
+	@RequestMapping("/newdivedit.do")
+	public String moveExcel()
+	{
+		//return "MenuBar_Testing";
+		return "bar";
+	}
 
 	
 }
