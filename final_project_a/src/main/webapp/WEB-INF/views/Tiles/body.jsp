@@ -12,58 +12,35 @@
 <link rel="stylesheet" href="<c:url value='/resources/style.css'/>" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style type="text/css">
-#address {
-	text-transform: uppercase;
-}
 
-.divcoll {
-	overflow: hidden;
-	height: 20px;
-	/* width: 90px; */
-	/* position:absolute;   */
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
 
-.textselect {
-	overflow: hidden;
-	border-style: solid;
-	border-width: 1px;
-	word-wrap: break-word;
-}
-
-.tdselect {
-	border-color: #0100FF;
-	background-color: #CDCDCD;
-	/* overflow-x:auto; */
-}
-
-table, td, th {
-	border-style: solid;
-	border-width: 1px;
-	border-color: #BCE55C;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-tr, td {
-	width: 90px;
-	height: 22px;
-}
-
-#viewtable table{border-collapse: collapse; width: 100%;}
-#viewtable thead{float: left; width: 2000px;}
-#viewtable thead th{width: 90px;}
-#viewtable tbody{overflow-y: auto; overflow-x: hidden; float: left; width: 2017px;height: 750px;  }
-#viewtable tbody tr{display: table; width: 2000px;}
-#viewtable tbody td{width: 90px;}
-#viewtable colgroup col{width:200;}
 </style>
+
+<%-- <c:if test="${map!=null}">
+<c:forEach var="m_obj" items="${map}" varStatus="status">
+   <c:if test="${m_obj.value!=''}">   
+   <script>
+      $('#${m_obj.key}').text("${m_obj.value}")
+   </script>
+   </c:if>
+</c:forEach>
+</c:if> --%>
+
 <script>
+	function popup(){
+   		var  screenW=screen.availWidth;
+  		 var  screenH=screen.availHeight;
+  		 var popW = 600;
+  		 var popH = 600;
+  		 var l=(screenW-popW) / 2 ;
+  		 var t=(screenH-popH) / 2 ;
+   
+  		 url = "join.do";
+  		 window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
+   
+	}
+
+
 	function submit1() {
 
 		for (var j = 1; j < 100; j++) {
@@ -74,6 +51,9 @@ tr, td {
 		}
 		$('#formtable').submit();
 	}
+	
+	
+	
 	function submit2() {
 		var a = $('.textselect').text();
 
@@ -140,8 +120,7 @@ tr, td {
 			var stringid = $('.tdselect').attr('id').substring(0, 3) + sum;
 			var value = $('#inA1').val();
 			$('.tdselect').attr('class', 'celltd');
-			$('.textselect').attr('class', 'divcoll').attr('contentEditable',
-					'false');
+			$('.textselect').attr('class', 'divcoll').attr('contentEditable','false');
 			$('#' + stringid).attr('class', 'tdselect');
 			$('.tdselect > .divcoll').attr('class', 'textselect').attr(
 					'contentEditable', 'true').focus();
@@ -286,7 +265,7 @@ tr, td {
 			tag += '<tr id='+j+' class="divrow">'
 			/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
 			for (var i = 0; i < th.length; i++) {
-				tag += '<td   class="celltd" id=td'+th[i]+j+'><div   contentEditable="false" id='
+				tag += '<td   class="celltd" id=td'+th[i]+j+'><div contentEditable="false" id='
 						+ th[i]
 						+ j
 						+ ' onkeyDown="key_event()" class="divcoll"></div></td>'
@@ -308,28 +287,17 @@ tr, td {
 		}
 		/* 헤더고정 */
 		 var jbOffset = $('.jbMenu').offset();
-		$(window).scroll(function() {
+		 $(window).scroll(function() {
 			if ($(document).scrollLeft() > jbOffset.left) {
 				$('.jbMenu').addClass('jbFixed');
+				$('.jbMenu2').addClass('jbFixed2');
 				$('.jbContent').addClass('jbMove');
 			} else {
 				$('.jbMenu').removeClass('jbFixed');
+				$('.jbMenu2').removeClass('jbFixed2');
 				$('.jbContent').removeClass('jbMove');
 			}
-		}); 
-		/* 
-		var table = $("#viewtable");
-
-	    $(window).scroll(function() {
-	        var windowTop = $(window).scrollTop();
-
-	        if (windowTop > table.offset().top) {
-	            $("thead", table).addClass("Fixed").css("top", windowTop);
-	        }
-	        else {
-	            $("thead", table).removeClass("Fixed");
-	        }
-	    }); */
+		});
 	});
 	
 	function one_click(divId){
@@ -351,7 +319,7 @@ tr, td {
 		
 	}
 	$(function() {
-
+		
 		$('td', this).click(function() {
 			$('.tdselect').attr('class', 'celltd');
 			$(this).attr('class', 'tdselect');
@@ -391,7 +359,6 @@ tr, td {
 			$('#' + tableTdId).attr('class', 'textselect').focus();
 			$('.textselect').attr('contentEditable', 'true');
 			$('.textselect').attr('ondrag', 'drag(this, event)');
-
 		});
 
 		$('#address').keydown(function(e) {
@@ -416,28 +383,9 @@ tr, td {
 		
 	}
 	
-	function insertData(){
-		if(${map!=null}){
-		var th = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
-					"X", "Y", "Z" ];
-		for(var i=0; i<=${rows}; i++){
-			for(var j=0; j<=${cells}; j++){
-				var c = th[j]+"";
-				var str = c+""+i;
-				
-				var data = ${map.A1};
-				
-				$('#A1').val("data");
-			}
-		  } 
-		}
-	} 
 </script>
-
 </head>
 <body>
-
 	<div class="jbContent" >
 		<div>
 		<table cellpadding="0" cellspacing="0" class="view" id="viewtable">
