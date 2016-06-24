@@ -50,7 +50,7 @@ public class BoardController {
 	@RequestMapping("/newdivedit.do")
 	public String moveExcel()
 	{
-		return "newdivedit";
+		return "test";
 	}
 
 	
