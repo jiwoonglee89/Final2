@@ -1,45 +1,6 @@
-/* tables */
-table.tablesorter {
-	font-family:arial;
-	background-color: #CDCDCD;
-	margin:10px 0pt 15px;
-	font-size: 8pt;
-	width: 100%;
-	text-align: left;
-}
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
-	border: 1px solid #FFF;
-	font-size: 8pt;
-	padding: 4px;
-}
-table.tablesorter thead tr .header {
-	background-image: url(http://www.tablesorter.ru/themes/blue/bg.gif);
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-table.tablesorter tbody td {
-	color: #3D3D3D;
-	padding: 4px;
-	background-color: #FFF;
-	vertical-align: top;
-}
-table.tablesorter tbody tr.odd td {
-	background-color:#F0F0F6;
-}
-table.tablesorter thead tr .headerSortUp {
-	background-image: url(http://www.tablesorter.ru/themes/blue/asc.gif);
-}
-table.tablesorter thead tr .headerSortDown {
-	background-image: url(http://www.tablesorter.ru/themes/blue/desc.gif);
-}
-table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-background-color: #8dbdd8;
-}
-
-/* 메뉴바상단 */
+/* MenuBar1 */
 form {
+	
 }
 
 body {
@@ -66,8 +27,146 @@ body {
 	position: fixed;
 	top: 0px;
 }
-.jbMove{
+
+.jbFixed2 {
+	position: fixed;
+	top: 68px;
+}
+
+.jbMove {
 	height: 2000px;
 	position: relative;
-	top: 100px;
+	top: 110px;
+}
+
+/* MenuBar2 */
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #3fa338;
+}
+
+li {
+	float: left;
+	border-right: 1.5px solid #bbb;
+}
+
+li a, .dropbtn {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+li.dropdown {
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+#address {
+	text-transform: uppercase;
+}
+
+.divcoll {
+	overflow: hidden;
+	height: 20px;
+	/* width: 90px; */
+	/* position:absolute;   */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.textselect {
+	overflow: hidden;
+	border-style: solid;
+	border-width: 1px;
+	word-wrap: break-word;
+}
+
+.tdselect {
+	border-color: #0100FF;
+	background-color: #CDCDCD;
+	/* overflow-x:auto; */
+}
+
+table, td, th {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #BCE55C;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+tr, td {
+	width: 90px;
+	height: 22px;
+}
+
+#viewtable table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#viewtable thead {
+	float: left;
+	width: 2000px;
+}
+
+#viewtable thead th {
+	width: 90px;
+}
+
+#viewtable tbody {
+	overflow-y: auto;
+	overflow-x: hidden;
+	float: left;
+	width: 2017px;
+	height: 750px;
+}
+
+#viewtable tbody tr {
+	display: table;
+	width: 2000px;
+}
+
+#viewtable tbody td {
+	width: 90px;
+}
+
+#viewtable colgroup col {
+	width: 200;
 }

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,7 +68,7 @@ public class ExcelController {
 
 		File file = new File("C:/Users/user2/Downloads/Formulas.xlsx");
 		FileInputStream fis = new FileInputStream(file);
-		System.out.println("파일형식::::" + file.getName().endsWith(".xls"));
+		
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
 		} else {
@@ -94,6 +94,7 @@ public class ExcelController {
 			if (row != null) {
 				int cells = row.getPhysicalNumberOfCells();
 				System.out.println("cells:::"+cells);
+				request.setAttribute("cells", new Integer(colNum));
 				
 				for (columnindex = 0; columnindex <= cells+1; columnindex++) {
 					Cell cell = row.getCell(columnindex);
@@ -101,7 +102,7 @@ public class ExcelController {
 					char rowrowrow = (char) (65 + columnindex);
 
 					System.out.println("rows:::" + rowrowrow + "cells:::" + colNum);
-					System.out.println(rowrowrow + "" + colNum);
+					
 					cellName = rowrowrow + "" + colNum;
 
 					String value = "";
@@ -131,14 +132,15 @@ public class ExcelController {
 					}
 					System.out.println("cellName:::" + cellName);
 					map.put(cellName, value);
+					request.setAttribute("key", cellName);
+					request.setAttribute("value", value);
 					request.setAttribute("map", map);
-					request.setAttribute("rows", rows);
-					request.setAttribute("cells", cells);
+					request.setAttribute("rows", new Integer(rows));
+					
 
 					System.out.println("셀 내용 :" + value);
 					// cell 은 값
 				}
-
 			}
 		}
 		return "Tiles/excel_layout";
