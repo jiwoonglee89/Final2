@@ -50,7 +50,8 @@ public class BoardController {
 	@RequestMapping("/newdivedit.do")
 	public String moveExcel()
 	{
-		return "test";
+		//return "MenuBar_Testing";
+		return "bar";
 	}
 
 	

@@ -15,7 +15,7 @@
   	top: 0px;
   	left: 0px;
 }
-
+/* 했음 */
 #topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
 	list-style-type: none; /* 메인 메뉴 안의 ul 내부의 목록 표시를 없애줌 */
 	margin: 0px; /* 메인 메뉴 안의 ul의 margin을 없앰 */
@@ -33,7 +33,7 @@
 	position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 */
 
 }
-
+/* 했음 */
 .menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
 	text-decoration: none; /* a 태그의 꾸밈 효과 제거 */
 	display: block; /* a 태그의 클릭 범위를 넓힘 */
@@ -42,29 +42,29 @@
 	font-weight: bold; /* 폰트를 굵게 설정 */
 	font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */
 }
-
+/* 했음 */
 .menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */
 	color: white;
 }
-
+/* 했음 */
 .topMenuLi:hover .menuLink { /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
 	color: #ffff00; /* 글씨 색 빨간색 */
 	 background-color: rgba( 255, 255, 255, 0.1 ); /* 배경색을 밝은 회색으로 설정 */
 	
 	
 }
-
+/* 했음 */
 .submenuLink { /* 하위 메뉴의 a 태그 스타일 설정 */
 	color: #2d2d2d; /* 글씨 색을 RGB(2D2D2D)로 설정 */
 	background-color: white; /* 배경색을 흰색으로 설정 */
 	border: solid 1px black; /* 테두리를 설정 */
 	margin-top: -1px; /* 위 칸의 하단 테두리와 아래칸의 상단 테두리가 겹쳐지도록 설덩 */
 }
-
+/* 했음 */
 .longLink { /* 좀 더 긴 메뉴 스타일 설정 */
 	width: 190px; /* 넓이는 190px로 설정 */
 }
-
+/* 했음 */
 .submenu { /* 하위 메뉴 스타일 설정 */
 	position: absolute; /* html의 flow에 영향을 미치지 않게 absolute 설정 */
 	height: 0px; /* 초기 높이는 0px로 설정 */
