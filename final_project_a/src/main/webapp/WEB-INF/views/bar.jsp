@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="<c:url value="resources/contsrch.js" />"></script>
 <script>
 function popup()
 {
@@ -18,6 +20,7 @@ function popup()
 	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
 	
 }
+
 </script>
 <style>
 ul {
@@ -113,7 +116,7 @@ li.dropdown {
     </div>
   </li>
   <li><a href="#">엑셀목록</a></li>
-  <li id="search"><div><input type="text" size="20"></div></li>
+  <li id="search"><div><input type="text" name="search_text" id="search_text" size="20"></div></li>
 </ul>
 
 </body>
