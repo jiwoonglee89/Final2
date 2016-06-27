@@ -116,7 +116,7 @@ li.dropdown {
       <a href="#">시트추가</a>
     </div>
   </li>
-  <li><a href="#">엑셀목록</a></li>
+  <li><a href="board.do">엑셀목록</a></li>
   <li id="search"><div><input type="text" name="search_text" id="search_text" size="20" onkeypress=
 	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
 </ul>
