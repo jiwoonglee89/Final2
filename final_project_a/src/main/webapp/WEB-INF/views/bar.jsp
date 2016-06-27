@@ -74,7 +74,7 @@ li.dropdown {
 
 <ul>
   <li><a class="active" href="#">저장</a></li>
-  <li><a href="#">다운로드</a></li>
+  <li><a href="download.do">다운로드</a></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">함수</a>
     <div class="dropdown-content">
