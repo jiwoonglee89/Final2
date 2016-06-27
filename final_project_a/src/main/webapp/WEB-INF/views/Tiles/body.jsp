@@ -192,31 +192,44 @@
 	}
 
 	/* thead 생성 */
-	function createTable() {
-		var tag = "<thead id='thead' style='position:fixed;'><tr>"
-		/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
-		for (var a = 0; a < th.length; a++) {
-			tag += '<th id=th'+th[a]+'><div style="width:90px;">' + th[a] + '</div></th>'
-		}
-		tag += "</tr></thead>"
-		tag += "<tbody>"
+	
+	function createThead(){
+		
+		var tag = "";
+			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
+			tag += '<tr class="thtr">'
+			for (var a = 0; a < th.length; a++) {
+				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha"><div style="width:90px;">'+ th[a] +'</div></th>';
+			
+			}
+			tag+= '</tr>'
+			var Thead = document.getElementById("createThead");
+			Thead.innerHTML = tag;
+		
+	}
+	/* tbody생성 */
+	function createTbody(){
+		var tag ="";
+		
+			/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
 			for (var j = 1; j <= 100; j++) {
 				tag += '<tr id='+j+' class="divrow">'
 				/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
 				for (var i = 0; i < th.length; i++) {
-					tag += '<td class="celltd" id=td'+th[i]+j+'><div contentEditable="false" id='
+					tag += '<td   class="celltd" id=td'+th[i]+j+'><div   contentEditable="false" id='
 							+ th[i]
 							+ j
-							+ ' onkeyDown="key_event()" class="divcoll"></div></td>'
+							+ ' onkeyDown="key_event()" class="divcoll" ondrag="drag(this,e)" ondrop="drop(this,e)" ></div></td>'
 				}
 				tag += '</tr>'
 			}
-		tag+= "</tbody>"
-		
-		var Thead = document.getElementById("viewtable");
-		Thead.innerHTML = tag;
-
+			
+			
+			var Tbody = document.getElementById("createTbody");
+			Tbody.innerHTML = tag;
 	}
+	
+	
 	//셀 클릭시 셀값 자동 추가
 	function one_click(divId){
 		if($('.textselect' ).text().search('=')!=-1  ){  
@@ -236,7 +249,8 @@
 	
 	$(document).ready(function() {
 		/* head body 생성 */
-		createTable()
+		createThead();
+		createTbody();
 		createForm();
 		expressionDiv()
 		for (var z = 1; z < 100; z++) {
@@ -244,15 +258,18 @@
 		}
 		/* 헤더고정 */
 		 var jbOffset = $('.jbMenu').offset();
+		
 		 $(window).scroll(function() {
 			if ($(document).scrollLeft() > jbOffset.left) {
 				$('.jbMenu').addClass('jbFixed');
 				$('.jbMenu2').addClass('jbFixed2');
 				$('.jbContent').addClass('jbMove');
+				$('.head').addClass('jbContent');
 			} else {
 				$('.jbMenu').removeClass('jbFixed');	
 				$('.jbMenu2').removeClass('jbFixed2');
-				$('.jbContent').removeClass('jbMove');
+				$('.jbContent').removeClass('jbMove'); 
+				$('.head').removeClass('jbContent');
 			}
 		});
 		 
@@ -318,8 +335,10 @@
 </head>
 <body> 
 	<div class="jbContent" style="width:2000px; height:800px; ">
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" style='float: left'>
-		</table>
+		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">
+		<tbody id="createTbody">
+		</tbody>
+	</table>
 	</div>
 	<div id="divForm"></div>
 	<span id="expression_Div" class="expression_class_Div"></span>
