@@ -1,24 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script>
-function popup()
-{
-	var  screenW=screen.availWidth;
-	var  screenH=screen.availHeight;
-	var popW = 600;
-	var popH = 600;
-	var l=(screenW-popW) / 2 ;
-	var t=(screenH-popH) / 2 ;
-	
-	url = "join.do";
-	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
-	
-}
-</script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <style>
 ul {
     list-style-type: none;
@@ -33,7 +22,7 @@ li {
     border-right: 1.5px solid #bbb;
 }
 
-li a, .dropbtn {
+li a, .dropbtn{
     display: inline-block;
     color: white;
     text-align: center;
@@ -41,7 +30,7 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+li a:hover, .dropdown:hover .dropbtn{
     background-color: rgba( 255, 255, 255, 0.5 );
 }
 
@@ -57,7 +46,7 @@ li.dropdown {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown-content a { 
+.dropdown-content a{ 
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -65,7 +54,7 @@ li.dropdown {
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover{background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -79,7 +68,6 @@ li.dropdown {
 	padding-right:10px;
 	
 }
-
 </style>
 </head>
 <body>
@@ -94,7 +82,8 @@ li.dropdown {
       <a href="#">합계</a>
       <a href="#">최대값</a>
       <a href="#">최대값</a>
-      <a href="#" onclick="popup()" >더보기...</a>
+  <!--<a href="#">더보기...</a>-->
+  	  <button>더보기</button>
     </div>
   </li>
  <li class="dropdown">
@@ -112,9 +101,47 @@ li.dropdown {
       <a href="#">시트추가</a>
     </div>
   </li>
-  <li><a href="#">엑셀목록</a></li>
-  <li id="search"><div><input type="text" size="20"></div></li>
+  <li><a href="board.do">엑셀목록</a></li>
+  <li id="search"><div><input type="text" name="search_text" id="search_text" size="20" onkeypress=
+	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
 </ul>
-
 </body>
+<script>
+var TRange=null;
+
+function findString (str) {
+	if (parseInt(navigator.appVersion)<4)
+		return;
+	var strFound;
+	if (window.find) {
+		strFound=self.find(str);
+  		if (!strFound) {
+   			strFound=self.find(str,0,1);
+   		while (self.find(str,0,1)) 
+   			continue;
+  		}
+ 	}
+	else if (navigator.appName.indexOf("Microsoft")!=-1) {
+		if (TRange!=null) {
+   			TRange.collapse(false);
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+  		if (TRange==null || strFound==0) {
+   			TRange=self.document.body.createTextRange();
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+ 	}
+ 	else if (navigator.appName=="Opera") {
+  		alert ("Opera browsers not supported, sorry...")
+  	return;
+ 	}
+ 	if (!strFound) 
+ 		alert ("String '"+str+"' not found!")
+ 	return;
+}
+</script>
 </html>
