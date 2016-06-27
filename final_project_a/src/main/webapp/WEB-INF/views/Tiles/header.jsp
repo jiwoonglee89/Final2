@@ -12,7 +12,7 @@
 		<ul>
   <li><input type="button" onclick="submit()" value="저장"/>
   <a class="active" href="#">저장</a></li>
-  <li><a href="#">다운로드</a></li>
+  <li><a href="download.do" onclick="submit()">다운로드</a></li>
   <li><input type="button" id="insertBtn" value="불러오기"/></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">함수</a>

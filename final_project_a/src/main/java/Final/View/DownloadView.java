@@ -23,15 +23,17 @@ public class DownloadView extends AbstractXlsView{
 		response.setHeader("Content-Disposition", "attachment; filename=\"abc.xls\";"); 
 		//sheet 만들기
 		Sheet sheet = createFirstView(workbook);
+		System.out.println(model.get("A2"));
 		//label 만들기
+		
 		String value = null;
 		int rowNum = 0;
-		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < 26; j++) {
+		for (int j = 0; j < 26; j++) {
+			for (int i = 0; i < 100; i++) {
 				char c = (char)(65+j);
 				String str = ""+c+i;
 				value = (String)model.get(str);
-				createRow_insertValue(sheet,value,j, rowNum);
+				createRow_insertValue(sheet, value, i, rowNum);
 			}
 			rowNum++;
 		}

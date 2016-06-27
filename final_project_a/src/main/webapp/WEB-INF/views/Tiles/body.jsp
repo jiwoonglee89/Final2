@@ -65,7 +65,8 @@
 				   }
 			   }
 		   
-			$('#formtable').submit(); 
+			$('#formtable').submit();
+			return false;
 	}
 	
 	function key_event() {
