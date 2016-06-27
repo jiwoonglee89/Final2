@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="<c:url value="resources/contsrch.js" />"></script>
 <script>
+
 function popup()
 {
 	var  screenW=screen.availWidth;
@@ -116,8 +117,46 @@ li.dropdown {
     </div>
   </li>
   <li><a href="#">엑셀목록</a></li>
-  <li id="search"><div><input type="text" name="search_text" id="search_text" size="20"></div></li>
+  <li id="search"><div><input type="text" name="search_text" id="search_text" size="20" onkeypress=
+	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
 </ul>
-
 </body>
+<script>
+var TRange=null;
+
+function findString (str) {
+	if (parseInt(navigator.appVersion)<4)
+		return;
+	var strFound;
+	if (window.find) {
+		strFound=self.find(str);
+  		if (!strFound) {
+   			strFound=self.find(str,0,1);
+   		while (self.find(str,0,1)) 
+   			continue;
+  		}
+ 	}
+	else if (navigator.appName.indexOf("Microsoft")!=-1) {
+		if (TRange!=null) {
+   			TRange.collapse(false);
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+  		if (TRange==null || strFound==0) {
+   			TRange=self.document.body.createTextRange();
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+ 	}
+ 	else if (navigator.appName=="Opera") {
+  		alert ("Opera browsers not supported, sorry...")
+  	return;
+ 	}
+ 	if (!strFound) 
+ 		alert ("String '"+str+"' not found!")
+ 	return;
+}
+</script>
 </html>

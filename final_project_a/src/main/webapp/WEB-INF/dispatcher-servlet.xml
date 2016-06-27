@@ -47,8 +47,6 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
 
- 	
-		 
 	<bean id="viewResolver1" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 	
 	
