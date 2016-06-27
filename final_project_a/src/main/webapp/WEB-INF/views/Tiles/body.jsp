@@ -15,18 +15,20 @@
 
 
 </style>
-
-<%-- <c:if test="${map!=null}">
-<c:forEach var="m_obj" items="${map}" varStatus="status">
-   <c:if test="${m_obj.value!=''}">   
-   <script>
-      $('#${m_obj.key}').text("${m_obj.value}")
-   </script>
-   </c:if>
-</c:forEach>
-</c:if> --%>
-
 <script>
+	function page_load(){
+		<c:if test="${map!=null}">
+		<c:forEach var="m_obj" items="${map}"  varStatus="status">
+		
+		var a ="${m_obj.key}";
+		var b = "${m_obj.value}";
+	
+		$('#'+a).text(b);
+	  
+		</c:forEach>
+		</c:if> 
+	}
+
 	function popup(){
    		var  screenW=screen.availWidth;
   		 var  screenH=screen.availHeight;
@@ -39,102 +41,57 @@
   		 window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
    
 	}
+	
+	function span_key_up(){
+		
+		$('.textselect').keyup(function(e){	
+			var a = $('.textselect').attr('id');
+			var b = $('.textselect').text();
+			$('#exp'+a).text(b);
+			$('#formula').val(b);
+			$('#exp'+a).attr('class','write');
+		
+		});
+			
+	}
 
 
-	function submit1() {
-
-		for (var j = 1; j < 100; j++) {
-			for (var i = 1; i < th.length; i++) {
-				var kkkiii = $('#' + th[i] + j).text();
-				$('#in' + th[i] + j).val(kkkiii);
-			}
-		}
-		$('#formtable').submit();
+	function submit(){
+		
+		   for (var j = 1; j < 100; j++) {
+			   for (var i = 1; i < th.length; i++) {
+				   var kkkiii= $('#'+th[i]+j).text();
+				   $('#in'+th[i]+j).val(kkkiii);
+				   }
+			   }
+		   
+			$('#formtable').submit(); 
 	}
 	
-	
-	
-	function submit2() {
-		var a = $('.textselect').text();
+	function key_event() {
 
-		if (event.keyCode == 13 && a.search("=") != -1) {
+		//수식과 셀 동기화
+		span_key_up();
+		
+
+		//엔터키
+		if(event.keyCode == 13){	
 			event.preventDefault();
-			 //함수식 추가
-		  	 var tselect_Id = $('.textselect').attr('id');
-			 	
-			   var exp_Id = "exp"+tselect_Id;
-			
-			   $('#'+exp_Id).text(a);
-			$('#formula').val(a);
-			var b = $('#formula').val();
-			var c = b.indexOf("(") + 1;
-			var d = b.indexOf(")");
-			var e = b.substring(c, d);
-			var f = e.indexOf(":");
-
-			if (f != -1) {
-				var first = e.substring('0', f).toUpperCase();
-				var second = e.substring(f + 1).toUpperCase();
-			} else {
-				var first = e.toUpperCase();
-			}
-			if (a.search("sum") != -1) {
-				$('.textselect').text(cell_plus(first, second));
-			} else if (a.search("multi") != -1) {
-				$('.textselect').text(multi(first, second));
-			} else if (a.search("max") != -1) {
-				$('.textselect').text(num_max(first, second));
-			} else if (a.search("min") != -1) {
-				$('.textselect').text(num_min(first, second));
-			} else if (a.search("abs") != -1) {
-				$('.textselect').text(num_abs(first));
-			} else if (a.search("avg") != -1) {
-				$('.textselect').text(avg(first, second));
-			} else if (a.search("acos") != -1) {
-				$('.textselect').text(num_acos(first));
-			} else if (a.search("acosh") != -1) {
-				$('.textselect').text(num_acosh(first));
-			} else if (a.search("asin") != -1) {
-				$('.textselect').text(num_asin(first));
-			} else if (a.search("asinh") != -1) {
-				$('.textselect').text(num_asinh(first));
-			} else if (a.search("atan") != -1) {
-				$('.textselect').text(num_atan(first));
-			} else if (a.search("atan2") != -1) {
-				$('.textselect').text(num_atan2(first, second));
-			} else if (a.search("floor") != -1) {
-				$('.textselect').text(num_floor(first));
-			} else if (a.search("round") != -1) {
-				$('.textselect').text(num_round(first));
-			} else if (a.search("sqrt") != -1) {
-				$('.textselect').text(num_sqrt(first));
-			} else {
-				alert("함수식이 틀렸습니다.");
-			}
-		}
-
-		else if (event.keyCode == 13) {
-			event.preventDefault();
+			submit();
 			var numtdid = $('.tdselect').attr('id').substring(3, 6);
 			var sum = Number(numtdid) + 1;
 			var stringid = $('.tdselect').attr('id').substring(0, 3) + sum;
-			var value = $('#inA1').val();
+			var value=$('#inA1').val();
 			$('.tdselect').attr('class', 'celltd');
-			$('.textselect').attr('class', 'divcoll').attr('contentEditable','false');
+			$('.textselect').attr('class', 'divcoll').attr('contentEditable',
+					'false');
 			$('#' + stringid).attr('class', 'tdselect');
 			$('.tdselect > .divcoll').attr('class', 'textselect').attr(
 					'contentEditable', 'true').focus();
 			$('#address').val(stringid.substring(2, 6));
-
+			
 		}
-
-	}
-
-	
-	function key_event() {
-
-		submit2();
-
+		
 		//오른쪽 방향키
 		if (event.keyCode == 39) {
 			var colltdid = $('.tdselect').attr('id').substring(2, 3);
@@ -144,11 +101,9 @@
 			var id = 'td' + re_row_tdid + rowtdid;
 
 			$('.tdselect').attr('class', 'celltd');
-			$('.textselect').attr('class', 'divcoll').attr('contentEditable',
-					'false');
+			$('.textselect').attr('class', 'divcoll').attr('contentEditable','false');
 			$('#' + id).attr('class', 'tdselect');
-			$('.tdselect > .divcoll').attr('class', 'textselect').attr(
-					'contentEditable', 'true').focus();
+			$('.tdselect > .divcoll').attr('class', 'textselect').attr('contentEditable', 'true').focus();
 			$('#address').val(id.substring(2, 6));
 		}
 		//왼쪽방향키
@@ -221,7 +176,7 @@
 	//저장 폼 생성
 	function createForm() {
 
-		var tag = '<form id="formtable"  action="save.do" method="post">'
+		var tag = '<form id="formtable"  action="save1.do" method="post">'
 
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
@@ -276,6 +231,24 @@
 		var Tbody = document.getElementById("createTbody");
 		Tbody.innerHTML = tag;
 	}
+	
+	//셀 클릭시 셀값 자동 추가
+	function one_click(divId){
+		if($('.textselect' ).text().search('=')!=-1  ){  
+		
+			if(divId != $('.textselect').attr('id') ){
+			
+	/* 			var tselect_Id = $('.textselect').attr('id'); */
+				
+				var tx = $('.textselect').text();
+			
+		$('.textselect').text(tx+divId).focus(); 
+		 		
+			}
+		}
+	}
+	
+	
 	$(document).ready(function() {
 		/* head body 생성 */
 		createThead();
@@ -298,28 +271,12 @@
 				$('.jbContent').removeClass('jbMove');
 			}
 		});
+		 
+		page_load();
 	});
 	
-	function one_click(divId){
-		if( $('.textselect' ).text().search('=')!=-1 ){  
-		
-			if(divId != $('.textselect').attr('id')){
-			
-				var tselect_Id = $('.textselect').attr('id');
-				
-				var tx = $('.textselect').text();
-			
-		$('.textselect').text(tx+divId); 
-		 		
-
-				
-			}
-		}
-		
-		
-	}
 	$(function() {
-		
+		//체크해야함
 		$('td', this).click(function() {
 			$('.tdselect').attr('class', 'celltd');
 			$(this).attr('class', 'tdselect');
@@ -358,7 +315,6 @@
 			$('.textselect').attr('class', 'divcoll');
 			$('#' + tableTdId).attr('class', 'textselect').focus();
 			$('.textselect').attr('contentEditable', 'true');
-			$('.textselect').attr('ondrag', 'drag(this, event)');
 		});
 
 		$('#address').keydown(function(e) {
@@ -399,6 +355,6 @@
 		</div>
 	</div>
 	<div id="divForm"></div>
-<span id="expression_Div" class="expression_class_Div"></span>
+	<span id="expression_Div" class="expression_class_Div"></span>
 </body>
 </html>
