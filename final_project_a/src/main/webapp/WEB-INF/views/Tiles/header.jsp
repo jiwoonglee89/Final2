@@ -54,5 +54,11 @@
 			</form>
 		</div>
 		</div>
+		<div class="head">
+		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">
+		<thead id="createThead">
+		</thead>
+		</table>
+		</div>
 </body>
 </html>
