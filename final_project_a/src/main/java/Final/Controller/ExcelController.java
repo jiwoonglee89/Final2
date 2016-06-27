@@ -52,11 +52,6 @@ public class ExcelController {
 		return "Tiles/excel_layout";
 	}
 
-	@RequestMapping("/save.do")
-	public ModelAndView save(HttpServletRequest request) {
-		return new ModelAndView("downView", "request", request);
-	}
-
 	@SuppressWarnings("resource")
 	   @RequestMapping(value="/save1.do", method=RequestMethod.POST)
 	   public String save1(HttpServletRequest request){
