@@ -6,23 +6,6 @@
 <meta charset="UTF-8">
 <title></title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-
-function popup()
-{
-	var  screenW=screen.availWidth;
-	var  screenH=screen.availHeight;
-	var popW = 600;
-	var popH = 600;
-	var l=(screenW-popW) / 2 ;
-	var t=(screenH-popH) / 2 ;
-	
-	url = "join.do";
-	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
-	
-}
-
-</script>
 <style>
 ul {
     list-style-type: none;
@@ -83,7 +66,6 @@ li.dropdown {
 	padding-right:10px;
 	
 }
-
 </style>
 </head>
 <body>
@@ -98,7 +80,7 @@ li.dropdown {
       <a href="#">합계</a>
       <a href="#">최대값</a>
       <a href="#">최대값</a>
-      <a href="#" onclick="popup()" >더보기...</a>
+      <a href="#" data-target="#moreFunction" type="button" data-toggle="modal">더보기...</a>
     </div>
   </li>
  <li class="dropdown">
@@ -116,7 +98,7 @@ li.dropdown {
       <a href="#">시트추가</a>
     </div>
   </li>
-  <li><a href="#">엑셀목록</a></li>
+  <li><a href="board.do">엑셀목록</a></li>
   <li id="search"><div><input type="text" name="search_text" id="search_text" size="20" onkeypress=
 	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
 </ul>
