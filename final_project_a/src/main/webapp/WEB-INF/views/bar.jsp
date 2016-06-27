@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title></title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <style>
 ul {
     list-style-type: none;
@@ -20,7 +22,7 @@ li {
     border-right: 1.5px solid #bbb;
 }
 
-li a, .dropbtn {
+li a, .dropbtn{
     display: inline-block;
     color: white;
     text-align: center;
@@ -28,7 +30,7 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+li a:hover, .dropdown:hover .dropbtn{
     background-color: rgba( 255, 255, 255, 0.5 );
 }
 
@@ -44,7 +46,7 @@ li.dropdown {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown-content a { 
+.dropdown-content a{ 
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -52,7 +54,7 @@ li.dropdown {
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover{background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -80,7 +82,8 @@ li.dropdown {
       <a href="#">합계</a>
       <a href="#">최대값</a>
       <a href="#">최대값</a>
-      <a href="#" data-target="#moreFunction" type="button" data-toggle="modal">더보기...</a>
+  <!--<a href="#">더보기...</a>-->
+  	  <button>더보기</button>
     </div>
   </li>
  <li class="dropdown">
