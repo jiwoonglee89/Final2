@@ -5,7 +5,7 @@
 <head>
 <title> <tiles:getAsString name="title" /> </title>
 </head>
-<body  style="overflow-y:hidden;">
+<body  style="overflow:hidden;">
 <tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="body" />
 </body>
