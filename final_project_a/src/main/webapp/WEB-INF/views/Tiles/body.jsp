@@ -192,46 +192,31 @@
 	}
 
 	/* thead 생성 */
-	function createThead() {
-		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
-				"X", "Y", "Z" ];
-
-		var tag = ""
+	function createTable() {
+		var tag = "<thead id='thead' style='position:fixed;'><tr>"
 		/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
 		for (var a = 0; a < th.length; a++) {
-			tag += '<td id=th'+th[a]+'>' + th[a] + '</td>'
+			tag += '<th id=th'+th[a]+'><div style="width:90px;">' + th[a] + '</div></th>'
 		}
-
-		var Thead = document.getElementById("createThead");
+		tag += "</tr></thead>"
+		tag += "<tbody>"
+			for (var j = 1; j <= 100; j++) {
+				tag += '<tr id='+j+' class="divrow">'
+				/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
+				for (var i = 0; i < th.length; i++) {
+					tag += '<td class="celltd" id=td'+th[i]+j+'><div contentEditable="false" id='
+							+ th[i]
+							+ j
+							+ ' onkeyDown="key_event()" class="divcoll"></div></td>'
+				}
+				tag += '</tr>'
+			}
+		tag+= "</tbody>"
+		
+		var Thead = document.getElementById("viewtable");
 		Thead.innerHTML = tag;
 
 	}
-	
-	/* tbody생성 */
-	function createTbody() {
-		var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-				"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
-				"X", "Y", "Z" ];
-		var tag = "";
-
-		/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
-		for (var j = 1; j <= 100; j++) {
-			tag += '<tr id='+j+' class="divrow">'
-			/* 셀을 만들어준다. 아이디는 문자열 cell로 시작해서 th인덱스와 행번호와 합친다. */
-			for (var i = 0; i < th.length; i++) {
-				tag += '<td   class="celltd" id=td'+th[i]+j+'><div contentEditable="false" id='
-						+ th[i]
-						+ j
-						+ ' onkeyDown="key_event()" class="divcoll"></div></td>'
-			}
-			tag += '</tr>'
-		}
-
-		var Tbody = document.getElementById("createTbody");
-		Tbody.innerHTML = tag;
-	}
-	
 	//셀 클릭시 셀값 자동 추가
 	function one_click(divId){
 		if($('.textselect' ).text().search('=')!=-1  ){  
@@ -251,8 +236,7 @@
 	
 	$(document).ready(function() {
 		/* head body 생성 */
-		createThead();
-		createTbody();
+		createTable()
 		createForm();
 		expressionDiv()
 		for (var z = 1; z < 100; z++) {
@@ -266,7 +250,7 @@
 				$('.jbMenu2').addClass('jbFixed2');
 				$('.jbContent').addClass('jbMove');
 			} else {
-				$('.jbMenu').removeClass('jbFixed');
+				$('.jbMenu').removeClass('jbFixed');	
 				$('.jbMenu2').removeClass('jbFixed2');
 				$('.jbContent').removeClass('jbMove');
 			}
@@ -328,31 +312,14 @@
 		});
 
 	});
-	
-	function createCol(){
-		tag ="<col width='*'/>";
-		for(var i=0; i<26; i++){
-			tag += "<col width='90'/>"
-		}
-		var col = document.getElementById("createCol");
-		col.innerHTML = tag;
-		
-	}
+
 	
 </script>
 </head>
-<body>
-	<div class="jbContent" >
-		<div>
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable">
-		<colgroup id="createCol">
-		</colgroup>
-			<thead id="createThead">
-			</thead>
-			<tbody id="createTbody">
-			</tbody>
+<body> 
+	<div class="jbContent" style="width:2000px; height:800px; ">
+		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" style='float: left'>
 		</table>
-		</div>
 	</div>
 	<div id="divForm"></div>
 	<span id="expression_Div" class="expression_class_Div"></span>
