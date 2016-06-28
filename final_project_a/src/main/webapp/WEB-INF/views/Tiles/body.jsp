@@ -11,11 +11,12 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="<c:url value='/resources/style.css'/>" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<style type="text/css">
-
-
-</style>
+<style type="text/css"></style>
 <script>
+	function average(){
+			$('.tdselect .textselect').focus().text('=average(');
+	}
+	
 	function download(){
 		$('#formtable').attr('action','download.do');
 		submit();
@@ -186,8 +187,7 @@
 	//저장 폼 생성
 	function createForm() {
 
-		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
-
+		var tag = '<form id="formtable" name="formtable" action="save1.do?title=${title}" method="post">'
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
 				var val = th[i] + j;

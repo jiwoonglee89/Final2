@@ -3,6 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
+	<insert id="save" parameterType="Final.Model.FileInfo">
+		insert into file_data values(file_seq.NEXTVAL, #{id}, #{title}, sysdate, #{path})
+	</insert>
 	<select id="allById" parameterType="String" resultType="Final.Model.FileInfo">
 		select * from file_data where id=${id} order by modify_date desc
 	</select>

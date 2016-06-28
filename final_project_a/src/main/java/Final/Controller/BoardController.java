@@ -62,13 +62,4 @@ public class BoardController {
     {
        return "BoardPage/title";
     }
-    
-    @RequestMapping(value="/title.do", method=RequestMethod.POST)
-    public String moveTitle2(@ModelAttribute("fileInfo")FileInfo fileInfo, HttpServletRequest request){
-       
-       String title=request.getParameter("title");
-       fileInfo.setTitle("title");
-      
-       return "BoardPage/list";
-    }
 }
