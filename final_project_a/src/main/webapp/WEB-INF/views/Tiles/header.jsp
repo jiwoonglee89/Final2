@@ -2,21 +2,24 @@
 <%@page import="org.apache.tiles.request.locale.URLApplicationResource"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link rel="stylesheet" href='<c:url value="resources/style.css"/>' type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href='<c:url value="/resources/style.css"/>' type="text/css" media="print, projection, screen" />
+
 </head>
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left:0px; background: #3fa338;">
 		<!-- <div class="top" style='float: left'> -->
 		<ul>
-  <li><input type="button" onclick="submit()" value="저장"/></li>
+  <li><input type="button" onclick="submit()" value="저장"/>
+  <a class="active" href="#">저장</a></li>
   <li><input type="button" value="다운로드" onclick="download()"></li>
   <li><input type="button" id="insertBtn" value="불러오기"/></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">함수</a>
-    <div class="dropdown-content"> 
-      <input type="button" value="평균" onclick="average()">
+    <div class="dropdown-content">
+      <a href="#">평균</a>
       <a href="#">합계</a>
       <a href="#">최대값</a>
       <a href="#">최대값</a>
@@ -53,11 +56,6 @@
 			</form>
 		</div>
 		
-		</div>
-		<div class="jbContent">
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true" style="position:relative;">
-		<thead id="createThead">
-		</thead>
-		
+		</div>	
 </body>
 </html>
