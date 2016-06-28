@@ -12,15 +12,18 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-$(function(){
-	
+
+function p_load(){
 	$("#submit_find_title").click(function(){
-		
-		$('#in_title').submit();
-		window.close();
-	});
+		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
+		self.close();
 	
-});
+
+		});
+	
+	
+}
+
 
 </script>
 </head> 
@@ -32,7 +35,7 @@ $(function(){
 			<div class="size_long" id="divtitle">
 			<input type="text" class="text_login" id="title" name="title" maxlength="12" placeholder="Á¦¸ñ"></input>
 			</div>
-			<input id="submit_find_title" class="button" type="button" name="confirm_title" value="check"></input>
+			<input id="submit_find_title" class="button" type="button" onclick="p_load()" name="confirm_title" value="check"></input>
 		</td>
 	</tr>
 </table>
