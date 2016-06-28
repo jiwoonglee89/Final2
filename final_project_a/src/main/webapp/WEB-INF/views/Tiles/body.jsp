@@ -293,32 +293,18 @@ function scrollY() {
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
-		/* 헤더고정 */
-		 var jbOffset = $('.jbMenu').offset();
 		
-		 $(window).scroll(function() {
-			if ($(document).scrollLeft() > jbOffset.left) {
-				$('.jbMenu').addClass('jbFixed');
-				$('.jbMenu2').addClass('jbFixed2');
-				$('.jbContent').addClass('jbMove');
-			} else {
-				$('.jbMenu').removeClass('jbFixed');	
-				$('.jbMenu2').removeClass('jbFixed2');
-				$('.jbContent').removeClass('jbMove'); 
-				
-			}
-		});
-		 
 		page_load();
 	});
 	
 	$(function() {
 		//체크해야함
-		$('td', this).click(function() {
+		$('.celltd',this).click(function() {
 			$('.tdselect').attr('class', 'celltd');
 			$(this).attr('class', 'tdselect');
 			var tdid = $(this).attr('id');
-			$('#address').val(tdid.substring(2, 5));
+	
+		$('#address').val(tdid.substring(2, 5));
 			var div = $('.tdselect > div').text();
 			var divId = $("#"+tdid+">div").attr('id');
 			
@@ -336,16 +322,11 @@ function scrollY() {
 					var textselect1 = $('.textselect').text();
 					$('#formula').val(textselect1);
 				}
-			}	
+			}	 
 			
 		});
-
-		$('.tdselect').keydown(function(e) {
-			var tdid = $('.tdselect').attr('id');
-
-		});
 		//마우스 더블 클릭시 td select와 div textselect div를 편집할수있게 만들어준다. 
-		$('td', this).dblclick(function() {
+		$('.celltd', this).dblclick(function() {
 			$('div').attr('contentEditable', 'false');
 
 			var tableTdId = $(this).attr('id').substring(2, 5);
@@ -372,56 +353,56 @@ function scrollY() {
 <body> 
 	<div class="jbContent" style="overflow:hidden;">
 	<TABLE cellpadding="0" cellspacing="0" border="0" style="height:100%;">
-<TR>
-    <TD colspan="1">
-        <TABLE cellspacing="1" cellpadding="0" border="0" class="main_table">
-            <THEAD>
-                <TR>
+	<TR>
+    	<TD colspan="1">
+        	<TABLE cellspacing="1" cellpadding="0" border="0" class="main_table">
+            	<THEAD>
+               	 <TR>
                 	<TD width="202px" nowrap height="41" class="TIT_CONT_GRAY_C" ></TD>
-                </TR>
-            </THEAD>
-        </TABLE>
-    </TD>
+               	 </TR>
+         	   </THEAD>
+      		</TABLE>
+    	</TD>
 	
-    <TD>
-        <DIV id="topLine" style="width:1168px; overflow:hidden;">
-            <TABLE width="700px" cellspacing="1" cellpadding="0" border="0" class="main_table">
-                <THEAD id="createThead">
-                </THEAD>
-            </TABLE>
-        </DIV>
-    </TD>
-</TR>
+    	<TD>
+        	<DIV id="topLine" style="width:1168px; overflow:hidden;">
+            	<TABLE width="700px" cellspacing="1" cellpadding="0" border="0" class="main_table">
+                	<THEAD id="createThead">
+                	</THEAD>
+            	</TABLE>
+        	</DIV>
+    		</TD>
+		</TR>
 
-<TR>
-    <TD>
-        <DIV id="leftDisplay" style="height:800px; overflow: hidden;"  onscroll="scrollY()">
-            <TABLE cellspacing="1" cellpadding="0" border="0" class="main_table" id="createLeft">
-            </TABLE>
-        </DIV>
-    </TD>
-    <TD>
-        <DIV id="mainDisplayRock" style="width:1180px;height:800px;overflow-y:scroll;overflow-x:hidden;" onscroll="scrollY()">
-            <TABLE width="700px"  cellspacing="1" cellpadding="0" border="0" class="main_table" id="createTbody">
-            </TABLE>
-        </DIV>
-    </TD>
+		<TR>
+   		<TD>
+        	<DIV id="leftDisplay" style="height:760px; overflow: hidden;"  onscroll="scrollY()">
+            	<TABLE cellspacing="1" cellpadding="0" border="0" class="main_table" id="createLeft">
+            	</TABLE>
+        	</DIV>
+    	</TD>
+    	 <TD>
+        	<DIV id="mainDisplayRock" style="width:1180px;height:760px;overflow-y:scroll;overflow-x:hidden;" onscroll="scrollY()">
+            	<TABLE width="700px"  cellspacing="1" cellpadding="0" border="0" class="main_table" id="createTbody">
+            	</TABLE>
+        	</DIV>
+    	</TD> 
 
-</TR>
-<TR>
-    <TD valign="top">
-    </TD>
-    <TD>
-        <DIV id="bottomLine" style="height:18;width:1100px;overflow-x:scroll;overflow-y:hidden;" onscroll="scrollX()">
-        <TABLE width="2352px" cellspacing="1" cellpadding="0" border="0">
-        	<TR>
-				<td height="0" norwap class="BG_WHITE_RIGHT">&nbsp;</td>
-			</TR>
-        </TABLE>
-        </DIV>
-    </TD>
-</TR>
-</TABLE>
+		</TR>
+		<TR>
+    		<TD valign="top">
+    		</TD>
+    		<TD>
+        		<DIV id="bottomLine" style="height:18;width:1100px;overflow-x:scroll;overflow-y:hidden;" onscroll="scrollX()">
+        		<TABLE width="2352px" cellspacing="1" cellpadding="0" border="0">
+        			<TR>
+						<td height="0" norwap class="BG_WHITE_RIGHT">&nbsp;</td>
+					</TR>
+        		</TABLE>
+        		</DIV>
+    		</TD>
+		</TR>
+	</TABLE>
 	</div>
 	<div id="divForm"></div>
 	<span id="expression_Div" class="expression_class_Div"></span>
