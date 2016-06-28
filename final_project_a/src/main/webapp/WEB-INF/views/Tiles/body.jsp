@@ -13,10 +13,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style type="text/css"></style>
 <script>
-	function average(){
-			$('.tdselect .textselect').focus().text('=average(');
-	}
-	
 	function download(){
 		$('#formtable').attr('action','download.do');
 		submit();

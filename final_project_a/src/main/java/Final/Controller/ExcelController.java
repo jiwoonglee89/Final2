@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FormulaError;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -58,6 +59,7 @@ public class ExcelController {
 	   @RequestMapping(value="/save1.do", method=RequestMethod.POST)
 	   public String save1(HttpServletRequest request){
 		String path=null;
+		String error="#error";
 	      XSSFWorkbook workbook=new XSSFWorkbook();
 	      XSSFSheet sheet=workbook.createSheet("sheet");
 	      XSSFRow row=null;
@@ -71,9 +73,14 @@ public class ExcelController {
 	            if(request.getParameter(cell_num)!=null&&request.getParameter(cell_num)!=""){
 	               if(request.getParameter(cell_num).indexOf("=")==0){
 	                  String formula=request.getParameter(cell_num).substring(1);
-	                  cell.setCellFormula(formula);
+	                  try{
+	                	  cell.setCellFormula(formula);  
+	                  }catch(Exception e){
+	                	  cell.setCellValue(error);
+	                  }
+	                  
 	               }
-	               if(request.getParameter(cell_num)=="true" || request.getParameter(cell_num)=="false"){
+	               else if(request.getParameter(cell_num)=="true" || request.getParameter(cell_num)=="false"){
 	                  cell.setCellValue(Boolean.getBoolean(request.getParameter(cell_num)));
 	               }else{
 	                  try{
@@ -101,13 +108,13 @@ public class ExcelController {
 	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }
-	      FileInfo fileinfo=new FileInfo();
+	     /* FileInfo fileinfo=new FileInfo();
 	      HttpSession session=request.getSession();
 	      String id=(String)session.getAttribute("id");
 	      fileinfo.setId(id);
 	      fileinfo.setTitle(request.getParameter("title"));
 	      fileinfo.setPath(path);
-	      fileLoadDao.save(fileinfo);
+	      fileLoadDao.save(fileinfo);*/
 	      return "Tiles/excel_layout";
 	   }
 
@@ -119,7 +126,7 @@ public class ExcelController {
 	      DecimalFormat df = new DecimalFormat();
 	      HashMap map = new HashMap();
 	      Workbook workbook = null;
-	      File file = new File("F:\\final_test\\test1.xlsx");
+	      File file = new File("C:\\final_test\\test1.xlsx");
 	      FileInputStream fis = new FileInputStream(file);
 	      if (file.getName().endsWith(".xls")) {
 	         workbook = new HSSFWorkbook(fis);
@@ -187,7 +194,7 @@ public class ExcelController {
 	                        value = "";
 	                        break;
 	                     case Cell.CELL_TYPE_ERROR:
-	                        value = cell.getErrorCellValue() + "";
+	                        value = cell.getErrorCellValue()+"";
 	                        break;
 	                  }
 
