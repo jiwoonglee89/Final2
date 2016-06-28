@@ -15,7 +15,7 @@
   <li><input type="button" id="insertBtn" value="불러오기"/></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">함수</a>
-    <div class="dropdown-content">
+    <div class="dropdown-content"> 
       <input type="button" value="평균" onclick="average()">
       <a href="#">합계</a>
       <a href="#">최대값</a>

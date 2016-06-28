@@ -15,6 +15,7 @@ var popH=200;
 
 var l=(screenW-popW)/2;
 var t=(screenH-popH)/2;
+
 url = "title.do";
 open(url,"confirm","toolbar=no,location=no,width="+popW+",height="+popH+",top="+t+",left="+l+",status=no,menubar=no,scrollbars=no,resizable=no");
 }
