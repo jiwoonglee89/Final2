@@ -5,6 +5,21 @@
 <html>
 <head>
 <script src="<c:url value="resources/image/*" />"></script>
+<script>
+function popup()
+{
+var screenW=screen.availWidth;
+var screenH=screen.availHeight;
+var popW=500;
+var popH=200;
+
+var l=(screenW-popW)/2;
+var t=(screenH-popH)/2;
+
+url = "title.do";
+open(url,"confirm","toolbar=no,location=no,width="+popW+",height="+popH+",top="+t+",left="+l+",status=no,menubar=no,scrollbars=no,resizable=no");
+}
+</script>
 <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <Style>
 /* 브라우저 기본값 초기화(Reset) */
@@ -186,7 +201,7 @@ th, td
 	 </table>
 	</div>
 	<div id="slide_bar">
-		<a href="newdivedit.do"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
+		<a onclick="popup()"><img src="resources/images/plus_mark.png" width="60" hight="60" alt="엑셀 생성" title="엑셀 생성"></a>
 	</div>
 </body>
 </html>

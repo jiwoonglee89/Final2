@@ -24,27 +24,20 @@ public class DownloadView extends AbstractXlsView{
 		//sheet 만들기
 		Sheet sheet = createFirstView(workbook);
 		//label 만들기
+		HashMap<String, String> map=(HashMap)model.get("download_data");
 		String value = null;
 		int rowNum = 0;
-		for (int i = 0; i < 100; i++) {
+		for (int i = 1; i <= 100; i++) {
+			Row firstRow=sheet.createRow(i-1);
 			for (int j = 0; j < 26; j++) {
+				Cell cell=firstRow.createCell(j);
 				char c = (char)(65+j);
-				String str = ""+c+i;
-				value = (String)model.get(str);
-				createRow_insertValue(sheet,value,j, rowNum);
+				value = (String)map.get(""+c+i);
+				cell.setCellValue(value);
 			}
 			rowNum++;
 		}
 	}
-
-	private void createRow_insertValue(Sheet sheet, String value, int j, int rowNum) {
-		//열을 만들어준다
-		Row firstRow = sheet.createRow(rowNum);
-		Cell cell = firstRow.createCell(j);
-		//각 셀에 값입력
-		cell.setCellValue(value);
-	}
-
 	private Sheet createFirstView(Workbook workbook) {
 		Sheet sheet = workbook.createSheet();
 		workbook.setSheetName(0, "TEST");

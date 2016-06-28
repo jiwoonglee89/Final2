@@ -1,15 +1,17 @@
 package Final.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Final.Dao.BoardDao;
@@ -48,10 +50,25 @@ public class BoardController {
 
 	}
 	@RequestMapping("/newdivedit.do")
-	public String moveExcel()
+	public String moveExcel(String title,HttpServletRequest request)
 	{
-		return "bar";
+		System.out.println(title);
+	    request.setAttribute("title" , title);
+		
+	    return "bar";
 	}
-
-	
+	@RequestMapping(value="/title.do", method=RequestMethod.GET)
+    public String moveTitle()
+    {
+       return "BoardPage/title";
+    }
+    
+    @RequestMapping(value="/title.do", method=RequestMethod.POST)
+    public String moveTitle2(@ModelAttribute("fileInfo")FileInfo fileInfo, HttpServletRequest request){
+       
+       String title=request.getParameter("title");
+       fileInfo.setTitle("title");
+      
+       return "BoardPage/list";
+    }
 }
