@@ -2,9 +2,10 @@
 <%@page import="org.apache.tiles.request.locale.URLApplicationResource"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link rel="stylesheet" href='<c:url value="resources/style.css"/>' type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href='<c:url value="/resources/style.css"/>' type="text/css" media="print, projection, screen" />
 </head>
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left:0px; background: #3fa338;">
@@ -55,10 +56,8 @@
 		</div>
 		
 		</div>
-		<div class="jbContent">
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true" style="position:relative;">
-		<thead id="createThead">
-		</thead>
+		
+		
 		
 </body>
 </html>
