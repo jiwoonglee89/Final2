@@ -5,6 +5,9 @@
 <html>
 <head>
 <link rel="stylesheet" href='<c:url value="resources/style.css"/>' type="text/css" media="print, projection, screen" />
+<script>
+
+</script>
 </head>
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left:0px; background: #3fa338;">
@@ -12,7 +15,7 @@
 		<ul>
   <li><input type="button" onclick="submit()" value="저장"/>
   <a class="active" href="#">저장</a></li>
-  <li><a href="download.do" onclick="submit()">다운로드</a></li>
+  <li><input type="button" value="다운로드" onclick="download()"></li>
   <li><input type="button" id="insertBtn" value="불러오기"/></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">함수</a>

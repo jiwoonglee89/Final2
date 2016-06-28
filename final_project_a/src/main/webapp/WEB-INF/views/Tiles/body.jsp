@@ -2,7 +2,7 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<head>
+<head> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title>Insert title here</title>
@@ -16,6 +16,12 @@
 
 </style>
 <script>
+	function download(){
+		$('#formtable').attr('action','download.do');
+		submit();
+		$('#formtable').attr('action', 'save1.do');
+	}
+
 	function page_load(){
 		<c:if test="${map!=null}">
 		<c:forEach var="m_obj" items="${map}"  varStatus="status">
@@ -66,7 +72,6 @@
 			   }
 		   
 			$('#formtable').submit();
-			return false;
 	}
 	
 	function key_event() {
@@ -174,10 +179,14 @@
 		
 		
 	}
+	
+
+	
+	
 	//저장 폼 생성
 	function createForm() {
 
-		var tag = '<form id="formtable"  action="save1.do" method="post">'
+		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
 
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
