@@ -10,8 +10,8 @@ function popup()
 {
 var screenW=screen.availWidth;
 var screenH=screen.availHeight;
-var popW=500;
-var popH=200;
+var popW=300;
+var popH=100;
 
 var l=(screenW-popW)/2;
 var t=(screenH-popH)/2;

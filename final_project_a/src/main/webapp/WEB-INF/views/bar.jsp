@@ -96,6 +96,54 @@ $(function(){
 
 </script>
 <style>
+.button {
+   border: 1px solid #000000;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 4px 8px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0;
+   color: #000000;
+   font-size: 10px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 1px solid #ffffff;
+   text-shadow: #ffffff 0 1px 0;
+   background: #919191;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#919191));
+   background: -webkit-linear-gradient(top, #ffffff, #919191);
+   background: -moz-linear-gradient(top, #ffffff, #919191);
+   background: -ms-linear-gradient(top, #ffffff, #919191);
+   background: -o-linear-gradient(top, #ffffff, #919191);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #919191 100%);
+   color: #fff;
+   }
+.button:active {
+   text-shadow: #000000 0 1px 0;
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#919191));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+   }
+   
 ul {
     list-style-type: none;
     margin: 0;
@@ -115,6 +163,7 @@ li a, .dropbtn{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family:'Poiret One', cursive;
 }
 
 li a:hover, .dropdown:hover .dropbtn{
@@ -139,6 +188,7 @@ li.dropdown {
     text-decoration: none;
     display: block;
     text-align: left;
+    font-family:'Poiret One', cursive;
 }
 
 .dropdown-content a:hover{background-color: #f1f1f1}
@@ -147,14 +197,6 @@ li.dropdown {
     display: block;
 }
 
-#search
-{
-	float: right;
-	vertical-align: middle;
-	padding-top:10px;
-	padding-right:10px;
-	
-}
 #more
 {
     /* color: black; */
@@ -209,6 +251,7 @@ height: 500px;
   float: right;
   border: 5px;
   
+  
 }
 #close
 {
@@ -233,6 +276,26 @@ height: 500px;
 #bottom
 {
 
+}
+#search_text
+{
+	position:absolute;
+	top:21px;
+	left:500px;
+	text-align:center;
+}
+.button
+{
+	position:absolute;
+	top:21px;
+	left:1300px;
+}
+.bar_title
+{
+	position:absolute;
+	top:22px;
+	left:800px;
+	font-family:'Poiret One', cursive;
 }
 </style>
 </head>
@@ -267,9 +330,11 @@ height: 500px;
     </div>
   </li>
   <li><a href="board.do">엑셀목록</a></li>
-  <li>${title}</li>
-  <li id="search"><div><input type="text" name="search_text" id="search_text" size="20" onkeypress=
+  <li id="search"><div id="search"><input type="text" placeholder="검색" name="search_text" id="search_text" size="20" onkeypress=
 	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
+  <div class="bar_title">${title}</div>
+  
+  <li><button class="button" onclick="javascript:window.location='logout.do'">Logout</button></li>
 </ul>
 </body>
 </html>
