@@ -81,12 +81,28 @@ html,body{overflow:hidden;}
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 
-function p_load(){
+/* function p_load(){
 	$("#submit_find_title").click(function(){
 		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
 		self.close();
 	});
-}
+} */
+
+$(function(){
+	$("#submit_find_title").click(function(){
+		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
+		self.close();
+	});
+	
+	$('#title').keydown(function(e){
+		if(e.keyCode==13){
+			opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
+			self.close();
+		}
+		
+	});
+	
+});
 
 
 </script>
@@ -97,9 +113,9 @@ function p_load(){
 	<tr>
 		<td>
 			<div class="size_long" id="divtitle">
-			<input type="text" class="text_login" id="title" name=mzxkskdslds"title" maxlength="12" placeholder="力格"></input>
+			<input type="text" class="text_login" id="title" name="title" maxlength="12" placeholder="力格"></input>
 			</div>
-			<input id="submit_find_title" class="button" type="button" onclick="p_load()" name="confirm_title" value="check"></input>
+			<input id="submit_find_title" class="button" type="button"  name="confirm_title" value="check"></input>
 		</td>
 	</tr>
 </table>
