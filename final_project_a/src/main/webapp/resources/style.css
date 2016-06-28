@@ -19,10 +19,15 @@ body {
 }
 
 .jbContent {
-	height: 2000px;
+	width: 1280px;
+	height: 815px;
 	position: relative;
 	top: 0px;
 	overflow-y: scroll;
+}
+
+.innerjbContent{
+	
 }
 
 .jbFixed {
@@ -39,6 +44,7 @@ body {
 	height: 2000px;
 	position: relative;
 	top: 130px;
+	overflow-y: scroll;
 }
 
 /* MenuBar2 */
@@ -100,8 +106,7 @@ li.dropdown {
 }
 
 .divcoll {
-	width:90px;
-	overflow: hidden;
+	width: 90px; overflow : hidden;
 	height: 20px;
 	/* width: 90px; */
 	/* position:absolute;   */
@@ -109,6 +114,7 @@ li.dropdown {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	overflow: hidden;
 }
 
 .textselect {
@@ -117,7 +123,6 @@ li.dropdown {
 	border-width: 1px;
 	word-wrap: break-word;
 	white-space: nowrap;
-	
 }
 
 .tdselect {

@@ -56,12 +56,12 @@
 			<input type="text" id="formula" name="formula1"/>
 			</form>
 		</div>
+		
 		</div>
-		<div class="head">
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">
+		<div class="jbContent">
+		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true" style="position:relative;">
 		<thead id="createThead">
 		</thead>
-		</table>
-		</div>
+		
 </body>
 </html>

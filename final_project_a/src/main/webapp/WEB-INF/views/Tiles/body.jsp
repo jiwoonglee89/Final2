@@ -207,7 +207,7 @@
 		
 		var tag = "";
 			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
-			tag += '<tr class="thtr">'
+			tag += '<tr class="thtr" style="position:relative;top:expression(this.offsetParent.scrollTop);">'
 			for (var a = 0; a < th.length; a++) {
 				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha"><div style="width:90px;">'+ th[a] +'</div></th>';
 			
@@ -274,12 +274,11 @@
 				$('.jbMenu').addClass('jbFixed');
 				$('.jbMenu2').addClass('jbFixed2');
 				$('.jbContent').addClass('jbMove');
-				$('.head').addClass('jbContent');
 			} else {
 				$('.jbMenu').removeClass('jbFixed');	
 				$('.jbMenu2').removeClass('jbFixed2');
 				$('.jbContent').removeClass('jbMove'); 
-				$('.head').removeClass('jbContent');
+				
 			}
 		});
 		 
@@ -344,9 +343,9 @@
 </script>
 </head>
 <body> 
-	<div class="jbContent" style="width:2000px; height:800px; ">
-		<table cellpadding="0" cellspacing="0" class="view" id="viewtable" readonly="true">
-		<tbody id="createTbody">
+	
+		<tbody id="createTbody" style='width:100%; height: 100%'>
+		
 		</tbody>
 	</table>
 	</div>
