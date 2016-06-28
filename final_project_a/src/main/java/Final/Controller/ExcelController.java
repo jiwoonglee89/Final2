@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Final.Dao.FileLoadDao;
+import Final.Model.FileInfo;
 
 @Controller
 public class ExcelController {
@@ -55,6 +57,7 @@ public class ExcelController {
 	@SuppressWarnings("resource")
 	   @RequestMapping(value="/save1.do", method=RequestMethod.POST)
 	   public String save1(HttpServletRequest request){
+		String path=null;
 	      XSSFWorkbook workbook=new XSSFWorkbook();
 	      XSSFSheet sheet=workbook.createSheet("sheet");
 	      XSSFRow row=null;
@@ -85,7 +88,8 @@ public class ExcelController {
 	         }
 	      }
 	      try {
-	         FileOutputStream fileoutputstream=new FileOutputStream("F:\\final_test\\test1.xlsx");
+	    	  path="C:\\final_test\\test1.xlsx";
+	         FileOutputStream fileoutputstream=new FileOutputStream(path);
 	         try {
 	            workbook.write(fileoutputstream);
 	            fileoutputstream.close();
@@ -97,6 +101,13 @@ public class ExcelController {
 	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }
+	      FileInfo fileinfo=new FileInfo();
+	      HttpSession session=request.getSession();
+	      String id=(String)session.getAttribute("id");
+	      fileinfo.setId(id);
+	      fileinfo.setTitle(request.getParameter("title"));
+	      fileinfo.setPath(path);
+	      fileLoadDao.save(fileinfo);
 	      return "Tiles/excel_layout";
 	   }
 

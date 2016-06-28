@@ -11,11 +11,12 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="<c:url value='/resources/style.css'/>" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<style type="text/css">
-
-
-</style>
+<style type="text/css"></style>
 <script>
+	function average(){
+			$('.tdselect .textselect').focus().text('=average(');
+	}
+	
 	function download(){
 		$('#formtable').attr('action','download.do');
 		submit();
@@ -186,8 +187,7 @@
 	//저장 폼 생성
 	function createForm() {
 
-		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
-
+		var tag = '<form id="formtable" name="formtable" action="save1.do?title=${title}" method="post">'
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
 				var val = th[i] + j;
@@ -203,13 +203,27 @@
 
 	/* thead 생성 */
 	
+	function scrollX() {
+    document.all.mainDisplayRock.scrollLeft = document.all.bottomLine.scrollLeft;
+    document.all.topLine.scrollLeft = document.all.bottomLine.scrollLeft;
+}
+
+function scrollY() {
+    document.all.leftDisplay.scrollTop = document.all.mainDisplayRock.scrollTop;
+    document.all.leftDisplay.scrollBottom = document.all.mainDisplayRock.scrollBottom;
+    document.all.mainDisplayRock.scrollTop = document.all.leftDisplay.scrollTop;
+    document.all.mainDisplayRock.scrollBottom = document.all.leftDisplay.scrollBottom;
+}
+
+
+
 	function createThead(){
-		
+		var th = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K","L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 		var tag = "";
 			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
-			tag += '<tr class="thtr" style="position:relative;top:expression(this.offsetParent.scrollTop);">'
+			tag += '<tr height="41" class="thtr" >'
 			for (var a = 0; a < th.length; a++) {
-				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha"><div style="width:90px;">'+ th[a] +'</div></th>';
+				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha" norwap ><div style="width:90px;">'+ th[a] +'</div></th>';
 			
 			}
 			tag+= '</tr>'
@@ -219,6 +233,7 @@
 	}
 	/* tbody생성 */
 	function createTbody(){
+		var th = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K","L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 		var tag ="";
 		
 			/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
@@ -237,6 +252,17 @@
 			
 			var Tbody = document.getElementById("createTbody");
 			Tbody.innerHTML = tag;
+	}
+	function createLeft(){
+		var tag = ""
+		
+		for(var i=1; i<=100; i++){
+			tag += '<tr><td width="202px" height="21" nowrap >'+i+'</td></tr>'; 
+		}
+			
+			
+		var Tbody = document.getElementById("createLeft");
+		Tbody.innerHTML = tag;
 	}
 	
 	
@@ -261,6 +287,7 @@
 		/* head body 생성 */
 		createThead();
 		createTbody();
+		createLeft();
 		createForm();
 		expressionDiv()
 		for (var z = 1; z < 100; z++) {
@@ -343,11 +370,58 @@
 </script>
 </head>
 <body> 
+	<div class="jbContent" style="overflow:hidden;">
+	<TABLE cellpadding="0" cellspacing="0" border="0" style="height:100%;">
+<TR>
+    <TD colspan="1">
+        <TABLE cellspacing="1" cellpadding="0" border="0" class="main_table">
+            <THEAD>
+                <TR>
+                	<TD width="202px" nowrap height="41" class="TIT_CONT_GRAY_C" ></TD>
+                </TR>
+            </THEAD>
+        </TABLE>
+    </TD>
 	
-		<tbody id="createTbody" style='width:100%; height: 100%'>
-		
-		</tbody>
-	</table>
+    <TD>
+        <DIV id="topLine" style="width:1168px; overflow:hidden;">
+            <TABLE width="700px" cellspacing="1" cellpadding="0" border="0" class="main_table">
+                <THEAD id="createThead">
+                </THEAD>
+            </TABLE>
+        </DIV>
+    </TD>
+</TR>
+
+<TR>
+    <TD>
+        <DIV id="leftDisplay" style="height:800px; overflow: hidden;"  onscroll="scrollY()">
+            <TABLE cellspacing="1" cellpadding="0" border="0" class="main_table" id="createLeft">
+            </TABLE>
+        </DIV>
+    </TD>
+    <TD>
+        <DIV id="mainDisplayRock" style="width:1180px;height:800px;overflow-y:scroll;overflow-x:hidden;" onscroll="scrollY()">
+            <TABLE width="700px"  cellspacing="1" cellpadding="0" border="0" class="main_table" id="createTbody">
+            </TABLE>
+        </DIV>
+    </TD>
+
+</TR>
+<TR>
+    <TD valign="top">
+    </TD>
+    <TD>
+        <DIV id="bottomLine" style="height:18;width:1100px;overflow-x:scroll;overflow-y:hidden;" onscroll="scrollX()">
+        <TABLE width="2352px" cellspacing="1" cellpadding="0" border="0">
+        	<TR>
+				<td height="0" norwap class="BG_WHITE_RIGHT">&nbsp;</td>
+			</TR>
+        </TABLE>
+        </DIV>
+    </TD>
+</TR>
+</TABLE>
 	</div>
 	<div id="divForm"></div>
 	<span id="expression_Div" class="expression_class_Div"></span>

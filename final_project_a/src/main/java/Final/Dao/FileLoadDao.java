@@ -1,6 +1,5 @@
 package Final.Dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -8,6 +7,9 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import Final.Model.FileInfo;
 
 public class FileLoadDao extends SqlSessionDaoSupport{
+	public int save(FileInfo fileinfo){
+		return getSqlSession().insert("save", fileinfo);		
+	}
 
 	public List<FileInfo> getList(String id){
 		return getSqlSession().selectList("file.allById", id);
