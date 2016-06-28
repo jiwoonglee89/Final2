@@ -291,6 +291,9 @@ function scrollY() {
 		}
 		
 		page_load();
+		
+		getDisplayInfo();
+		onLoadHandler();
 	});
 	
 	$(function() {
@@ -342,6 +345,26 @@ function scrollY() {
 		});
 
 	});
+	
+	function getDisplayInfo() {
+		var size = {
+		  width: window.innerWidth || document.body.clientWidth,
+		  height: window.innerHeight || document.body.clientHeight
+		}
+		return size;
+	}
+
+	/* function setElementById(obj, value) {
+		var target = document.getElementById(obj);
+		target.innerHTML = value;
+	} */
+
+	function onLoadHandler() {
+		var size = getDisplayInfo();
+		$('.jbContent').attr('width',size.width);
+		alert(size.width);
+		/* setElementById("dispHeight", size.height); */
+	}
 
 	
 </script>
