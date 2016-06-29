@@ -59,9 +59,9 @@ html,body{overflow:hidden;}
    
 #submit_find_title
 {
-	position:absolute;
+ 	position:absolute; 
 	top:80px;
-	left:135px;
+	left:135px; 
 	font-family:'Poiret One', cursive;
 }
 
@@ -80,14 +80,6 @@ html,body{overflow:hidden;}
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-
-/* function p_load(){
-	$("#submit_find_title").click(function(){
-		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
-		self.close();
-	});
-} */
-
 $(function(){
 	$("#submit_find_title").click(function(){
 		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
@@ -103,8 +95,6 @@ $(function(){
 	});
 	
 });
-
-
 </script>
 </head> 
 <body>
