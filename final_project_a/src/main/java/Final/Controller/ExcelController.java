@@ -137,75 +137,82 @@ public class ExcelController {
 		int columnindex = 0;
 		// 시트 수 (첫번째에만 존재하므로 0을 준다)
 		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
-		Sheet sheet = workbook.getSheetAt(0);
-		int rows = sheet.getPhysicalNumberOfRows();
-		int colNum = 0;
 
-		for (rowindex = 0; rowindex < rows; rowindex++) {
-			Row row = sheet.getRow(rowindex);
-			colNum = colNum + 1;
+		// 시트개수
+		int sheetNum = workbook.getNumberOfSheets();
 
-			if (row != null) {
-				int cells = row.getPhysicalNumberOfCells();
+		for (int i = 0; i < sheetNum; i++) {
+			Sheet sheet = workbook.getSheetAt(i);
+			int rows = sheet.getPhysicalNumberOfRows();
+			int colNum = 0;
 
-				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-					Cell cell = row.getCell(columnindex);
-					char rowrowrow = (char) (65 + columnindex);
-					cellName = rowrowrow + "" + colNum;
-					String value = "";
+			for (rowindex = 0; rowindex < rows; rowindex++) {
+				Row row = sheet.getRow(rowindex);
+				colNum = colNum + 1;
 
-					if (cell == null) {
-						value = " ";
-						continue;
-					} else {
-						// 타입별로 내용 읽기
-						switch (cell.getCellType()) {
-						case Cell.CELL_TYPE_BOOLEAN:
-							boolean bool_data = cell.getBooleanCellValue();
-							value = String.valueOf(bool_data);
-							break;
-						case Cell.CELL_TYPE_FORMULA:
-							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-								double num_data = cell.getNumericCellValue();
-								value = df.format(num_data);
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
-								value = cell.getStringCellValue();
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
-								boolean data = cell.getBooleanCellValue();
-								value = String.valueOf(data);
+				if (row != null) {
+					int cells = row.getPhysicalNumberOfCells();
+
+					for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
+						Cell cell = row.getCell(columnindex);
+						char rowrowrow = (char) (65 + columnindex);
+						cellName = rowrowrow + "" + colNum;
+						String value = "";
+
+						if (cell == null) {
+							value = " ";
+							continue;
+						} else {
+							// 타입별로 내용 읽기
+							switch (cell.getCellType()) {
+							case Cell.CELL_TYPE_BOOLEAN:
+								boolean bool_data = cell.getBooleanCellValue();
+								value = String.valueOf(bool_data);
+								break;
+							case Cell.CELL_TYPE_FORMULA:
+								if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
+									double num_data = cell.getNumericCellValue();
+									value = df.format(num_data);
+								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
+									value = cell.getStringCellValue();
+								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
+									boolean data = cell.getBooleanCellValue();
+									value = String.valueOf(data);
+								}
+								break;
+							case Cell.CELL_TYPE_NUMERIC:
+								if (HSSFDateUtil.isCellDateFormatted(cell)) {
+									SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+									value = formatter.format(cell.getDateCellValue());
+								} else {
+									double ddata = cell.getNumericCellValue();
+									value = df.format(ddata);
+								}
+								break;
+							case Cell.CELL_TYPE_STRING:
+								value = cell.getStringCellValue() + "";
+								break;
+							case Cell.CELL_TYPE_BLANK:
+								value = "";
+								break;
+							case Cell.CELL_TYPE_ERROR:
+								value = cell.getErrorCellValue() + "";
+								break;
 							}
-							break;
-						case Cell.CELL_TYPE_NUMERIC:
-							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-								value = formatter.format(cell.getDateCellValue());
-							} else {
-								double ddata = cell.getNumericCellValue();
-								value = df.format(ddata);
-							}
-							break;
-						case Cell.CELL_TYPE_STRING:
-							value = cell.getStringCellValue() + "";
-							break;
-						case Cell.CELL_TYPE_BLANK:
-							value = "";
-							break;
-						case Cell.CELL_TYPE_ERROR:
-							value = cell.getErrorCellValue() + "";
-							break;
+
 						}
+						map.put(cellName, value);
+						
 
+						// request.setAttribute("rows", new Integer(rows));
+						// request.setAttribute("cells", new Integer(cells));
 					}
-					map.put(cellName, value);
-
-					// request.setAttribute("rows", new Integer(rows));
-					// request.setAttribute("cells", new Integer(cells));
 				}
 			}
+			request.setAttribute("map", map);
+			// return new ModelAndView("excel_final", "map", map);
 		}
-		request.setAttribute("map", map);
-		// return new ModelAndView("excel_final", "map", map);
-
+		map.put("sheetNum", sheetNum);
 	}
 
 	/*
