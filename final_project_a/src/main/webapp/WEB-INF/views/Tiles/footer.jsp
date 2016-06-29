@@ -28,9 +28,9 @@
 </script>
 <style>
 </style>
-</head>
+</head> 
 <body>
-	<div id="footer_bar">
+	<div id="footer_bar" style="border: 1px solid;">
 		<div id="left">
 			<a href="#" id="add">추가</a>
 		</div>

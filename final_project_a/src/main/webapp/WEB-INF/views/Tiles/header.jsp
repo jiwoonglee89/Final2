@@ -9,7 +9,7 @@
 
 </head>
 <body>
-	<div id="formulaBar" class="jbMenu" style="padding-left:0px; background: #3fa338;">
+	<div id="formulaBar" class="jbMenu" style="padding-left:0px;">
 		<!-- <div class="top" style='float: left'> -->
 		<ul>
   <li><input type="button" onclick="submit()" value="저장"/>
@@ -47,8 +47,7 @@
 <span>You've selected:</span> <span id="select-result">none</span>.
 </p></li>
 </ul>
-		</div>
-		<div class="jbMenu2">
+		
 		<div class="left" style='float: left'>
 			<input type="text" id="address">
 		</div>
@@ -59,6 +58,7 @@
 			</form>
 		</div>
 		
-		</div>	
+		</div>
+			
 </body>
 </html>

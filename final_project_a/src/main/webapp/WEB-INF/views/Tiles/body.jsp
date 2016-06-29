@@ -296,7 +296,7 @@ function scrollY() {
 	$(document).keydown(function(event){
 		if(event.which=="17"){
 			cntrlIsPressed = true;
-		}
+		}  
 	});
 	$(document).keyup(function(){
 	    cntrlIsPressed = false;
