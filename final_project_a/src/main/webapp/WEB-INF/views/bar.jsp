@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
+
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
 <script>
 /* 검색어 함수 */
 var TRange=null;
@@ -73,15 +76,20 @@ $(function(){
         $("#overLayer").hide();
         return;
       });
+	$('#footer_close').click(function() {
+        $('#glayLayer').hide();
+        $("#overLayer").hide();
+        return true;
+      });
 	
-	$("#glayLayer").click(function(){
+/* 	$("#glayLayer").click(function(){
 		$(this).hide()
 		$("#overLayer").hide();
-	});
+	}); */
 	
 	$("button.modal").click(function(){
 		$("#glayLayer").show();
-		$("#overLayer").show().html("<form><div id='all'><div id='top'><button id='close'>X</button></div><div id='content'>body</div><div id='bottom'>footer</div></div></form>");
+		$("#overLayer").show().html("<form><div id='all'><div id='top'><button id='close'>X</button></div><div id='content'>body</div><div id='bottom'></div></div></form>");
 		return false;
 	});
 	
@@ -96,6 +104,17 @@ $(function(){
 
 </script>
 <style>
+#footer_ok
+{
+	position:absolute;
+	top:50%;
+	left:100%;
+}
+#footer_close
+{
+
+}
+
 .button {
    border: 1px solid #000000;
    background: #ffffff;
@@ -163,7 +182,7 @@ li a, .dropbtn{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-family:'Poiret One', cursive;
+  	font-family: 'Nanum Pen Script', serif;
 }
 
 li a:hover, .dropdown:hover .dropbtn{
@@ -208,6 +227,7 @@ li.dropdown {
     width: 100%;
     background: white;
     font-size: medium;
+    font-family:'Poiret One', cursive;
 }
 
 /* 함수 더보기 외부 디자인 */ 
@@ -288,14 +308,14 @@ height: 500px;
 {
 	position:absolute;
 	top:21px;
-	left:1300px;
+	right:5%;
 }
 .bar_title
 {
 	position:absolute;
 	top:22px;
 	left:800px;
-	font-family:'Poiret One', cursive;
+	
 }
 </style>
 </head>
@@ -332,7 +352,7 @@ height: 500px;
   <li><a href="board.do">엑셀목록</a></li>
   <li id="search"><div id="search"><input type="text" placeholder="검색" name="search_text" id="search_text" size="20" onkeypress=
 	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
-  <div class="bar_title">${title}</div>
+  <div class="bar_title">[ 제목 : ${title}]</div>
   
   <li><button class="button" onclick="javascript:window.location='logout.do'">Logout</button></li>
 </ul>
