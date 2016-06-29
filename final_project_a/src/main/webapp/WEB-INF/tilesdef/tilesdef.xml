@@ -10,6 +10,7 @@
 		<put-attribute name="title" value="test" type="java.lang.String" cascade="true"/>
 		<put-attribute name="header" value="/WEB-INF/views/Tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/Tiles/body.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/Tiles/footer.jsp"/>
 	</definition>
 
 	<!-- <definition name="Form" extends="base_layout">

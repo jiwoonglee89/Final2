@@ -8,5 +8,6 @@
 <body style="overflow-x:hidden; overflow-y:hidden;">
 <tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="body" />
+<tiles:insertAttribute name="footer"/>
 </body>
 </html> 

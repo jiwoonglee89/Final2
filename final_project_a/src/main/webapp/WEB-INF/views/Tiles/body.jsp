@@ -314,9 +314,6 @@ function scrollY() {
 		}
 		
 		page_load();
-		
-		getDisplayInfo();
-		onLoadHandler();
 	});
 	
 	$(function() {
@@ -368,33 +365,13 @@ function scrollY() {
 		});
 
 	});
-	
-	function getDisplayInfo() {
-		var size = {
-		  width: window.innerWidth || document.body.clientWidth,
-		  height: window.innerHeight || document.body.clientHeight
-		}
-		return size;
-	}
-
-	/* function setElementById(obj, value) {
-		var target = document.getElementById(obj);
-		target.innerHTML = value;
-	} */
-
-	function onLoadHandler() {
-		var size = getDisplayInfo();
-		$('.jbContent').attr('width',size.width);
-		alert(size.width);
-		/* setElementById("dispHeight", size.height); */
-	}
 
 	
 </script>
 </head>
 <body> 
 	<div class="jbContent" style="overflow:hidden;">
-	<TABLE cellpadding="0" cellspacing="0" border="0" style="height:100%;">
+	<TABLE cellpadding="0" cellspacing="0" border="0">
 	<TR>
     	<TD colspan="1">
         	<TABLE cellspacing="1" cellpadding="0" border="0" class="main_table">
@@ -418,13 +395,13 @@ function scrollY() {
 
 		<TR>
    		<TD>
-        	<DIV id="leftDisplay" style="height:760px; overflow: hidden;"  onscroll="scrollY()">
+        	<DIV id="leftDisplay" style="height:730px; overflow: hidden;"  onscroll="scrollY()">
             	<TABLE cellspacing="1" cellpadding="0" border="0" class="main_table" id="createLeft">
             	</TABLE>
         	</DIV>
     	</TD>
     	 <TD>
-        	<DIV id="mainDisplayRock" style="width:1180px;height:760px;overflow-y:scroll;overflow-x:hidden;" onscroll="scrollY()">
+        	<DIV id="mainDisplayRock" style="width:1180px;height:730px;overflow-y:scroll;overflow-x:hidden;" onscroll="scrollY()">
             	<TABLE width="700px"  cellspacing="1" cellpadding="0" border="0" class="main_table" id="createTbody">
             	</TABLE>
         	</DIV>
