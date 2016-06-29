@@ -62,4 +62,9 @@ public class BoardController {
     {
        return "BoardPage/title";
     }
+	@RequestMapping("/Iframe.do")
+	public String moveframe()
+	{
+		return "Iframe";
+	}
 }

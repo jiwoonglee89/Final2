@@ -7,11 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
 <script>
 /* 검색어 함수 */
 var TRange=null;
@@ -53,67 +51,19 @@ function findString (str) {
 
 
 //함수 더보기 클릭시 뜨는 DIV창
-function popupOpen()
+$(document).ready(function()
 {
-	if(document.all.popup.style.visibility=="hidden")
+	$("button.modal").click(
+		function()
 		{
-			document.all.popup.style.visibility="visible";
-			return false;
+			$("#glayLayer").show();
+			$("#overLayer").show();
 		}
-	else
-		{
-			document.all.popup.style.visibility="hidden";
-			return false;
-		}
-	
-}
-
-$(function(){
-	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
-	
-	$('#close').click(function() {
-        $('#glayLayer').hide();
-        $("#overLayer").hide();
-        return;
-      });
-	$('#footer_close').click(function() {
-        $('#glayLayer').hide();
-        $("#overLayer").hide();
-        return true;
-      });
-	
-/* 	$("#glayLayer").click(function(){
-		$(this).hide()
-		$("#overLayer").hide();
-	}); */
-	
-	$("button.modal").click(function(){
-		$("#glayLayer").show();
-		$("#overLayer").show().html("<form><div id='all'><div id='top'><button id='close'>X</button></div><div id='content'>body</div><div id='bottom'></div></div></form>");
-		return false;
-	});
-	
-/* 	if($.browser.msie && $.browser.version<7){
-		$(window).scroll(function(){
-			$("#glayLayer").css('top',$(document).scrollTop());
-			$("#overLayer").css('top',($(document).scrollTop()+$(window).height()/2) +"px");
-		});
-	} */
+	);
 	
 });
-
 </script>
 <style>
-#footer_ok
-{
-	position:absolute;
-	top:50%;
-	left:100%;
-}
-#footer_close
-{
-
-}
 
 .button {
    border: 1px solid #000000;
@@ -230,72 +180,48 @@ li.dropdown {
     font-family:'Poiret One', cursive;
 }
 
-/* 함수 더보기 외부 디자인 */ 
-div#glayLayer{
-	display:none;
-	position:fixed;
-	left:0;
-	top:0;
-	height:100%;
-	width:100%;
-	background:black;
-	filter:alpha(opacity=60);
+/* 함수 더보기 외부 디자인 */
+#glayLayer, #overLayer
+{
+	display: none;
+}
+/* 검정 바탕화면 */
+div#glayLayer {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: black;
+	filter: alpha(opacity = 60);
 	opacity: 0.60;
 }
-* html div#glayLayer{
-	position:absolute;
-}
-#overLayer{
-	display:none;
-	position: fixed;
-	top:50%;
-	left:50%;
-	margin-top:-244px;
-	margin-left:-325px;
-}
-* html #overLayer{
+
+* html div#glayLayer {
 	position: absolute;
 }
-/* 함수 더보기 내부 디자인 */
-#all
-{
-background-color: white;
-width: 500px;
-height: 500px;
+/* 내부 화면 */
+#overLayer {
+	position: fixed;
+	/* 화면 중앙 정렬 */
+	top: 50%;
+	left: 50%;
+	margin-top: -244px;
+	margin-left: -325px;
+	width: 640px;
+	height: 400px;
+	overflow: hidden;
+	
 }
-#top
-{
-  background-color: #46CCFF;
-  height: 5%;
-  width:100%;
-  float: right;
-  border: 5px;
-  
-  
-}
-#close
-{
-	background-color: red;
-	width: 20px;
-	height: auto;
-	text-align: center;
-	float: right;
-	margin: 3px;
-}
-#top.title
-{
-	float: middle;
-	text-align: center;
-	width: auto;
-	height: auto;
-}
-#content
-{
 
+* html #overLayer {
+	position: absolute;
 }
-#bottom
-{
 
+iframe {
+	width: 640px;
+	height: 500px;
+	border: none;
 }
 #search_text
 {
@@ -331,7 +257,11 @@ height: 500px;
       <a href="#">합계</a>
       <a href="#">최대값</a>
       <a href="#">최대값</a>
-  	  <button id="more" onclick="" class="modal">더보기</button>
+  	  <button id="more" class="modal">더보기</button>
+		<div id="glayLayer"></div>
+		<div id="overLayer">
+			<iframe  src='Iframe.do'></iframe>
+		</div>
     </div>
   </li>
  <li class="dropdown">
