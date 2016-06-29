@@ -64,7 +64,7 @@ $(document).ready(function()
 });
 </script>
 <style>
-
+/* 로그아웃 버튼 디자인 시작 */
 .button {
    border: 1px solid #000000;
    background: #ffffff;
@@ -106,13 +106,29 @@ $(document).ready(function()
    background: #000000;
    background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#919191));
    background: -webkit-linear-gradient(top, #000000, #000000);
-   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -mozlinear-gradient(top, #000000, #000000);
    background: -ms-linear-gradient(top, #000000, #000000);
    background: -o-linear-gradient(top, #000000, #000000);
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
    }
-   
+/* 로그아웃 버튼 디자인 종료 */
+
+/* 버튼 디자인테스트 시작*/
+li button
+{
+	display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  	font-family: 'Nanum Pen Script', serif;
+  	background-color: #3fa338;
+  	font-size: medium;
+}
+
+/* 버튼 디자인테스트 종료*/
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -126,7 +142,7 @@ li {
     border-right: 1.5px solid #bbb;
 }
 
-li a, .dropbtn{
+li button, .dropbtn{
     display: inline-block;
     color: white;
     text-align: center;
@@ -135,7 +151,7 @@ li a, .dropbtn{
   	font-family: 'Nanum Pen Script', serif;
 }
 
-li a:hover, .dropdown:hover .dropbtn{
+li button:hover, .dropdown:hover .dropbtn{
     background-color: rgba( 255, 255, 255, 0.5 );
 }
 
@@ -151,7 +167,7 @@ li.dropdown {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown-content a{ 
+.dropdown-content button{ 
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -160,7 +176,7 @@ li.dropdown {
     font-family:'Poiret One', cursive;
 }
 
-.dropdown-content a:hover{background-color: #f1f1f1}
+.dropdown-content button:hover{background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -168,7 +184,6 @@ li.dropdown {
 
 #more
 {
-    /* color: black; */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -180,12 +195,14 @@ li.dropdown {
     font-family:'Poiret One', cursive;
 }
 
-/* 함수 더보기 외부 디자인 */
+/* 함수 더보기 외부 디자인 시작*/
 #glayLayer, #overLayer
 {
 	display: none;
 }
-/* 검정 바탕화면 */
+/* 함수 더보기 외부 디자인 종료*/
+
+/*포커스 이외 불투명 처리 시작 */
 div#glayLayer {
 	position: fixed;
 	left: 0;
@@ -200,7 +217,9 @@ div#glayLayer {
 * html div#glayLayer {
 	position: absolute;
 }
-/* 내부 화면 */
+/*포커스 이외 불투명 처리 종료 */
+
+/* 내부 화면 시작 */
 #overLayer {
 	position: fixed;
 	/* 화면 중앙 정렬 */
@@ -243,43 +262,44 @@ iframe {
 	left:800px;
 	
 }
+/* 내부 화면 종료 */
 </style>
 </head>
 <body>
 
 <ul>
-  <li><a class="active" href="#">저장</a></li>
-  <li><a href="download.do">다운로드</a></li>
+  <li><button class="active">저장</button></li>
+  <li><button onclick="download.do">다운로드</button></li>
   <li class="dropdown">
-    <a href="#" class="dropbtn">함수</a>
+    <button class="dropbtn">함수</button>
     <div class="dropdown-content">
-      <a href="#">평균</a>
-      <a href="#">합계</a>
-      <a href="#">최대값</a>
-      <a href="#">최대값</a>
+      <button id="more">평균</button>
+      <button id="more">합계</button>
+      <button id="more">최대값</button>
+      <button id="more">최대값</button>
   	  <button id="more" class="modal">더보기</button>
 		<div id="glayLayer"></div>
 		<div id="overLayer">
-			<iframe  src='Iframe.do'></iframe>
+			<iframe src='Iframe.do'></iframe>
 		</div>
     </div>
   </li>
  <li class="dropdown">
-    <a href="#" class="dropbtn">정렬</a>
+    <button class="dropbtn">정렬</button>
     <div class="dropdown-content">
-      <a href="#">오름차순</a>
-      <a href="#">내림차순</a>
+      <button id="more">오름차순</button>
+      <button id="more">내림차순</button>
     </div>
   </li>
    <li class="dropdown">
-    <a href="#" class="dropbtn">추가</a>
+    <button class="dropbtn">추가</button>
     <div class="dropdown-content">
-      <a href="#">행추가</a>
-      <a href="#">열추가</a>
-      <a href="#">시트추가</a>
+      <button id="more">행추가</button>
+      <button id="more">열추가</button>
+      <button id="more">시트추가</button>
     </div>
   </li>
-  <li><a href="board.do">엑셀목록</a></li>
+  <li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
   <li id="search"><div id="search"><input type="text" placeholder="검색" name="search_text" id="search_text" size="20" onkeypress=
 	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
   <div class="bar_title">[ 제목 : ${title}]</div>
