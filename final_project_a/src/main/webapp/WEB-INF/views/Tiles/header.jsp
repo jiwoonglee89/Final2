@@ -43,6 +43,9 @@
     </div>
   </li>
   <li><a href="#">엑셀목록</a></li>
+  <li><p id="feedback">
+<span>You've selected:</span> <span id="select-result">none</span>.
+</p></li>
 </ul>
 		</div>
 		<div class="jbMenu2">

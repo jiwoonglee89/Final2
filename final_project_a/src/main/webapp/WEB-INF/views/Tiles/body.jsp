@@ -278,6 +278,29 @@ function scrollY() {
 		}
 	}
 	
+	function selectLeft(mousebtn){
+		if(cntrlIsPressed)
+	    {
+	        switch(mousebtn)
+	        {
+	            case 1:
+	                $('#select-result').append("test");
+	                break;
+	            default:
+	                break;
+	        }
+	    }
+	}
+	
+	//컨트롤키
+	$(document).keydown(function(event){
+		if(event.which=="17"){
+			cntrlIsPressed = true;
+		}
+	});
+	$(document).keyup(function(){
+	    cntrlIsPressed = false;
+	});
 	
 	$(document).ready(function() {
 		/* head body 생성 */
