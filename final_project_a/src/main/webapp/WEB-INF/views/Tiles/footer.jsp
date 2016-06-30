@@ -7,51 +7,200 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
-#footer_bar{
-	display: inline-block;
+.button {
+	border: 1px solid #769e8b;
+	background: #1c6935;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6aad85),
+		to(#1c6935));
+	background: -webkit-linear-gradient(top, #6aad85, #1c6935);
+	background: -moz-linear-gradient(top, #6aad85, #1c6935);
+	background: -ms-linear-gradient(top, #6aad85, #1c6935);
+	background: -o-linear-gradient(top, #6aad85, #1c6935);
+	background-image: -ms-linear-gradient(top, #6aad85 0%, #1c6935 100%);
+	padding: 5.5px 11px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0; -moz-box-shadow : rgba( 255, 255,
+	255, 0.4) 0 1px 0, inset rgba( 255, 255, 255, 0.4) 0 1px 0; box-shadow
+	: rgba( 255, 255, 255, 0.4) 0 1px 0, inset rgba( 255, 255, 255, 0.4) 0
+	1px 0; text-shadow : #768b99 0 1px 0; color : #ffffff; font-size : 12px;
+	font-family: helvetica, serif;
+	text-decoration: none;
+	vertical-align: middle;
+	-moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0;
+	box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0;
+	text-shadow: #768b99 0 1px 0;
+	color: #ffffff;
+	font-size: 12px;
+}
+
+.button:hover {
+	border: 1px solid #74a87c;
+	text-shadow: #1e4158 0 1px 0;
+	background: #3e755a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#cfd6d0),
+		to(#3e755a));
+	background: -webkit-linear-gradient(top, #cfd6d0, #3e755a);
+	background: -moz-linear-gradient(top, #cfd6d0, #3e755a);
+	background: -ms-linear-gradient(top, #cfd6d0, #3e755a);
+	background: -o-linear-gradient(top, #cfd6d0, #3e755a);
+	background-image: -ms-linear-gradient(top, #cfd6d0 0%, #3e755a 100%);
+	color: #fff;
+}
+
+.button:active {
+	text-shadow: #1e4158 0 1px 0;
+	border: 1px solid #2c6131;
+	background: #104221;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3f7535),
+		to(#3e755a));
+	background: -webkit-linear-gradient(top, #3f7535, #104221);
+	background: -moz-linear-gradient(top, #3f7535, #104221);
+	background: -ms-linear-gradient(top, #3f7535, #104221);
+	background: -o-linear-gradient(top, #3f7535, #104221);
+	background-image: -ms-linear-gradient(top, #3f7535 0%, #104221 100%);
+	color: #fff;
+}
+
+#div_footer_sheet {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 25px;
+	background-color: #3fa338;
+}
+
+/* #footer_bar div{
+   display: inline-block;
+   float: left;
+   color:white;
+   text-align:center;
+   padding:4px 16px;
+   text-decoration:none;
+} */
+#left {
+		position: relative;
+	left: 4%; 
 	float: left;
 }
-#left{
-	float: left;
-}
+
 #sheet_bar {
-	display: inline-block;
+/* 	display: inline-block;
 	float: right;
+	color: white;
+	text-align: center;
+	padding: 4px 16px;
+	text-decoration: none;
+	margin: 0 auto; */
+	position: relative;
+	left: 8%; 
+ 	
 }
-#sheet_bar div{
+
+#sheet_bar input {
 	float: left;
 }
+
+/* #add{
+	position:relative;
+	bottom:30%;
+	left:200%;
+}
+
+#sheet{
+	position:relative;
+	bottom:30%;
+	left:260%;
+} */
+.button {
+   border: 1px solid #606161;
+   background: #ababab;
+   background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#ababab));
+   background: -webkit-linear-gradient(top, #cccccc, #ababab);
+   background: -moz-linear-gradient(top, #cccccc, #ababab);
+   background: -ms-linear-gradient(top, #cccccc, #ababab);
+   background: -o-linear-gradient(top, #cccccc, #ababab);
+   background-image: -ms-linear-gradient(top, #cccccc 0%, #ababab 100%);
+   padding: 5px 10px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0;
+   color: #0a0a0a;
+   font-size: 14px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 1px solid #7d7d7d;
+   text-shadow: #ffffff 0 1px 0;
+   background: #b3b3b3;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b3b3b3));
+   background: -webkit-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -moz-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -ms-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -o-linear-gradient(top, #ffffff, #b3b3b3);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #b3b3b3 100%);
+   color: #000000;
+   }
+.button:active {
+   text-shadow: #ffffff 0 1px 0;
+   border: 1px solid #949494;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b3b3b3));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   color: #000000;
+   }
+   
 
 </style>
 <script>
-$(function() {
+	$(function() {
 
-	$('#btn').click(function(){
-		var list = $('#sheet_bar div').text();
-		
-		var listleng = $('#sheet_bar').find('div').length;
-		alert(list);
-		alert(listleng);
+		$('#btn').click(function() {
+			var list = $('#sheet_bar div').text();
+
+			var listleng = $('#sheet_bar').find('div').length;
+			alert(list);
+			alert(listleng);
+		});
+		$('#add')
+				.click(
+						function() {
+
+							tag = "<li><input type='button' id='sheet' class='button' value='시트'/></li>";
+							$('#sheet_bar').append(tag);
+						});
 	});
-	$('#add').click(function() {
-		
-		tag = "<div id='sheet' class='sheet'>시트4.</div>";
-		$('#sheet_bar').append(tag);
-	});
-});
 </script>
 <style>
 </style>
-</head> 
+</head>
 <body>
-	<div id="footer_bar" style="border: 1px solid;">
-		<div id="left">
-			<input type="button" id="add" value="추가"/>
-		</div>
-		<div id="sheet_bar">
-			<div id="sheet1" class="sheet">시트1.</div>
-			<div id="sheet1" class="sheet">시트2.</div>
-			<div id="sheet1" class="sheet">시트3.</div>
+	<div id="div_footer_sheet">
+		<div id="footer_bar">
+			<div id="left">
+				<input type="button" id="add" class="button" value="추가" />
+			</div>
+			<div id="sheet_bar">
+				<input type="button" id="sheet" class="button" value="시트" />
+			</div>
 		</div>
 	</div>
 </body>
