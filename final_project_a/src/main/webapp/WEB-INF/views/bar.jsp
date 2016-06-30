@@ -137,7 +137,7 @@ ul {
     background-color: #3fa338;
 }
 
-li {
+li, #search_text {
     float: left;
     border-right: 1.5px solid #bbb;
 }
@@ -198,7 +198,7 @@ li.dropdown {
 /* 함수 더보기 외부 디자인 시작*/
 #glayLayer, #overLayer
 {
-	display: none;
+	 display: none;
 }
 /* 함수 더보기 외부 디자인 종료*/
 
@@ -229,7 +229,6 @@ div#glayLayer {
 	margin-left: -325px;
 	width: 640px;
 	height: 400px;
-	overflow: hidden;
 	
 }
 
@@ -239,30 +238,30 @@ div#glayLayer {
 
 iframe {
 	width: 640px;
-	height: 500px;
+	height: 400px;
 	border: none;
 }
 #search_text
 {
-	position:absolute;
-	top:21px;
-	left:500px;
 	text-align:center;
-}
-.button
-{
-	position:absolute;
-	top:21px;
-	right:5%;
+	display: inline-block;
+	margin: 15px
 }
 .bar_title
 {
-	position:absolute;
-	top:22px;
-	left:800px;
-	
+	font-weight: bold;
+	margin:15px;
+}
+.logout
+{
+	margin: 15px 40px; 
+}
+#logout
+{
+	float:right;
 }
 /* 내부 화면 종료 */
+
 </style>
 </head>
 <body>
@@ -300,11 +299,17 @@ iframe {
     </div>
   </li>
   <li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
-  <li id="search"><div id="search"><input type="text" placeholder="검색" name="search_text" id="search_text" size="20" onkeypress=
-	  "javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}"></div></li>
-  <div class="bar_title">[ 제목 : ${title}]</div>
-  
-  <li><button class="button" onclick="javascript:window.location='logout.do'">Logout</button></li>
+  <li>
+  	<div id="search_text">
+  		<input type="text" placeholder="검색" name="search_text"  size="30" onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
+ 	</div>
+ </li>
+ <li><div class="bar_title">[ 제목 : ${title} ]</div></li>
+  <li id="logout">
+  	<div class="logout">
+  		<button class="button" onclick="javascript:window.location='logout.do'">Logout</button>
+  	</div>
+  </li>
 </ul>
 </body>
 </html>

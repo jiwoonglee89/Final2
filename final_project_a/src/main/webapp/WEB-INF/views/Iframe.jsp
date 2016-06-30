@@ -50,7 +50,7 @@ overflow: hidden;
 }
 
 #close {
-	background-color:red;
+	background-color:rgba(255,0,0,0.6);
 	width: 20px;
 	height: auto;
 	text-align: center;
