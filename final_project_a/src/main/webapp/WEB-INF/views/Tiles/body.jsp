@@ -69,8 +69,8 @@
 			   }
 		   
 		   //시트개수
-		   var listleng = $('#sheet_bar').find('div').length;
-		    $('#sheetNum').val(listleng);
+		     var sheetlist = $('#sheet_bar').find('div').text();
+		    $('#sheetlist').val(sheetlist);
 		   
 		    
 			$('#formtable').submit();
@@ -188,14 +188,14 @@
 	//저장 폼 생성
 	function createForm() {
 		//파라미터로 sheetNum, title 넘겨줌
-		var tag = '<form id="formtable" name="formtable" action="save1.do?title=${title}&sheetNum=${sheetNum}" method="post">'
+		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
 				var val = th[i] + j;
 				tag += '<input type="hidden" id=in'+th[i]+j+' name='+th[i]+j+' />'
 			}
 		}
-		tag += '<input type="hidden" id="sheetNum" name="sheetNum"/>'
+		tag += '<input type="hidden" id="sheetlist" name="sheetlist"/>'
 		tag += '</form>'
 
 		var divForm1 = document.getElementById("divForm");

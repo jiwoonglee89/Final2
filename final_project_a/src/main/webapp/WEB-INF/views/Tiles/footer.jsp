@@ -35,7 +35,7 @@ $(function() {
 	});
 	$('#add').click(function() {
 		
-		tag = "<div id='sheet' class='sheet'>시트4</div>";
+		tag = "<div id='sheet' class='sheet'>시트4.</div>";
 		$('#sheet_bar').append(tag);
 	});
 });
@@ -49,9 +49,9 @@ $(function() {
 			<input type="button" id="add" value="추가"/>
 		</div>
 		<div id="sheet_bar">
-			<div id="sheet1" class="sheet">시트1</div>
-			<div id="sheet1" class="sheet">시트2</div>
-			<div id="sheet1" class="sheet">시트3</div>
+			<div id="sheet1" class="sheet">시트1.</div>
+			<div id="sheet1" class="sheet">시트2.</div>
+			<div id="sheet1" class="sheet">시트3.</div>
 		</div>
 	</div>
 </body>
