@@ -103,7 +103,7 @@ $(function(){
 	<tr>
 		<td>
 			<div class="size_long" id="divtitle">
-			<input type="text" class="text_login" id="title" name="title" maxlength="12" placeholder="力格"></input>
+			<input type="text" class="text_login" id="title" name="title" size="50" placeholder="力格"></input>
 			</div>
 			<input id="submit_find_title" class="button" type="button"  name="confirm_title" value="check"></input>
 		</td>
