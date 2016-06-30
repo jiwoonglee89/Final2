@@ -2,63 +2,131 @@
 <%@page import="org.apache.tiles.request.locale.URLApplicationResource"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<link rel="stylesheet" href='<c:url value="/resources/style.css"/>' type="text/css" media="print, projection, screen" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href='<c:url value="/resources/style.css"/>'
+	type="text/css" media="print, projection, screen" />
+<script>
+/* 검색어 함수 */
+var TRange=null;
 
+function findString (str) {
+	if (parseInt(navigator.appVersion)<4)
+		return;
+	var strFound;
+	if (window.find) {
+		strFound=self.find(str);
+  		if (!strFound) {
+   			strFound=self.find(str,0,1);
+   		while (self.find(str,0,1)) 
+   			continue;
+  		}
+ 	}
+	else if (navigator.appName.indexOf("Microsoft")!=-1) {
+		if (TRange!=null) {
+   			TRange.collapse(false);
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+  		if (TRange==null || strFound==0) {
+   			TRange=self.document.body.createTextRange();
+   			strFound=TRange.findText(str);
+   			if (strFound) 
+   				TRange.select();
+  		}
+ 	}
+ 	else if (navigator.appName=="Opera") {
+  		alert ("Opera browsers not supported, sorry...")
+  	return;
+ 	}
+ 	if (!strFound) 
+ 		alert ("String '"+str+"' not found!")
+ 	return;
+}
+
+
+//함수 더보기 클릭시 뜨는 DIV창
+$(document).ready(function()
+{
+	$("button.modal").click(
+		function()
+		{
+			$("#glayLayer").show();
+			$("#overLayer").show();
+		}
+	);
+	
+});
+</script>
 </head>
 <body>
-	<div id="formulaBar" class="jbMenu" style="padding-left:0px;">
-		<!-- <div class="top" style='float: left'> -->
+	<div id="formulaBar" class="jbMenu" style="padding-left: 0px;">
 		<ul>
-  <li><input type="button" onclick="submit()" value="저장"/>
-  <a class="active" href="#">저장</a></li>
-  <li><input type="button" value="다운로드" onclick="download()"></li>
-  <li><input type="button" id="insertBtn" value="불러오기"/></li>
-  <li class="dropdown">
-    <a href="#" class="dropbtn">함수</a>
-    <div class="dropdown-content">
-      <a href="#">평균</a>
-      <a href="#">합계</a>
-      <a href="#">최대값</a>
-      <a href="#">최대값</a>
-      <a href="#" onclick="popup()" >더보기...</a>
-    </div>
-  </li>
-  <li><a href="#">검색</a></li>
- <li class="dropdown">
-    <a href="#" class="dropbtn">정렬</a>
-    <div class="dropdown-content">
-      <a href="#">오름차순</a>
-      <a href="#">내림차순</a>
-    </div>
-  </li>
-   <li class="dropdown">
-    <a href="#" class="dropbtn">추가</a>
-    <div class="dropdown-content">
-      <a href="#">행추가</a>
-      <a href="#">열추가</a>
-      <a href="#">시트추가</a>
-    </div>
-  </li>
-  <li><a href="#">엑셀목록</a></li>
-  <li><p id="feedback">
-<span>You've selected:</span> <span id="select-result">none</span>.
-</p></li>
-</ul>
-		
+			<li><button onclick="submit()" class="active">저장</button></li>
+			<li><button onclick="download.do">다운로드</button></li>
+			<li class="dropdown">
+				<button class="dropbtn">함수</button>
+				<div class="dropdown-content">
+					<button id="more">평균</button>
+					<button id="more">합계</button>
+					<button id="more">최대값</button>
+					<button id="more">최대값</button>
+					<button id="more" class="modal">더보기</button>
+					<div id="glayLayer"></div>
+					<div id="overLayer">
+						<iframe src='Iframe.do'></iframe>
+					</div>
+				</div>
+			</li>
+			<li class="dropdown">
+				<button class="dropbtn">정렬</button>
+				<div class="dropdown-content">
+					<button id="more">오름차순</button>
+					<button id="more">내림차순</button>
+				</div>
+			</li>
+			<li class="dropdown">
+				<button class="dropbtn">추가</button>
+				<div class="dropdown-content">
+					<button id="more">행추가</button>
+					<button id="more">열추가</button>
+					<button id="more">시트추가</button>
+				</div>
+			</li>
+			<li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
+			<li>
+				<div id="search_text">
+					<input type="text" placeholder="검색" name="search_text" size="30"
+						onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
+				</div>
+			</li>
+			<li><div class="bar_title">[ 제목 : ${title} ]</div></li>
+			<li id="logout">
+				<div class="logout">
+					<button class="button"
+						onclick="javascript:window.location='logout.do'">Logout</button>
+				</div>
+			</li>
+		</ul>
+
 		<div class="left" style='float: left'>
 			<input type="text" id="address">
 		</div>
 		<div class="center" style='float: left'>수식</div>
 		<div class="right" style='float: left'>
-		<form id="form2" action='formula.do' method='post'>
-			<input type="text" id="formula" name="formula1"/>
+			<form id="form2" action='formula.do' method='post'>
+				<input type="text" id="formula" name="formula1" />
 			</form>
 		</div>
-		
-		</div>
-			
+
+	</div>
+
 </body>
 </html>

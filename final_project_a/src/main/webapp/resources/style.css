@@ -31,7 +31,7 @@ html, body {
 	margin-right: auto;
 	width: 1280px;
 	height: 780px;
-	position: relative;
+	position: static;
 	top: 0px;
 	overflow-y: scroll;
 }
@@ -53,7 +53,7 @@ html, body {
 }
 
 /* MenuBar2 */
-ul {
+/* ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -104,7 +104,7 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
 	display: block;
-}
+} */
 
 
 #address {
@@ -151,3 +151,206 @@ tr, td {
 	width: 90px;
 	height: 22px;
 }
+
+/* 로그아웃 버튼 디자인 시작 */
+.button {
+	border: 1px solid #000000;
+	background: #ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+	padding: 4px 8px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0;
+	-moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0;
+	box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
+		rgba(255, 255, 255, 0.4) 0 1px 0;
+	text-shadow: #ffffff 0 1px 0;
+	color: #000000;
+	font-size: 10px;
+	font-family: helvetica, serif;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.button:hover {
+	border: 1px solid #ffffff;
+	text-shadow: #ffffff 0 1px 0;
+	background: #919191;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#919191));
+	background: -webkit-linear-gradient(top, #ffffff, #919191);
+	background: -moz-linear-gradient(top, #ffffff, #919191);
+	background: -ms-linear-gradient(top, #ffffff, #919191);
+	background: -o-linear-gradient(top, #ffffff, #919191);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #919191 100%);
+	color: #fff;
+}
+
+.button:active {
+	text-shadow: #000000 0 1px 0;
+	border: 1px solid #ffffff;
+	background: #000000;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000000),
+		to(#919191));
+	background: -webkit-linear-gradient(top, #000000, #000000);
+	background: -mozlinear-gradient(top, #000000, #000000);
+	background: -ms-linear-gradient(top, #000000, #000000);
+	background: -o-linear-gradient(top, #000000, #000000);
+	background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+	color: #fff;
+}
+/* 로그아웃 버튼 디자인 종료 */
+
+/* 버튼 디자인테스트 시작*/
+li button {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-family: 'Nanum Pen Script', serif;
+	background-color: #3fa338;
+	font-size: medium;
+}
+
+/* 버튼 디자인테스트 종료*/
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #3fa338;
+}
+
+li, #search_text {
+	float: left;
+	border-right: 1.5px solid #bbb;
+}
+
+li button, .dropbtn {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-family: 'Nanum Pen Script', serif;
+}
+
+li button:hover, .dropdown:hover .dropbtn {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+li.dropdown {
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content button {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	font-family: 'Poiret One', cursive;
+}
+
+.dropdown-content button:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+#more {
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	border: none;
+	width: 100%;
+	background: white;
+	font-size: medium;
+	font-family: 'Poiret One', cursive;
+}
+
+/* 함수 더보기 외부 디자인 시작*/
+#glayLayer, #overLayer {
+	display: none;
+}
+/* 함수 더보기 외부 디자인 종료*/
+
+/*포커스 이외 불투명 처리 시작 */
+div#glayLayer {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: black;
+	filter: alpha(opacity = 60);
+	opacity: 0.60;
+}
+
+* html div#glayLayer {
+	position: absolute;
+}
+/*포커스 이외 불투명 처리 종료 */
+
+/* 내부 화면 시작 */
+#overLayer {
+	position: fixed;
+	/* 화면 중앙 정렬 */
+	top: 50%;
+	left: 50%;
+	margin-top: -244px;
+	margin-left: -325px;
+	width: 640px;
+	height: 400px;
+}
+
+* html #overLayer {
+	position: absolute;
+}
+
+iframe {
+	width: 640px;
+	height: 400px;
+	border: none;
+}
+
+#search_text {
+	text-align: center;
+	display: inline-block;
+	margin: 15px
+}
+
+.bar_title {
+	font-weight: bold;
+	margin: 15px;
+}
+
+.logout {
+	margin: 15px 40px;
+}
+
+#logout {
+	float: right;
+}
+/* 내부 화면 종료 */

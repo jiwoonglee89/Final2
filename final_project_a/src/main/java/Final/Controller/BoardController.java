@@ -65,6 +65,6 @@ public class BoardController {
 	@RequestMapping("/Iframe.do")
 	public String moveframe()
 	{
-		return "Iframe";
+		return "Tiles/Iframe";
 	}
 }
