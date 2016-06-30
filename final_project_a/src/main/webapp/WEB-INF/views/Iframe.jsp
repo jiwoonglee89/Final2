@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,53 +30,60 @@
 		}); 
 </script>
 <style>
+html
+{
+	display: block;
+}
 body
 {
-width: auto;
-height: auto;
 overflow: hidden;
 }
 #all {
-	background-color: white;
-	width: 600px;
-	height: 500px;
+	background-color: grean;
+	/* width: 600px;
+	height: 450px;
+	position:relative; */
+	display: block;
 }
 
 #top {
+	display:block;
 	background-color: #46CCFF;
 	height: 5%;
 	width: 100%;
 	float: right;
 	border: 5px;
+	position:fixed;
+	top: 0px;
+	
 }
 
 #close {
 	background-color:rgba(255,0,0,0.6);
 	width: 20px;
-	height: auto;
 	text-align: center;
 	float: right;
-	margin: 3px;
-	padding: auto;
+ 	margin-right: 20px;
 }
-
-
 
 #content 
 {
- background-color: black;
+ margin-top:21px;
+ background-color: white;
  text-align: center;
  color:red;	
- height: 70%;
+ display: block;
 }
 
 
 #bottom {
+	display:block;
 	vertical-align: center;
 	background-color: yellow;
 	color: black;
 	width: 100%;
-	height: 8.5%;
+	position:fixed; 
+	bottom:0px;
 }
 
 #btn
@@ -88,13 +96,18 @@ overflow: hidden;
 
 #functionList
 {
-	overflow-y:auto;
+	overflow:scroll;
+	display:block;
+	height: 380px;
 }
 
 #function
 {
 	border-bottom: double;
 	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+	display:block;
 }
 
 </style>
@@ -107,9 +120,12 @@ overflow: hidden;
 		</div>
 		<div id='content'>
 			<div id="functionList" >
-			<%-- <c:foreach begin="1" end="10" step="1"> --%>
-			<div id="function">함수EX)</div>
-			<%-- </c:foreach> --%>
+			<%-- <c:forEach begin="1" end="151" step="1"> --%>
+			<c:forEach begin="1" end="10" step="1">
+			<br>
+			<div id="function">예제</div>
+			<br>
+			</c:forEach>
 			</div>
 		</div>
 		<div id='bottom'>
