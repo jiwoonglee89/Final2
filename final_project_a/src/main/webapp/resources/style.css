@@ -96,6 +96,7 @@ table, td, th {
 tr, td {
 	width: 90px;
 	height: 22px;
+	text-align: center;
 }
 
 /* 로그아웃 버튼 디자인 시작 */
