@@ -82,13 +82,13 @@ html,body{overflow:hidden;}
 <script>
 $(function(){
 	$("#submit_find_title").click(function(){
-		opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
+		opener.parent.location="tiles.do?title="+$('#title').val()+"";
 		self.close();
 	});
 	
 	$('#title').keydown(function(e){
 		if(e.keyCode==13){
-			opener.parent.location="newdivedit.do?title="+$('#title').val()+"";
+			opener.parent.location="tiles.do?title="+$('#title').val()+"";
 			self.close();
 		}
 		
@@ -98,7 +98,7 @@ $(function(){
 </script>
 </head> 
 <body>
-<form action="newdivedit.do" name="title" id="in_title">
+<form action="tiles.do" name="title" id="in_title">
 <table>
 	<tr>
 		<td>

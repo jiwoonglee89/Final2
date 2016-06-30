@@ -44,7 +44,8 @@ public class ExcelController {
 	}
 
 	@RequestMapping("/tiles.do")
-	public String tiles() {
+	public String tiles(String title,HttpServletRequest request) {
+	    request.setAttribute("title" , title);
 		return "Tiles/excel_layout";
 	}
 

@@ -49,14 +49,14 @@ public class BoardController {
 		return new ModelAndView("BoardPage/result", "success", success);
 
 	}
-	@RequestMapping("/newdivedit.do")
+/*	@RequestMapping("/newdivedit.do")
 	public String moveExcel(String title,HttpServletRequest request)
 	{
 		System.out.println(title);
 	    request.setAttribute("title" , title);
 		
-	    return "bar";
-	}
+	    return "Tiles/";
+	}*/
 	@RequestMapping(value="/title.do", method=RequestMethod.GET)
     public String moveTitle()
     {
