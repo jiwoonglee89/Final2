@@ -92,7 +92,7 @@ overflow: hidden;
 
 #functionList
 {
-	overflow:scroll;
+	overflow-y:scroll;
 	display:block;
 	height: 380px;
 }

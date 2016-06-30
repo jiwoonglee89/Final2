@@ -34,6 +34,7 @@ html, body {
 	position: static;
 	top: 0px;
 	overflow-y: scroll;
+	overflow-x:
 }
 .jbFixed {
 	position: fixed;
@@ -276,7 +277,7 @@ div#glayLayer {
 
 iframe {
 	width: 640px;
-	height: 400px;
+	height: 440px;
 	border: none;
 }
 
