@@ -8,119 +8,6 @@
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 .button {
-	border: 1px solid #769e8b;
-	background: #1c6935;
-	background: -webkit-gradient(linear, left top, left bottom, from(#6aad85),
-		to(#1c6935));
-	background: -webkit-linear-gradient(top, #6aad85, #1c6935);
-	background: -moz-linear-gradient(top, #6aad85, #1c6935);
-	background: -ms-linear-gradient(top, #6aad85, #1c6935);
-	background: -o-linear-gradient(top, #6aad85, #1c6935);
-	background-image: -ms-linear-gradient(top, #6aad85 0%, #1c6935 100%);
-	padding: 5.5px 11px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 0px;
-	-webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
-		rgba(255, 255, 255, 0.4) 0 1px 0; -moz-box-shadow : rgba( 255, 255,
-	255, 0.4) 0 1px 0, inset rgba( 255, 255, 255, 0.4) 0 1px 0; box-shadow
-	: rgba( 255, 255, 255, 0.4) 0 1px 0, inset rgba( 255, 255, 255, 0.4) 0
-	1px 0; text-shadow : #768b99 0 1px 0; color : #ffffff; font-size : 12px;
-	font-family: helvetica, serif;
-	text-decoration: none;
-	vertical-align: middle;
-	-moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
-		rgba(255, 255, 255, 0.4) 0 1px 0;
-	box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset
-		rgba(255, 255, 255, 0.4) 0 1px 0;
-	text-shadow: #768b99 0 1px 0;
-	color: #ffffff;
-	font-size: 12px;
-}
-
-.button:hover {
-	border: 1px solid #74a87c;
-	text-shadow: #1e4158 0 1px 0;
-	background: #3e755a;
-	background: -webkit-gradient(linear, left top, left bottom, from(#cfd6d0),
-		to(#3e755a));
-	background: -webkit-linear-gradient(top, #cfd6d0, #3e755a);
-	background: -moz-linear-gradient(top, #cfd6d0, #3e755a);
-	background: -ms-linear-gradient(top, #cfd6d0, #3e755a);
-	background: -o-linear-gradient(top, #cfd6d0, #3e755a);
-	background-image: -ms-linear-gradient(top, #cfd6d0 0%, #3e755a 100%);
-	color: #fff;
-}
-
-.button:active {
-	text-shadow: #1e4158 0 1px 0;
-	border: 1px solid #2c6131;
-	background: #104221;
-	background: -webkit-gradient(linear, left top, left bottom, from(#3f7535),
-		to(#3e755a));
-	background: -webkit-linear-gradient(top, #3f7535, #104221);
-	background: -moz-linear-gradient(top, #3f7535, #104221);
-	background: -ms-linear-gradient(top, #3f7535, #104221);
-	background: -o-linear-gradient(top, #3f7535, #104221);
-	background-image: -ms-linear-gradient(top, #3f7535 0%, #104221 100%);
-	color: #fff;
-}
-
-#div_footer_sheet {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 25px;
-	background-color: #3fa338;
-}
-
-/* #footer_bar div{
-   display: inline-block;
-   float: left;
-   color:white;
-   text-align:center;
-   padding:4px 16px;
-   text-decoration:none;
-} */
-#left {
-		position: relative;
-	left: 4%; 
-	float: left;
-}
-
-#sheet_bar {
-/* 	display: inline-block;
-	float: right;
-	color: white;
-	text-align: center;
-	padding: 4px 16px;
-	text-decoration: none;
-	margin: 0 auto; */
-	position: relative;
-	left: 8%; 
- 	
-}
-
-#sheet_bar input {
-	float: left;
-}
-
-/* #add{
-	position:relative;
-	bottom:30%;
-	left:200%;
-}
-
-#sheet{
-	position:relative;
-	bottom:30%;
-	left:260%;
-} */
-.button {
    border: 1px solid #606161;
    background: #ababab;
    background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#ababab));
@@ -168,25 +55,81 @@
    color: #000000;
    }
    
+#div_footer_sheet {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 25px;
+	background-color: #3fa338;
+}
+
+ /* #footer_bar div{
+   display: inline-block;
+   float: left;
+   color:white;
+   text-align:center;
+   padding:4px 16px;
+   text-decoration:none;
+}  */
+#left {
+	position: relative;
+	left: 4%; 
+	float: left;
+}
+
+#sheet_bar {
+/* 	display: inline-block;
+	float: right;
+	color: white;
+	text-align: center;
+	padding: 4px 16px;
+	text-decoration: none;
+	margin: 0 auto; */
+	position: relative;
+	left: 8%; 
+ 	
+}
+
+#sheet_bar input {
+	float: left;
+}
+
+/* #add{
+	position:relative;
+	bottom:30%;
+	left:200%;
+}
+
+#sheet{
+	position:relative;
+	bottom:30%;
+	left:260%;
+} */
+
+   
 
 </style>
 <script>
 	$(function() {
 
-		$('#btn').click(function() {
-			var list = $('#sheet_bar div').text();
+	$('#btn').click(function() {
+	var list = $('#sheet_bar div').text();
 
-			var listleng = $('#sheet_bar').find('div').length;
-			alert(list);
-			alert(listleng);
-		});
+	var listleng = $('#sheet_bar').find('div').length;
+		alert(list);
+		alert(listleng);
+	});
 		$('#add')
-				.click(
-						function() {
+		.click(
+	function() {
 
-							tag = "<li><input type='button' id='sheet' class='button' value='시트'/></li>";
-							$('#sheet_bar').append(tag);
-						});
+		tag = "<li><input type='button' id='sheet' class='button' value='시트'/></li>";
+		$('#sheet_bar').append(tag);
+		});
 	});
 </script>
 <style>
