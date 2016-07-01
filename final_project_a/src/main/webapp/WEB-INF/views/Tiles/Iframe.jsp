@@ -45,9 +45,9 @@ overflow: hidden;
 
 #top {
 	display:block;
-	background-color: #46CCFF;
+	background-color: #2B2D35;
 	height: 5%;
-	width: 100%;
+	width: 97.5%;
 	float: right;
 	border: 5px;
 	position:fixed;
@@ -56,9 +56,7 @@ overflow: hidden;
 }
 
 #close {
-	background-color:rgba(255,0,0,0.6);
-	width: 20px;
-	text-align: center;
+	text-align: centers;
 	float: right;
  	margin-right: 20px;
 }
@@ -66,18 +64,19 @@ overflow: hidden;
 #content 
 {
  margin-top:21px;
- background-color:white;
+ background-color:#F8F9F8;
  text-align: center;
- color:red;	
+ color:black;	
+ padding: 15px;
 }
 
 
 #bottom {
 	display:block;
 	vertical-align: center;
-	background-color: yellow;
+	background-color: #E1E1E1;
 	color: black;
-	width: 100%;
+	width: 97.5%;
 	position:fixed; 
 	bottom:0px;
 }
@@ -86,8 +85,7 @@ overflow: hidden;
 {
 	float: right;
 	padding: 10px;
-	width: 20%;
-	
+	width: 20%;	
 }
 
 #functionList
@@ -95,6 +93,9 @@ overflow: hidden;
 	overflow-y:scroll;
 	display:block;
 	height: 380px;
+	border-color: black;
+	border:1px;
+	border: solid;
 }
 
 #function
