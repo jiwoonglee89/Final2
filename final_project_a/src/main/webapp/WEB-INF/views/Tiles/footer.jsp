@@ -56,15 +56,15 @@
    }
    
 #div_footer_sheet {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 25px;
-	background-color: #3fa338;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 25px;
+   background-color: #3fa338;
 }
 
  /* #footer_bar div{
@@ -76,75 +76,75 @@
    text-decoration:none;
 }  */
 #left {
-	position: relative;
-	left: 4%; 
-	float: left;
+   position: relative;
+   left: 4%; 
+   float: left;
 }
 
 #sheet_bar {
-/* 	display: inline-block;
-	float: right;
-	color: white;
-	text-align: center;
-	padding: 4px 16px;
-	text-decoration: none;
-	margin: 0 auto; */
-	position: relative;
-	left: 8%; 
- 	
+/*    display: inline-block;
+   float: right;
+   color: white;
+   text-align: center;
+   padding: 4px 16px;
+   text-decoration: none;
+   margin: 0 auto; */
+   position: relative;
+   left: 8%; 
+    
 }
 
 #sheet_bar input {
-	float: left;
+   float: left;
 }
 
 /* #add{
-	position:relative;
-	bottom:30%;
-	left:200%;
+   position:relative;
+   bottom:30%;
+   left:200%;
 }
 
 #sheet{
-	position:relative;
-	bottom:30%;
-	left:260%;
+   position:relative;
+   bottom:30%;
+   left:260%;
 } */
 
    
 
 </style>
 <script>
-	$(function() {
+   $(function() {
 
-	$('#btn').click(function() {
-	var list = $('#sheet_bar div').text();
+   $('#btn').click(function() {
+   var list = $('#sheet_bar div').text();
 
-	var listleng = $('#sheet_bar').find('div').length;
-		alert(list);
-		alert(listleng);
-	});
-		$('#add')
-		.click(
-	function() {
+   var listleng = $('#sheet_bar').find('div').length;
+      alert(list);
+      alert(listleng);
+   });
+      $('#add')
+      .click(
+   function() {
 
-		tag = "<li><input type='button' id='sheet' class='button' value='시트'/></li>";
-		$('#sheet_bar').append(tag);
-		});
-	});
+      tag = "<input type='button' id='sheet' class='button' value='시트'/>";
+      $('#sheet_bar').append(tag);
+      });
+   });
 </script>
 <style>
 </style>
 </head>
 <body>
-	<div id="div_footer_sheet">
-		<div id="footer_bar">
-			<div id="left">
-				<input type="button" id="add" class="button" value="추가" />
-			</div>
-			<div id="sheet_bar">
-				<input type="button" id="sheet" class="button" value="시트" />
-			</div>
-		</div>
-	</div>
+   <div id="div_footer_sheet">
+      <div id="footer_bar">
+         <div id="left">
+            <input type="button" id="add" class="button" value="추가" />
+         </div>
+         <div id="sheet_bar">
+            <input type="button" id="sheet" class="button" value="시트" />
+         </div>
+      </div>
+   </div>
 </body>
 </html>
