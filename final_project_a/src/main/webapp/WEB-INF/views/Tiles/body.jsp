@@ -85,7 +85,28 @@
 		//엔터키
 		if(event.keyCode == 13){	
 			event.preventDefault();
-			submit();
+			var url= "<c:url value='/save.do'/>"
+			for (var j = 1; j <= 100; j++) {
+				   for (var i = 1; i <= th.length; i++) {
+					   var value= $('#'+th[i]+j).text();
+					   $('#in'+th[i]+j).val(value);
+				   }
+			}
+			var params = $("form[name=formtable]").serialize();
+			$.ajax({
+				type:"post"
+				,url:url
+				,data:params
+				,dataType:"json"
+				,success: function (rs){
+					for(var i=0;i<rs.cell_name.length;i++){
+						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
+					} 
+				}
+				,error:function(request, status, error){
+					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
+				}
+			});
 			var numtdid = $('.tdselect').attr('id').substring(3, 6);
 			var sum = Number(numtdid) + 1;
 			var stringid = $('.tdselect').attr('id').substring(0, 3) + sum;
