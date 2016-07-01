@@ -284,16 +284,16 @@ iframe {
 #search_text {
 	text-align: center;
 	display: inline-block;
-	margin: 15px
+	margin: 10px
 }
 
 .bar_title {
 	font-weight: bold;
-	margin: 15px;
+	margin: 10px;
 }
 
 .logout {
-	margin: 15px 40px;
+	margin: 10px 40px;
 }
 
 #logout {
