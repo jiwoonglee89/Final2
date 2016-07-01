@@ -15,7 +15,6 @@
 <script>
 /* 검색어 함수 */
 var TRange=null;
-
 function findString (str) {
 	if (parseInt(navigator.appVersion)<4)
 		return;
@@ -102,8 +101,8 @@ $(document).ready(function()
 			</li>
 			<li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
 			<li>
-				<div id="search_text">
-					<input type="text" placeholder="검색" name="search_text" size="30"
+				<div id="search">
+					<input type="text" placeholder="검색" name="search_text" size="30" id="search_text"
 						onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
 				</div>
 			</li>
