@@ -78,10 +78,6 @@ $(document).ready(function()
 					<button id="more">최대값</button>
 					<button id="more">최대값</button>
 					<button id="more" class="modal">더보기</button>
-					<div id="glayLayer"></div>
-					<div id="overLayer">
-						<iframe src='Iframe.do'></iframe>
-					</div>
 				</div>
 			</li>
 			<li class="dropdown">

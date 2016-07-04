@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Jquery..</title>
+<title>Jquery</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="<c:url value="resources/formula.js" />"></script>
 <script>
  $(document).ready(function()
 		{
+	 	//닫기 버튼 및 취소 버튼 클릭시 화면 닫기
 			$("button.close").click
 			(
 				function()
@@ -28,6 +30,11 @@
 				}
 			);
 		}); 
+ 
+ function countF()
+ {
+	 var number = document.
+ }
 </script>
 <style>
 html

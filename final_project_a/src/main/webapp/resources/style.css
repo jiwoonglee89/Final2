@@ -238,7 +238,7 @@ li.dropdown {
 
 /* 함수 더보기 외부 디자인 시작*/
 #glayLayer, #overLayer {
-	display: none;
+	 display: none; 
 }
 /* 함수 더보기 외부 디자인 종료*/
 
