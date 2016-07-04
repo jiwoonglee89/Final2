@@ -10,6 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="resources/formula.js" />"></script>
 <script>
+document.write("<script type='text/javascript' src='resources/formula.js'><"+"/script>");
  $(document).ready(function()
 		{
 	 	//닫기 버튼 및 취소 버튼 클릭시 화면 닫기
@@ -29,11 +30,14 @@
 					$("#glayLayer", parent.document).css("display","none");
 				}
 			);
+			$('#function').click(function(){
+				$('#function').attr('class','selected');
+			});
+			
 		}); 
- 
- function countF()
+ function out()
  {
-	 var number = document.
+	 document.write(n);
  }
 </script>
 <style>
@@ -113,11 +117,16 @@ overflow: hidden;
 	vertical-align: middle;
 	display:block;
 }
+#function:ACTIVE 
+{
+	background-color: #a0a0a0;
+}
 
 </style>
 
 </head>
-<body>
+<!-- oncontextmenu : 드래그 금지 -->
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" >
 	<div id='all'>
 		<div id='top'>
 			<button id='close' class="close">X</button>
@@ -125,7 +134,7 @@ overflow: hidden;
 		<div id='content'>
 			<div id="functionList" >
 			<c:forEach begin="1" end="151" step="1">
-				<div id="function">예제안에 내용은 많아요 ^^<br></div>
+				<div id="function">[함수 이름 :/ 함수 종류 : ]<br></div>
 			</c:forEach>
 			</div>
 		</div>

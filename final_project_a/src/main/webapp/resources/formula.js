@@ -1,6 +1,7 @@
 var th = [ "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K","L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 function txt_average(){
+	var n = "평균";
 	$('.tdselect .textselect').focus().text('=average(');
 }
 function txt_sum(){
