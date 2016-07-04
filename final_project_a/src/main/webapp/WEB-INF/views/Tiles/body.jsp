@@ -69,7 +69,7 @@
 			   }
 		   
 		   //시트개수
-		     var sheetlist = $('#sheet_bar').find('div').text();
+		     var sheetlist = $('#sheet_bar').find('input').val();
 		    $('#sheetlist').val(sheetlist);
 		   
 		    
