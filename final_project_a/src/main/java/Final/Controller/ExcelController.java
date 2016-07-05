@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FormulaError;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -54,7 +55,6 @@ public class ExcelController {
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public String save1(HttpServletRequest request) {
 		String path = null;
-		String error = "#error";
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFRow row = null;
 		XSSFCell cell = null;
@@ -79,7 +79,7 @@ public class ExcelController {
 							try {
 								cell.setCellFormula(formula);
 							} catch (Exception e) {
-								cell.setCellValue(error);
+								cell.setCellErrorValue(FormulaError.NAME);
 							}
 
 						} else if (request.getParameter(cell_num) == "true"
@@ -124,7 +124,6 @@ public class ExcelController {
 	}
 
 	@SuppressWarnings("resource")
-	// @RequestMapping("/existExcel.do")
 	public void existExcel(HttpServletRequest request) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
@@ -158,7 +157,7 @@ public class ExcelController {
 					int cells = row.getPhysicalNumberOfCells();
 
 					for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-						Cell cell = row.getCell(columnindex);
+						XSSFCell cell = (XSSFCell)row.getCell(columnindex);
 						char rowrowrow = (char) (65 + columnindex);
 						cellName = rowrowrow + "" + colNum;
 						String value = "";
@@ -174,9 +173,14 @@ public class ExcelController {
 								value = String.valueOf(bool_data);
 								break;
 							case Cell.CELL_TYPE_FORMULA:
-								if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-									double num_data = cell.getNumericCellValue();
-									value = df.format(num_data);
+								if(evaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC){
+		                        	 String ddata=Double.toString(cell.getNumericCellValue());
+		                             if(ddata.endsWith(".0")){
+		                            	 String[] arr=ddata.split("\\.");
+		                            	 value=arr[0];
+		                             }else{
+		                            	 value = ddata;
+		                             }
 								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
 									value = cell.getStringCellValue();
 								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
@@ -185,13 +189,18 @@ public class ExcelController {
 								}
 								break;
 							case Cell.CELL_TYPE_NUMERIC:
-								if (HSSFDateUtil.isCellDateFormatted(cell)) {
-									SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-									value = formatter.format(cell.getDateCellValue());
-								} else {
-									double ddata = cell.getNumericCellValue();
-									value = df.format(ddata);
-								}
+								if (HSSFDateUtil.isCellDateFormatted(cell)){
+		                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+		                             value = formatter.format(cell.getDateCellValue());   
+		                         } else{
+		                             String ddata=Double.toString(cell.getNumericCellValue());
+		                             if(ddata.endsWith(".0")){
+		                            	 String[] arr=ddata.split("\\.");
+		                            	 value=arr[0];
+		                             }else{
+		                            	 value = ddata;
+		                             }
+		                         }
 								break;
 							case Cell.CELL_TYPE_STRING:
 								value = cell.getStringCellValue() + "";
@@ -200,7 +209,7 @@ public class ExcelController {
 								value = "";
 								break;
 							case Cell.CELL_TYPE_ERROR:
-								value = cell.getErrorCellValue() + "";
+								value = cell.getErrorCellString();
 								break;
 							}
 
@@ -254,7 +263,7 @@ public class ExcelController {
 					int cells = row.getPhysicalNumberOfCells();
 
 					for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-						Cell cell = row.getCell(columnindex);
+						XSSFCell cell = (XSSFCell)row.getCell(columnindex);
 						char rowrowrow = (char) (65 + columnindex);
 						cellName = rowrowrow + "" + colNum;
 						String value = "";
@@ -270,9 +279,14 @@ public class ExcelController {
 								value = String.valueOf(bool_data);
 								break;
 							case Cell.CELL_TYPE_FORMULA:
-								if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-									double num_data = cell.getNumericCellValue();
-									value = df.format(num_data);
+								if(evaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC){
+		                        	 String ddata=Double.toString(cell.getNumericCellValue());
+		                             if(ddata.endsWith(".0")){
+		                            	 String[] arr=ddata.split("\\.");
+		                            	 value=arr[0];
+		                             }else{
+		                            	 value = ddata;
+		                             }
 								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
 									value = cell.getStringCellValue();
 								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
@@ -281,13 +295,18 @@ public class ExcelController {
 								}
 								break;
 							case Cell.CELL_TYPE_NUMERIC:
-								if (HSSFDateUtil.isCellDateFormatted(cell)) {
-									SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-									value = formatter.format(cell.getDateCellValue());
-								} else {
-									double ddata = cell.getNumericCellValue();
-									value = df.format(ddata);
-								}
+								if (HSSFDateUtil.isCellDateFormatted(cell)){
+		                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+		                             value = formatter.format(cell.getDateCellValue());   
+		                         } else{
+		                             String ddata=Double.toString(cell.getNumericCellValue());
+		                             if(ddata.endsWith(".0")){
+		                            	 String[] arr=ddata.split("\\.");
+		                            	 value=arr[0];
+		                             }else{
+		                            	 value = ddata;
+		                             }
+		                         }
 								break;
 							case Cell.CELL_TYPE_STRING:
 								value = cell.getStringCellValue() + "";
@@ -296,9 +315,8 @@ public class ExcelController {
 								value = "";
 								break;
 							case Cell.CELL_TYPE_ERROR:
-								value = cell.getErrorCellValue() + "";
+								value = cell.getErrorCellString();
 								break;
-
 							}
 
 							System.out.println("cellName::" + cellName + "  value" + value);
