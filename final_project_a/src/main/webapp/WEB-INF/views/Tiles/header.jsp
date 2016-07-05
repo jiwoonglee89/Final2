@@ -80,13 +80,7 @@ $(document).ready(function()
 					<button id="more" class="modal">더보기</button>
 				</div>
 			</li>
-			<li class="dropdown">
-				<button class="dropbtn">정렬</button>
-				<div class="dropdown-content">
-					<button id="more">오름차순</button>
-					<button id="more">내림차순</button>
-				</div>
-			</li>
+	
 			<li class="dropdown">
 				<button class="dropbtn">추가</button>
 				<div class="dropdown-content">

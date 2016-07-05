@@ -300,3 +300,11 @@ iframe {
 	float: right;
 }
 /* 내부 화면 종료 */
+
+.sorter_b
+{
+	 border: none;
+	 background-color: white;
+	 float: right;
+	 padding: 5px;
+}
