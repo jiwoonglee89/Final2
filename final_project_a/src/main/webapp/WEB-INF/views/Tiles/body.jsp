@@ -67,13 +67,7 @@
 				   var kkkiii= $('#'+th[i]+j).text();
 				   $('#in'+th[i]+j).val(kkkiii);
 				   }
-			   }
-		   
-		   //시트개수
-		     var sheetlist = $('#sheet_bar').find('input').val();
-		    $('#sheetlist').val(sheetlist);
-		   
-		    
+			   }    
 			$('#formtable').submit();
 	}
 	
@@ -217,7 +211,8 @@
 				tag += '<input type="hidden" id=in'+th[i]+j+' name='+th[i]+j+' />'
 			}
 		}
-		tag += '<input type="hidden" id="sheetlist" name="sheetlist"/>'
+		tag += '<input type="hidden" id="totalsheetNum" name="totalsheetNum"/>'
+		tag += '<input type="hidden" id="sheetNum" name="sheetNum"/>'
 		tag += '</form>'
 
 		var divForm1 = document.getElementById("divForm");

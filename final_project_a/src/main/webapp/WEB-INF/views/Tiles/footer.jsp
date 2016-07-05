@@ -6,6 +6,7 @@
 <head>
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src='<c:url value="/resources/formula.js"/>'></script>
 <style type="text/css">
 .button {
    border: 1px solid #606161;
@@ -115,20 +116,92 @@
 </style>
 <script>
    $(function() {
+	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
+	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
+	  
+	  01
+	   
+   		$('#btn').click(function() {
+   			var list = $('#sheet_bar div').text();
 
-   $('#btn').click(function() {
-   var list = $('#sheet_bar div').text();
-
-   var listleng = $('#sheet_bar').find('div').length;
-      alert(list);
-      alert(listleng);
-   });
-      $('#add')
-      .click(
-   function() {
-
-      tag = "<input type='button' id='sheet' class='button' value='시트'/>";
-      $('#sheet_bar').append(tag);
+   			var listleng = $('#sheet_bar').find('div').length;
+      			alert(list);
+      			alert(listleng);
+   		});
+      $('#add').click(function() {
+    	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
+	      	
+      		$('#totalsheetNum').val(totalsheetNum);
+      		
+      		var a = totalsheetNum + 1;
+      		var url ="";
+      		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
+      		$('#sheet_bar').append(tag);
+      		if(totalsheetNum!=1){
+      			url += "<c:url value='/plus2.do'/>"
+      		}else{
+          		url += "<c:url value='/plus.do'/>"
+      		}
+    		for (var j = 1; j <= 100; j++) {
+    			for (var i = 1; i <= th.length; i++) {
+    				var value= $('#'+th[i]+j).text();
+    				$('#in'+th[i]+j).val(value);
+    			}
+    		}
+    		var params = $("form[name=formtable]").serialize();
+    		$.ajax({
+    				type:"post"
+    				,url:url
+    				,data:params
+    				//,dataType:"json"
+    				,success: function (){
+    					alert('성공');
+    					for (var j = 1; j <= 100; j++) {
+    		 				for (var i = 1; i <= th.length; i++) {
+    		 					$('#'+th[i]+j).text("");
+    		 					$('#in'+th[i]+j).val("");
+    		 				   }
+    		 			}
+    				}
+    				,error:function(request, status, error){
+    					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
+    				}
+    		});
+    		
+      });
+      
+      $('#sheet_bar').on('click','input',function(){
+    	  alert("여긴?");
+    	  var sheetNum = $(this).attr('id').substring(5)*1;
+    	  alert($(this).attr('id').substring(5)*1);
+    	  $('#sheetNum').val(sheetNum-1);
+    	  
+    	  var url= "<c:url value='/sheet.do'/>"
+  			/* for (var j = 1; j <= 100; j++) {
+  				   for (var i = 1; i <= th.length; i++) {
+  					   var value= $('#'+th[i]+j).text();
+  					   $('#in'+th[i]+j).val(value);
+  				   }
+  			} */
+  			var params = $("form[name=formtable]").serialize();
+  			$.ajax({
+  				type:"post"
+  				,url:url
+  				,data:params
+  				,dataType:"json"
+  				,success: function (rs){
+  					for(var i=0;i<rs.cell_name.length;i++){
+  						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
+  					} 
+  				}
+  				,error:function(request, status, error){
+  					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
+  				}
+  			});
+      	});
+      
+      $('#delete').click(function(){
+    	  
       });
    });
 </script>
@@ -137,12 +210,13 @@
 </head>
 <body>
    <div id="div_footer_sheet">
+   	
       <div id="footer_bar">
          <div id="left">
             <input type="button" id="add" class="button" value="추가" />
          </div>
          <div id="sheet_bar">
-            <input type="button" id="sheet" class="button" value="시트" />
+            <input type="button" id="sheet1" name="sheet" class="button" value="시트" />
          </div>
       </div>
    </div>
