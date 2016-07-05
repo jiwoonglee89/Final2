@@ -34,11 +34,16 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 				$('#function').attr('class','selected');
 			});
 			
+			$("#formula").foucs(function()
+			{
+				$("#function").click(function(){
+					$("#function").text();
+				});
+			});
+			
+			
 		}); 
- function out()
- {
-	 document.write(n);
- }
+
 </script>
 <style>
 html
@@ -133,9 +138,9 @@ overflow: hidden;
 		</div>
 		<div id='content'>
 			<div id="functionList" >
-			<c:forEach begin="1" end="151" step="1">
-				<div id="function">[함수 이름 :/ 함수 종류 : ]<br></div>
-			</c:forEach>
+			<%-- <c:forEach begin="1" end="151" step="1"> --%>
+				<div id="function"></div><br>
+			<%-- </c:forEach> --%>
 			</div>
 		</div>
 		<div id='bottom'>
