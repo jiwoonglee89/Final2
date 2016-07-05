@@ -44,7 +44,7 @@ public class AjaxController {
 		String[] title = sheetlist.split("\\.");
 		for (int z = 0; z < title.length; z++) {
 			System.out.println(title[z]);
-			XSSFSheet sheet = workbook.createSheet(title[z]);
+			XSSFSheet sheet = workbook.createSheet();
 
 			for (int i = 0; i < 100; i++) {
 				row = sheet.createRow(i);

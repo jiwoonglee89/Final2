@@ -247,9 +247,10 @@ function scrollY() {
 			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
 			tag += '<tr height="41" class="thtr" >'
 			for (var a = 0; a < th.length; a++) {
+				//tag += '<th id=th'+th[a]+' style="width:90px;" class="tha" norwap ><div style="width:90px;">'+ th[a] +'</div></th>';
 				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha" norwap ><div style="width:90px;">'
 				+th[a]
-				+'<input type="button" id="sorter'+th[a]+'" class="sorter_b" value="▼" onclick="div_sorter(th['+a+']);">'
+				+'<input type="button" id="sorter'+th[a]+'" class="sorter_b" value="▼">'
 				+'</div></th>';
 			
 			}
@@ -348,6 +349,7 @@ function scrollY() {
 	});
 	
 	$(function() {
+		
 		$('.sorter_b',this).click(function(){
 			var a = $(this).attr('id');
 			if($('#'+a).attr('value')=='▼'){
@@ -362,6 +364,7 @@ function scrollY() {
 				div_sorter2(div_n);
 			}
 		});
+		
 		$('.celltd',this).click(function() {
 			$('.tdselect').attr('class', 'celltd');
 			$(this).attr('class', 'tdselect');
