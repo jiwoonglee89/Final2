@@ -6,9 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title>Insert title here</title>
-<script src='<c:url value="/resources/formula.js"/>'></script>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src='<c:url value="/resources/formula.js"/>'></script>
+<script src='<c:url value="/resources/sorter.js"/>'></script>
 <link rel="stylesheet" href="<c:url value='/resources/style.css'/>" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style type="text/css"></style>
@@ -246,7 +247,10 @@ function scrollY() {
 			/* 	제목의 수만큼 열을 th태그를 만들고 값을 넣어줌 id를 통해 구별한다. id는 문자열th로 시작해서 th인데스를 합친다*/
 			tag += '<tr height="41" class="thtr" >'
 			for (var a = 0; a < th.length; a++) {
-				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha" norwap ><div style="width:90px;">'+ th[a] +'</div></th>';
+				tag += '<th id=th'+th[a]+' style="width:90px;" class="tha" norwap ><div style="width:90px;">'
+				+th[a]
+				+'<input type="button" id="sorter'+th[a]+'" class="sorter_b" value="▼" onclick="div_sorter(th['+a+']);">'
+				+'</div></th>';
 			
 			}
 			tag+= '</tr>'
@@ -344,7 +348,20 @@ function scrollY() {
 	});
 	
 	$(function() {
-		//체크해야함
+		$('.sorter_b',this).click(function(){
+			var a = $(this).attr('id');
+			if($('#'+a).attr('value')=='▼'){
+				$('#'+a).attr('value', '▲')
+				//$('#'+a).attr('onclick', 'div_sorter2')
+				var div_n=a.substring(6);
+				div_sorter(div_n);
+			}else{
+				$('#'+a).attr('value', '▼')
+				//$('#'+a).attr('onclick', 'div_sorter')
+				var div_n=a.substring(6);
+				div_sorter2(div_n);
+			}
+		});
 		$('.celltd',this).click(function() {
 			$('.tdselect').attr('class', 'celltd');
 			$(this).attr('class', 'tdselect');
