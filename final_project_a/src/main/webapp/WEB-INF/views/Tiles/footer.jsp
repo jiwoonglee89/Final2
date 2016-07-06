@@ -118,8 +118,6 @@
    $(function() {
 	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
 	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
-	  
-	  01
 	   
    		$('#btn').click(function() {
    			var list = $('#sheet_bar div').text();

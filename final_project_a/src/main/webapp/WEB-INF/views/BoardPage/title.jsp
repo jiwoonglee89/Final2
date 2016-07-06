@@ -82,7 +82,7 @@ html,body{overflow:hidden;}
 <script>
 $(function(){
 	$("#submit_find_title").click(function(){
-		opener.parent.location="tiles.do?title="+$('#title').val()+"";
+		opener.parent.location="tiles.do?title="+$('#title').val();
 		self.close();
 	});
 	

@@ -80,6 +80,7 @@
 		//엔터키
 		if(event.keyCode == 13){	
 			event.preventDefault();
+			
 			var url= "<c:url value='/save.do'/>"
 			for (var j = 1; j <= 100; j++) {
 				   for (var i = 1; i <= th.length; i++) {
@@ -87,6 +88,8 @@
 					   $('#in'+th[i]+j).val(value);
 				   }
 			}
+			
+			/* $('#sheetNum').val(sheetNum); */
 			var params = $("form[name=formtable]").serialize();
 			$.ajax({
 				type:"post"
@@ -94,7 +97,7 @@
 				,data:params
 				,dataType:"json"
 				,success: function (rs){
-					for(var i=0;i<rs.cell_name.length;i++){
+					for(var i=0;i<rs.cell_value.length;i++){
 						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
 					} 
 				}
@@ -212,7 +215,7 @@
 			}
 		}
 		tag += '<input type="hidden" id="totalsheetNum" name="totalsheetNum"/>'
-		tag += '<input type="hidden" id="sheetNum" name="sheetNum"/>'
+		tag += '<input type="hidden" id="sheetNum" name="sheetNum" value="${sheetNum}"/>'
 		tag += '</form>'
 
 		var divForm1 = document.getElementById("divForm");

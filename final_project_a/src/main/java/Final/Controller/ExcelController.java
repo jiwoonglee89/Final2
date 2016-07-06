@@ -45,8 +45,32 @@ public class ExcelController {
 	}
 
 	@RequestMapping("/tiles.do")
-	public String tiles(String title,HttpServletRequest request) {
-	    request.setAttribute("title" , title);
+	public String tiles(String title,HttpServletRequest request) throws IOException {
+	   
+	    
+	    String path = null;
+	    
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFRow row = null;
+		XSSFCell cell = null;
+
+		XSSFSheet sheet = workbook.createSheet();
+		
+		
+		try {
+			path = "F:\\final_test\\test.xlsx";
+			FileOutputStream fileoutputstream = new FileOutputStream(path);
+			try {
+				workbook.write(fileoutputstream);
+				fileoutputstream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("title" , title);
+		request.setAttribute("sheetNum", 0);
 		return "Tiles/excel_layout";
 	}
 
