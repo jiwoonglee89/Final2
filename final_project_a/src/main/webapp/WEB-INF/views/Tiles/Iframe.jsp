@@ -67,19 +67,13 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
     			TRange.collapse(false);
     			strFound=TRange.findText(str);
     			if (strFound) 
-   					//$("div#functionList>a").get[0].scrollIntoView(true);
-    				//$('html, body').animate({ scrollTop: $('div#functionList>div').offset().top }, 'slow');
-    				//TRange.select(); 			
-    			
-   		}
+    				TRange.select();
+    			}
    		if (TRange==null || strFound==0) {
     			TRange=self.document.body.createTextRange();
     			strFound=TRange.findText(str);
     			if (strFound) 
-    				//$("div#functionList>a").get[0].scrollIntoView(true);
-    				//$('html, body').animate({ scrollTop: $('div#functionList>div').offset().top }, 'slow');
-    				//TRange.select();
-    			
+    				TRange.select();
    		}
   	}
   	else if (navigator.appName=="Opera") {
@@ -189,7 +183,7 @@ float: left;
 		</div>
 		<div id='content'>
 			<div id="functionList" class="c_event">
-				<div id="abs"><a id="abs">함수 이름: ABS(number)</a><br> 함수 내용: 절대 값을 구합니다. </div>
+				<div id="abs">함수 이름: ABS(number)<br> 함수 내용: 절대 값을 구합니다. </div>
 				<div id="acos">함수 이름: ACOS(number)<br> 함수 내용: 아크코사인값을 구합니다. </div>
 				<div id="acosh">함수 이름: ACOSH(number)<br>함수 내용: 역 하이퍼 코사인값을 구합니다.</div>
 				<div id="address">함수 이름: ADDRESS(row_number, column_number,abs_number,a1,sheet_text)<br>함수 내용: 행과 열로 지정된 셀의 주소를 반환합니다. </div>
@@ -206,10 +200,10 @@ float: left;
 				<div id="bin2oct">함수 이름: BIN2OCT(number, place)<br>함수 내용: 2진수를 8진수로 변환합니다.</div>
 				<div id="binomdist">함수 이름: BINOMDIST(number_s, trials, probability_s, cummulative)<br>함수 내용: 개별항 이항 분포 확률을 구합니다.</div>
 				<div id="ceiling">함수 이름: CEILING(number, significance)<br>함수 내용: 수를 significance의 배수가 되도록 절대 값을 올림합니다.</div>
-				<div id="char">함수 이름: CHAR(number)<br>함수 내용: 코드번호를 문자로 바꾸는 함수입니다. 인수로 128이 넘어가는 숫자를 지정하면, 이 번호에 해당하는 문자 코드가 없기 때문에 아무 내용도 출력하지 않습니다.</div>
+				<div id="char"><a class="char">함수 이름: CHAR(number)</a><br>함수 내용: 코드번호를 문자로 바꾸는 함수입니다. 인수로 128이 넘어가는 숫자를 지정하면, 이 번호에 해당하는 문자 코드가 없기 때문에 아무 내용도 출력하지 않습니다.</div>
 				<div id="chidist">함수 이름: CHIDIST(x, deg_freedom)<br>함수 내용: 카이 제곱 분포의 단측 검정 확률값을 구합니다.</div>
 				<div id="chitest">함수 이름: CHITEST(actual_range, expected_range)<br>함수 내용: 독립 검정 결과를 구합니다. 통계적이고 적절한 자유도에 대한 카이 제곱 분포값을 의미합니다.</div>
-				<div id="code"><a id="code">함수 이름: CODE(text)</a><br>함수 내용: 문자를 코드 번호로 바꾸는 함수 입니다. 인수를 문장으로 지정한 경우에는 첫 글자의 코드번호를 구합니다.</div>
+				<div id="code">함수 이름: CODE(text)<br>함수 내용: 문자를 코드 번호로 바꾸는 함수 입니다. 인수를 문장으로 지정한 경우에는 첫 글자의 코드번호를 구합니다.</div>
 				<div id="column">함수 이름: COLUMN(reference)<br>함수 내용: 참조하고 있는 열 번호를 반환합니다. 참조가 생략되면 함수를 입력한 셀의 열 번호를 반환합니다.</div>
 				<div id="columns">함수 이름: COLUMNS(reference)<br>함수 내용: 참조하고 있는 열의 수를 반환합니다.</div>
 				<div id="combin">함수 이름: COMBIN(number, number_chosen)<br>함수 내용: 주어진 개체로 만들 수 있는 조합의 수를 구합니다.</div>
