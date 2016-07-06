@@ -294,7 +294,7 @@ overflow: hidden;
 		</div>
 		<div id='bottom'>
 		<div id="btn">
-			<button id="confirm" on>확인</button>
+			<button id="confirm">확인</button>
 			<button id="cancel" class="cancel">취소</button>
 		</div>
 		</div>
