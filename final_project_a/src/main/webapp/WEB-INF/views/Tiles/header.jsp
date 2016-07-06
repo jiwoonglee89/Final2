@@ -82,11 +82,10 @@ $(document).ready(function()
 			</li>
 	
 			<li class="dropdown">
-				<button class="dropbtn">추가</button>
+				<button class="dropbtn">시트</button>
 				<div class="dropdown-content">
-					<button id="more">행추가</button>
-					<button id="more">열추가</button>
 					<button id="more">시트추가</button>
+					<button id="more">시트삭제</button>
 				</div>
 			</li>
 			<li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
