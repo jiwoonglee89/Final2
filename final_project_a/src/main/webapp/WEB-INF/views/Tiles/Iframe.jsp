@@ -11,8 +11,8 @@
 <script src="<c:url value="resources/formula.js" />"></script>
 <script>
 document.write("<script type='text/javascript' src='resources/formula.js'><"+"/script>");
- $(document).ready(function()
-		{
+ $(document).ready(function(){
+	 var function_id=null;
 	 	//닫기 버튼 및 취소 버튼 클릭시 화면 닫기
 			$("button.close").click
 			(
@@ -30,9 +30,18 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 					$("#glayLayer", parent.document).css("display","none");
 				}
 			);
-	
+			$("#confirm").click(function(){
+				if(function_id!=null){
+					var function_exe="txt_"+function_id;
+					eval(function_exe+"();");
+					$("#overLayer", parent.document).css("display","none");
+					$("#glayLayer", parent.document).css("display","none");
+				}else{	
+					alert("함수를 선택해주세요");
+				}				
+			})
 			$(".c_event div",this).click(function(){
-			     var function_id=$(this).attr("id");
+			     function_id=$(this).attr("id");
 			     $(".c_event div").css("background-color", "white");
 			     $('#'+function_id).css("background-color", "#a0a0a0");
 			     

@@ -14,7 +14,7 @@ function txt_min(){
 	$('.tdselect .textselect').focus().text('=min(');
 }
 function txt_abs(){
-	$('.tdselect .textselect').focus().text('=abs(');
+	$('.tdselect .textselect', parent.document).focus().text('=abs(');
 }
 function txt_acos(){
 	$('.tdselect .textselect').focus().text('=acos(');
