@@ -65,7 +65,7 @@
    bottom: 0;
    width: 100%;
    height: 25px;
-   background-color: #3fa338;
+   background-color: #808080;
 }
 
  /* #footer_bar div{
