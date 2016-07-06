@@ -30,19 +30,16 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 					$("#glayLayer", parent.document).css("display","none");
 				}
 			);
-			$('#function').click(function(){
-				$('#function').attr('class','selected');
-			});
-			
-			$("#formula").foucs(function()
-			{
-				$("#function").click(function(){
-					$("#function").text();
-				});
-			});
-			
+	
+			$(".c_event div",this).click(function(){
+			     var function_id=$(this).attr("id");
+			     $(".c_event div").css("background-color", "white");
+			     $('#'+function_id).css("background-color", "#a0a0a0");
+			     
+			 });
 			
 		}); 
+ 
 
 </script>
 <style>
@@ -114,7 +111,7 @@ overflow: hidden;
 	border: solid;
 }
 
-#function
+#functionList div
 {
 	border-bottom: double;
 	background-color: white;
@@ -123,10 +120,10 @@ overflow: hidden;
 	display:block;
 	text-align: left;
 }
-#function:ACTIVE 
+/* #function:ACTIVE 
 {
 	background-color: #a0a0a0;
-}
+} */
 
 </style>
 
@@ -138,7 +135,7 @@ overflow: hidden;
 			<button id='close' class="close">X</button>
 		</div>
 		<div id='content'>
-			<div id="functionList" >
+			<div id="functionList" class="c_event">
 			<%-- <c:forEach begin="1" end="151" step="1"> --%>
 				<div id="function_1">함수 이름: ABS(number)<br> 함수 내용: 절대 값을 구합니다. </div>
 				<div id="function_2">함수 이름: ACOS(number)<br> 함수 내용: 아크코사인값을 구합니다. </div>
