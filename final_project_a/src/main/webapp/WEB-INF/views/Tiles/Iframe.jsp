@@ -48,7 +48,42 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 			 });
 			
 		}); 
- 
+ /* 검색어 함수 */
+ var TRange=null;
+ function findString (str) {
+ 	if (parseInt(navigator.appVersion)<4)
+ 		return;
+ 	var strFound;
+ 	if (window.find) {
+ 		strFound=self.find(str);
+   		if (!strFound) {
+    			strFound=self.find(str,0,1);
+    		while (self.find(str,0,1)) 
+    			continue;
+   		}
+  	}
+ 	else if (navigator.appName.indexOf("Microsoft")!=-1) {
+ 		if (TRange!=null) {
+    			TRange.collapse(false);
+    			strFound=TRange.findText(str);
+    			if (strFound) 
+    				TRange.select();
+   		}
+   		if (TRange==null || strFound==0) {
+    			TRange=self.document.body.createTextRange();
+    			strFound=TRange.findText(str);
+    			if (strFound) 
+    				TRange.select();
+   		}
+  	}
+  	else if (navigator.appName=="Opera") {
+   		alert ("Opera browsers not supported, sorry...")
+   	return;
+  	}
+  	if (!strFound) 
+  		alert ("String '"+str+"' not found!")
+  	return;
+ }
 
 </script>
 <style>
@@ -129,11 +164,14 @@ overflow: hidden;
 	display:block;
 	text-align: left;
 }
-/* #function:ACTIVE 
+#search
 {
-	background-color: #a0a0a0;
-} */
-
+float: left;
+}
+#search_text
+{
+	margin: 10px;
+}
 </style>
 
 </head>
@@ -302,6 +340,10 @@ overflow: hidden;
 			</div>
 		</div>
 		<div id='bottom'>
+		<div id="search">
+			<input type="text" placeholder="함수 검색" name="search_text" size="25" id="search_text"
+			onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
+		</div>	
 		<div id="btn">
 			<button id="confirm">확인</button>
 			<button id="cancel" class="cancel">취소</button>
