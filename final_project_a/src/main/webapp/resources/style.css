@@ -188,7 +188,7 @@ li button, .dropbtn {
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
-	font-family: 'Nanum Pen Script', serif;
+	font-family: '¸¼Àº °íµñ', serif;
 }
 
 li button:hover, .dropdown:hover .dropbtn {
@@ -213,7 +213,7 @@ li.dropdown {
 	text-decoration: none;
 	display: block;
 	text-align: left;
-	font-family: 'Poiret One', cursive;
+	font-family: '¸¼Àº °íµñ', cursive;
 }
 
 .dropdown-content button:hover {
@@ -233,7 +233,7 @@ li.dropdown {
 	width: 100%;
 	background: white;
 	font-size: medium;
-	font-family: 'Poiret One', cursive;
+	font-family: '¸¼Àº °íµñ', cursive;
 }
 
 /* ÇÔ¼ö ´õº¸±â ¿ÜºÎ µðÀÚÀÎ ½ÃÀÛ*/
@@ -289,6 +289,7 @@ iframe {
 
 .bar_title {
 	font-weight: bold;
+	color:white;
 	margin: 10px;
 }
 
