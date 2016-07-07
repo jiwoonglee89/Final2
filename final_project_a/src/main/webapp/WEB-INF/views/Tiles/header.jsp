@@ -65,6 +65,60 @@ $(document).ready(function()
 });
 
 </script>
+<style>
+.button1 {
+   font-family: 'Poiret One', cursive;
+   border: 1px solid #111014;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 6.5px 13px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #373b3d 0 1px 0;
+   color: #000000;
+   font-size: 13px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button1:hover {
+  font-family: 'Poiret One', cursive;
+   border: 1px solid #ffffff;
+   text-shadow: #1e4158 0 1px 0;
+   background: #808080;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#808080));
+   background: -webkit-linear-gradient(top, #f5f5f5, #808080);
+   background: -moz-linear-gradient(top, #f5f5f5, #808080);
+   background: -ms-linear-gradient(top, #f5f5f5, #808080);
+   background: -o-linear-gradient(top, #f5f5f5, #808080);
+   background-image: -ms-linear-gradient(top, #f5f5f5 0%, #808080 100%);
+   color: #fff;
+   }
+.button1:active {
+  font-family: 'Poiret One', cursive;
+   text-shadow: #051017 0 1px 0;
+   border: 1px solid #ebf1f5;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#808080));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #ffffff;
+   }
+/* 버튼 css 종료*/   
+
+</style>
 </head>
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left: 0px;">
@@ -100,7 +154,7 @@ $(document).ready(function()
 			<li><div class="bar_title">[ 제목 : ${title} ]</div></li>
 			<li id="logout">
 				<div class="logout">
-					<button class="button"
+					<button class="button1"
 						onclick="javascript:window.location='logout.do'">Logout</button>
 				</div>
 			</li>

@@ -58,7 +58,71 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	if (window.find) 
  	{
  		strFound=self.find(str);
- 		$("#functionList *").focus();
+ 		//alert(str);
+/*  		
+ 		<'offset'과 'postion'의 차이점>
+ 		- offset: document안에서의 위치 값을 반환한다. 즉, 페이지 전체를 기준으로 위치값을 반환(=절대 좌표)
+ 		- postion: DOM안에서 위치값을 반환	. 즉, 부모 태그가 감싸져 있다면 부모태그를 기준으로 위치값을 반환한다.(=상대좌표)
+ 		.css("color","red");
+ */ 		
+ 		/* 방법1(x) */ 
+ 		//$("div[id*="+strFound+"]").focus();
+ 		
+ 		/*끝에 붙은 숫자는 이동하는 시간*/
+ 		
+ 		/* 방법2(x) */
+ 		//$("div[id*="+strFound+"]").offset();
+ 		//$('#overLayer,body').animate({scrollTop:postion.top},100);
+ 		
+ 		/* 방법3 */
+ 		//("div[id*="+strFound+"]").animate({scrollTop:postion.top},100);
+ 		
+ 		/* 방법4 */
+ 		//("#overLayer, div[id*="+strFound+"]").animate({scrollTop:0},100);
+ 		
+ 		/* 방법5 */
+ 		//$("#overLayer, div[id*="+strFound+"]")
+ 		
+ 		/*방법6*/
+ 		//document.querySelector("#functionList div").scrollIntoView();
+ 		
+ 		/* 방법7 */
+ 		//$("#functionList>div:contains('strFound')").css("color","red");
+ 		
+ 		/* 방법8 */
+ 		//$("#functionList>id='[attribute~="+strFound+"]'").css("color","red");
+ 		
+ 		/* 방법9 */
+ 		//$("#functionList "+ strFound).css("color","red");
+ 		
+ 		/* 방법10 */
+ 		//$("div#"+str+").css("color","red");
+ 		//$("div#"+str+).css("color","red");
+ 		//$("div#"+str).css("color","red");
+ 		
+ 		/* 이동 관련 메소드*/
+ 		
+ 		/* 방법1 */
+ 		//$("div#"+str).offset();
+ 		//$('#overLayer,body').animate({scrollTop:postion.top},100);
+ 		
+ 		/* 방법1 */
+ 		$("div#"+str).focus();
+ 		
+ 		/* 방법2 */
+ 		
+ 		
+ 		/* 방법3*/
+ 		
+ 		
+ 		/* 방법4 */
+ 		
+ 		
+ 		/* 방법5 */
+ 		
+ 		
+ 		/* 방법6 */
+ 		
  		if (!strFound) 
    		{
     			strFound=self.find(str,0,1);
@@ -212,7 +276,7 @@ float: left;
 				<div id="column"  tabindex="0">함수 이름: COLUMN(reference)<br>함수 내용: 참조하고 있는 열 번호를 반환합니다. 참조가 생략되면 함수를 입력한 셀의 열 번호를 반환합니다.</div>
 				<div id="columns"  tabindex="0">함수 이름: COLUMNS(reference)<br>함수 내용: 참조하고 있는 열의 수를 반환합니다.</div>
 				<div id="combin"  tabindex="0">함수 이름: COMBIN(number, number_chosen)<br>함수 내용: 주어진 개체로 만들 수 있는 조합의 수를 구합니다.</div>
-				<div id="concatenate" tabindex="0" tabindex="0">함수 이름: CONCATENATE(text1, text2, ...)<br>함수 내용: 여러 셀에 나뉘어 입력된 문자 또는 수식을 결합해 하나의 셀에 입력할 때 사용합니다. CONCATENATE 함수 대신 & 연산자를 사용해도 됩니다. Text 인수는 30개까지 지정할 수 있으며, 텍스트, 숫자, 셀 등을 지정할 수 있습니다.</div>
+				<div id="concatenate" tabindex="0">함수 이름: CONCATENATE(text1, text2, ...)<br>함수 내용: 여러 셀에 나뉘어 입력된 문자 또는 수식을 결합해 하나의 셀에 입력할 때 사용합니다. CONCATENATE 함수 대신 & 연산자를 사용해도 됩니다. Text 인수는 30개까지 지정할 수 있으며, 텍스트, 숫자, 셀 등을 지정할 수 있습니다.</div>
 				<div id="confidence" tabindex="0">함수 이름: CONFIDENCE(alpha, standard_dev, size)<br>함수 내용: 모집단 평균의 신뢰 구간을 표시합니다.</div>
 				<div id="correl" tabindex="0">함수 이름: CORREL(array1, array2)<br>함수 내용: 두 데이터 집합 사이의 상관계수를 표시합니다.</div>
 				<div id="cos" tabindex="0">함수 이름: COS(number)<br>함수 내용: 코사인값을 구합니다.</div>
@@ -346,7 +410,10 @@ float: left;
 		</div>
 		<div id='bottom'>
 		<div id="search">
-			<input type="text" placeholder="함수 검색" name="search_text" size="25" id="search_text"
+			<input type="text" placeholder="함수 이름 검색(정확히 일치)" name="search_text" size="25" id="search_text"
+			onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
+			
+			<input type="text" placeholder="함수 내용 검색(포함하여 검색)" name="search_text1" size="25" id="search_text"
 			onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
 		</div>	
 		<div id="btn">
