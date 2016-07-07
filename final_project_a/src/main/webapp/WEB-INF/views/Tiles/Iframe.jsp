@@ -50,78 +50,23 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 		}); 
  /* 검색어 함수 */
  var TRange=null;
- //var id_value = document.getElementgetId();
  function findString (str) {
  	if (parseInt(navigator.appVersion)<4)
  		return;
  	var strFound;	//찾을문자
+ 	
  	if (window.find) 
  	{
  		strFound=self.find(str);
- 		//alert(str);
-/*  		
- 		<'offset'과 'postion'의 차이점>
- 		- offset: document안에서의 위치 값을 반환한다. 즉, 페이지 전체를 기준으로 위치값을 반환(=절대 좌표)
- 		- postion: DOM안에서 위치값을 반환	. 즉, 부모 태그가 감싸져 있다면 부모태그를 기준으로 위치값을 반환한다.(=상대좌표)
- 		.css("color","red");
- */ 		
- 		/* 방법1(x) */ 
- 		//$("div[id*="+strFound+"]").focus();
- 		
- 		/*끝에 붙은 숫자는 이동하는 시간*/
- 		
- 		/* 방법2(x) */
- 		//$("div[id*="+strFound+"]").offset();
- 		//$('#overLayer,body').animate({scrollTop:postion.top},100);
- 		
- 		/* 방법3 */
- 		//("div[id*="+strFound+"]").animate({scrollTop:postion.top},100);
- 		
- 		/* 방법4 */
- 		//("#overLayer, div[id*="+strFound+"]").animate({scrollTop:0},100);
- 		
- 		/* 방법5 */
- 		//$("#overLayer, div[id*="+strFound+"]")
- 		
- 		/*방법6*/
- 		//document.querySelector("#functionList div").scrollIntoView();
- 		
- 		/* 방법7 */
- 		//$("#functionList>div:contains('strFound')").css("color","red");
- 		
- 		/* 방법8 */
- 		//$("#functionList>id='[attribute~="+strFound+"]'").css("color","red");
- 		
- 		/* 방법9 */
- 		//$("#functionList "+ strFound).css("color","red");
- 		
- 		/* 방법10 */
- 		//$("div#"+str+").css("color","red");
- 		//$("div#"+str+).css("color","red");
- 		//$("div#"+str).css("color","red");
- 		
- 		/* 이동 관련 메소드*/
- 		
- 		/* 방법1 */
- 		//$("div#"+str).offset();
- 		//$('#overLayer,body').animate({scrollTop:postion.top},100);
- 		
- 		/* 방법1 */
  		$("div#"+str).focus();
+ 		//$("#functionList>div:contains('"+str+"')").next().focus();
+ 		//var items = new Array($("#functionList:contains('"+str+"')")); 
+ 		//alert("functionList배열의 검색값:::"+items.length);
  		
- 		/* 방법2 */
- 		
- 		
- 		/* 방법3*/
- 		
- 		
- 		/* 방법4 */
+ 		//var i = $("div:contains('"+str+"')").size()
+ 		//alert("div 검색 사이즈값:::"+i);
  		
  		
- 		/* 방법5 */
- 		
- 		
- 		/* 방법6 */
  		
  		if (!strFound) 
    		{
@@ -153,7 +98,6 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
   		alert ("String '"+str+"' not found!")
   	return;
  }
-
 </script>
 <style>
 html
@@ -410,10 +354,7 @@ float: left;
 		</div>
 		<div id='bottom'>
 		<div id="search">
-			<input type="text" placeholder="함수 이름 검색(정확히 일치)" name="search_text" size="25" id="search_text"
-			onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
-			
-			<input type="text" placeholder="함수 내용 검색(포함하여 검색)" name="search_text1" size="25" id="search_text"
+			<input type="text" placeholder="함수 이름 검색" name="search_text" size="20" id="search_text"
 			onkeypress="javascript:if(event.keyCode==13){findString($('#search_text').val()); return false;}">
 		</div>	
 		<div id="btn">
