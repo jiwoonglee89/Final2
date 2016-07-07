@@ -90,6 +90,7 @@ $(document).ready(function()
 				</div>
 			</li>
 			<li><button onclick="javascript:window.location='board.do'">엑셀목록</button></li>
+			<li><button onclick="javascript:window.location='board.do'">불러오기</button></li>
 			<li>
 				<div id="search">
 					<input type="text" placeholder="검색" name="search_text" size="30" id="search_text"
