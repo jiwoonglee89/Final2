@@ -148,7 +148,7 @@
       		$('#totalsheetNum').val(totalsheetNum);
       		
       		
-      		var a = totalsheetNum-1;
+      		var a = totalsheetNum;
       		$('#sheetNum').val(totalsheetNum);
       		
       		var url ="";
@@ -190,7 +190,7 @@
       
       $('#sheet_bar').on('click','input',function(){
     	  var sheetNum = $(this).attr('id').substring(5)*1;
-    	  $('#sheetNum').val(sheetNum-1);
+    	  $('#sheetNum').val(sheetNum);
     	  
     	  var url= "<c:url value='/sheet.do'/>"
   			/* for (var j = 1; j <= 100; j++) {
@@ -219,10 +219,9 @@
       $('.del').click(function(){
     	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
     		$('#totalsheetNum').val(totalsheetNum);
-    		alert("total:"+totalsheetNum);
     		
        	  	var sheetNum = $('#sheetNum').val();
-       	  	alert("sheetNum:"+sheetNum);
+       	  	
        	  	
        	  	//해당태그삭제
        	  	$('#sheet'+sheetNum).remove();
@@ -261,7 +260,7 @@
       <div id="footer_bar">
 
          <div id="sheet_bar">
-            <input type="button" id="sheet1" name="sheet" class="button" value="시트" />
+            <input type="button" id="sheet0" name="sheet" class="button" value="시트" />
          </div>
       </div>
    </div>

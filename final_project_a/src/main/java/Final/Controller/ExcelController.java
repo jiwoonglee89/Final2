@@ -191,7 +191,7 @@ public class ExcelController {
 		// 시트 이름
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
+		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
 
 		for (int i = 0; i < 100; i++) {
 			row = sheet.createRow(i);
