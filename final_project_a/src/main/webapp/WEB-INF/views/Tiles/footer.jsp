@@ -9,51 +9,51 @@
 <script src='<c:url value="/resources/formula.js"/>'></script>
 <style type="text/css">
 .button {
-   border: 1px solid #000000;
-   background: #ffffff;
-   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
-   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
-   background: -moz-linear-gradient(top, #ffffff, #ffffff);
-   background: -ms-linear-gradient(top, #ffffff, #ffffff);
-   background: -o-linear-gradient(top, #ffffff, #ffffff);
-   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
-   padding: 2.5px 5px;
-   -webkit-border-radius: 0px;
-   -moz-border-radius: 0px;
-   border-radius: 0px;
+   border: 1px solid #606161;
+   background: #ababab;
+   background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#ababab));
+   background: -webkit-linear-gradient(top, #cccccc, #ababab);
+   background: -moz-linear-gradient(top, #cccccc, #ababab);
+   background: -ms-linear-gradient(top, #cccccc, #ababab);
+   background: -o-linear-gradient(top, #cccccc, #ababab);
+   background-image: -ms-linear-gradient(top, #cccccc 0%, #ababab 100%);
+   padding: 5px 10px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #000000 0 1px 0;
-   color: #121212;
-   font-size: 9px;
+   text-shadow: #ffffff 0 1px 0;
+   color: #0a0a0a;
+   font-size: 14px;
    font-family: helvetica, serif;
    text-decoration: none;
    vertical-align: middle;
    }
 .button:hover {
-   border: 1px solid #000000;
-   text-shadow: #d4d4d4 0 1px 0;
-   background: #979899;
-   background: -webkit-gradient(linear, left top, left bottom, from(#fcfeff), to(#979899));
-   background: -webkit-linear-gradient(top, #fcfeff, #979899);
-   background: -moz-linear-gradient(top, #fcfeff, #979899);
-   background: -ms-linear-gradient(top, #fcfeff, #979899);
-   background: -o-linear-gradient(top, #fcfeff, #979899);
-   background-image: -ms-linear-gradient(top, #fcfeff 0%, #979899 100%);
-   color: #ffffff;
+   border: 1px solid #7d7d7d;
+   text-shadow: #ffffff 0 1px 0;
+   background: #b3b3b3;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b3b3b3));
+   background: -webkit-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -moz-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -ms-linear-gradient(top, #ffffff, #b3b3b3);
+   background: -o-linear-gradient(top, #ffffff, #b3b3b3);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #b3b3b3 100%);
+   color: #000000;
    }
 .button:active {
    text-shadow: #ffffff 0 1px 0;
-   border: 1px solid #445761;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#979899));
-   background: -webkit-linear-gradient(top, #030303, #000000);
-   background: -moz-linear-gradient(top, #030303, #000000);
-   background: -ms-linear-gradient(top, #030303, #000000);
-   background: -o-linear-gradient(top, #030303, #000000);
-   background-image: -ms-linear-gradient(top, #030303 0%, #000000 100%);
-   color: #fff;
+   border: 1px solid #949494;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b3b3b3));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   color: #000000;
    }
    
 #div_footer_sheet {
@@ -65,7 +65,7 @@
    bottom: 0;
    width: 100%;
    height: 25px;
-   background-color: #1E3269;
+   background-color: #3fa338;
 }
 
  /* #footer_bar div{
@@ -77,9 +77,7 @@
    text-decoration:none;
 }  */
 #left {
-   position: relative;
-   left: 4%; 
-   float: left;
+   
 }
 
 #sheet_bar {
@@ -91,8 +89,8 @@
    text-decoration: none;
    margin: 0 auto; */
    position: relative;
-   left: 8%; 
-    
+   left: 4%; 
+   float: left;
 }
 
 #sheet_bar input {
@@ -118,20 +116,22 @@
    $(function() {
 	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
 	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
-	   
-   		$('#btn').click(function() {
+	  $('#btn').click(function() {
    			var list = $('#sheet_bar div').text();
 
    			var listleng = $('#sheet_bar').find('div').length;
       			alert(list);
       			alert(listleng);
    		});
-      $('#add').click(function() {
+      $('.add').click(function() {
     	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
 	      	
       		$('#totalsheetNum').val(totalsheetNum);
       		
+      		
       		var a = totalsheetNum + 1;
+      		$('#sheetNum').val(totalsheetNum);
+      		
       		var url ="";
       		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
       		$('#sheet_bar').append(tag);
@@ -154,7 +154,7 @@
     				//,dataType:"json"
     				,success: function (){
     					alert('성공');
-    					for (var j = 1; j <= 100; j++) {
+    					for (var j = 1; j <= 100; j++) { 
     		 				for (var i = 1; i <= th.length; i++) {
     		 					$('#'+th[i]+j).text("");
     		 					$('#in'+th[i]+j).val("");
@@ -169,9 +169,7 @@
       });
       
       $('#sheet_bar').on('click','input',function(){
-    	  alert("여긴?");
     	  var sheetNum = $(this).attr('id').substring(5)*1;
-    	  alert($(this).attr('id').substring(5)*1);
     	  $('#sheetNum').val(sheetNum-1);
     	  
     	  var url= "<c:url value='/sheet.do'/>"
@@ -196,10 +194,41 @@
   					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
   				}
   			});
+  			
       	});
-      
-      $('#delete').click(function(){
-    	  
+      $('.del').click(function(){
+    	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
+    		$('#totalsheetNum').val(totalsheetNum);
+    		alert("total:"+totalsheetNum);
+    		
+       	  	var sheetNum = $('#sheetNum').val();
+       	  	alert("sheetNum:"+sheetNum);
+       	  	
+       	  	//해당태그삭제
+       	  	$('#sheet'+sheetNum).remove();
+       	  	
+       	 	var url= "<c:url value='/deletesheet.do'/>"
+   			/* for (var j = 1; j <= 100; j++) {
+   				   for (var i = 1; i <= th.length; i++) {
+   					   var value= $('#'+th[i]+j).text();
+   					   $('#in'+th[i]+j).val(value);
+   				   }
+   			} */
+   			var params = $("form[name=formtable]").serialize();
+   			$.ajax({
+   				type:"post"
+   				,url:url
+   				,data:params
+   				,dataType:"json"
+   				,success: function (rs){
+   					for(var i=0;i<rs.cell_name.length;i++){
+   						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
+   					} 
+   				}
+   				,error:function(request, status, error){
+   					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
+   				}
+   			});
       });
    });
 </script>
@@ -210,13 +239,13 @@
    <div id="div_footer_sheet">
    	
       <div id="footer_bar">
-         <div id="left">
-            <input type="button" id="add" class="button" value="추가" />
-         </div>
+
          <div id="sheet_bar">
             <input type="button" id="sheet1" name="sheet" class="button" value="시트" />
          </div>
       </div>
    </div>
+   
+   
 </body>
 </html>
