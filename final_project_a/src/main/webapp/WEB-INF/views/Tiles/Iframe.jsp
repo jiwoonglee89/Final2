@@ -57,15 +57,17 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	
  	if (window.find) 
  	{
- 		//strFound=self.find(str);
- 		strFound=$(".f").find(str);
+ 		strFound=self.find(str);
  		//$("div#"+str).focus();
- 		alert(str);
- 		alert(strFound.size());
- 		alert(strFound.length);
- 		alert(strFound.next());
+// 		$("div#functionList>div:contains('"+str+"')").focus();
+ 		//$("div#functionList>div:contains('"+str+"')").css("color","red");
+ 		$("div#functionList div:contains("+str.toUpperCase()+")").each(function(index){
+ 			//alert(index)
+ 			$(this).focus();
+ 			return false;
+ 		})
  		
- 		if (!strFound) 
+ 		 if (!strFound) 
    		{
     			strFound=self.find(str,0,1);
     		while (self.find(str,0,1)) 
