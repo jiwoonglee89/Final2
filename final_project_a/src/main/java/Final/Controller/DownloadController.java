@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DownloadController {
 	@RequestMapping(value="/download.do")
 	public ModelAndView save(HttpServletRequest request, String title) throws IOException {
-		File file = new File("C:\\final_test\\test.xlsx");
+		File file = new File("C:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		
