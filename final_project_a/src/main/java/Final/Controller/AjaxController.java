@@ -78,7 +78,7 @@ public class AjaxController {
 		}
 
 		try {
-			path = "F:\\final_test\\"+title+".xlsx";
+			path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -98,7 +98,7 @@ public class AjaxController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("F:\\final_test\\"+title+".xlsx");
+		File file = new File("C:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
