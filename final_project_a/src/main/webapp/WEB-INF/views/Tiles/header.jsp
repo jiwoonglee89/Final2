@@ -69,14 +69,14 @@ $(document).ready(function()
 	<div id="formulaBar" class="jbMenu" style="padding-left: 0px;">
 		<ul>
 			<li><button onclick="submit()" class="active">저장</button></li>
-			<li><button onclick="download.do">다운로드</button></li>
+			<li><button onclick="javascript:window.location='download.do'">다운로드</button></li>
 			<li class="dropdown">
 				<button class="dropbtn">함수</button>
 				<div class="dropdown-content">
-					<button id="more">평균</button>
-					<button id="more">합계</button>
-					<button id="more">최대값</button>
-					<button id="more">최대값</button>
+					<button id="more" onclick="txt_average()">평균</button>
+					<button id="more" onclick="txt_sum()">합계</button>
+					<button id="more" onclick="txt_max()">최대값</button>
+					<button id="more" onclick="txt_min()">최소값</button>
 					<button id="more" class="modal">더보기</button>
 				</div>
 			</li>
