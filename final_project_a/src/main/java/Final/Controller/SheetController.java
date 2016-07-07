@@ -44,11 +44,13 @@ public class SheetController {
 	public void setFileLoadDao(FileLoadDao fileLoadDao) {
 		this.fileLoadDao = fileLoadDao;
 	}
+	//세션 가져오기
 	public String session_Title(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String title = (String) session.getAttribute("title");
 		return title;
 	}
+	
 	@RequestMapping("/deletesheet.do")
 	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException{
 		System.out.println("delete.do");
@@ -57,7 +59,10 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
+		
+		String title = session_Title(request);
+		
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
@@ -76,6 +81,25 @@ public class SheetController {
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		workbook.removeSheetAt(sheetNum);
 		
+		try {
+			String path = "F:\\final_test\\"+title+".xlsx";
+			FileOutputStream fileoutputstream = new FileOutputStream(path);
+			try {
+				workbook.write(fileoutputstream);
+				fileoutputstream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		file = new File("F:\\final_test\\"+title+".xlsx");
+		fis = new FileInputStream(file);
+		if (file.getName().endsWith(".xls")) {
+			workbook = new HSSFWorkbook(fis);
+		} else {
+			workbook = new XSSFWorkbook(fis);
+		}
 		Sheet sheet = workbook.getSheetAt(sheetNum-1);
 		
 		int rows = sheet.getPhysicalNumberOfRows();
@@ -89,7 +113,7 @@ public class SheetController {
 				int cells = row.getPhysicalNumberOfCells();
 
 				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-					Cell cell = row.getCell(columnindex);
+					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
 					char rowrowrow = (char) (65 + columnindex);
 					cellName = rowrowrow + "" + colNum;
 					String value = "";
@@ -105,9 +129,14 @@ public class SheetController {
 							value = String.valueOf(bool_data);
 							break;
 						case Cell.CELL_TYPE_FORMULA:
-							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-								double num_data = cell.getNumericCellValue();
-								value = df.format(num_data);
+							if(evaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC){
+	                        	 String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
 							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
 								value = cell.getStringCellValue();
 							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
@@ -116,13 +145,18 @@ public class SheetController {
 							}
 							break;
 						case Cell.CELL_TYPE_NUMERIC:
-							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-								value = formatter.format(cell.getDateCellValue());
-							} else {
-								double ddata = cell.getNumericCellValue();
-								value = df.format(ddata);
-							}
+							if (HSSFDateUtil.isCellDateFormatted(cell)){
+	                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+	                             value = formatter.format(cell.getDateCellValue());   
+	                         } else{
+	                             String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
+	                         }
 							break;
 						case Cell.CELL_TYPE_STRING:
 							value = cell.getStringCellValue() + "";
@@ -131,7 +165,7 @@ public class SheetController {
 							value = "";
 							break;
 						case Cell.CELL_TYPE_ERROR:
-							value = cell.getErrorCellValue() + "";
+							value = cell.getErrorCellString();
 							break;
 						}
 
@@ -156,11 +190,14 @@ public class SheetController {
 		String path = null;
 		XSSFRow row = null;
 		XSSFCell cell = null;
-		XSSFWorkbook workbook = new XSSFWorkbook();
+		String title = session_Title(request);
+		File file = new File("F:\\final_test\\"+title+".xlsx");
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		
 		
 
-		XSSFSheet sheet = workbook.createSheet();
+		XSSFSheet sheet = workbook.getSheetAt(0);
 
 		for (int i = 0; i < 100; i++) {
 			row = sheet.createRow(i);
@@ -194,7 +231,7 @@ public class SheetController {
 		workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
+			path = "F:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -212,7 +249,8 @@ public class SheetController {
 		String path = null;
 		XSSFRow row = null;
 		XSSFCell cell = null;
-		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
+		String title = session_Title(request);
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
@@ -251,7 +289,7 @@ public class SheetController {
 		}
 		workbook.createSheet();
 		try {
-			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
+			path = "F:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -272,7 +310,8 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
+		String title = session_Title(request);
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
@@ -303,7 +342,7 @@ public class SheetController {
 				int cells = row.getPhysicalNumberOfCells();
 
 				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-					Cell cell = row.getCell(columnindex);
+					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
 					char rowrowrow = (char) (65 + columnindex);
 					cellName = rowrowrow + "" + colNum;
 					String value = "";
@@ -319,9 +358,14 @@ public class SheetController {
 							value = String.valueOf(bool_data);
 							break;
 						case Cell.CELL_TYPE_FORMULA:
-							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-								double num_data = cell.getNumericCellValue();
-								value = df.format(num_data);
+							if(evaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC){
+	                        	 String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
 							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
 								value = cell.getStringCellValue();
 							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
@@ -330,13 +374,18 @@ public class SheetController {
 							}
 							break;
 						case Cell.CELL_TYPE_NUMERIC:
-							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-								value = formatter.format(cell.getDateCellValue());
-							} else {
-								double ddata = cell.getNumericCellValue();
-								value = df.format(ddata);
-							}
+							if (HSSFDateUtil.isCellDateFormatted(cell)){
+	                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+	                             value = formatter.format(cell.getDateCellValue());   
+	                         } else{
+	                             String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
+	                         }
 							break;
 						case Cell.CELL_TYPE_STRING:
 							value = cell.getStringCellValue() + "";
@@ -345,7 +394,7 @@ public class SheetController {
 							value = "";
 							break;
 						case Cell.CELL_TYPE_ERROR:
-							value = cell.getErrorCellValue() + "";
+							value = cell.getErrorCellString();
 							break;
 						}
 
