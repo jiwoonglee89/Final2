@@ -45,10 +45,15 @@ public class ExcelController {
 	public String form() {
 		return "NewFile";
 	}
-
+	public String session_Title(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		String title = (String) session.getAttribute("title");
+		return title;
+	}
 	@RequestMapping("/tiles.do")
 	public String tiles(String title, HttpServletRequest request) throws IOException {
-
+		HttpSession session=request.getSession();
+		session.setAttribute("title", title);
 		String path = null;
 
 		XSSFWorkbook workbook = new XSSFWorkbook();
@@ -58,7 +63,7 @@ public class ExcelController {
 		XSSFSheet sheet = workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
+			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -75,10 +80,10 @@ public class ExcelController {
 	}
 
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
-	public String save1(HttpServletRequest request,String title) throws IOException {
+	public String save1(HttpServletRequest request) throws IOException {
 		String path = null;
 		
-		File file = new File("F://final_test//"+title+".xlsx");
+		File file = new File("F://final_test//"+session_Title(request)+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFRow row = null;
@@ -120,12 +125,12 @@ public class ExcelController {
 		}
 
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
+			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
 				fileoutputstream.close();
-				existExcel(request,title);
+				existExcel(request, session_Title(request));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -138,7 +143,7 @@ public class ExcelController {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		fileinfo.setId(id);
-		fileinfo.setTitle(title);
+		fileinfo.setTitle(session_Title(request));
 		fileinfo.setPath(path);
 		fileLoadDao.save(fileinfo);
 
@@ -146,7 +151,7 @@ public class ExcelController {
 	}
 
 	@SuppressWarnings("resource")
-	public void existExcel(HttpServletRequest request,String title) throws IOException {
+	public void existExcel(HttpServletRequest request, String title) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
@@ -250,13 +255,13 @@ public class ExcelController {
 
 	@SuppressWarnings("resource")
 	@RequestMapping("/existExcel.do")
-	public String existExcel2(HttpServletRequest request,String title) throws IOException {
+	public String existExcel2(HttpServletRequest request) throws IOException {
 		System.out.println("0");
 
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);

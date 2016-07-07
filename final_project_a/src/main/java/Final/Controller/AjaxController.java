@@ -13,6 +13,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -32,11 +34,15 @@ import net.sf.json.JSONObject;
 
 @Controller
 public class AjaxController {
-
+	public String session_Title(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		String title = (String) session.getAttribute("title");
+		return title;
+	}
 	@RequestMapping(value = "/save.do", method = RequestMethod.POST)
-	public void save(HttpServletRequest request, HttpServletResponse response,String title) throws IOException {
+	public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String path = null;
-		File file = new File("F://final_test//"+title+".xlsx");
+		File file = new File("F://final_test//"+session_Title(request)+".xlsx");
 	    FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFRow row = null;
@@ -78,12 +84,12 @@ public class AjaxController {
 		}
 
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
+			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
 				fileoutputstream.close();
-				existExcel(request, response,title);
+				existExcel(request, response,session_Title(request));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

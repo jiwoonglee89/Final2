@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -43,7 +44,11 @@ public class SheetController {
 	public void setFileLoadDao(FileLoadDao fileLoadDao) {
 		this.fileLoadDao = fileLoadDao;
 	}
-
+	public String session_Title(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		String title = (String) session.getAttribute("title");
+		return title;
+	}
 	@RequestMapping("/deletesheet.do")
 	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException{
 		System.out.println("delete.do");
@@ -52,7 +57,7 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\test.xlsx");
+		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
@@ -189,7 +194,7 @@ public class SheetController {
 		workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\test.xlsx";
+			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -207,7 +212,7 @@ public class SheetController {
 		String path = null;
 		XSSFRow row = null;
 		XSSFCell cell = null;
-		File file = new File("C:\\final_test\\test.xlsx");
+		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
@@ -246,7 +251,7 @@ public class SheetController {
 		}
 		workbook.createSheet();
 		try {
-			path = "C:\\final_test\\test.xlsx";
+			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -267,7 +272,7 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\test.xlsx");
+		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
