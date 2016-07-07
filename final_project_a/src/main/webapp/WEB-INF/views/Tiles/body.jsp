@@ -15,9 +15,9 @@
 <style type="text/css"></style>
 <script>
 	function download(){
-		$('#formtable').attr('action','download.do?title=${title}');
+		$('#formtable').attr('action','download.do');
 		submit();
-		$('#formtable').attr('action', 'save1.do?title=${title}');
+		$('#formtable').attr('action', 'save1.do');
 	}
 
 	function page_load(){
@@ -207,7 +207,7 @@
 	//저장 폼 생성
 	function createForm() {
 		//파라미터로 sheetNum, title 넘겨줌
-		var tag = '<form id="formtable" name="formtable" action="save1.do?title=${title}" method="post">'
+		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
 				var val = th[i] + j;
@@ -324,6 +324,14 @@ function scrollY() {
 	
 	//컨트롤키
 	$(document).keydown(function(event){
+		if(event.target.nodeName!="DIV"){
+			if(event.keyCode==8){
+				alert("뒤로가기 키는 사용하실 수 없습니다.")
+				return false;
+			}
+			
+		}
+			
 		if(event.which=="17"){
 			cntrlIsPressed = true;
 		}  

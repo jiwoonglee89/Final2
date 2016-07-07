@@ -75,6 +75,9 @@ html,body{overflow:hidden;}
 	text-align:center;
 	font-family:'Poiret One', cursive;
 }
+#hidden_input{
+	display:none;
+}
 </style>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -82,15 +85,42 @@ html,body{overflow:hidden;}
 <script>
 $(function(){
 	$("#submit_find_title").click(function(){
-		opener.parent.location="tiles.do?title="+$('#title').val();
+		
+		if($('#title').val().trim() == "" )
+		{
+			event.preventDefault();
+			 alert("力格阑 涝仿秦林技夸.");
+		
+		}
+		
+		else if($('#title').val().trim() != "" ){
+		opener.parent.location="tiles.do?title="+$('#title').val()+"";
+		
 		self.close();
+		
+		}
+
 	});
 	
 	$('#title').keydown(function(e){
 		if(e.keyCode==13){
+			
+			if($('#title').val().trim() == "" )
+			{
+				event.preventDefault();
+				 alert("力格阑 涝仿秦林技夸.");
+			
+			}
+			
+			else if($('#title').val().trim() != "" ){
 			opener.parent.location="tiles.do?title="+$('#title').val()+"";
+			
 			self.close();
-		}
+			
+			}
+
+		
+	}
 		
 	});
 	
@@ -104,6 +134,7 @@ $(function(){
 		<td>
 			<div class="size_long" id="divtitle">
 			<input type="text" class="text_login" id="title" name="title" size="50" placeholder="力格"></input>
+			<input type="text" id="hidden_input"/>
 			</div>
 			<input id="submit_find_title" class="button" type="button"  name="confirm_title" value="check"></input>
 		</td>
