@@ -41,14 +41,117 @@ public class ExcelController {
 		this.fileLoadDao = fileLoadDao;
 	}
 
-	public String session_Title(HttpServletRequest request){
+	public String session_Title(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String title = (String) session.getAttribute("title");
 		return title;
 	}
+
+	@RequestMapping("/excel.do")
+	public String selectExcel(String title, HttpServletRequest request) throws IOException {
+
+		HashMap map = new HashMap();
+		String cellName = "";
+		int rowindex = 0;
+		int columnindex = 0;
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("title", title);
+
+		File file = new File("C://final_test//" + title + ".xlsx");
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+		
+		int sheetNum = (workbook.getNumberOfSheets())-1;
+
+		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
+
+		int rows = sheet.getPhysicalNumberOfRows();
+		int colNum = 0;
+
+		for (rowindex = 0; rowindex < rows; rowindex++) {
+			Row row = sheet.getRow(rowindex);
+			colNum = colNum + 1;
+
+			if (row != null) {
+				int cells = row.getPhysicalNumberOfCells();
+
+				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
+					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
+					char rowrowrow = (char) (65 + columnindex);
+					cellName = rowrowrow + "" + colNum;
+					String value = "";
+
+					if (cell == null) {
+						value = " ";
+						continue;
+					} else {
+						// 타입별로 내용 읽기
+						switch (cell.getCellType()) {
+						case Cell.CELL_TYPE_BOOLEAN:
+							boolean bool_data = cell.getBooleanCellValue();
+							value = String.valueOf(bool_data);
+							break;
+						case Cell.CELL_TYPE_FORMULA:
+							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
+								String ddata = Double.toString(cell.getNumericCellValue());
+								if (ddata.endsWith(".0")) {
+									String[] arr = ddata.split("\\.");
+									value = arr[0];
+								} else {
+									value = ddata;
+								}
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
+								value = cell.getStringCellValue();
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
+								boolean data = cell.getBooleanCellValue();
+								value = String.valueOf(data);
+							}
+							break;
+						case Cell.CELL_TYPE_NUMERIC:
+							if (HSSFDateUtil.isCellDateFormatted(cell)) {
+								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+								value = formatter.format(cell.getDateCellValue());
+							} else {
+								String ddata = Double.toString(cell.getNumericCellValue());
+								if (ddata.endsWith(".0")) {
+									String[] arr = ddata.split("\\.");
+									value = arr[0];
+								} else {
+									value = ddata;
+								}
+							}
+							break;
+						case Cell.CELL_TYPE_STRING:
+							value = cell.getStringCellValue() + "";
+							break;
+						case Cell.CELL_TYPE_BLANK:
+							value = "";
+							break;
+						case Cell.CELL_TYPE_ERROR:
+							value = cell.getErrorCellString();
+							break;
+						}
+
+					}
+					map.put(cellName, value);
+
+					// request.setAttribute("rows", new Integer(rows));
+					// request.setAttribute("cells", new Integer(cells));
+				}
+			}
+		}
+		request.setAttribute("map", map);
+		request.setAttribute("tagNum", sheetNum);
+
+		return "Tiles/excel_layout";
+	}
+
 	@RequestMapping("/tiles.do")
 	public String tiles(String title, HttpServletRequest request) throws IOException {
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		session.setAttribute("title", title);
 		String path = null;
 
@@ -59,7 +162,7 @@ public class ExcelController {
 		XSSFSheet sheet = workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
+			path = "C:\\final_test\\" + session_Title(request) + ".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -78,8 +181,8 @@ public class ExcelController {
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public String save1(HttpServletRequest request) throws IOException {
 		String path = null;
-		
-		File file = new File("F://final_test//"+session_Title(request)+".xlsx");
+
+		File file = new File("C://final_test//" + session_Title(request) + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFRow row = null;
@@ -121,7 +224,7 @@ public class ExcelController {
 		}
 
 		try {
-			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
+			path = "C:\\final_test\\" + session_Title(request) + ".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -151,7 +254,11 @@ public class ExcelController {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		String cellName = "";
+		int rowindex = 0;
+		int columnindex = 0;
+		
+		File file = new File("C:\\final_test\\" + title + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
@@ -160,13 +267,12 @@ public class ExcelController {
 		}
 		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
-		String cellName = "";
-		int rowindex = 0;
-		int columnindex = 0;
+		
 		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
 
 		// 시트개수
 		int sheetNum = workbook.getNumberOfSheets();
+
 		for (int i = 0; i < sheetNum; i++) {
 			Sheet sheet = workbook.getSheetAt(i);
 			int rows = sheet.getPhysicalNumberOfRows();
@@ -257,7 +363,7 @@ public class ExcelController {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
-		File file = new File("C:\\final_test\\"+session_Title(request)+".xlsx");
+		File file = new File("C:\\final_test\\" + session_Title(request) + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);

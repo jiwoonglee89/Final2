@@ -116,10 +116,22 @@
 </style>
 <script>
 
-	function addSheetTag(){
+	function addSheetTag(a){
 		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
   		$('#sheet_bar').append(tag);
 	}
+	
+	/* $(document).ready(function() {
+		var tagNum = "${tagNum}";
+      		if(typeof(tagNum)!='undefined'){
+      			if(tagNum!=0){
+      				for(var i=0; i<tagNum; i++){
+      				addSheetTag(i+1);
+      				}
+      			}
+      		}
+	}); */
+	
    $(function() {
 	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
 	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
@@ -136,12 +148,12 @@
       		$('#totalsheetNum').val(totalsheetNum);
       		
       		
-      		var a = totalsheetNum + 1;
+      		var a = totalsheetNum-1;
       		$('#sheetNum').val(totalsheetNum);
       		
       		var url ="";
       		
-      		addSheetTag();
+      		addSheetTag(a);
       		
       		if(totalsheetNum!=1){
       			url += "<c:url value='/plus2.do'/>"

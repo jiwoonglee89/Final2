@@ -343,6 +343,15 @@ function scrollY() {
 			$('#' + z).val(z);
 		}
 		
+		var tagNum = "${tagNum}";
+      		if(typeof(tagNum)!='undefined'){
+      			if(tagNum!=0){
+      				for(var i=0; i<tagNum; i++){
+      				addSheetTag(i+1);
+      				}
+      			}
+      		}
+		
 		page_load();
 	});
 	
