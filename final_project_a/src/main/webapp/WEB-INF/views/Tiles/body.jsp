@@ -15,9 +15,9 @@
 <style type="text/css"></style>
 <script>
 	function download(){
-		$('#formtable').attr('action','download.do');
+		$('#formtable').attr('action','download.do?title=${title}');
 		submit();
-		$('#formtable').attr('action', 'save1.do');
+		$('#formtable').attr('action', 'save1.do?title=${title}');
 	}
 
 	function page_load(){
