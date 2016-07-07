@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DownloadController {
 	@RequestMapping(value="/download.do")
-	public ModelAndView save(HttpServletRequest request) {
+	public ModelAndView save(HttpServletRequest request,String title) {
 		HashMap<String, String> download_data=new HashMap<String, String>();
 		for (int i=1;i<=100;i++){
 			for (int j=0;j<26;j++){
@@ -17,6 +17,7 @@ public class DownloadController {
 				download_data.put(""+c+i, request.getParameter(""+c+i));
 			}
 		}
+		download_data.put("title", title);
 		return new ModelAndView("downView", "download_data", download_data);
 	}
 }
