@@ -169,8 +169,6 @@ $(document).ready(function()
 				<input type="text" id="formula" name="formula1" />
 			</form>
 		</div>
-
 	</div>
-
 </body>
 </html>

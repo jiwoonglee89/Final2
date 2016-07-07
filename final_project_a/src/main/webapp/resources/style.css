@@ -22,7 +22,7 @@ html, body {
 
 .jbMenu {
 	text-align: center;
-	padding: 10px 0px;
+	padding: 0px 0px;
 	width: 100%;
 }
 
@@ -164,7 +164,7 @@ li button {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-family: 'Nanum Pen Script', serif;
-	background-color: #3fa338;
+	background-color: #003264;
 	font-size: medium;
 }
 
@@ -174,7 +174,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #3fa338;
+	background-color: #003264;
 }
 
 li, #search_text {
@@ -202,7 +202,7 @@ li.dropdown {
 .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: #3fa338;
+	background-color: #003264;
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
