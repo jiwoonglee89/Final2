@@ -75,9 +75,8 @@ public class ExcelController {
 	}
 
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
-	public String save1(HttpServletRequest request) throws IOException {
+	public String save1(HttpServletRequest request,String title) throws IOException {
 		String path = null;
-		String title = request.getParameter("title");
 		
 		File file = new File("F://final_test//"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
@@ -126,7 +125,7 @@ public class ExcelController {
 			try {
 				workbook.write(fileoutputstream);
 				fileoutputstream.close();
-				existExcel(request);
+				existExcel(request,title);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -147,11 +146,11 @@ public class ExcelController {
 	}
 
 	@SuppressWarnings("resource")
-	public void existExcel(HttpServletRequest request) throws IOException {
+	public void existExcel(HttpServletRequest request,String title) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
-		File file = new File("F:\\final_test\\test1.xlsx");
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);
@@ -251,13 +250,13 @@ public class ExcelController {
 
 	@SuppressWarnings("resource")
 	@RequestMapping("/existExcel.do")
-	public String existExcel2(HttpServletRequest request) throws IOException {
+	public String existExcel2(HttpServletRequest request,String title) throws IOException {
 		System.out.println("0");
 
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
 		Workbook workbook = null;
-		File file = new File("F:\\final_test\\test.xlsx");
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);

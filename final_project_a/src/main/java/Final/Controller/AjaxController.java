@@ -34,9 +34,9 @@ import net.sf.json.JSONObject;
 public class AjaxController {
 
 	@RequestMapping(value = "/save.do", method = RequestMethod.POST)
-	public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void save(HttpServletRequest request, HttpServletResponse response,String title) throws IOException {
 		String path = null;
-		File file = new File("F://final_test//test.xlsx");
+		File file = new File("F://final_test//"+title+".xlsx");
 	    FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFRow row = null;
@@ -78,12 +78,12 @@ public class AjaxController {
 		}
 
 		try {
-			path = "F:\\final_test\\test1.xlsx";
+			path = "F:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
 				fileoutputstream.close();
-				existExcel(request, response);
+				existExcel(request, response,title);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -92,13 +92,13 @@ public class AjaxController {
 		}
 	}
 
-	public void existExcel(HttpServletRequest request, HttpServletResponse res) throws IOException {
+	public void existExcel(HttpServletRequest request, HttpServletResponse res,String title) throws IOException {
 		JSONObject json = new JSONObject();
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		File file = new File("F:\\final_test\\test1.xlsx");
+		File file = new File("F:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		if (file.getName().endsWith(".xls")) {
 			workbook = new HSSFWorkbook(fis);

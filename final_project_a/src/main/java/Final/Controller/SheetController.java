@@ -44,6 +44,107 @@ public class SheetController {
 		this.fileLoadDao = fileLoadDao;
 	}
 
+	@RequestMapping("/deletesheet.do")
+	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException{
+		System.out.println("delete.do");
+		JSONObject json = new JSONObject();
+		List<String> cell_name = new ArrayList<String>();
+		List<String> cell_value = new ArrayList<String>();
+		DecimalFormat df = new DecimalFormat();
+		Workbook workbook = null;
+		File file = new File("F:\\final_test\\test.xlsx");
+		FileInputStream fis = new FileInputStream(file);
+		if (file.getName().endsWith(".xls")) {
+			workbook = new HSSFWorkbook(fis);
+		} else {
+			workbook = new XSSFWorkbook(fis);
+		}
+
+		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+
+		String cellName = "";
+		int rowindex = 0;
+		int columnindex = 0;
+		// 시트 수 (첫번째에만 존재하므로 0을 준다)
+		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
+		
+		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
+		workbook.removeSheetAt(sheetNum);
+		
+		Sheet sheet = workbook.getSheetAt(sheetNum-1);
+		
+		int rows = sheet.getPhysicalNumberOfRows();
+		int colNum = 0;
+
+		for (rowindex = 0; rowindex < rows; rowindex++) {
+			Row row = sheet.getRow(rowindex);
+			colNum = colNum + 1;
+
+			if (row != null) {
+				int cells = row.getPhysicalNumberOfCells();
+
+				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
+					Cell cell = row.getCell(columnindex);
+					char rowrowrow = (char) (65 + columnindex);
+					cellName = rowrowrow + "" + colNum;
+					String value = "";
+
+					if (cell == null) {
+						value = "";
+						continue;
+					} else {
+						// 타입별로 내용 읽기
+						switch (cell.getCellType()) {
+						case Cell.CELL_TYPE_BOOLEAN:
+							boolean bool_data = cell.getBooleanCellValue();
+							value = String.valueOf(bool_data);
+							break;
+						case Cell.CELL_TYPE_FORMULA:
+							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
+								double num_data = cell.getNumericCellValue();
+								value = df.format(num_data);
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
+								value = cell.getStringCellValue();
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
+								boolean data = cell.getBooleanCellValue();
+								value = String.valueOf(data);
+							}
+							break;
+						case Cell.CELL_TYPE_NUMERIC:
+							if (HSSFDateUtil.isCellDateFormatted(cell)) {
+								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+								value = formatter.format(cell.getDateCellValue());
+							} else {
+								double ddata = cell.getNumericCellValue();
+								value = df.format(ddata);
+							}
+							break;
+						case Cell.CELL_TYPE_STRING:
+							value = cell.getStringCellValue() + "";
+							break;
+						case Cell.CELL_TYPE_BLANK:
+							value = "";
+							break;
+						case Cell.CELL_TYPE_ERROR:
+							value = cell.getErrorCellValue() + "";
+							break;
+						}
+
+					}
+					cell_name.add(cellName);
+					cell_value.add(value);
+				}
+			}
+		}
+
+		json.put("cell_name", cell_name);
+		json.put("cell_value", cell_value);
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = res.getWriter();
+		out.print(json.toString());
+		
+	}
+	
 	@RequestMapping(value = "/plus.do", method = RequestMethod.POST)
 	public void sheet_plus(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("성공?");
@@ -51,6 +152,8 @@ public class SheetController {
 		XSSFRow row = null;
 		XSSFCell cell = null;
 		XSSFWorkbook workbook = new XSSFWorkbook();
+		
+		
 
 		XSSFSheet sheet = workbook.createSheet();
 
@@ -154,7 +257,7 @@ public class SheetController {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	@RequestMapping(value="/sheet.do" ,method=RequestMethod.POST)
 	public void existExcel(HttpServletRequest request, HttpServletResponse res) throws IOException {

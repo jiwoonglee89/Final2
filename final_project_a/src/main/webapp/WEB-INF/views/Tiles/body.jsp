@@ -207,7 +207,7 @@
 	//저장 폼 생성
 	function createForm() {
 		//파라미터로 sheetNum, title 넘겨줌
-		var tag = '<form id="formtable" name="formtable" action="save1.do" method="post">'
+		var tag = '<form id="formtable" name="formtable" action="save1.do?title=${title}" method="post">'
 		for (var j = 1; j < 100; j++) {
 			for (var i = 1; i < th.length; i++) {
 				var val = th[i] + j;
