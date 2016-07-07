@@ -58,15 +58,9 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	if (window.find) 
  	{
  		strFound=self.find(str);
+ 		
  		$("div#"+str).focus();
- 		//$("#functionList>div:contains('"+str+"')").next().focus();
- 		//var items = new Array($("#functionList:contains('"+str+"')")); 
- 		//alert("functionList배열의 검색값:::"+items.length);
- 		
- 		//var i = $("div:contains('"+str+"')").size()
- 		//alert("div 검색 사이즈값:::"+i);
- 		
- 		
+ 		$(".f:contains('"+str+"')").focus();
  		
  		if (!strFound) 
    		{
@@ -196,12 +190,12 @@ float: left;
 		</div>
 		<div id='content'>
 			<div id="functionList" class="c_event">
-				<div id="abs"  tabindex="0">함수 이름: ABS(number)<br> 함수 내용: 절대 값을 구합니다. </div>
-				<div id="acos"  tabindex="0">함수 이름: ACOS(number)<br> 함수 내용: 아크코사인값을 구합니다. </div>
-				<div id="acosh" tabindex="0">함수 이름: ACOSH(number)<br>함수 내용: 역 하이퍼 코사인값을 구합니다.</div>
-				<div id="address" tabindex="0">함수 이름: ADDRESS(row_number, column_number,abs_number,a1,sheet_text)<br>함수 내용: 행과 열로 지정된 셀의 주소를 반환합니다. </div>
-				<div id="and" tabindex="0">함수 이름: AND(logical1, logical2, ...)<br>함수 내용:인수가 모두 TRUE이면 TRUE를 반환합니다. </div>				
-				<div id="asin" tabindex="0">함수 이름: ASIN(number)<br>함수 내용: 아크사인값을 구합니다.</div>
+				<div id="abs"  tabindex="0">함수 이름: ABS(number)<br> 함수 내용: 절대 값을 구합니다.</div>
+				<div id="acos"  tabindex="0" >함수 이름: ACOS(number)<br> 함수 내용: 아크코사인값을 구합니다. </div>
+				<div id="acosh" tabindex="0"  >함수 이름: ACOSH(number)<br>함수 내용: 역 하이퍼 코사인값을 구합니다.</div>
+				<div id="address" tabindex="0"  >함수 이름: ADDRESS(row_number, column_number,abs_number,a1,sheet_text)<br>함수 내용: 행과 열로 지정된 셀의 주소를 반환합니다. </div>
+				<div id="and" tabindex="0"  >함수 이름: AND(logical1, logical2, ...)<br>함수 내용:인수가 모두 TRUE이면 TRUE를 반환합니다. </div>				
+				<div id="asin" tabindex="0"  >함수 이름: ASIN(number)<br>함수 내용: 아크사인값을 구합니다.</div>
 				<div id="asinh" tabindex="0">함수 이름: ASINH(number)<br>함수 내용: 역 하이퍼볼릭 사인 값을 구합니다.</div>
 				<div id="atan" tabindex="0">함수 이름: ATAN(number)<br>함수 내용: 아크탄젠트 값을 구합니다.</div>
 				<div id="atan2" tabindex="0">함수 이름: ATAN2(x_num, y_num)<br>함수 내용: 지정된 x, y 좌표의 아크탄젠트 값을 구합니다. </div>
