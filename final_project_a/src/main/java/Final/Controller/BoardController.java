@@ -31,6 +31,7 @@ public class BoardController {
 	public ModelAndView board_view(HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
+		session.removeAttribute("title");
 		List<FileInfo> files=null;
 		if(boardDao.fileload(id).size()!=0){
 			files=boardDao.fileload(id);

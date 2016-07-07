@@ -41,10 +41,6 @@ public class ExcelController {
 		this.fileLoadDao = fileLoadDao;
 	}
 
-	@RequestMapping("/newExcel.do")
-	public String form() {
-		return "NewFile";
-	}
 	public String session_Title(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String title = (String) session.getAttribute("title");

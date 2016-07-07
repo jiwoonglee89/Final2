@@ -115,6 +115,11 @@
 
 </style>
 <script>
+
+	function addSheetTag(){
+		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
+  		$('#sheet_bar').append(tag);
+	}
    $(function() {
 	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
 	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
@@ -135,8 +140,9 @@
       		$('#sheetNum').val(totalsheetNum);
       		
       		var url ="";
-      		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
-      		$('#sheet_bar').append(tag);
+      		
+      		addSheetTag();
+      		
       		if(totalsheetNum!=1){
       			url += "<c:url value='/plus2.do'/>"
       		}else{

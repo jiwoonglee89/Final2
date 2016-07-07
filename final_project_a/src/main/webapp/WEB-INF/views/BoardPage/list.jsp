@@ -193,7 +193,7 @@ th, td
 	<c:if test="${files!=null}">
 	<c:forEach var="file" items="${files}" >
 		<tr>
-			<td><a href="<c:url value='excel.do?num=${file.file_number}'/>">${file.title}</a></td>
+			<td><a href="<c:url value='excel.do?title=${file.title}'/>">${file.title}</a></td>
 			<td>${file.modify_date}</td>
 			<td><a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a></td>
 		<tr>
