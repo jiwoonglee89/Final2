@@ -1,7 +1,13 @@
 package Final.Controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,15 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DownloadController {
 	@RequestMapping(value="/download.do")
-	public ModelAndView save(HttpServletRequest request,String title) {
-		HashMap<String, String> download_data=new HashMap<String, String>();
-		for (int i=1;i<=100;i++){
-			for (int j=0;j<26;j++){
-				char c=(char)(65+j);
-				download_data.put(""+c+i, request.getParameter(""+c+i));
-			}
-		}
+	public ModelAndView save(HttpServletRequest request,String title) throws IOException {
+		File file = new File("F:\\final_test\\test.xlsx");
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		
+		HashMap download_data=new HashMap();
 		download_data.put("title", title);
+		download_data.put("d_workbook", workbook);
 		return new ModelAndView("downView", "download_data", download_data);
 	}
 }
