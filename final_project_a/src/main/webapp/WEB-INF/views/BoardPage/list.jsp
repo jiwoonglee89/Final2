@@ -25,6 +25,7 @@ open(url,"confirm","toolbar=no,location=no,width="+popW+",height="+popH+",top="+
 /* 브라우저 기본값 초기화(Reset) */
 body
 {
+	overflow-x:hidden;
 	padding: 0px;
 	margin: 0px;
 }
