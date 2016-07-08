@@ -120,7 +120,7 @@ function getFile(){
 				</div>
 			</li>
 			<li><div class="bar_title">[ 제목 : ${title} ]</div></li>
-			<li><div class="bar_title">[ 현재시트 : ${sheetNum+1} ]</div></li>
+			<li><div class="bar_title">[ 현재시트 : ${sheetNum+1}번째 시트 ]</div></li>
 			<li><div class="bar_title"><label for="load" class="loadlabel" style="color: white;">불러오기</label>
 			<form action="load.do"  class="filebox" enctype="multipart/form-data" method="post">
 			<input type="file" id="load" name="file" onchange="this.form.submit()"/>
