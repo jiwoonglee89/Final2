@@ -60,39 +60,7 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	{
  		
  		strFound=self.find(str);
- 		
- 	//$("div#"+str).focus();
- 	//var typeS = str.toString(); //객체에서 문자형으로 형변환
- 	
- 	//해당문자를 포함하는 div의 갯수 반환
- 	var ch = $("div:contains('"+str+"')").size(function()
-	{
- 		return this.length
- 	});
- 	
- 	//객체를 배열로 만드는 함수
- 	function toArray(arr)
- 	{
- 		var arrObj = [];
- 		for(var i;i<arr.length;i++)
- 		{
- 			arrObj.push(arr[i]);
- 		}
- 		//alert("반환값:::"+arrObj);
- 		alert(typeof arrObj);
- 		return arrObj;
- 	}
- 	
- 	var list = $("div:contains('"+str+"')").toArray();
- 	
- 	var p = toArray(list);
- 	
-/*  	alert("toArray의값:::"+toArray(list));
- 	alert("P의 값:::"+p);
- 	alert("P의 길이:::"+p.length);
- 	alert("P의 형식:::"+typeof p);
- 	 */
- 		 if (!strFound) 
+ 		if (!strFound) 
    		{
     			strFound=self.find(str,0,1);
     		while (self.find(str,0,1)) 
