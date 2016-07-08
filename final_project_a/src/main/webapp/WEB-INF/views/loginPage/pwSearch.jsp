@@ -16,7 +16,7 @@
 </c:if>
 <c:if test="${message!=null}">
 	<script>
-		alert("비밀번호를 확인해 주세요.");
+		alert("${message}");
 		history.go(-1);
 	</script>
 </c:if>

@@ -166,10 +166,12 @@ public class MemberController {
 		MemberInfo member = memberDao.modifyForm(id);
 
 		//메일값 잘라넣기
-		String mail_array[] = member.getEmail().split("@");
-		request.setAttribute("emailID", mail_array[0]);
-		request.setAttribute("emailAddress", mail_array[1]);
-		
+		System.out.println(member.getEmail());
+		if(!member.getEmail().equals("@")){
+			String mail_array[] = member.getEmail().split("@");
+			request.setAttribute("emailID", mail_array[0]);
+			request.setAttribute("emailAddress", mail_array[1]);
+		}
 		//생일값 잘라넣기
 		String birth_array[] = member.getBirth().split("-");	
 		request.setAttribute("birthY", birth_array[0]);
