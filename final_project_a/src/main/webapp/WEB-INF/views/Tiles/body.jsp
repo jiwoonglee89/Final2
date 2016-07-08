@@ -388,6 +388,7 @@ function shift_tdselect_false(){
 			$('#' + z).val(z);
 		}
 		
+		//시트개수만큼 시트태그추가
 		var tagNum = "${tagNum}";
       		if(typeof(tagNum)!='undefined'){
       			if(tagNum!=0){
