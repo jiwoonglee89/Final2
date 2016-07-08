@@ -58,13 +58,11 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	
  	if (window.find) 
  	{
- 		
  		strFound=self.find(str);
  		if (!strFound) 
    		{
-    			strFound=self.find(str,0,1);
-    		while (self.find(str,0,1)) 
-    			
+    		strFound=self.find(str,0,1);
+    		while(self.find(str,0,1))
     			continue;
    		}
   	}
