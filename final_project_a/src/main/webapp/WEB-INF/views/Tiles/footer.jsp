@@ -121,20 +121,8 @@
   		$('#sheet_bar').append(tag);
 	}
 	
-	/* $(document).ready(function() {
-		var tagNum = "${tagNum}";
-      		if(typeof(tagNum)!='undefined'){
-      			if(tagNum!=0){
-      				for(var i=0; i<tagNum; i++){
-      				addSheetTag(i+1);
-      				}
-      			}
-      		}
-	}); */
 	
    $(function() {
-	  /*  $(this).find('input[class=button]').attr('id').substring(5)*1; */
-	   //var sheetNum = $('input[class=button]').attr('id').substring(5)*1;
 	  $('#btn').click(function() {
    			var list = $('#sheet_bar div').text();
 
@@ -191,7 +179,7 @@
       $('#sheet_bar').on('click','input',function(){
     	  var sheetNum = $(this).attr('id').substring(5)*1;
     	  $('#sheetNum').val(sheetNum);
-    	  
+    	  alert("sheetNum"+sheetNum);
     	  var url= "<c:url value='/sheet.do'/>"
   			/* for (var j = 1; j <= 100; j++) {
   				   for (var i = 1; i <= th.length; i++) {

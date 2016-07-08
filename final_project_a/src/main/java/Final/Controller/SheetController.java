@@ -50,7 +50,6 @@ public class SheetController {
 		String title = (String) session.getAttribute("title");
 		return title;
 	}
-	
 	@RequestMapping("/deletesheet.do")
 	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException{
 		System.out.println("delete.do");
@@ -59,7 +58,6 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		Workbook workbook = null;
-		
 		String title = session_Title(request);
 		
 		File file = new File("C:\\final_test\\"+title+".xlsx");
@@ -345,10 +343,10 @@ public class SheetController {
 					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
 					char rowrowrow = (char) (65 + columnindex);
 					cellName = rowrowrow + "" + colNum;
-					String value = "";
+					String value = " ";
 
 					if (cell == null) {
-						value = "";
+						value = " ";
 						continue;
 					} else {
 						// 타입별로 내용 읽기
@@ -401,6 +399,9 @@ public class SheetController {
 					}
 					cell_name.add(cellName);
 					cell_value.add(value);
+					if (cell_value.size()==0) {
+						System.out.println("cell_value.size()"+cell_value.size());
+					}
 				}
 			}
 		}

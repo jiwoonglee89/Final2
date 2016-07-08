@@ -127,7 +127,7 @@ tr, td {
 	vertical-align: middle;
 }
 
-.button:hover {
+.button:hover, label:hover {
 	border: 1px solid #ffffff;
 	text-shadow: #ffffff 0 1px 0;
 	background: #919191;
