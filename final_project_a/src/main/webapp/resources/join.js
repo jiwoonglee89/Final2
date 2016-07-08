@@ -101,59 +101,6 @@ function openConfirmid(ID) {
 
 	}
 }
-
-//회원가입 페이지 처음 로드시 email 텍스트박스 사용불가 코드
-function disable(y,m,d) 
-{
-	//check된거 닫아놓기
-	var f = document.joinF;
-	f.emailAddress.disabled = true;
-	//생일 자동체크
-	var year = f.birthY.options.length;
-	var month = f.birthM.options.length;
-	var day = f.birthD.options.length;
-	
-	for(var i=1;i<=year;i++)
-	{
-		if(f.birthY.options[i].value==y)
-		{
-			f.birthY.options[i].setAttribute("selected","selected");
-			break;
-		}
-	}
-	for(var i=1;i<=month;i++)
-	{
-
-		if(f.birthM.options[i].value==m)
-		{
-			f.birthM.options[i].setAttribute("selected","selected");
-			break;
-		}
-	}
-	for(var i=1;i<=day;i++)
-	{
-
-		if(f.birthD.options[i].value==d)
-		{
-			f.birthD.options[i].setAttribute("selected","selected");
-			break;
-		}
-	}
-/*	//메일 자동체크
-	var m = f.email.options.length;
-	
-	for(var i=1;i<=m;i++)
-		{
-		if(f.email.options[i].value==emailA)
-			{
-				f.email.options[i].setAttribute("selected","selected");
-				break;
-			}
-		}*/
-
-	return true;
-}
-
 //이메일 직접입력
 function email_change(e) {
 	/*

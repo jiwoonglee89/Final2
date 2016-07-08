@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="resources/join.js" />"></script>
 <script src="<c:url value="resources/zipcheck.js" />"></script>
 <title>아이디 비밀번호 찾기</title>
@@ -81,44 +82,33 @@
 
 <script>
 
-$(function(){
-   //open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
-   $("#submit_find_id").click(function(){
-      if($("#name").val()=="") {
-         alert("이름을 입력해 주세요.");
-         $("#name").focus();
-   } else {
-   	
-      if($("#phone").val()=="") {
-         alert("핸드폰 번호를 입력해 주세요.");
-         $("#phone").focus();
-      }
-   } else{
-         $("#idSearch").submit();
-      }
-   });
-
-
-   $("#submit_find_password").click(function(){
-      if($("#id").val()=="") {
+function find_id(){
+     if($("#id_name").val()=="") {
+        alert("이름을 입력해 주세요.");
+        $("#id_name").focus();
+     }else if($("#id_phone").val()==""){
+   	  alert("핸드폰 번호를 입려해주세요.");
+   	  $("#id_phone").focus();
+     }else{
+        $("#idSearch").submit();
+        return true;
+     }
+}
+function find_pw(){
+     if($("#pw_id").val()=="") {
          alert("아이디를 입력해 주세요.");
-         $("#id").focus();
-   } else{
-      if($("#phone").val()=="") {
-         alert("핸드폰 번호를 입력해 주세요.");
-         $("#phone").focus();
-         }
-   } else {
-      if($("#birth").val()=="") {
-         alert("생년원일을 입력해 주세요.");
-         $("#birth").focus();
-      }
-   } else {
-         $("#pwSearch").submit();
-      }
-   });
-
-});
+         $("#pw_id").focus();
+     }else if($("#pw_phone").val()==""){
+    	 alert("핸드폰 번호를 입려해주세요.");
+    	 $("#pw_phone").focus();
+     }else if($("#pw_birth").val()==""){
+        alert("생년원일을 입력해 주세요.");
+        $("#pw_birth").focus();
+     }else {
+        $("#pwSearch").submit();
+        return true;
+     }
+}
 
 function resizeWind(win)
 {
@@ -142,7 +132,7 @@ function resizeWind(win)
 </c:if>
 <div id="find" >
 
-	<form  name="idSearch" id="idSearch" action="idSearch.do">
+	<form  name="idSearch" id="idSearch" action="idSearch.do" onsubmit="find_id(); return false">
 	<table width="300" border="1" cellspacing="0" cellpadding="3" align="center">
 	<tr>
 		<td id="Search_id" colspan="2" height="39" align="center" bgcolor="">
@@ -152,14 +142,14 @@ function resizeWind(win)
 	<tr>
 				<td colspan="2" height="39" align="center" bgcolor="" width="300" width="300">
 					<div id="find_id"></div>
-					<div class="size_long" id="divname"><input type="text" class="text_login" id="name" name="name" maxlength="12" placeholder="이름"></div>
-					<div class="size_long" id="divphone"><input type="text" class="text_login" id="phone" name="phone" maxlength="12" placeholder="핸드폰번호(01012345678)"></div>
+					<div class="size_long" id="divname"><input type="text" class="text_login" id="id_name" name="name" maxlength="12" placeholder="이름"></div>
+					<div class="size_long" id="divphone"><input type="text" class="text_login" id="id_phone" name="phone" maxlength="12" placeholder="핸드폰번호(01012345678)"></div>
 					<input id="submit_find_id" class="button" type="submit" name="confirm_id" value="check">
 				</td>
 			</tr>
 		</table>
 	</form>
-	<form action="pwSearch.do" name="pwSearch" id="pwSearch">
+	<form action="pwSearch.do" name="pwSearch" id="pwSearch" onsubmit="find_pw(); return false">
 		<table width="300" border="1" cellspacing="0" cellpadding="3" align="center">
 		<tr>
 			<td id="Search_pw" colspan="2" height="39" align="center" bgcolor="">
@@ -169,10 +159,10 @@ function resizeWind(win)
 		<tr>
 			<td colspan="2" height="39" align="center" bgcolor="" width="300">
 				<div id="find_password"></div>
-				<div class="size_long" id="divid"><input type="text" class="text_login" id="id" name="id" maxlength="12" placeholder="아이디"></div>
-				<div class="size_long" id="divphone"><input type="text" class="text_login" id="phone" name="phone" maxlength="12" placeholder="핸드폰 번호(01012345678)"></div>
-				<div class="size_long" id="divbirth"><input type="text" class="text_login" id="birth" name="birth" maxlength="12" placeholder="생년월일"></div>
-				<input id="submit_find_password" class="button" type="submit" name="confirm_password" value="check">
+				<div class="size_long" id="divid"><input type="text" class="text_login" id="pw_id" name="id" maxlength="12" placeholder="아이디"></div>
+				<div class="size_long" id="divphone"><input type="text" class="text_login" id="pw_phone" name="phone" maxlength="12" placeholder="핸드폰 번호(01012345678)"></div>
+				<div class="size_long" id="divbirth"><input type="text" class="text_login" id="pw_birth" name="birth" maxlength="12" placeholder="생년월일"></div>
+				<input id="submit_find_password" class="button" type="submit" name="confirm_password" value="check" >
 			
 			</td>
 			</tr>

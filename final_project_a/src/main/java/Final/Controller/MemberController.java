@@ -232,18 +232,16 @@ public class MemberController {
 	}
 	//È¸¿øÅ»Åð
 	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.POST)
-	public String memberDelete(MemberInfo memberInfo,MemberDao member,HttpServletRequest request) 
+	public String memberDelete(HttpServletRequest request) 
 	{
 		HttpSession session=request.getSession();
 		String password = request.getParameter("password");
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
-		System.out.println(password);
-		Map map = new HashMap();
-		map.put("id", id);
-		map.put("password", password);
-		member.delete(map);
-		
+		if(memberDao.getPw(id)!=password){
+			request.setAttribute("check", "n");
+			return "Mypage/MemberDelete";
+		}
+		memberDao.delete(id);
 		return "loginPage/loginForm";
 	}
 	//·Î±×¾Æ¿ô

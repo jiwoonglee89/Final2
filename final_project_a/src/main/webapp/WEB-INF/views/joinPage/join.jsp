@@ -96,7 +96,7 @@ font-family: 'Poiret One', cursive;
 <title>Web Cell Join Page</title>
 <br><br>
 </head>
-<body onload="disable()">
+<body onload="javascript:document.joinF.emailAddress.disabled=true">
 	  <form name="joinF" action="join.do" method="post" onSubmit="return check()">
 		<table width="600" border="0" cellspacing="0" cellpadding="3" align="center">
 			<tr>
