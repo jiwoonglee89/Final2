@@ -24,6 +24,15 @@
 }
 </style>
 <script>
+	function formula_down(){
+		$('#formula').keyup(function(){
+			
+			var a = $('#formula').val();
+			$('.textselect').text(a);
+		});
+		
+		
+	}
 	function download(){
 		$('#formtable').attr('action','download.do');
 		submit();
@@ -399,6 +408,7 @@ function shift_tdselect_false(){
       		}
 		
 		page_load();
+		formula_down();
 	});
 	
 	$(function() {
