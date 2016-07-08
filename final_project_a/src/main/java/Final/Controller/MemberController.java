@@ -166,10 +166,12 @@ public class MemberController {
 		MemberInfo member = memberDao.modifyForm(id);
 
 		//메일값 잘라넣기
-		String mail_array[] = member.getEmail().split("@");
-		request.setAttribute("emailID", mail_array[0]);
-		request.setAttribute("emailAddress", mail_array[1]);
-		
+		System.out.println(member.getEmail());
+		if(!member.getEmail().equals("@")){
+			String mail_array[] = member.getEmail().split("@");
+			request.setAttribute("emailID", mail_array[0]);
+			request.setAttribute("emailAddress", mail_array[1]);
+		}
 		//생일값 잘라넣기
 		String birth_array[] = member.getBirth().split("-");	
 		request.setAttribute("birthY", birth_array[0]);
@@ -232,18 +234,16 @@ public class MemberController {
 	}
 	//회원탈퇴
 	@RequestMapping(value="/MemberDelete.do", method=RequestMethod.POST)
-	public String memberDelete(MemberInfo memberInfo,MemberDao member,HttpServletRequest request) 
+	public String memberDelete(HttpServletRequest request) 
 	{
 		HttpSession session=request.getSession();
 		String password = request.getParameter("password");
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
-		System.out.println(password);
-		Map map = new HashMap();
-		map.put("id", id);
-		map.put("password", password);
-		member.delete(map);
-		
+		if(memberDao.getPw(id)!=password){
+			request.setAttribute("check", "n");
+			return "Mypage/MemberDelete";
+		}
+		memberDao.delete(id);
 		return "loginPage/loginForm";
 	}
 	//로그아웃

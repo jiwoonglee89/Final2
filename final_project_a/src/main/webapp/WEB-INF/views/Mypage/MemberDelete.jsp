@@ -103,5 +103,10 @@
 </tr> 
 </table>
 </form>
+<c:if test="${check=='n'}">
+<script>
+	alert("비밀번호를 확인해주세요")
+</script>
+</c:if>
 </body>
 </html>

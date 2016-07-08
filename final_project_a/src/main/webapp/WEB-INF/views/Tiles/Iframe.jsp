@@ -48,6 +48,7 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
 			 });
 			
 		}); 
+ 
  /* 검색어 함수 */
  var TRange=null;
  function findString (str) {
@@ -57,17 +58,9 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  	
  	if (window.find) 
  	{
- 		strFound=self.find(str);
- 		//$("div#"+str).focus();
-// 		$("div#functionList>div:contains('"+str+"')").focus();
- 		//$("div#functionList>div:contains('"+str+"')").css("color","red");
- 		$("div#functionList div:contains("+str.toUpperCase()+")").each(function(index){
- 			//alert(index)
- 			$(this).focus();
- 			return false;
- 		})
  		
- 		 if (!strFound) 
+ 		strFound=self.find(str);
+ 		if (!strFound) 
    		{
     			strFound=self.find(str,0,1);
     		while (self.find(str,0,1)) 

@@ -45,9 +45,12 @@ public class MemberDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("member.modifyForm",id);
 	}
 	//È¸¿ø Å»Åð
-	public int delete(Map map)
+	public int delete(String id)
 	{
-		return getSqlSession().delete("member.delete",map);
+		return getSqlSession().delete("member.delete",id);
+	}
+	public String getPw(String id){
+		return getSqlSession().selectOne("getPw", id);
 	}
 
 }
