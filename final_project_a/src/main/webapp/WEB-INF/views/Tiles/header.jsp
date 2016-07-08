@@ -63,7 +63,31 @@ $(document).ready(function()
 	);
 	
 });
+
+function getFile(){
+	$('.filebox').submit();
+}
+
+
 </script>
+<style type="text/css">
+.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+  text-align: center;
+}
+.loadlabel{
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-top: 10px;
+}
+</style>
 </head>
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left: 0px;">
@@ -96,6 +120,13 @@ $(document).ready(function()
 				</div>
 			</li>
 			<li><div class="bar_title">[ 제목 : ${title} ]</div></li>
+			<li><div class="bar_title">[ 현재시트 : ${sheetNum+1} ]</div></li>
+			<li><div class="bar_title"><label for="load" class="loadlabel" style="color: white;">불러오기</label>
+			<form action="load.do"  class="filebox" enctype="multipart/form-data" method="post">
+			<input type="file" id="load" name="file" onchange="this.form.submit()"/>
+			</form>
+			</div>
+			</li>
 			<li id="logout">
 				<div class="logout">
 					<button class="button"
