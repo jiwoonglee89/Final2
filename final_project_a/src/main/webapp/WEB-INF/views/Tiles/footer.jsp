@@ -123,13 +123,34 @@
 	
 	
    $(function() {
-	  $('#btn').click(function() {
-   			var list = $('#sheet_bar div').text();
-
-   			var listleng = $('#sheet_bar').find('div').length;
-      			alert(list);
-      			alert(listleng);
-   		});
+	   
+	  $('#save').click(function(){
+		  var sheetNum = $('#sheet_bar').find('input').length*1;
+    	  $('#sheetNum').val(sheetNum);
+    	  alert("sheetNum"+sheetNum);
+    	  var url= "<c:url value='/save1.do'/>"
+  			for (var j = 1; j <= 100; j++) {
+  				   for (var i = 1; i <= th.length; i++) {
+  					   var value= $('#'+th[i]+j).text();
+  					   $('#in'+th[i]+j).val(value);
+  				   }
+  			}
+  			var params = $("form[name=formtable]").serialize();
+  			$.ajax({
+  				type:"post"
+  				,url:url
+  				,data:params
+  				,dataType:"json"
+  				,success: function (rs){
+  					for(var i=0;i<rs.cell_name.length;i++){
+  						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
+  					} 
+  				}
+  				,error:function(request, status, error){
+  					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
+  				}
+  			});
+	  });
       $('.add').click(function() {
     	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
 	      	

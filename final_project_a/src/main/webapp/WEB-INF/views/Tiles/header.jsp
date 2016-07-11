@@ -92,7 +92,7 @@ function getFile(){
 <body>
 	<div id="formulaBar" class="jbMenu" style="padding-left: 0px;">
 		<ul>
-			<li><button onclick="submit()" class="active">저장</button></li>
+			<li><button onclick="javascript:window.location='save1.do" id="save" class="active">저장</button></li>
 			<li><button onclick="javascript:window.location='download.do'">다운로드</button></li>
 			<li class="dropdown">
 				<button class="dropbtn">함수</button>
@@ -123,7 +123,7 @@ function getFile(){
 			<li><div class="bar_title">[ 현재시트 : ${sheetNum+1}번째 시트 ]</div></li>
 			<li><div class="bar_title"><label for="load" class="loadlabel" style="color: white;">불러오기</label>
 			<form action="load.do"  class="filebox" enctype="multipart/form-data" method="post">
-			<input type="file" id="load" name="file" onchange="this.form.submit()"/>
+			<input type="file" id="load" name="file" onchange="this.form.submit(); "/>
 			</form>
 			</div>
 			</li>
