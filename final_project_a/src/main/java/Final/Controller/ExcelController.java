@@ -33,16 +33,9 @@ import Final.Model.FileInfo;
 import net.sf.json.JSONObject;
 
 @Controller
-public class ExcelController {
+public class ExcelController extends CommonMethod{
 	@Autowired
 	private FileLoadDao fileLoadDao;
-	
-	@Autowired
-	private CommonMethod commonMethod;
-	
-	public void setCommonMethod(CommonMethod commonMethod) {
-		this.commonMethod = commonMethod;
-	}
 
 	public void setFileLoadDao(FileLoadDao fileLoadDao) {
 		this.fileLoadDao = fileLoadDao;
@@ -51,8 +44,6 @@ public class ExcelController {
 	//타이틀 세션에저장
 	
 	
-	
-
 	//board에서 엑셀파일목록 클릭시 불러오기
 	@RequestMapping(value="/excel.do",method=RequestMethod.GET)
 	public String selectExcel(String title, HttpServletRequest request) throws IOException {
@@ -67,7 +58,7 @@ public class ExcelController {
 		
 		int sheetNum = (workbook.getNumberOfSheets())-1;
 
-		HashMap map = commonMethod.getData(workbook, sheetNum);
+		HashMap map = getData(workbook, sheetNum);
 		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
@@ -97,7 +88,7 @@ public class ExcelController {
 		
 		int sheetNum = (workbook.getNumberOfSheets())-1;
 		
-		HashMap map = commonMethod.getData(workbook, sheetNum);
+		HashMap map = getData(workbook, sheetNum);
 		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
@@ -138,7 +129,7 @@ public class ExcelController {
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		DecimalFormat df = new DecimalFormat();
-		String title = commonMethod.session_Title(request);
+		String title = session_Title(request);
 		String path = fileLoadDao.getPath(title);
 		File file = new File(path);
 		
@@ -150,7 +141,7 @@ public class ExcelController {
 		// 시트 이름
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
-		commonMethod.insertData(workbook, sheetNum-1, request);
+		insertData(workbook, sheetNum-1, request);
 		
 		try {
 			path = "C:\\final_test\\"+title+".xlsx";
@@ -193,7 +184,7 @@ public class ExcelController {
 		workbook = new XSSFWorkbook(fis);
 		int sheetNum = workbook.getNumberOfSheets();
 		
-		HashMap map = commonMethod.getData(workbook, (sheetNum-1));
+		HashMap map = getData(workbook, (sheetNum-1));
 		
 		//map에서 key값 value값 array에 입력
 		Iterator keys = map.keySet().iterator();
@@ -203,6 +194,6 @@ public class ExcelController {
 			cell_value.add((String) map.get(key));
 		}
 	
-		commonMethod.inputJson(res, cell_name, cell_value);
+		inputJson(res, cell_name, cell_value);
 	}
 }
