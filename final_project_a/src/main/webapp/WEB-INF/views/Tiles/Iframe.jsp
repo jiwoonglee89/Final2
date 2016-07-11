@@ -51,42 +51,39 @@ document.write("<script type='text/javascript' src='resources/formula.js'><"+"/s
  
  /* 검색어 함수 */
  var TRange=null;
- function findString (str) {
- 	if (parseInt(navigator.appVersion)<4)
- 		return;
- 	var strFound;	//찾을문자
- 	
- 	if (window.find) 
+ function findString (str) 
+ {
+	 $("#functionList div#"+str).focus(); //임시
+	 
+/*  	if(str == str.toLowerCase())
  	{
- 		strFound=self.find(str);
- 		if (!strFound) 
-   		{
-    		strFound=self.find(str,0,1);
-    		while(self.find(str,0,1))
-    			continue;
-   		}
-  	}
- 	else if (navigator.appName.indexOf("Microsoft")!=-1) {
- 		if (TRange!=null) {
-    			TRange.collapse(false);
-    			strFound=TRange.findText(str);
-     			if (strFound)
-    				TRange.select();
-    			}
-   		if (TRange==null || strFound==0) {
-    			TRange=self.document.body.createTextRange();
-    			strFound=TRange.findText(str);
-    			 if (strFound)
-    				TRange.select();
-   		}
-  	}
-  	else if (navigator.appName=="Opera") {
-   		alert ("Opera browsers not supported, sorry...")
-   	return;
-  	}
-  	if (!strFound) 
-  		alert ("String '"+str+"' not found!")
-  	return;
+ 		alert("현재 입력된 검색어는 소문자입니다.");
+ 		$("#functionList:contains('"+str+"')").find(function()
+ 		{
+ 			var arr=new Array();
+ 			for(arr in $("#functionList div:contains('"+str+"')")){
+ 				alert(arr[0]);
+ 			}
+ 			//alert("반복문 실행합니다.");
+ 			/* for(var i=0; i< $("#functionList div:contains('"+str+"')").length; i++)
+ 			{
+ 				
+ 				alert(typeof $("#functionList div:contains('"+str+"')"));
+ 				
+ 				alert($("#functionList div:contains('"+str+"')").length);
+ 				//alert("focus실행 전");
+ 				//$("#functionList div:contains():eq(2)").focus();
+ 				//alert("focus실행 후");
+ 			}
+ 			//alert("함수 종료");
+ 		})
+ 	}
+ 	else if(str == str.toUpperCase())
+ 	{
+ 		alert("현재 입력된 검색어는 대문자입니다.");
+ 		$("#functionList:contains('"+str+"')").find();
+ 		
+ 	} */
  }
 </script>
 <style>
