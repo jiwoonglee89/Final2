@@ -197,7 +197,14 @@ th, td
 			<td>${file.modify_date}</td>
 			<td><a href="<c:url value='file_delete.do?num=${file.file_number}'/>">삭제</a></td>
 		<tr>
-	</c:forEach>					
+	</c:forEach>			
+	<form action="board.do">
+	 <select>
+	 <option value="title">제목</option>
+	 </select>
+	 <input type="text" name="searcht" placeholder="검색할 파일제목을 입력하세요" size="30px"/>
+	 <input type="submit" value="검색">
+	 </form>		
 	</c:if>		 	
 	 </table>
 	</div>

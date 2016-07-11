@@ -15,4 +15,5 @@ public class BoardDao extends SqlSessionDaoSupport{
 	public int deletefile(Map map){
 		return getSqlSession().delete("filedelete", map);
 	}
+
 }

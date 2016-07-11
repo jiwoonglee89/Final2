@@ -4,28 +4,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
 	<insert id="save" parameterType="Final.Model.FileInfo">
-		insert into file_data values(file_seq.NEXTVAL, #{id}, #{title}, sysdate, #{path})
+		insert into file_data
+		values(file_seq.NEXTVAL, #{id}, #{title}, sysdate, #{path})
 	</insert>
 	<select id="allById" parameterType="String" resultType="Final.Model.FileInfo">
-		select * from file_data where id=${id} order by modify_date desc
+		select *
+		from file_data where id=${id} order by modify_date desc
 	</select>
-	
+
 	<select id="selByTitle" parameterType="String" resultType="Final.Model.FileInfo">
 		select * from file_data where title=#{title}
 	</select>
 	
+	<select id="search" parameterType="String" resultType="Final.Model.FileInfo">
+		select * from file_data where title like '%'|| #{title} || '%'
+	</select>
+
 	<delete id="delete" parameterType="String">
-		delete from file_data where title=#{title}
+		delete from file_data where
+		title=#{title}
 	</delete>
 	<insert parameterType="Final.Model.FileInfo" id="write">
- insert into member (id, title, modify_date, path) values(#{id}, #{title}, sysdate, #{path})
- </insert>
- <select resultType="Final.Model.FileInfo" parameterType="String" id="file_list">
- select * from file_data where id=#{id} </select>
- <select resultType="Final.Model.FileInfo" parameterType="java.lang.Integer" id="update">
- select * form file_data where file_number = #{file_number} 
- </select>
- <update parameterType="Final.Model.MemberInfo" id="updatePro">
-	update member set id=#{id}, title=#{title}, modify_date=sysdate, path=#{path}
+		insert into member (id, title, modify_date, path) values(#{id}, #{title},
+		sysdate, #{path})
+	</insert>
+	<select resultType="Final.Model.FileInfo" parameterType="String"
+		id="file_list">
+		select * from file_data where id=#{id}
+	</select>
+	<select resultType="Final.Model.FileInfo" parameterType="java.lang.Integer"
+		id="update">
+		select * form file_data where file_number = #{file_number}
+	</select>
+	<update parameterType="Final.Model.MemberInfo" id="updatePro">
+		update member set id=#{id}, title=#{title}, modify_date=sysdate,
+		path=#{path}
 	</update>
+	
 </mapper>

@@ -43,4 +43,9 @@ public class FileLoadDao extends SqlSessionDaoSupport{
 		
 		return getSqlSession().update("file.updatePro", fileInfo);
 	}
+	
+	
+	public List<FileInfo> search(String title){
+		return getSqlSession().selectList("search",title);
+	}
 }

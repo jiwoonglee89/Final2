@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Final.Dao.BoardDao;
+import Final.Dao.FileLoadDao;
 import Final.Model.FileInfo;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private FileLoadDao fileLoadDao;
 	
+	public void setFileLoadDao(FileLoadDao fileLoadDao) {
+		this.fileLoadDao = fileLoadDao;
+	}
 	@Autowired
 	private BoardDao boardDao;
 	
@@ -33,7 +39,10 @@ public class BoardController {
 		String id=(String)session.getAttribute("id");
 		session.removeAttribute("title");
 		List<FileInfo> files=null;
-		if(boardDao.fileload(id).size()!=0){
+		String searcht = request.getParameter("searcht");
+		if (searcht!=null) {
+			files=fileLoadDao.search(searcht);
+		}else {
 			files=boardDao.fileload(id);
 		}
 		return new ModelAndView("BoardPage/list", "files", files);
@@ -50,14 +59,7 @@ public class BoardController {
 		return new ModelAndView("BoardPage/result", "success", success);
 
 	}
-/*	@RequestMapping("/newdivedit.do")
-	public String moveExcel(String title,HttpServletRequest request)
-	{
-		System.out.println(title);
-	    request.setAttribute("title" , title);
-		
-	    return "Tiles/";
-	}*/
+
 	@RequestMapping(value="/title.do", method=RequestMethod.GET)
     public String moveTitle()
     {
