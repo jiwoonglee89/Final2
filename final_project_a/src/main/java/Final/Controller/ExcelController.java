@@ -5,11 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -33,6 +37,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import Final.Dao.FileLoadDao;
 import Final.Model.FileInfo;
+import net.sf.json.JSONObject;
 
 @Controller
 public class ExcelController {
@@ -48,25 +53,14 @@ public class ExcelController {
 		String title = (String) session.getAttribute("title");
 		return title;
 	}
-
-	@RequestMapping(value="/excel.do",method=RequestMethod.GET)
-	public String selectExcel(String title, HttpServletRequest request) throws IOException {
-
+	
+	//시트에맞는 엑셀 불러와서 map에 저장
+	public HashMap getData(XSSFWorkbook workbook,int sheetNum){
 		HashMap map = new HashMap();
 		String cellName = "";
 		int rowindex = 0;
 		int columnindex = 0;
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("title", title);
-
-		File file = new File("C://final_test//" + title + ".xlsx");
-		FileInputStream fis = new FileInputStream(file);
-		XSSFWorkbook workbook = new XSSFWorkbook(fis);
-
 		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-		
-		int sheetNum = (workbook.getNumberOfSheets())-1;
 
 		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
 
@@ -145,8 +139,30 @@ public class ExcelController {
 				}
 			}
 		}
+		return map;
+	}
+
+	@RequestMapping(value="/excel.do",method=RequestMethod.GET)
+	public String selectExcel(String title, HttpServletRequest request) throws IOException {
+
+		HashMap map = null;
+	
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("title", title);
+
+		File file = new File("C://final_test//" + title + ".xlsx");
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+		
+		int sheetNum = (workbook.getNumberOfSheets())-1;
+
+		map = getData(workbook, sheetNum);
+		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
+		request.setAttribute("sheetNum", sheetNum);
 
 		return "Tiles/excel_layout";
 	} 
@@ -157,7 +173,7 @@ public class ExcelController {
 		String cellName = "";
 		int rowindex = 0;
 		int columnindex = 0;
-		HashMap map = new HashMap();
+		HashMap map = null;
 		File nfile = null;
 		if (file.isEmpty()) {
 			System.out.println("파일없음");
@@ -165,6 +181,7 @@ public class ExcelController {
 			int xlsx = file.getOriginalFilename().lastIndexOf(".");
 			String file_name = (file.getOriginalFilename().substring(0,xlsx));
 			nfile = new File("C://final_test//"+file_name+".xlsx");
+			//사용자 기존엑셀파일 서버에 복사
 			file.transferTo(nfile);
 			HttpSession session = request.getSession();
 			session.setAttribute("title", file_name);
@@ -172,88 +189,10 @@ public class ExcelController {
 		FileInputStream fis = new FileInputStream(nfile);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		
-		
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-		
 		int sheetNum = (workbook.getNumberOfSheets())-1;
-
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
-
-		int rows = sheet.getPhysicalNumberOfRows();
-		int colNum = 0;
-
-		for (rowindex = 0; rowindex < rows; rowindex++) {
-			Row row = sheet.getRow(rowindex);
-			colNum = colNum + 1;
-
-			if (row != null) {
-				int cells = row.getPhysicalNumberOfCells();
-
-				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
-					char rowrowrow = (char) (65 + columnindex);
-					cellName = rowrowrow + "" + colNum;
-					String value = "";
-
-					if (cell == null) {
-						value = " ";
-						continue;
-					} else {
-						// 타입별로 내용 읽기
-						switch (cell.getCellType()) {
-						case Cell.CELL_TYPE_BOOLEAN:
-							boolean bool_data = cell.getBooleanCellValue();
-							value = String.valueOf(bool_data);
-							break;
-						case Cell.CELL_TYPE_FORMULA:
-							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-								String ddata = Double.toString(cell.getNumericCellValue());
-								if (ddata.endsWith(".0")) {
-									String[] arr = ddata.split("\\.");
-									value = arr[0];
-								} else {
-									value = ddata;
-								}
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
-								value = cell.getStringCellValue();
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
-								boolean data = cell.getBooleanCellValue();
-								value = String.valueOf(data);
-							}
-							break;
-						case Cell.CELL_TYPE_NUMERIC:
-							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-								value = formatter.format(cell.getDateCellValue());
-							} else {
-								String ddata = Double.toString(cell.getNumericCellValue());
-								if (ddata.endsWith(".0")) {
-									String[] arr = ddata.split("\\.");
-									value = arr[0];
-								} else {
-									value = ddata;
-								}
-							}
-							break;
-						case Cell.CELL_TYPE_STRING:
-							value = cell.getStringCellValue() + "";
-							break;
-						case Cell.CELL_TYPE_BLANK:
-							value = "";
-							break;
-						case Cell.CELL_TYPE_ERROR:
-							value = cell.getErrorCellString();
-							break;
-						}
-
-					}
-					map.put(cellName, value);
-
-					// request.setAttribute("rows", new Integer(rows));
-					// request.setAttribute("cells", new Integer(cells));
-				}
-			}
-		}
+		
+		map = getData(workbook, sheetNum);
+		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
 		request.setAttribute("sheetNum", sheetNum);
@@ -291,66 +230,110 @@ public class ExcelController {
 	}
 
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
-	public String save1(HttpServletRequest request) throws IOException {
+	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		String path = null;
-
+		JSONObject json = new JSONObject();
+		List<String> cell_name = new ArrayList<String>();
+		List<String> cell_value = new ArrayList<String>();
+		DecimalFormat df = new DecimalFormat();
+		String cellName = "";
+		int rowindex = 0;
+		int columnindex = 0;
+		
 		File file = new File("C://final_test//" + session_Title(request) + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
-		XSSFRow row = null;
-		XSSFCell cell = null;
+
 
 		// 시트 이름
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
 		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
+		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+		int rows = sheet.getPhysicalNumberOfRows();
+		int colNum = 0;
 
-		for (int i = 0; i < 100; i++) {
-			row = sheet.createRow(i);
-			for (int j = 0; j < 26; j++) {
-				char c = (char) (65 + j);
-				String cell_num = "" + c + (i + 1);
-				cell = row.createCell(j);
-				if (request.getParameter(cell_num) != null && request.getParameter(cell_num) != "") {
-					if (request.getParameter(cell_num).indexOf("=") == 0) {
-						String formula = request.getParameter(cell_num).substring(1);
-						try {
-							cell.setCellFormula(formula);
-						} catch (Exception e) {
-							cell.setCellErrorValue(FormulaError.NAME);
-						}
+		for (rowindex = 0; rowindex < rows; rowindex++) {
+			Row row = sheet.getRow(rowindex);
+			colNum = colNum + 1;
 
-					} else if (request.getParameter(cell_num) == "true" || request.getParameter(cell_num) == "false") {
-						cell.setCellValue(Boolean.getBoolean(request.getParameter(cell_num)));
+			if (row != null) {
+				int cells = row.getPhysicalNumberOfCells();
+
+				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
+					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
+					char rowrowrow = (char) (65 + columnindex);
+					cellName = rowrowrow + "" + colNum;
+					String value = " ";
+
+					if (cell == null) {
+						value = " ";
+						continue;
 					} else {
-						try {
-							cell.setCellValue(Double.parseDouble(request.getParameter(cell_num)));
-						} catch (NumberFormatException e) {
-							cell.setCellValue(request.getParameter(cell_num));
-						} catch (Exception e) {
-
+						// 타입별로 내용 읽기
+						switch (cell.getCellType()) {
+						case Cell.CELL_TYPE_BOOLEAN:
+							boolean bool_data = cell.getBooleanCellValue();
+							value = String.valueOf(bool_data);
+							break;
+						case Cell.CELL_TYPE_FORMULA:
+							if(evaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC){
+	                        	 String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
+								value = cell.getStringCellValue();
+							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
+								boolean data = cell.getBooleanCellValue();
+								value = String.valueOf(data);
+							}
+							break;
+						case Cell.CELL_TYPE_NUMERIC:
+							if (HSSFDateUtil.isCellDateFormatted(cell)){
+	                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+	                             value = formatter.format(cell.getDateCellValue());   
+	                         } else{
+	                             String ddata=Double.toString(cell.getNumericCellValue());
+	                             if(ddata.endsWith(".0")){
+	                            	 String[] arr=ddata.split("\\.");
+	                            	 value=arr[0];
+	                             }else{
+	                            	 value = ddata;
+	                             }
+	                         }
+							break;
+						case Cell.CELL_TYPE_STRING:
+							value = cell.getStringCellValue() + "";
+							break;
+						case Cell.CELL_TYPE_BLANK:
+							value = "";
+							break;
+						case Cell.CELL_TYPE_ERROR:
+							value = cell.getErrorCellString();
+							break;
 						}
+
+					}
+					cell_name.add(cellName);
+					cell_value.add(value);
+					if (cell_value.size()==0) {
+						System.out.println("cell_value.size()"+cell_value.size());
 					}
 				}
 			}
 		}
 
-		try {
-			path = "C:\\final_test\\" + session_Title(request) + ".xlsx";
-			FileOutputStream fileoutputstream = new FileOutputStream(path);
-			try {
-				workbook.write(fileoutputstream);
-				fileoutputstream.flush();
-				fileoutputstream.close();
-				existExcel(request, session_Title(request));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		json.put("cell_name", cell_name);
+		json.put("cell_value", cell_value);
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = res.getWriter();
+		out.print(json.toString());
+		
+		
 		FileInfo fileinfo = new FileInfo();
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
@@ -358,11 +341,9 @@ public class ExcelController {
 		fileinfo.setTitle(session_Title(request));
 		fileinfo.setPath(path);
 		fileLoadDao.save(fileinfo);
-
-		return "Tiles/excel_layout";
 	}
 
-	@SuppressWarnings("resource")
+	/*@SuppressWarnings("resource")
 	public void existExcel(HttpServletRequest request, String title) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		HashMap map = new HashMap();
@@ -466,7 +447,7 @@ public class ExcelController {
 			request.setAttribute("map", map);
 			// return new ModelAndView("excel_final", "map", map);
 		}
-	}
+	}*/
 
 	@SuppressWarnings("resource")
 	@RequestMapping("/existExcel.do")
