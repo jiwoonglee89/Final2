@@ -36,14 +36,7 @@ import Final.Dao.FileLoadDao;
 import net.sf.json.JSONObject;
 
 @Controller
-public class SheetController {
-
-	@Autowired
-	private CommonMethod commonMethod;
-
-	public void setCommonMethod(CommonMethod commonMethod) {
-		this.commonMethod = commonMethod;
-	}
+public class SheetController extends CommonMethod{
 
 	@Autowired
 	private FileLoadDao fileLoadDao;
@@ -55,14 +48,14 @@ public class SheetController {
 	// 시트 삭제
 	@RequestMapping("/deletesheet.do")
 	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException {
-		System.out.println("delete.do");
 		JSONObject json = new JSONObject();
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
-
-		String title = commonMethod.session_Title(request);
-		String path = fileLoadDao.getPath(title);
+		
+		String title = session_Title(request);
+		String path ="C:\\final_test\\"+title+".xlsx";
+		//String path = fileLoadDao.getPath(title);
 		File file = new File(path);
 
 		FileInputStream fis = new FileInputStream(file);
@@ -71,7 +64,10 @@ public class SheetController {
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		// 시트삭제
 		workbook.removeSheetAt(sheetNum);
+		
+		
 		try {
+			
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -87,7 +83,7 @@ public class SheetController {
 		fis = new FileInputStream(file);
 		workbook = new XSSFWorkbook(fis);
 
-		HashMap map = commonMethod.getData(workbook, sheetNum - 1);
+		HashMap map = getData(workbook, sheetNum - 1);
 
 		Iterator keys = map.keySet().iterator();
 		while (keys.hasNext()) {
@@ -96,20 +92,21 @@ public class SheetController {
 			cell_value.add((String) map.get(key));
 		}
 
-		commonMethod.inputJson(res, cell_name, cell_value);
+		inputJson(res, cell_name, cell_value);
 
 	}
 	// 시트추가
 
 	@RequestMapping(value = "/plus.do", method = RequestMethod.POST)
 	public void sheet_plus(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String title = commonMethod.session_Title(request);
-		String path = fileLoadDao.getPath(title);
+		String title = session_Title(request);
+		//String path = fileLoadDao.getPath(title);
+		String path ="C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
-		commonMethod.insertData(workbook, 0, request);
+		insertData(workbook, 0, request);
 
 		workbook.createSheet();
 
@@ -130,15 +127,16 @@ public class SheetController {
 	public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		XSSFRow row = null;
 		XSSFCell cell = null;
-		String title = commonMethod.session_Title(request);
-		String path = fileLoadDao.getPath(title);
+		String title = session_Title(request);
+		//String path = fileLoadDao.getPath(title);
+		String path="C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int totalsheetNum = Integer.parseInt(request.getParameter("totalsheetNum"));
 
-		commonMethod.insertData(workbook, totalsheetNum - 1, request);
+		insertData(workbook, totalsheetNum - 1, request);
 
 		workbook.createSheet();
 		try {
@@ -162,9 +160,11 @@ public class SheetController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		
-		String title = commonMethod.session_Title(request);
-		String path = fileLoadDao.getPath(title);
+		String title = session_Title(request);
+		//String path = fileLoadDao.getPath(title);
+		String path = "C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
+
 		
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -174,7 +174,7 @@ public class SheetController {
 
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
-		HashMap map = commonMethod.getData(workbook, sheetNum);
+		HashMap map = getData(workbook, sheetNum);
 
 		Iterator keys = map.keySet().iterator();
 		while (keys.hasNext()) {
@@ -183,6 +183,6 @@ public class SheetController {
 			cell_value.add((String) map.get(key));
 		}
 
-		commonMethod.inputJson(res, cell_name, cell_value);
+		inputJson(res, cell_name, cell_value);
 	}
 }
