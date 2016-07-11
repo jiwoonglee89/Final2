@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,14 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.FormulaError;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -44,113 +36,27 @@ import net.sf.json.JSONObject;
 public class ExcelController {
 	@Autowired
 	private FileLoadDao fileLoadDao;
+	
+	@Autowired
+	private CommonMethod commonMethod;
+	
+	public void setCommonMethod(CommonMethod commonMethod) {
+		this.commonMethod = commonMethod;
+	}
 
 	public void setFileLoadDao(FileLoadDao fileLoadDao) {
 		this.fileLoadDao = fileLoadDao;
 	}
 	
 	//타이틀 세션에저장
-	public String session_Title(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String title = (String) session.getAttribute("title");
-		return title;
-	}
 	
-	//시트에맞는 엑셀 불러와서 map에 저장
-	public HashMap getData(XSSFWorkbook workbook,int sheetNum){
-		HashMap map = new HashMap();
-		String cellName = "";
-		int rowindex = 0;
-		int columnindex = 0;
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
-
-		int rows = sheet.getPhysicalNumberOfRows();
-		int colNum = 0;
-
-		for (rowindex = 0; rowindex < rows; rowindex++) {
-			Row row = sheet.getRow(rowindex);
-			colNum = colNum + 1;
-
-			if (row != null) {
-				int cells = row.getPhysicalNumberOfCells();
-
-				for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-					XSSFCell cell = (XSSFCell) row.getCell(columnindex);
-					char rowrowrow = (char) (65 + columnindex);
-					cellName = rowrowrow + "" + colNum;
-					String value = "";
-
-					if (cell == null) {
-						value = " ";
-						continue;
-					} else {
-						// 타입별로 내용 읽기
-						switch (cell.getCellType()) {
-						case Cell.CELL_TYPE_BOOLEAN:
-							boolean bool_data = cell.getBooleanCellValue();
-							value = String.valueOf(bool_data);
-							break;
-						case Cell.CELL_TYPE_FORMULA:
-							if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-								String ddata = Double.toString(cell.getNumericCellValue());
-								if (ddata.endsWith(".0")) {
-									String[] arr = ddata.split("\\.");
-									value = arr[0];
-								} else {
-									value = ddata;
-								}
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
-								value = cell.getStringCellValue();
-							} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
-								boolean data = cell.getBooleanCellValue();
-								value = String.valueOf(data);
-							}
-							break;
-						case Cell.CELL_TYPE_NUMERIC:
-							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-								value = formatter.format(cell.getDateCellValue());
-							} else {
-								String ddata = Double.toString(cell.getNumericCellValue());
-								if (ddata.endsWith(".0")) {
-									String[] arr = ddata.split("\\.");
-									value = arr[0];
-								} else {
-									value = ddata;
-								}
-							}
-							break;
-						case Cell.CELL_TYPE_STRING:
-							value = cell.getStringCellValue() + "";
-							break;
-						case Cell.CELL_TYPE_BLANK:
-							value = "";
-							break;
-						case Cell.CELL_TYPE_ERROR:
-							value = cell.getErrorCellString();
-							break;
-						}
-
-					}
-					map.put(cellName, value);
-
-					// request.setAttribute("rows", new Integer(rows));
-					// request.setAttribute("cells", new Integer(cells));
-				}
-			}
-		}
-		return map;
-	}
+	
+	
 
 	//board에서 엑셀파일목록 클릭시 불러오기
 	@RequestMapping(value="/excel.do",method=RequestMethod.GET)
 	public String selectExcel(String title, HttpServletRequest request) throws IOException {
 
-		HashMap map = null;
-	
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("title", title);
 
@@ -161,7 +67,7 @@ public class ExcelController {
 		
 		int sheetNum = (workbook.getNumberOfSheets())-1;
 
-		map = getData(workbook, sheetNum);
+		HashMap map = commonMethod.getData(workbook, sheetNum);
 		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
@@ -174,7 +80,6 @@ public class ExcelController {
 	@RequestMapping(value="/load.do", method = RequestMethod.POST)
 	public String load(MultipartHttpServletRequest request) throws IllegalStateException, IOException{
 		MultipartFile file= request.getFile("file");
-		HashMap map = null;
 		File nfile = null;
 		if (file.isEmpty()) {
 			System.out.println("파일없음");
@@ -192,7 +97,7 @@ public class ExcelController {
 		
 		int sheetNum = (workbook.getNumberOfSheets())-1;
 		
-		map = getData(workbook, sheetNum);
+		HashMap map = commonMethod.getData(workbook, sheetNum);
 		
 		request.setAttribute("map", map);
 		request.setAttribute("tagNum", sheetNum);
@@ -213,7 +118,7 @@ public class ExcelController {
 		XSSFSheet sheet = workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\" + session_Title(request) + ".xlsx";
+			path = "C:\\final_test\\" + title + ".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -228,24 +133,13 @@ public class ExcelController {
 		request.setAttribute("sheetNum", 0);
 		return "Tiles/excel_layout";
 	}
-
-	
-	public void insertData(XSSFWorkbook workbook, int sheetNum){
-		
-	}
 	
 	//사용자 엑셀파일저장
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		String path = null;
-		JSONObject json = new JSONObject();
-		List<String> cell_name = new ArrayList<String>();
-		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
-		String cellName = "";
-		int rowindex = 0;
-		int columnindex = 0;
-		String title = session_Title(request);
+		String title = commonMethod.session_Title(request);
 		
 		File file = new File("C://final_test//" + title + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
@@ -256,38 +150,8 @@ public class ExcelController {
 		// 시트 이름
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+		commonMethod.insertData(workbook, sheetNum-1, request);
 		
-		for (int i = 0; i < 100; i++) {
-			row = sheet.createRow(i);
-			for (int j = 0; j < 26; j++) {
-				char c = (char) (65 + j);
-				String cell_num = "" + c + (i + 1);
-				cell = row.createCell(j);
-				if (request.getParameter(cell_num) != null && request.getParameter(cell_num) != "") {
-					if (request.getParameter(cell_num).indexOf("=") == 0) {
-						String formula = request.getParameter(cell_num).substring(1);
-						try {
-							cell.setCellFormula(formula);
-						} catch (Exception e) {
-							cell.setCellErrorValue(FormulaError.NAME);
-						}
-
-					} else if (request.getParameter(cell_num) == "true" || request.getParameter(cell_num) == "false") {
-						cell.setCellValue(Boolean.getBoolean(request.getParameter(cell_num)));
-					} else {
-						try {
-							cell.setCellValue(Double.parseDouble(request.getParameter(cell_num)));
-						} catch (NumberFormatException e) {
-							cell.setCellValue(request.getParameter(cell_num));
-						} catch (Exception e) {
-
-						}
-					}
-				}
-			}
-		}
 		try {
 			path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
@@ -310,7 +174,7 @@ public class ExcelController {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		fileinfo.setId(id);
-		fileinfo.setTitle(session_Title(request));
+		fileinfo.setTitle(title);
 		fileinfo.setPath(path);
 		fileLoadDao.save(fileinfo);
 	}
@@ -327,7 +191,7 @@ public class ExcelController {
 		workbook = new XSSFWorkbook(fis);
 		int sheetNum = workbook.getNumberOfSheets();
 		
-		HashMap map = getData(workbook, (sheetNum-1));
+		HashMap map = commonMethod.getData(workbook, (sheetNum-1));
 		
 		//map에서 key값 value값 array에 입력
 		Iterator keys = map.keySet().iterator();
@@ -337,11 +201,7 @@ public class ExcelController {
 			cell_value.add((String) map.get(key));
 		}
 	
-		json.put("cell_name", cell_name);
-		json.put("cell_value", cell_value);
-		res.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = res.getWriter();
-		out.print(json.toString());
+		commonMethod.inputJson(res, cell_name, cell_value);
 	}
 
 }
