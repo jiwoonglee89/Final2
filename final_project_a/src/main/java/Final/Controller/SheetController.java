@@ -40,11 +40,11 @@ public class SheetController {
 
 	@Autowired
 	private CommonMethod commonMethod;
-	
+
 	public void setCommonMethod(CommonMethod commonMethod) {
 		this.commonMethod = commonMethod;
 	}
-	
+
 	@Autowired
 	private FileLoadDao fileLoadDao;
 
@@ -52,26 +52,26 @@ public class SheetController {
 		this.fileLoadDao = fileLoadDao;
 	}
 
-	
-	//시트 삭제
+	// 시트 삭제
 	@RequestMapping("/deletesheet.do")
-	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException{
+	public void delete_sheet(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		System.out.println("delete.do");
 		JSONObject json = new JSONObject();
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
+
 		String title = commonMethod.session_Title(request);
-		
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
+
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
-		//시트삭제
+		// 시트삭제
 		workbook.removeSheetAt(sheetNum);
 		try {
-			String path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -82,14 +82,13 @@ public class SheetController {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		
-		file = new File("C:\\final_test\\"+title+".xlsx");
+
+		file = new File(path);
 		fis = new FileInputStream(file);
 		workbook = new XSSFWorkbook(fis);
-		
-		HashMap map = commonMethod.getData(workbook, sheetNum-1);
-		
+
+		HashMap map = commonMethod.getData(workbook, sheetNum - 1);
+
 		Iterator keys = map.keySet().iterator();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();
@@ -98,25 +97,23 @@ public class SheetController {
 		}
 
 		commonMethod.inputJson(res, cell_name, cell_value);
-		
+
 	}
-	//시트추가 
-	
+	// 시트추가
+
 	@RequestMapping(value = "/plus.do", method = RequestMethod.POST)
 	public void sheet_plus(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("성공?");
-		String path = null;
 		String title = commonMethod.session_Title(request);
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
-		
+
 		commonMethod.insertData(workbook, 0, request);
 
 		workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -131,21 +128,20 @@ public class SheetController {
 
 	@RequestMapping(value = "/plus2.do", method = RequestMethod.POST)
 	public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String path = null;
 		XSSFRow row = null;
 		XSSFCell cell = null;
 		String title = commonMethod.session_Title(request);
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int totalsheetNum = Integer.parseInt(request.getParameter("totalsheetNum"));
-		
-		commonMethod.insertData(workbook, totalsheetNum-1, request);
-		
+
+		commonMethod.insertData(workbook, totalsheetNum - 1, request);
+
 		workbook.createSheet();
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -156,34 +152,36 @@ public class SheetController {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	} 
+	}
 
-	@RequestMapping(value="/sheet.do" ,method=RequestMethod.POST)
+	@RequestMapping(value = "/sheet.do", method = RequestMethod.POST)
 	public void existExcel(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		System.out.println("sheet.do");
 		JSONObject json = new JSONObject();
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
+		
 		String title = commonMethod.session_Title(request);
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
+		
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		// 시트 수 (첫번째에만 존재하므로 0을 준다)
 		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
-		
+
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
-		
+
 		HashMap map = commonMethod.getData(workbook, sheetNum);
-		
+
 		Iterator keys = map.keySet().iterator();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();
 			cell_name.add(key);
 			cell_value.add((String) map.get(key));
 		}
-		
 
 		commonMethod.inputJson(res, cell_name, cell_value);
 	}

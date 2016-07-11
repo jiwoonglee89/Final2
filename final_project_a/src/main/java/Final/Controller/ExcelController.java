@@ -59,8 +59,8 @@ public class ExcelController {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("title", title);
-
-		File file = new File("C://final_test//" + title + ".xlsx");
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
@@ -118,7 +118,7 @@ public class ExcelController {
 		XSSFSheet sheet = workbook.createSheet();
 
 		try {
-			path = "C:\\final_test\\" + title + ".xlsx";
+			path = "C://final_test//" + title + ".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -137,11 +137,11 @@ public class ExcelController {
 	//사용자 엑셀파일저장
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
-		String path = null;
 		DecimalFormat df = new DecimalFormat();
 		String title = commonMethod.session_Title(request);
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
 		
-		File file = new File("C://final_test//" + title + ".xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
@@ -186,7 +186,9 @@ public class ExcelController {
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
 		XSSFWorkbook workbook = null;
-		File file = new File("C:\\final_test\\"+title+".xlsx");
+		//퍼일경로 
+		String path = fileLoadDao.getPath(title);
+		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		workbook = new XSSFWorkbook(fis);
 		int sheetNum = workbook.getNumberOfSheets();
@@ -203,5 +205,4 @@ public class ExcelController {
 	
 		commonMethod.inputJson(res, cell_name, cell_value);
 	}
-
 }

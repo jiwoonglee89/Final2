@@ -19,8 +19,11 @@ public class FileLoadDao extends SqlSessionDaoSupport{
 		return getSqlSession().delete("file.delete", title);
 	}
 
-	public FileInfo path(String title) {
-		return getSqlSession().selectOne("file.selByTitle", title);
+	//파일이름으로 경로가져오기
+	public String getPath(String title) {
+		FileInfo fileinfo = getSqlSession().selectOne("file.selByTitle", title);
+		String path = fileinfo.getPath();
+		return path;
 	}
 
 	public int write(FileInfo fileInfo){
