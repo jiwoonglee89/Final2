@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -178,8 +179,8 @@ public class ExcelController {
 		if (file.isEmpty()) {
 			System.out.println("파일없음");
 		}else {
-			int xlsx = file.getOriginalFilename().lastIndexOf(".");
-			String file_name = (file.getOriginalFilename().substring(0,xlsx));
+			int index = file.getOriginalFilename().lastIndexOf(".");
+			String file_name = (file.getOriginalFilename().substring(0,index));
 			nfile = new File("C://final_test//"+file_name+".xlsx");
 			//사용자 기존엑셀파일 서버에 복사
 			file.transferTo(nfile);
@@ -228,6 +229,11 @@ public class ExcelController {
 		return "Tiles/excel_layout";
 	}
 
+	
+	public void insertData(XSSFWorkbook workbook, int sheetNum){
+		
+	}
+	
 	//사용자 엑셀파일저장
 	@RequestMapping(value = "/save1.do", method = RequestMethod.POST)
 	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
@@ -251,7 +257,6 @@ public class ExcelController {
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 
 		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
-		System.out.println("저장에서 sheetNum:::"+(sheetNum-1));
 		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 		
 		for (int i = 0; i < 100; i++) {
@@ -316,99 +321,22 @@ public class ExcelController {
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
-		Workbook workbook = null;
+		XSSFWorkbook workbook = null;
 		File file = new File("C:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
-		if (file.getName().endsWith(".xls")) {
-			workbook = new HSSFWorkbook(fis);
-		} else {
-			workbook = new XSSFWorkbook(fis);
-		}
-
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-
-		String cellName = "";
-		int rowindex = 0;
-		int columnindex = 0;
-		// 시트 수 (첫번째에만 존재하므로 0을 준다)
-		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
+		workbook = new XSSFWorkbook(fis);
 		int sheetNum = workbook.getNumberOfSheets();
-		for (int i = 0; i < sheetNum; i++) {
-			Sheet sheet = workbook.getSheetAt(i);
-			int rows = sheet.getPhysicalNumberOfRows();
-			int colNum = 0;
-
-			for (rowindex = 0; rowindex < rows; rowindex++) {
-				Row row = sheet.getRow(rowindex);
-				colNum = colNum + 1;
-
-				if (row != null) {
-					int cells = row.getPhysicalNumberOfCells();
-
-					for (columnindex = 0; columnindex <= cells + 1; columnindex++) {
-						XSSFCell cell = (XSSFCell) row.getCell(columnindex);
-						char rowrowrow = (char) (65 + columnindex);
-						cellName = rowrowrow + "" + colNum;
-						String value = "";
-
-						if (cell == null) {
-							value = "";
-							continue;
-						} else {
-							// 타입별로 내용 읽기
-							switch (cell.getCellType()) {
-							case Cell.CELL_TYPE_BOOLEAN:
-								boolean bool_data = cell.getBooleanCellValue();
-								value = String.valueOf(bool_data);
-								break;
-							case Cell.CELL_TYPE_FORMULA:
-								if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_NUMERIC) {
-									String ddata = Double.toString(cell.getNumericCellValue());
-									if (ddata.endsWith(".0")) {
-										String[] arr = ddata.split("\\.");
-										value = arr[0];
-									} else {
-										value = ddata;
-									}
-								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_STRING) {
-									value = cell.getStringCellValue();
-								} else if (evaluator.evaluateFormulaCell(cell) == Cell.CELL_TYPE_BOOLEAN) {
-									boolean data = cell.getBooleanCellValue();
-									value = String.valueOf(data);
-								}
-								break;
-							case Cell.CELL_TYPE_NUMERIC:
-								if (HSSFDateUtil.isCellDateFormatted(cell)) {
-									SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-									value = formatter.format(cell.getDateCellValue());
-								} else {
-									String ddata = Double.toString(cell.getNumericCellValue());
-									if (ddata.endsWith(".0")) {
-										String[] arr = ddata.split("\\.");
-										value = arr[0];
-									} else {
-										value = ddata;
-									}
-								}
-								break;
-							case Cell.CELL_TYPE_STRING:
-								value = cell.getStringCellValue() + "";
-								break;
-							case Cell.CELL_TYPE_BLANK:
-								value = "";
-								break;
-							case Cell.CELL_TYPE_ERROR:
-								value = cell.getErrorCellString();
-								break;
-							}
-
-						}
-						cell_name.add(cellName);
-						cell_value.add(value);
-					}
-				}
-			}
+		
+		HashMap map = getData(workbook, (sheetNum-1));
+		
+		//map에서 key값 value값 array에 입력
+		Iterator keys = map.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			cell_name.add(key);
+			cell_value.add((String) map.get(key));
 		}
+	
 		json.put("cell_name", cell_name);
 		json.put("cell_value", cell_value);
 		res.setContentType("text/html; charset=UTF-8");
