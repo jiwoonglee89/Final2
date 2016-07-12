@@ -164,7 +164,6 @@ public class SheetController extends CommonMethod{
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
-		System.out.println("sheetNum::" + sheetNum);
 		HashMap map = getData(workbook, sheetNum);
 
 		Iterator keys = map.keySet().iterator();

@@ -127,7 +127,6 @@
 	  $('#save').click(function(){
 		  var sheetNum = $('#sheet_bar').find('input').length*1;
     	  $('#sheetNum').val(sheetNum);
-    	  alert("sheetNum"+sheetNum);
     	  var url= "<c:url value='/save1.do'/>"
   			for (var j = 1; j <= 100; j++) {
   				   for (var i = 1; i <= th.length; i++) {
@@ -204,7 +203,6 @@
       $('#sheet_bar').on('click','input',function(){
     	  var sheetNum = $(this).attr('id').substring(5)*1;
     	  $('#sheetNum').val(sheetNum);
-    	  alert("sheetNum::"+sheetNum);
     	  var url= "<c:url value='/sheet.do'/>"
   			/* for (var j = 1; j <= 100; j++) {
   				   for (var i = 1; i <= th.length; i++) {
