@@ -80,12 +80,13 @@ margin-top: 10%;
 
 #Div_middle
 {
-	margin-top: 2%;
+/* 	margin-top: 2%;
 	margin-bottom: 3%;
 	margin-left:40%;
 	margin-right:auto;
 	height:auto;
-	width:auto;
+	width:auto; */
+	margin-left: 41%;
 }
 #Div_Bottom{}
 
