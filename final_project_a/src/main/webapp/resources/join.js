@@ -27,12 +27,6 @@ function check() {
 		return false;
 	}
 
-	if (!document.joinF.birth.value)
-	{
-		alert("생년월일을 입력해주세요.");
-		return false;
-	}
-
 	/*전화번호 부분 수정*/
 	if (!document.joinF.phone.value) {
 		alert("전화번호를 입력해주세요.");

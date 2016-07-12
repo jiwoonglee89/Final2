@@ -89,7 +89,6 @@
 .font_i
 {
 	font-family: 'Poiret One', cursive;
-	border: 1px solid #111014;
 }
 table
 {
