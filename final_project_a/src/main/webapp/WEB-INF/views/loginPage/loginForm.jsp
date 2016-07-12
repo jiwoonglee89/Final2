@@ -170,8 +170,8 @@ function foundIDPASS()
 
 	<div id="Div_Bottom">
 		<div id="Div_Bottom_1">
-			<input class="button" type="submit" value="login">
-			<input class="button" type="button" value="Join" onclick="javascript:window.location='join.do'">
+			<input class="button" type="submit" value="Sign in">
+			<input class="button" type="button" value="Register" onclick="javascript:window.location='join.do'">
 		</div>
 		<div id="Div_Bottom_2">
 			<input width="1" class="button" type="button" value="Id·Pw Search" onclick='foundIDPASS()'>
