@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,12 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.sf.json.JSONObject;
 
 @Controller
-public class AjaxController {
-	public String session_Title(HttpServletRequest request){
-		HttpSession session = request.getSession();
-		String title = (String) session.getAttribute("title");
-		return title;
-	}
+public class AjaxController extends CommonMethod {
 	@RequestMapping(value = "/save.do", method = RequestMethod.POST)
 	public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String path = null;
@@ -51,37 +48,7 @@ public class AjaxController {
 		
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
- 
-		for (int i = 0; i < 100; i++) {
-			row = sheet.createRow(i);
-			for (int j = 0; j < 26; j++) {
-				char c = (char) (65 + j);
-				String cell_num = "" + c + (i + 1);
-				cell = row.createCell(j);
-				if (request.getParameter(cell_num) != null && request.getParameter(cell_num) != "") {
-					if (request.getParameter(cell_num).indexOf("=") == 0) {
-						String formula = request.getParameter(cell_num).substring(1);
-						try {
-							cell.setCellFormula(formula);
-						} catch (Exception e) {
-							cell.setCellErrorValue(FormulaError.NAME);
-						}
-
-					} else if (request.getParameter(cell_num) == "true" || request.getParameter(cell_num) == "false") {
-						cell.setCellValue(Boolean.getBoolean(request.getParameter(cell_num)));
-					} else {
-						try {
-							cell.setCellValue(Double.parseDouble(request.getParameter(cell_num)));
-						} catch (NumberFormatException e) {
-							cell.setCellValue(request.getParameter(cell_num));
-						} catch (Exception e) {
-
-						}
-					}
-				}
-			}
-		}
+		insertData(workbook, sheetNum, request);
 
 		try {
 			path = "C:\\final_test\\"+session_Title(request)+".xlsx";
@@ -103,23 +70,30 @@ public class AjaxController {
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat();
-		Workbook workbook = null;
+	
 		File file = new File("C:\\final_test\\"+title+".xlsx");
 		FileInputStream fis = new FileInputStream(file);
-		if (file.getName().endsWith(".xls")) {
-			workbook = new HSSFWorkbook(fis);
-		} else {
-			workbook = new XSSFWorkbook(fis);
-		}
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+		int sheetNum = workbook.getNumberOfSheets();
+		HashMap map = getData(workbook, (sheetNum-1));
+		
+		Iterator keys = map.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			cell_name.add(key);
+			cell_value.add((String) map.get(key));
+		}
+		
+		inputJson(res, cell_name, cell_value);
+		
+		/*FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
 		String cellName = "";
 		int rowindex = 0;
 		int columnindex = 0;
 		// 시트 수 (첫번째에만 존재하므로 0을 준다)
 		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
-		int sheetNum = workbook.getNumberOfSheets();
 		for (int i = 0; i < sheetNum; i++) {
 			Sheet sheet = workbook.getSheetAt(i);
 			int rows = sheet.getPhysicalNumberOfRows();
@@ -200,7 +174,7 @@ public class AjaxController {
 		json.put("cell_value", cell_value);
 		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = res.getWriter();
-		out.print(json.toString());
+		out.print(json.toString());*/
 	}
 
 }
