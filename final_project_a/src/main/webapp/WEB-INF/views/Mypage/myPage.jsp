@@ -11,8 +11,16 @@
 <script>
 function Mdelete()
 {
+	
+	var  screenW=screen.availWidth;
+	var  screenH=screen.availHeight;
+	var popW = 568;
+	var popH = 325;
+	var l=(screenW-popW) / 2 ;
+	var t=(screenH-popH) / 2 ;
+	
 	url = "MemberDelete.do";
-	window.open(url,"get","toolbar=no ,width=500 ,height=300,directories=no,status=yes,scrollbars=yes,menubar=no");
+	window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
 }
 </script>
 <style>
