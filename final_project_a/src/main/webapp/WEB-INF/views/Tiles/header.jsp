@@ -83,8 +83,6 @@ function getFile(){
   text-align: center;
 }
 .loadlabel{
-	margin-right: 10px;
-	margin-left: 10px;
 	padding-top: 10px;
 }
 </style>

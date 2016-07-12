@@ -51,8 +51,8 @@ public class AjaxController {
 		
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
-
+		XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
+ 
 		for (int i = 0; i < 100; i++) {
 			row = sheet.createRow(i);
 			for (int j = 0; j < 26; j++) {

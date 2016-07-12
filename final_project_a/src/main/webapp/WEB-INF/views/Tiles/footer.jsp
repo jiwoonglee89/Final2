@@ -117,7 +117,7 @@
 <script>
 
 	function addSheetTag(a){
-		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트'/>";
+		var tag = "<input type='button' id='sheet"+a+"' name='sheet' class='button' value='시트"+(a+1)+"'/>";
   		$('#sheet_bar').append(tag);
 	}
 	
@@ -157,7 +157,7 @@
       		$('#totalsheetNum').val(totalsheetNum);
       		
       		
-      		var a = totalsheetNum;
+      		var a = totalsheetNum*1;
       		$('#sheetNum').val(totalsheetNum);
       		
       		var url ="";
@@ -269,7 +269,7 @@
       <div id="footer_bar">
 
          <div id="sheet_bar">
-            <input type="button" id="sheet0" name="sheet" class="button" value="시트" />
+            <input type="button" id="sheet0" name="sheet" class="button" value="시트1" />
          </div>
       </div>
    </div>

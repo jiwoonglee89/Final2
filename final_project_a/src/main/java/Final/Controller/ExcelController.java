@@ -50,7 +50,8 @@ public class ExcelController extends CommonMethod{
 
 		HttpSession session = request.getSession();
 		session.setAttribute("title", title);
-		String path = fileLoadDao.getPath(title);
+		//String path = fileLoadDao.getPath(title);
+		String path = "C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -130,7 +131,8 @@ public class ExcelController extends CommonMethod{
 	public void save1(HttpServletRequest request, HttpServletResponse res) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		String title = session_Title(request);
-		String path = fileLoadDao.getPath(title);
+		//String path = fileLoadDao.getPath(title);
+		String path = "C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
 		
 		FileInputStream fis = new FileInputStream(file);
@@ -144,7 +146,6 @@ public class ExcelController extends CommonMethod{
 		insertData(workbook, sheetNum-1, request);
 		
 		try {
-			path = "C:\\final_test\\"+title+".xlsx";
 			FileOutputStream fileoutputstream = new FileOutputStream(path);
 			try {
 				workbook.write(fileoutputstream);
@@ -178,7 +179,8 @@ public class ExcelController extends CommonMethod{
 		DecimalFormat df = new DecimalFormat();
 		XSSFWorkbook workbook = null;
 		//퍼일경로 
-		String path = fileLoadDao.getPath(title);
+		//String path = fileLoadDao.getPath(title);
+		String path = "C:\\final_test\\"+title+".xlsx";
 		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		workbook = new XSSFWorkbook(fis);
