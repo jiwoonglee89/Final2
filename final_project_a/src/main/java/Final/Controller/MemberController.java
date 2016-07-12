@@ -239,7 +239,7 @@ public class MemberController {
 		HttpSession session=request.getSession();
 		String password = request.getParameter("password");
 		String id = (String)session.getAttribute("id");
-		if(memberDao.getPw(id)!=password){
+		if(!memberDao.getPw(id).equals(password)){
 			request.setAttribute("check", "n");
 			return "Mypage/MemberDelete";
 		}
