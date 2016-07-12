@@ -132,6 +132,9 @@ $(function(){
 <table>
 	<tr>
 		<td>
+			<div  style="color: red; size: 10px;">*주의*<br/>
+			기존 파일이름과 동일한 이름으로 생성시 <br/>
+			기존파일은 없어집니다.</div>
 			<div class="size_long" id="divtitle">
 			<input type="text" class="text_login" id="title" name="title" size="50" placeholder="제목"></input>
 			<input type="text" id="hidden_input"/>

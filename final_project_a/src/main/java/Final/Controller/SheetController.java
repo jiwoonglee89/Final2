@@ -5,9 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,18 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaError;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -98,7 +90,7 @@ public class SheetController extends CommonMethod{
 	// 시트추가
 
 	@RequestMapping(value = "/plus.do", method = RequestMethod.POST)
-	public void sheet_plus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void sheet_plus(HttpServletRequest request, HttpServletResponse response,Model model) throws IOException {
 		String title = session_Title(request);
 		//String path = fileLoadDao.getPath(title);
 		String path ="C:\\final_test\\"+title+".xlsx";
@@ -106,6 +98,7 @@ public class SheetController extends CommonMethod{
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
+		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		insertData(workbook, 0, request);
 
 		workbook.createSheet();
@@ -121,6 +114,7 @@ public class SheetController extends CommonMethod{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@RequestMapping(value = "/plus2.do", method = RequestMethod.POST)
@@ -169,11 +163,8 @@ public class SheetController extends CommonMethod{
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
-		// 시트 수 (첫번째에만 존재하므로 0을 준다)
-		// 만약 각 시트를 읽기위해서는 FOR문을 한번더 돌려준다
-
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
-
+		System.out.println("sheetNum::" + sheetNum);
 		HashMap map = getData(workbook, sheetNum);
 
 		Iterator keys = map.keySet().iterator();
@@ -184,5 +175,6 @@ public class SheetController extends CommonMethod{
 		}
 
 		inputJson(res, cell_name, cell_value);
+		
 	}
 }

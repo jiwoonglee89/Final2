@@ -51,19 +51,6 @@
 		</c:forEach>
 		</c:if> 
 	}
-
-	function popup(){
-   		var  screenW=screen.availWidth;
-  		 var  screenH=screen.availHeight;
-  		 var popW = 600;
-  		 var popH = 600;
-  		 var l=(screenW-popW) / 2 ;
-  		 var t=(screenH-popH) / 2 ;
-   
-  		 url = "join.do";
-  		 window.open(url,"get","toolbar=no ,width="+popW+",height="+popH+",left="+l+",top="+t+",directories=+no,status=yes,scrollbars=yes,menubar=no");
-   
-	}
 	
 	function span_key_up(){
 		
@@ -141,30 +128,6 @@
 		
 	};
 	
-	//함수식 저장
-	function expressionDiv(){
-	
-		
-		var tag ="";
-		
-		/*  행을 만들어준다. 아이디는 그냥 행의 번호로 설정한다.  */
-		for (var j = 1; j <= 100; j++) {
-			for (var i = 0; i < th.length; i++) {
-				tag += '<span id=exp'
-						+ th[i]
-						+ j
-						+ '  class="exp_divcoll" ></span>'
-			}
-		}
-		
-		
-		var expression = document.getElementById("expression_Div");
-		expression.innerHTML = tag;
-		
-		
-		
-	}
-	
 
 	
 	
@@ -181,7 +144,7 @@
 		tag += '<input type="hidden" id="totalsheetNum" name="totalsheetNum"/>'
 		tag += '<input type="hidden" id="sheetNum" name="sheetNum" value="${sheetNum}"/>'
 		tag += '</form>'
-
+		
 		var divForm1 = document.getElementById("divForm");
 		divForm1.innerHTML = tag;
 
@@ -392,7 +355,7 @@ function shift_tdselect_false(){
 		createTbody();
 		createLeft();
 		createForm();
-		expressionDiv()
+		
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}
@@ -406,7 +369,6 @@ function shift_tdselect_false(){
       				}
       			}
       		}
-		
 		page_load();
 		formula_down();
 	});

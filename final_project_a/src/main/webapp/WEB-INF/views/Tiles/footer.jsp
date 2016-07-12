@@ -156,7 +156,7 @@
 	      	
       		$('#totalsheetNum').val(totalsheetNum);
       		
-      		
+      		alert("total::"+totalsheetNum);
       		var a = totalsheetNum*1;
       		$('#sheetNum').val(totalsheetNum);
       		
@@ -189,6 +189,10 @@
     		 					$('#in'+th[i]+j).val("");
     		 				   }
     		 			}
+    					$('#sheet_num').empty();
+      					$('#sheet_num').append("[ "+(totalsheetNum+1)+"번째시트 ]");
+    					/* $('#sheet_num').val("");
+    					$('#sheet_num').append("[ "+(totalsheetNum+1)+"번째시트 ]"); */
     				}
     				,error:function(request, status, error){
     					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
@@ -200,7 +204,7 @@
       $('#sheet_bar').on('click','input',function(){
     	  var sheetNum = $(this).attr('id').substring(5)*1;
     	  $('#sheetNum').val(sheetNum);
-    	  alert("sheetNum"+sheetNum);
+    	  alert("sheetNum::"+sheetNum);
     	  var url= "<c:url value='/sheet.do'/>"
   			/* for (var j = 1; j <= 100; j++) {
   				   for (var i = 1; i <= th.length; i++) {
@@ -215,9 +219,13 @@
   				,data:params
   				,dataType:"json"
   				,success: function (rs){
+  					//$("#sheet_num").text("[ 현재시트 : test번째 시트 ]");
   					for(var i=0;i<rs.cell_name.length;i++){
   						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
+  						
   					} 
+  					$('#sheet_num').empty();
+  					$('#sheet_num').append("[ "+(sheetNum+1)+"번째시트 ]");
   				}
   				,error:function(request, status, error){
   					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
@@ -229,7 +237,7 @@
     	  	var totalsheetNum = $('#sheet_bar').find('input').length*1;
     		$('#totalsheetNum').val(totalsheetNum);
     		
-       	  	var sheetNum = $('#sheetNum').val();
+       	  	var sheetNum = ($('#sheetNum').val())*1;
        	  	
        	  	
        	  	//해당태그삭제
@@ -252,6 +260,8 @@
    					for(var i=0;i<rs.cell_name.length;i++){
    						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
    					} 
+   					$('#sheet_num').empty();
+  					$('#sheet_num').append("[ "+sheetNum+"번째시트 ]");
    				}
    				,error:function(request, status, error){
    					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
