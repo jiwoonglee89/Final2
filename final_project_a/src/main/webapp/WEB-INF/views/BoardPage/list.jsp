@@ -157,7 +157,10 @@ th, td
 	left: 93%;
 	
 }
-
+span
+{
+	color:red;
+}
 </Style>
 <title>My Excel List</title>
 </head>
@@ -204,7 +207,8 @@ th, td
 	 </select>
 	 <input type="text" name="searcht" placeholder="검색할 파일제목을 입력하세요" size="30px"/>
 	 <input type="submit" value="검색">
-	 </form>		
+	 </form>&nbsp
+	 <span>(※주의:기존에 존재하는 제목과 같은 제목을 입력시 기존 파일은 삭제됩니다.)</span>
 	</c:if>		 	
 	 </table>
 	</div>
