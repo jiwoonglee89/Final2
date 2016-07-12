@@ -87,7 +87,7 @@ function find_id(){
         alert("이름을 입력해 주세요.");
         $("#id_name").focus();
      }else if($("#id_phone").val()==""){
-   	  alert("핸드폰 번호를 입려해주세요.");
+   	  alert("핸드폰 번호를 입력해주세요.");
    	  $("#id_phone").focus();
      }else{
         $("#idSearch").submit();
@@ -99,7 +99,7 @@ function find_pw(){
          alert("아이디를 입력해 주세요.");
          $("#pw_id").focus();
      }else if($("#pw_phone").val()==""){
-    	 alert("핸드폰 번호를 입려해주세요.");
+    	 alert("핸드폰 번호를 입력해주세요.");
     	 $("#pw_phone").focus();
      }else if($("#pw_birth").val()==""){
         alert("생년원일을 입력해 주세요.");

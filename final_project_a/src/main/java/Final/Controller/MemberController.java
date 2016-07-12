@@ -242,9 +242,11 @@ public class MemberController {
 		if(!memberDao.getPw(id).equals(password)){
 			request.setAttribute("check", "n");
 			return "Mypage/MemberDelete";
+		}else{
+			memberDao.delete(id);
+			request.setAttribute("check", "y");
+			return "Mypage/MemberDelete";
 		}
-		memberDao.delete(id);
-		return "loginPage/loginForm";
 	}
 	//·Î±×¾Æ¿ô
 	@RequestMapping("/logout.do")
