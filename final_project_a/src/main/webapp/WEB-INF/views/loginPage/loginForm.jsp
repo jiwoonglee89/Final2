@@ -159,11 +159,11 @@ function foundIDPASS()
 	<table>
 		<tr>
 			<td id="table_td_label" class="table_td_label_ID">ID</td>
-			<td><input type="text" class="text_login" name="id" placeholder="아이디" required placeholder="ID 입력"></td>
+			<td><input type="text" class="text_login" name="id" placeholder="아이디" required></td>
 		</tr>
 		<tr>
 			<td id="table_td_label">PASSWORD</td>
-			<td><input type="password" class="text_login" name="password" placeholder="비밀번호" required placeholder="Password 입력"></td>
+			<td><input type="password" class="text_login" name="password" placeholder="비밀번호" required></td>
 		</tr>
 	</table>
 </div>

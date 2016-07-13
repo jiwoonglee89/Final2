@@ -44,7 +44,6 @@ import Final.Model.MemberInfo;
 			String message = null;
 			model.addAttribute("message", message);
 			model.addAttribute("password", password);
-			System.out.println(password);
 		}
 	
 		return "/loginPage/pwSearch";

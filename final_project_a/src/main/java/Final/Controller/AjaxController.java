@@ -44,7 +44,7 @@ public class AjaxController extends CommonMethod {
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFRow row = null;
 		XSSFCell cell = null;
-		System.out.println(request.getParameter("sheetNum"));
+
 		
 		int sheetNum = Integer.parseInt(request.getParameter("sheetNum"));
 		

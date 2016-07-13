@@ -97,25 +97,19 @@ public class MemberController {
 		{
 			String email1 = emailID+"@"+emailAddress;
 			email = email1;
-			
-			 System.out.println("emil에 대입될 값 : : : "+ email1 );
-			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
 		//select option에서 체크한경우
 		else
 		{
 			String email2 = emailID+"@"+email;
 			email = email2;
-			
-			 System.out.println("emil에 대입될 값: : :"+email2);
-			 System.out.println("저장될 email 주소 : : : "+ email );
 		}
 		//생년월일 재구성
 		String year = request.getParameter("birthY");
 		String month = request.getParameter("birthM");
 		String day = request.getParameter("birthD");
 		String birth = year+"-"+month+"-"+day;
-		System.out.println(birth);
+
 		
 		memberInfo.setBirth(birth);
 		memberInfo.setEmail(email);
@@ -124,7 +118,6 @@ public class MemberController {
 		int success=0;
 		success=memberDao.insert(memberInfo);
 		//데이터 삽입 성공여부를 확인하기위해 출력
-		System.out.println(success);
 		
 		return "loginPage/loginForm";
 
@@ -161,12 +154,11 @@ public class MemberController {
 	public ModelAndView modifyForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		//System.out.println("세션에 저장된 ID값: : :"+id);
+		
 		ModelAndView mav = new ModelAndView("Mypage/modifyForm");
 		MemberInfo member = memberDao.modifyForm(id);
 
 		//메일값 잘라넣기
-		System.out.println(member.getEmail());
 		if(!member.getEmail().equals("@")){
 			String mail_array[] = member.getEmail().split("@");
 			request.setAttribute("emailID", mail_array[0]);
@@ -196,13 +188,13 @@ public class MemberController {
 		{
 			String email1 = emailID+"@"+emailAddress;
 			email = email1;
-			//System.out.println("저장될 값:::"+email);
+			
 		}
 		else
 		{
 			String email2 = emailID+"@"+email;
 			email = email2;
-			//System.out.println("저장될 값:::"+email);
+			
 		}
 
 		//생년월일 재설정

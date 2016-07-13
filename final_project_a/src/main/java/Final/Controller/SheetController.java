@@ -148,7 +148,6 @@ public class SheetController extends CommonMethod{
 
 	@RequestMapping(value = "/sheet.do", method = RequestMethod.POST)
 	public void existExcel(HttpServletRequest request, HttpServletResponse res) throws IOException {
-		System.out.println("sheet.do");
 		JSONObject json = new JSONObject();
 		List<String> cell_name = new ArrayList<String>();
 		List<String> cell_value = new ArrayList<String>();
