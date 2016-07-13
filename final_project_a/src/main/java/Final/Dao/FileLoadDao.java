@@ -7,6 +7,12 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import Final.Model.FileInfo;
 
 public class FileLoadDao extends SqlSessionDaoSupport{
+	public List<String> get_title(String id){
+		return getSqlSession().selectList("get_title", id);
+	}
+	public int update_file(FileInfo fileinfo){
+		return getSqlSession().update("update_file", fileinfo);
+	}
 	public int save(FileInfo fileinfo){
 		return getSqlSession().insert("save", fileinfo);		
 	}

@@ -4,12 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
 	<insert id="save" parameterType="Final.Model.FileInfo">
-		insert into file_data
-		values(file_seq.NEXTVAL, #{id}, #{title}, sysdate, #{path})
+		insert into file_data values(file_seq.NEXTVAL, #{id}, #{title}, sysdate, #{path})
 	</insert>
+	<select id="get_title" parameterType="String" resultType="String">
+		select title from file_data where id=#{id}
+	</select>
+	<update id="update_file" parameterType="Final.Model.FileInfo">
+		update file_data set modify_date=sysdate where id=#{id} and title=#{title}
+	</update>
 	<select id="allById" parameterType="String" resultType="Final.Model.FileInfo">
-		select *
-		from file_data where id=${id} order by modify_date desc
+		select * from file_data where id=${id} order by modify_date desc
 	</select>
 
 	<select id="selByTitle" parameterType="String" resultType="Final.Model.FileInfo">

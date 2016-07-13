@@ -168,7 +168,19 @@ public class ExcelController extends CommonMethod{
 		fileinfo.setId(id);
 		fileinfo.setTitle(title);
 		fileinfo.setPath(path);
-		fileLoadDao.save(fileinfo);
+		
+		int count=0;
+		List<String> titles=fileLoadDao.get_title(id);
+		for(String t:titles){
+			if(t.equals(title)){
+				count++;
+			}
+		}
+		if(count>0){
+			fileLoadDao.update_file(fileinfo);
+		}else{
+			fileLoadDao.save(fileinfo);
+		}
 	}
 	
 	//ø¢ºø∆ƒ¿œ ¡¶¿ÃΩºø° ¥„±‚
