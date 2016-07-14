@@ -155,7 +155,6 @@
 	      	
       		$('#totalsheetNum').val(totalsheetNum);
       		
-      		alert("total::"+totalsheetNum);
       		var a = totalsheetNum*1;
       		$('#sheetNum').val(totalsheetNum);
       		
@@ -181,7 +180,7 @@
     				,data:params
     				//,dataType:"json"
     				,success: function (){
-    					alert('성공');
+    				
     					for (var j = 1; j <= 100; j++) { 
     		 				for (var i = 1; i <= th.length; i++) {
     		 					$('#'+th[i]+j).text("");
@@ -190,8 +189,7 @@
     		 			}
     					$('#sheet_num').empty();
       					$('#sheet_num').append("[ "+(totalsheetNum+1)+"번째시트 ]");
-    					/* $('#sheet_num').val("");
-    					$('#sheet_num').append("[ "+(totalsheetNum+1)+"번째시트 ]"); */
+
     				}
     				,error:function(request, status, error){
     					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
@@ -204,12 +202,7 @@
     	  var sheetNum = $(this).attr('id').substring(5)*1;
     	  $('#sheetNum').val(sheetNum);
     	  var url= "<c:url value='/sheet.do'/>"
-  			/* for (var j = 1; j <= 100; j++) {
-  				   for (var i = 1; i <= th.length; i++) {
-  					   var value= $('#'+th[i]+j).text();
-  					   $('#in'+th[i]+j).val(value);
-  				   }
-  			} */
+
   			var params = $("form[name=formtable]").serialize();
   			$.ajax({
   				type:"post"
@@ -217,7 +210,6 @@
   				,data:params
   				,dataType:"json"
   				,success: function (rs){
-  					//$("#sheet_num").text("[ 현재시트 : test번째 시트 ]");
   					for(var i=0;i<rs.cell_name.length;i++){
   						$('#'+rs.cell_name[i]).text(rs.cell_value[i]);
   						
@@ -237,17 +229,13 @@
     		
        	  	var sheetNum = ($('#sheetNum').val())*1;
        	  	
-       	  	
+       		
+       		
        	  	//해당태그삭제
        	  	$('#sheet'+sheetNum).remove();
        	  	
        	 	var url= "<c:url value='/deletesheet.do'/>"
-   			/* for (var j = 1; j <= 100; j++) {
-   				   for (var i = 1; i <= th.length; i++) {
-   					   var value= $('#'+th[i]+j).text();
-   					   $('#in'+th[i]+j).val(value);
-   				   }
-   			} */
+   			
    			var params = $("form[name=formtable]").serialize();
    			$.ajax({
    				type:"post"
@@ -260,6 +248,11 @@
    					} 
    					$('#sheet_num').empty();
   					$('#sheet_num').append("[ "+sheetNum+"번째시트 ]");
+					/* if(sheetNum!=totalsheetNum){
+  						
+  					} */
+  					$('#sheetNum').val((sheetNum-1))
+  					
    				}
    				,error:function(request, status, error){
    					alert("code:"+request.status+"\n"+request.responseText+"\n"+"error:"+error);
