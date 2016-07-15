@@ -76,7 +76,7 @@ function Mdelete()
 	{
 	border: 1px solid;
 	height:80px;
-	width:1400px;
+	width:1000px;
 	font-family:'Poiret One', cursive;
 	}
 	#myPage_maintext
