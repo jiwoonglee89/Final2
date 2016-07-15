@@ -22,6 +22,9 @@
 .shift_tdselect {
 	border: 1px dashed red;
 }
+#expression_Div{
+	display : none;
+}
 </style>
 <script>
 	function formula_down(){
@@ -30,7 +33,7 @@
 			var a = $('#formula').val();
 			$('.textselect').text(a);
 		});
-		
+	
 		
 	}
 	function download(){
@@ -129,7 +132,18 @@
 	};
 	
 
+	function expressSpan(){
+		var th = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K","L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+		var tag ="";
+			for (var j = 1; j < 100; j++) {
+				for (var i = 1; i < th.length; i++) {
+					tag += '<span id=ex'+th[i]+j+' name='+th[i]+j+' />'
+				}
+			}
+			var ex_span = document.getElementById("expression_Div");
+			ex_span.innerHTML = tag;
 	
+	}
 	
 	//저장 폼 생성
 	function createForm() {
@@ -355,7 +369,7 @@ function shift_tdselect_false(){
 		createTbody();
 		createLeft();
 		createForm();
-		
+		expressSpan()
 		for (var z = 1; z < 100; z++) {
 			$('#' + z).val(z);
 		}

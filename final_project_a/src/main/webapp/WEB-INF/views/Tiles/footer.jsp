@@ -232,8 +232,12 @@
        		
        		
        	  	//해당태그삭제
-       	  	$('#sheet'+sheetNum).remove();
+       	  	$('#sheet_bar').empty();
        	  	
+       	  	for(var i=0; i<(totalsheetNum-1); i++){
+       	  		addSheetTag(i);
+       	  	}
+       	  		
        	 	var url= "<c:url value='/deletesheet.do'/>"
    			
    			var params = $("form[name=formtable]").serialize();
@@ -251,7 +255,7 @@
 					/* if(sheetNum!=totalsheetNum){
   						
   					} */
-  					$('#sheetNum').val((sheetNum-1))
+  					// $('#sheetNum').val(sheetNum);
   					
    				}
    				,error:function(request, status, error){
