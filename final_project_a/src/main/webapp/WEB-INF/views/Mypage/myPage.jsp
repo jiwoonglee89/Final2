@@ -94,9 +94,10 @@ function Mdelete()
 	}
 	#button1
 	{
-		position:absolute;
-		top:5%;
-		left:88%;
+		position:static;
+		float: right;
+		margin-top: 20px;
+		margin-right: 20px;
 	}
 	#button2
 	{
@@ -113,17 +114,24 @@ function Mdelete()
 </style>
 </head>
 <body>
-	<form name="mypageF" action="modifyForm.do" method="post">
+	
 		
-			<table id="myPage_border">
+<%-- 			<table id="myPage_border">
 			<tr>
 				<td colspan="2" height="39" align="center" bgcolor="">
 				<font size="+1"><b id="myPage_maintext">${listM.name}님의 회원정보수정</b></font>
 				<input id="button1" class="button" type="button" value="Member Leave" onclick="Mdelete()">
 				</td>
 			</tr>
-			</table>
-			
+			</table> --%>
+<div id="myPage_border">
+<font size="+1">
+	<b id="myPage_maintext">${listM.name}님의 회원정보수정</b>
+</font>  
+	<input id="button1" class="button" type="button" value="Member Leave" onclick="Mdelete()">
+</div>	
+		
+<form name="mypageF" action="modifyForm.do" method="post">
 		<table class="myPage_text" style="border-style:dotted; border-color:gray;" height="400" width="600" cellspacing="1" cellpadding="2">
 			<tr>
 				<td width="200" align="center">*Id</td>
@@ -171,7 +179,7 @@ function Mdelete()
 			</tr>
 			
 			<tr>
-				<td colspan="1" bgcolor="">
+				<td colspan="1">
 					<input id="button2" class="button" type="submit"name="confirm" value="Modify Information"> 
 					<input id="button3" class="button" type="button" value="Return" onclick="javascript:window.location='board.do'">
 				</td>
