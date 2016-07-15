@@ -161,7 +161,7 @@ function resizeWind(win)
 				<div id="find_password"></div>
 				<div class="size_long" id="divid"><input type="text" class="text_login" id="pw_id" name="id" maxlength="12" placeholder="아이디"></div>
 				<div class="size_long" id="divphone"><input type="text" class="text_login" id="pw_phone" name="phone" maxlength="12" placeholder="핸드폰 번호(01012345678)"></div>
-				<div class="size_long" id="divbirth"><input type="text" class="text_login" id="pw_birth" name="birth" maxlength="12" placeholder="생년월일"></div>
+				<div class="size_long" id="divbirth"><input type="text" class="text_login" id="pw_birth" name="birth" maxlength="12" placeholder="생년월일(1900-1-1)"></div>
 				<input id="submit_find_password" class="button" type="submit" name="confirm_password" value="check" >
 			
 			</td>

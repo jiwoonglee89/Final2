@@ -154,14 +154,24 @@ function Mdelete()
 			<tr>
 				<td width="200" align="center">Email</td>
 				<td width="400">
+				<c:if test="${listM.email=='@'}">
+					<div align="center">-</div>
+				</c:if>
+				<c:if test="${listM.email !='@'}">
 					<div align="center">${listM.email}</div>
+				</c:if>
 				</td>
-				
 			</tr>
 			<tr>
 				<td width="200" align="center">*Zipcode</td>
-				<td>
-					<div align="center">${listM.zipcode} ${listM.address}</div>
+				<td width="400">
+					<div align="center">${listM.zipcode} </div>
+				</td>
+			</tr>
+			<tr>
+				<td width="200" align="center">*Address</td>
+				<td width="400">
+					<div align="center">${listM.address} </div>
 				</td>
 			</tr>
 		</table>

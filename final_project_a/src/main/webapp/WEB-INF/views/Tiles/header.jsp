@@ -134,12 +134,12 @@ function getFile(){
 		</ul>
 
 		<div class="left" style='float: left'>
-			<input type="text" id="address">
+			<input type="text" id="address" readonly="readonly">
 		</div>
 		<div class="center" style='float: left'>수식</div>
 		<div class="right" style='float: left'>
 			<form id="form2" action='formula.do' method='post'>
-				<input type="text" id="formula" name="formula1" />
+				<input type="text" id="formula" name="formula1" readonly="readonly"/>
 			</form>
 		</div>
 
