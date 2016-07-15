@@ -87,10 +87,11 @@ function Mdelete()
 	}
 	.myPage_text
 	{	
-	position:absolute;
-	top:120px;
-	left:400px;
+	position:relative;
+	top:10%;
+	left: 10%;
 	font-family:'Poiret One', cursive; 
+	
 	}
 	#button1
 	{
@@ -99,31 +100,16 @@ function Mdelete()
 		margin-top: 20px;
 		margin-right: 20px;
 	}
-	#button2
+	#buttongroup
 	{
-		position:absolute;
-		top:115%;
-		left:125%;
+		position: relative;
+		left: 19%;
+		margin-top: 30px;
 	}
-	#button3
-	{
-		position:absolute;
-		top:115%;
-		left:152%;
-	}
+
 </style>
 </head>
 <body>
-	
-		
-<%-- 			<table id="myPage_border">
-			<tr>
-				<td colspan="2" height="39" align="center" bgcolor="">
-				<font size="+1"><b id="myPage_maintext">${listM.name}님의 회원정보수정</b></font>
-				<input id="button1" class="button" type="button" value="Member Leave" onclick="Mdelete()">
-				</td>
-			</tr>
-			</table> --%>
 <div id="myPage_border">
 <font size="+1">
 	<b id="myPage_maintext">${listM.name}님의 회원정보수정</b>
@@ -177,14 +163,11 @@ function Mdelete()
 					<div align="center">${listM.zipcode} ${listM.address}</div>
 				</td>
 			</tr>
-			
-			<tr>
-				<td colspan="1">
-					<input id="button2" class="button" type="submit"name="confirm" value="Modify Information"> 
-					<input id="button3" class="button" type="button" value="Return" onclick="javascript:window.location='board.do'">
-				</td>
-			</tr>
 		</table>
+		<div id="buttongroup">
+			<input class="button" type="submit"name="confirm" value="Modify Information"> 
+			<input class="button" type="button" value="Return" onclick="javascript:window.location='board.do'">
+		</div>
 	</form>
 </body>
 </html>
