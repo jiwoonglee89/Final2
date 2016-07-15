@@ -76,8 +76,9 @@ function Mdelete()
 	{
 	border: 1px solid;
 	height:80px;
-	width:1000px;
+	width:1200px;
 	font-family:'Poiret One', cursive;
+	margin-bottom: 30px;
 	}
 	#myPage_maintext
 	{
@@ -88,8 +89,8 @@ function Mdelete()
 	.myPage_text
 	{	
 	position:relative;
-	top:10%;
-	left: 10%;
+	top:30%;
+	left: 30%;
 	font-family:'Poiret One', cursive; 
 	
 	}
@@ -103,7 +104,7 @@ function Mdelete()
 	#buttongroup
 	{
 		position: relative;
-		left: 19%;
+		left: 44%;
 		margin-top: 30px;
 	}
 
