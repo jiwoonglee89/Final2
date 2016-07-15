@@ -340,7 +340,7 @@ function shift_tdselect_false(){
 	
 	//컨트롤키
 	$(document).keydown(function(event){
-		if(event.target.nodeName!="DIV"){
+		if(event.target.nodeName!="DIV" && event.target.nodeName!="INPUT"){
 			if(event.keyCode==8){
 				alert("뒤로가기 키는 사용하실 수 없습니다.")
 				return false;
