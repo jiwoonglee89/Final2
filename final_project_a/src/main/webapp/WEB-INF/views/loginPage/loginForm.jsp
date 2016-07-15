@@ -86,7 +86,7 @@ margin-top: 10%;
 	margin-right:auto;
 	height:auto;
 	width:auto; */
-	margin-left: 43%;
+	margin-left: 38%;
 }
 #Div_Bottom{}
 
