@@ -67,7 +67,6 @@ function id_noNumber(v)
 	if (!hangle.test(v.name.value)) {
 		alert("한글만 사용하세요.");
 		v.name.value = "";
-		v.name.focus();
 		return false;
 	}
 }
